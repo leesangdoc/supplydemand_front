@@ -1,0 +1,307 @@
+
+
+<template>
+  <v-app>
+    이곳은 빠른 종목검색1 입니다.
+    <!-- mandatory -->
+    <v-radio-group
+        v-model="row"
+        row
+        column
+      >
+        <v-radio
+          label="관심1"
+          value="radio-1"
+          @click=interest1
+          @change=interest1Change
+        ></v-radio>
+        <v-radio
+          label="관심2"
+          value="radio-2"
+          @click=interest2
+        ></v-radio>
+      </v-radio-group>
+      <div v-if="inter1">
+      <table width="100%">
+        <tr>
+          <td>FROM(달력): </td>
+          <td>
+            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
+              format="YYYY-MM-DD" @change="changeFromDate" 
+              :value="fromdate"/>
+          </td>
+
+          <td>TO(달력):</td>
+          <td>
+            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
+              format="YYYY-MM-DD" @change="changeToDate" :value="todate" />
+          </td>
+        </tr>
+        </table>
+        <table>
+          <tr><!-- : ${individual.toString()} -->
+            <td><v-checkbox v-model="individual" :label="`개인`" /></td>
+            <td><v-checkbox v-model="grossSum" @click="changeGrossSum" :label="`세력합`"/></td> 
+            <td><v-checkbox v-model="foreigner" @click="changeNotGrossSum(e)" :label="`외인`"/></td>
+            <td><v-checkbox v-model="finance" @click="changeNotGrossSum(e)" :label="`금융`"/></td>
+            <td><v-checkbox v-model="insurance" @click="changeNotGrossSum(e)" :label="`보험`"/></td>
+            <td><v-checkbox v-model="investment" @click="changeNotGrossSum(e)" :label="`투신`"/></td>
+            <td><v-checkbox v-model="bank" @click="changeNotGrossSum(e)" :label="`은행`"/></td>
+          </tr>
+          <tr>
+            <td><v-checkbox v-model="etcFinance" @click="changeNotGrossSum(e)" :label="`기타금융`"/></td>
+            <td><v-checkbox v-model="pensionFund" @click="changeNotGrossSum(e)" :label="`연기금`"/></td>
+            <td><v-checkbox v-model="government" @click="changeNotGrossSum(e)" :label="`국가`"/></td>
+            <td><v-checkbox v-model="etcCorp" @click="changeNotGrossSum(e)" :label="`기타법인`"/></td>
+            <td><v-checkbox v-model="etcForeigner" @click="changeNotGrossSum(e)" :label="`기타외인`"/></td>
+            <td><v-checkbox v-model="privateEquity" @click="changeNotGrossSum(e)" :label="`사모펀드`"/></td>
+          </tr>
+        </table>
+      </div>
+    <ag-grid-vue style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        :columnDefs="columnDefs"
+        :rowData="rowData"
+        rowSelection="single"
+        @grid-ready="onGridReady"
+        @selection-changed="getSelectedRows"
+        :defaultColDef="defaultColDef"
+    >
+    </ag-grid-vue>
+  </v-app>
+</template>
+<script>
+import { AgGridVue } from "ag-grid-vue";
+import axios from "axios"; 
+// import EventBus from "./event_bus";
+import VueEnglishdatepicker from 'vue-englishdatepicker';
+export default {
+   
+  beforeMount() {
+    console.log('beforeMount');
+    this.defaultColDef={
+        resizable: true
+    },
+    this.columnDefs = [
+      { field: 'stockName', sortable: true, filter: true},
+      { field: 'individual', sortable: true, filter: true },
+      { field: 'grossSum', sortable: true, filter: true },
+      { field: 'foreigner', sortable: true, filter: true },
+      { field: 'finance', sortable: true, filter: true },
+      { field: 'insurance', sortable: true, filter: true },
+      { field: 'investment', sortable: true, filter: true },
+      { field: 'bank', sortable: true, filter: true },
+      { field: 'etcFinance', sortable: true, filter: true },
+      { field: 'pensionFund', sortable: true, filter: true },
+      { field: 'government', sortable: true, filter: true },
+      { field: 'etcForeigner', sortable: true, filter: true },
+      { field: 'privateEquity', sortable: true, filter: true }
+    ];
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = ("0" + (1 + date.getMonth())).slice(-2);
+    let day = ("0" + date.getDate()).slice(-2);
+    this.todate = year + '-' +month + '-' + day;
+    this.fromdate = year + '-' +month + '-' + day;
+    this.rowData = [
+      
+    ];
+
+    /**
+     * { make: 'Toyota', model: 'Celica', price: 35000 },
+      { make: 'Ford', model: 'Mondeo', price: 32000 },
+      { make: 'Porsche', model: 'Boxter', price: 72000 }
+     */
+  },
+
+  mounted(){
+    
+  },
+
+  name: 'QuickInterestStock',
+
+  methods: {
+    keyFromDate(e){
+      console.log('keyUpFromDate e;;;'+e);
+    },
+
+    changeNotGrossSum(e){
+      console.log('changeNotGrossSum e;;;'+e);
+      if(this.finance && this.foreigner && this.finance && this.insurance
+      && this.investment && this.bank && this.etcFinance && this.pensionFund
+      && this.government && this.etcCorp && this.etcForeigner && this.privateEquity){
+        this.grossSum = true;
+        return;
+      }
+
+      if(!e){
+        this.grossSum = false;
+        return;
+      }
+
+      
+    },
+
+    changeGrossSum(){
+      console.log('세력합 체크박스 찍으면...'); 
+      this.foreigner = this.grossSum;
+      this.finance = this.grossSum;
+      this.insurance = this.grossSum;
+      this.investment = this.grossSum;
+      this.bank = this.grossSum;
+      this.etcFinance = this.grossSum;
+      this.pensionFund = this.grossSum;
+      this.government = this.grossSum;
+      this.etcCorp = this.grossSum;
+      this.etcForeigner = this.grossSum;
+      this.privateEquity = this.grossSum;
+    },
+
+    changeFromDate(e){
+      this.fromdate = e;
+    },
+
+    changeToDate(e){
+      this.todate = e;
+    },
+
+    async interest1() {
+      this.inter1 = true;
+      
+      if(this.fromdate === undefined){
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        this.fromdate = year + '-'+month + '-'+day;
+        console.log('interest1 undefined this.fromdate', this.fromdate);
+      }
+
+      if(this.todate === undefined){
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        this.todate = year + '-'+ month +'-'+ day;
+        console.log('interest1 undefined this.todate', this.todate);
+      } 
+
+      if(parseInt(this.fromdate.replace(/-/gi, ""))>parseInt(this.todate.replace(/-/gi, ""))){
+        alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
+        return;
+      }
+
+      
+      let temp = this;
+      let postData = {
+        fromdate: this.fromdate, 
+        todate: this.todate,
+        checkbx: {
+          individual: this.individual,
+          grossSum: this.grossSum,
+          foreigner: this.foreigner,
+          finance: this.finance,
+          insurance: this.insurance,
+          investment: this.investment,
+          bank: this.bank,
+          etcFinance: this.etcFinance,
+          pensionFund: this.pensionFund,
+          government: this.government,
+          etcCorp: this.etcCorp,
+          etcForeigner: this.etcForeigner,
+          privateEquity: this.privateEquity,
+        },
+      };
+      
+      console.log("interest1()...");
+      console.log("postData.checkbx.." + postData.checkbx);
+      axios.post(
+        'http://127.0.0.1:8000/supplydemand/api/leftFastList/'
+        ,{
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'JWT fefege...'
+        }
+        , postData}) // https://jsonplaceholder.typicode.com/users/
+        .then(function(response) {
+          console.log(response);
+          temp.rowData = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally({});
+    },
+
+    interest1Change(){
+      console.log('inter1 changed...');
+
+    },
+
+    async interest2() {
+      this.inter1 = false;
+      this.inter2 = true;
+      let temp = this;
+      console.log("interest2()...");
+       temp.rowData = [];
+    },
+
+    onGridReady(params) {
+      this.gridApi = params.api;
+      this.columnApi = params.columnApi;
+      //this.gridApi.sizeColumnsToFit();
+    },
+
+    getSelectedRows() {
+      const selectedNodes = this.gridApi.getSelectedNodes();
+      const selectedData = selectedNodes.map( node => node.data );
+      console.log('selectedData: ' + selectedData);
+      const selectedDataStringPresentation = selectedData.map( node => node.make + ' ' + node.model + ' ' + node.price).join(', ');
+      console.log(`Selected nodes: ${selectedDataStringPresentation}`);
+    },
+
+  },
+  components: {
+    AgGridVue,
+    VueEnglishdatepicker,
+  },
+  data: () => ({
+    // ag grid 관련
+    columnDefs: null,
+    rowData: null,
+    // 관심1 라디오 박스
+    inter1: false,
+    // 관심1 체크: 개인
+    individual: false,
+    // 관심1 체크: 세력합
+    grossSum: true,
+    // 관심1 체크: 외인
+    foreigner: true,
+    // 관심1 체크: 금융
+    finance: true,
+    // 관심1 체크: 보험
+    insurance: true,
+    // 관심1 체크: 투신
+    investment: true,
+    // 관심1 체크: 은행
+    bank: true,
+    // 관심1 체크: 기타금융
+    etcFinance: true,
+    // 관심1 체크: 연기금
+    pensionFund: true,
+    // 관심1 체크: 국가
+    government: true,
+    // 관심1 체크: 기타법인
+    etcCorp: true,
+    // 관심1 체크: 기타외인
+    etcForeigner: true,
+    // 관심1 체크: 사모펀드
+    privateEquity: true,
+    // ///////////////////////////////////////////////////
+    // 관심2 라디오 박스
+    inter2: false,
+    
+    
+  }),
+}
+</script>
