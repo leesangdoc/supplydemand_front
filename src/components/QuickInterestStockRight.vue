@@ -81,7 +81,7 @@ export default {
         xAxis: {
           type: "category",
           title: {
-            text: 'Date'
+            text: '날짜(기간)'
           },
           labels: {
             autoRotationLimit: 40
@@ -97,7 +97,7 @@ export default {
           text: 'Fruit Consumption'
         },
         subtitle: {
-          text: 'Left side of the text should be aligned to the tick'
+          text: '종가 기준 주식차트'
         },
         
         tooltip: {
@@ -109,7 +109,7 @@ export default {
         },
         yAxis: {
           title: {
-              text: 'Fruit eaten'
+              text: '주가(종가)'
           },
           alignTicks:'left', 
           textAlign:'left',
