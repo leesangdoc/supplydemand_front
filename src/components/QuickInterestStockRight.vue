@@ -124,24 +124,24 @@ export default {
         responsive: {
           rules: [{
             condition: {
-                maxWidth: 500
+                maxWidth: 500,
             },
             chartOptions: {
                 chart: {
-                    height: 300
+                    height: 300,
                 },
                 subtitle: {
-                    text: null
+                    text: null,
                 },
                 navigator: {
-                    enabled: true
+                    enabled: true,
                 },
                 legend: {
-                  enabled: false
+                  enabled: false,
                 },
                 yAxis: {
                   title: {
-                    enabled: false
+                    enabled: false,
                   }
                 }
             }
@@ -156,17 +156,18 @@ export default {
             enabled: null, // auto
             radius: 3,
             lineWidth: 1,
-            lineColor: '#FFFFFF'
+            lineColor: '#FFFFFF',
           },
           tooltip: {
-              valueDecimals: 0
+              valueDecimals: 0,
+              valueSuffix: '원',
           },
           dataGrouping:{
             approximation: 'average',
             enabled:true,
             forced:true,
             groupAll:true,
-            groupPixelWidth:15
+            groupPixelWidth:15,
           }
         }]
       }
