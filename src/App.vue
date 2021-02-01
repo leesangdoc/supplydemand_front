@@ -56,7 +56,9 @@
                           outlined
                           tile
                         >
-                        <QuickInterestStockLeft/>
+                        <QuickInterestStockLeft
+                        
+                        />
                         </v-card>
                       </v-col>
                       
@@ -66,7 +68,9 @@
                           outlined
                           tile
                         >
-                        <QuickInterestStockRight />
+                        <QuickInterestStockRight 
+                          :send-data="childData" @event-data="setChildData"
+                        />
                         </v-card>
                       </v-col>
                     </v-row>
@@ -105,6 +109,7 @@ import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
 
 export default {
+
   setup() {
     console.log('setup');
   },
@@ -127,7 +132,8 @@ export default {
      console.log('beforeUnmount');
    },
   updated() {             
-    console.log('updated!');  
+    console.log('updated!'); 
+    console.log(this.childData); 
   },
   unmounted() { /* Options API */
     console.log('unmounted');
@@ -139,6 +145,10 @@ export default {
       alert('캔슬입니다......');
       // this.dialog = false;
     },
+    setChildData (data) {
+      this.childData = data
+      console.log(this.childData)
+    }
   },
   components: {
     QuickInterestStockLeft,
@@ -148,6 +158,7 @@ export default {
   },
 
   data: () => ({
+    message : '아들아 받아라',
     currentItem: 'tab-Web',
     items: [
       '빠른 관심 종목', '시장수급', '수급분석표 검색',
