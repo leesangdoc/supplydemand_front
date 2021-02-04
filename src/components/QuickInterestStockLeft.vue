@@ -58,7 +58,8 @@
           </tr>
         </table>
       </div>
-    <ag-grid-vue style="width: 100%; height: 100%;"
+    <ag-grid-vue 
+        style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
         :columnDefs="columnDefs"
         :rowData="rowData"
@@ -76,7 +77,7 @@ import axios from "axios";
 // import EventBus from "./event_bus";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 export default {
-  props: ['sendData'],
+  props: ['leftSendData'],
   beforeMount() {
     console.log('beforeMount');
     this.defaultColDef={
@@ -260,12 +261,13 @@ export default {
     getSelectedRows() {
       const selectedNodes = this.gridApi.getSelectedNodes();
       const selectedData = selectedNodes.map( node => node.data );
-      console.log('selectedData: ' + selectedData);
+      console.log('selectedData1: ' + selectedData[0].price);
+      console.log('selectedData2: ' + this.gridApi.getSelectedRows());
       const selectedDataStringPresentation = 
         selectedData.map( node => node.make + ' ' + node.model + ' ' + node.price).join(', ');
       console.log(`Selected nodes: ${selectedDataStringPresentation}`);
-      let changeData = this.sendData + 30
-      this.$emit('event-data', changeData)
+      // let changeData = this.sendData + 30
+      this.$emit('showlog', selectedData)
     },
 
   },

@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    이곳은 빠른 종목검색2 입니다.
-    {{message}}
+    이곳은 빠른 종목검색2 입니다...{{rightsenddata}}
+    
     <highcharts 
       :options="chartOptions"
       :constructor-type="'stockChart'"
@@ -20,7 +20,7 @@ import stockInit from 'highcharts/modules/stock'
 stockInit(Highcharts)
 
 export default {
-  
+  props: ['rightsenddata'],
   components: {
     highcharts: Chart 
   },
