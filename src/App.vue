@@ -142,8 +142,7 @@ export default {
     printText:function(selectedData){
       console.log("app.vue: selectedData", selectedData[0].price);
       this.todo =  {
-        text: selectedData[0].price,
-        isComplete: true
+        csvFileName: selectedData[0].fileTitle,
       };
     },
     showLog:function(){

@@ -84,22 +84,24 @@ export default {
         resizable: true
     },
     this.columnDefs = [
-      // { field: 'stockName', sortable: true, filter: true},
-      // { field: 'individual', sortable: true, filter: true },
-      // { field: 'grossSum', sortable: true, filter: true },
-      // { field: 'foreigner', sortable: true, filter: true },
-      // { field: 'finance', sortable: true, filter: true },
-      // { field: 'insurance', sortable: true, filter: true },
-      // { field: 'investment', sortable: true, filter: true },
-      // { field: 'bank', sortable: true, filter: true },
-      // { field: 'etcFinance', sortable: true, filter: true },
-      // { field: 'pensionFund', sortable: true, filter: true },
-      // { field: 'government', sortable: true, filter: true },
-      // { field: 'etcForeigner', sortable: true, filter: true },
-      // { field: 'privateEquity', sortable: true, filter: true }
-      { field: 'make', sortable: true, filter: true},
-      { field: 'model', sortable: true, filter: true },
-      { field: 'price', sortable: true, filter: true },
+      { field: 'stockName', sortable: true, filter: true},
+      { field: 'individual', sortable: true, filter: true },
+      { field: 'grossSum', sortable: true, filter: true },
+      { field: 'foreigner', sortable: true, filter: true },
+      { field: 'finance', sortable: true, filter: true },
+      { field: 'insurance', sortable: true, filter: true },
+      { field: 'investment', sortable: true, filter: true },
+      { field: 'bank', sortable: true, filter: true },
+      { field: 'etcFinance', sortable: true, filter: true },
+      { field: 'pensionFund', sortable: true, filter: true },
+      { field: 'government', sortable: true, filter: true },
+      { field: 'etcForeigner', sortable: true, filter: true },
+      { field: 'privateEquity', sortable: true, filter: true },
+      { field: 'fileTitle', sortable: true, filter: true, hide: true }
+      
+      // { field: 'make', sortable: true, filter: true},
+      // { field: 'model', sortable: true, filter: true },
+      // { field: 'price', sortable: true, filter: true },
     ];
     let date = new Date();
     let year = date.getFullYear();
@@ -108,9 +110,9 @@ export default {
     this.todate = year + '-' +month + '-' + day;
     this.fromdate = year + '-' +month + '-' + day;
     this.rowData = [
-       { make: 'Toyota', model: 'Celica', price: 35000 },
-      { make: 'Ford', model: 'Mondeo', price: 32000 },
-      { make: 'Porsche', model: 'Boxter', price: 72000 }
+      //  { make: 'Toyota', model: 'Celica', price: 35000 },
+      // { make: 'Ford', model: 'Mondeo', price: 32000 },
+      // { make: 'Porsche', model: 'Boxter', price: 72000 }
     ];
 
     /**
