@@ -57,7 +57,7 @@
                           tile
                         >
                         <QuickInterestStockLeft
-                        
+                          v-on:showlog="printText"
                         />
                         </v-card>
                       </v-col>
@@ -69,7 +69,7 @@
                           tile
                         >
                         <QuickInterestStockRight 
-                          :send-data="childData" @event-data="setChildData"
+                          :rightsenddata="todo"
                         />
                         </v-card>
                       </v-col>
@@ -109,7 +109,7 @@ import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
 
 export default {
-
+  
   setup() {
     console.log('setup');
   },
@@ -132,19 +132,29 @@ export default {
      console.log('beforeUnmount');
    },
   updated() {             
-    console.log('updated!'); 
-    console.log(this.childData); 
+    console.log('updated!');  
   },
   unmounted() { /* Options API */
     console.log('unmounted');
   },
   name: 'App',
   methods: {
+    printText:function(selectedData){
+      console.log("app.vue: selectedData", selectedData[0].price);
+      this.todo =  {
+        text: selectedData[0].price,
+        isComplete: true
+      };
+    },
+    showLog:function(){
+      console.log('showLog');
+    },
     cancel() {
       console.log("cancel()...");
       alert('캔슬입니다......');
       // this.dialog = false;
     },
+
     setChildData (data) {
       this.childData = data
       console.log(this.childData)
@@ -164,7 +174,10 @@ export default {
       '빠른 관심 종목', '시장수급', '수급분석표 검색',
     ],
     text: 'Lorem ',
-
+    todo: {
+      text: 'Learn Vue',
+      isComplete: false
+    },
   }),
 };
 
