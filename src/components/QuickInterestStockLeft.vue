@@ -262,13 +262,33 @@ export default {
 
     getSelectedRows() {
       const selectedNodes = this.gridApi.getSelectedNodes();
-      const selectedData = selectedNodes.map( node => node.data );
-      console.log('selectedData1: ' + selectedData[0].price);
+      const selectedData = selectedNodes.map(node => node.data);
+      const csvFileName = selectedData[0].fileTitle;
+      console.log('selectedData1 fileTitle: ' + csvFileName);
+      console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
       console.log('selectedData2: ' + this.gridApi.getSelectedRows());
-      const selectedDataStringPresentation = 
-        selectedData.map( node => node.make + ' ' + node.model + ' ' + node.price).join(', ');
-      console.log(`Selected nodes: ${selectedDataStringPresentation}`);
-      // let changeData = this.sendData + 30
+      let postData = {
+        csvFileName,
+        fromdate: this.fromdate, 
+        todate: this.todate,
+      };
+      axios.post('http://127.0.0.1:8000/supplydemand/api/rightChartList/',
+        {
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'JWT fefege...'
+        }, postData})
+        .then(function(response) {
+          console.log(response);
+          // temp.rowData = response.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+        .finally({
+
+        });
+
       this.$emit('showlog', selectedData)
     },
 
