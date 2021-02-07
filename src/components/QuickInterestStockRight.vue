@@ -38,6 +38,7 @@ export default {
     });
     this.chartOptions.series[0].data = this.stla.resultStockInfo;
     this.chartOptions.title.text = this.stla.stockName;
+    this.chartOptions.series[0].name = this.stla.stockName;
   },
   props: ['stla'],
   components: {
@@ -175,7 +176,7 @@ export default {
           }]
         },
         series: [{
-          name: '준봉',
+          name: '종목',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
