@@ -110,7 +110,8 @@ export default {
     let month = ("0" + (1 + date.getMonth())).slice(-2);
     let day = ("0" + date.getDate()).slice(-2);
     this.todate = year + '-' +month + '-' + day;
-    this.fromdate = year + '-' +month + '-' + day;
+    // this.fromdate = year + '-' +month + '-' + day;
+    this.fromdate =  '2020-12-01';
     this.rowData = [
     /**
      * { make: 'Toyota', model: 'Celica', price: 35000 },
@@ -263,6 +264,7 @@ export default {
       const selectedNodes = this.gridApi.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
       const csvFileName = selectedData[0].fileTitle;
+      const stockName = selectedData[0].stockName;
       console.log('selectedData1 fileTitle: ' + csvFileName);
       console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
       console.log('selectedData2: ' + this.gridApi.getSelectedRows());
@@ -281,18 +283,13 @@ export default {
       }, postData})
       .then(function(response) {
         console.log(response);
-        console.log('QuickInterestStockLeft_extractStockDays;;;'+response.data.extractStockDays);
-        console.log('QuickInterestStockLeft_extractStockPrice;;;'+response.data.extractStockPrice);
 
         resData = {
-          extractStockDays : response.data.extractStockDays,
-          extractStockPrice : response.data.extractStockPrice,
+          resultStockInfo: response.data.resultStockInfo,
+          stockName,
         };
         temp.$emit('showchart', resData)
       })
-      // .then(function(response) {
-
-      // })
       .catch(function(error) {
         console.log(error);
       })

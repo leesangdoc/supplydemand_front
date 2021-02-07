@@ -69,7 +69,7 @@
                           tile
                         >
                         <QuickInterestStockRight 
-                          :stla="todo"
+                          :stla="stockinfo"
                         />
                         </v-card>
                       </v-col>
@@ -140,9 +140,9 @@ export default {
   name: 'App',
   methods: {
     showChart:function(responseData){
-      this.todo =  {
-        extractStockPrice: responseData.extractStockPrice,
-        extractStockDays: responseData.extractStockDays,
+      this.stockinfo =  {
+        resultStockInfo : responseData.resultStockInfo,
+        stockName : responseData.stockName,
       };
     },
     cancel() {
@@ -171,9 +171,8 @@ export default {
     ],
     text: 'Lorem ',
     stockPrice: {},
-    todo: {
-      extractStockPrice: [],
-      extractStockDays: []
+    stockinfo: {
+      resultStockInfo: [],
     },
   }),
 };

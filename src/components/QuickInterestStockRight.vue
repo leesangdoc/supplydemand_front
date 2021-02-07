@@ -1,13 +1,15 @@
 <template>
   <v-app>
-    {{stla}}
+    
     <highcharts 
       :options="chartOptions"
       :constructor-type="'stockChart'"
       :callback="someFunction"
       :highcharts="hcInstance"
     >
+    {{stla}}
     </highcharts>
+    
   </v-app>
 </template>
 <script>
@@ -23,8 +25,19 @@ export default {
     console.log('beforeCreate');
   },
   updated() {             
-    console.log('QuickInterestStockRight updated stla ! ', this.stla); 
-    this.chartOptions.series[0].data = this.stla.extractStockPrice;
+    this.stla.resultStockInfo.forEach(
+      element => {
+        var eltStr = element[0].toString();
+        var trnDay = (
+          new Date(
+            parseInt(eltStr.slice(0,4)),
+            parseInt(eltStr.slice(4,6))-1,
+            parseInt(eltStr.slice(6, 8))
+        )).getTime();
+        element[0] = trnDay;
+    });
+    this.chartOptions.series[0].data = this.stla.resultStockInfo;
+    this.chartOptions.title.text = this.stla.stockName;
   },
   props: ['stla'],
   components: {
@@ -53,44 +66,52 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 0,
+          y: 230,
           x: 0,
-          // buttons: [{
-          //       type: 'month',
-          //       count: 3,
-          //       text: 'Day',
-          //       dataGrouping: {
-          //           forced: true,
-          //           units: [['day', [1]]]
-          //       }
-          //   }, {
-          //       type: 'year',
-          //       count: 1,
-          //       text: 'Week',
-          //       dataGrouping: {
-          //           forced: true,
-          //           units: [['week', [1]]]
-          //       }
-          //   }, {
-          //       type: 'all',
-          //       text: 'Month',
-          //       dataGrouping: {
-          //           forced: true,
-          //           units: [['month', [1]]]
-          //       }
-          //   }],
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
             buttonTheme: {
-                width: 60
+                width: 30
             },
             selected: 1
         },
         xAxis: {
-          type: "category",
+          type: "datetime",
           title: {
             text: '날짜(기간)'
           },
           labels: {
-            autoRotationLimit: 40
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
           },
           
         },
@@ -100,10 +121,10 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'Fruit Consumption'
+          text: '종목명'
         },
         subtitle: {
-          text: '종가 기준 주식차트'
+          text: '수급분석 주식차트'
         },
         
         tooltip: {
@@ -134,7 +155,7 @@ export default {
             },
             chartOptions: {
                 chart: {
-                    height: 300,
+                    height: 500,
                 },
                 subtitle: {
                     text: null,
@@ -155,26 +176,9 @@ export default {
         },
         series: [{
           name: '준봉',
-          pointStart: Date.UTC(2018, 1, 1),
-          pointInterval: 1000 * 3600 * 24,
-          // data: [1,2,3,4,5,6,7,8,10,11,12,13,77,8,65,4,2,4,5,7,88], // sample data
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
           data: [],
-        //   (function () {
-        //     // generate an array of random data
-        //     var data = [],
-        //         time = (new Date()).getTime(),
-        //         i;
-
-        //     for (i = -999; i <= 0; i += 1) {
-        //         data.push([
-        //             time + i * 1000,
-        //             Math.round(Math.random() * 100)
-        //         ]);
-        //     }
-        //     return data;
-
-
-        // }()), 
           marker: {
             enabled: null, // auto
             radius: 3,
