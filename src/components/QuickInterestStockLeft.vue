@@ -83,6 +83,7 @@ export default {
     this.defaultColDef={
         resizable: true
     },
+
     this.columnDefs = [
       { field: 'stockName', sortable: true, filter: true},
       { field: 'individual', sortable: true, filter: true },
@@ -102,6 +103,7 @@ export default {
       // { field: 'make', sortable: true, filter: true},
       // { field: 'model', sortable: true, filter: true },
       // { field: 'price', sortable: true, filter: true },
+
     ];
     let date = new Date();
     let year = date.getFullYear();
@@ -110,16 +112,13 @@ export default {
     this.todate = year + '-' +month + '-' + day;
     this.fromdate = year + '-' +month + '-' + day;
     this.rowData = [
-      //  { make: 'Toyota', model: 'Celica', price: 35000 },
-      // { make: 'Ford', model: 'Mondeo', price: 32000 },
-      // { make: 'Porsche', model: 'Boxter', price: 72000 }
-    ];
-
     /**
      * { make: 'Toyota', model: 'Celica', price: 35000 },
       { make: 'Ford', model: 'Mondeo', price: 32000 },
       { make: 'Porsche', model: 'Boxter', price: 72000 }
      */
+    ];
+
   },
 
   mounted(){
@@ -267,29 +266,41 @@ export default {
       console.log('selectedData1 fileTitle: ' + csvFileName);
       console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
       console.log('selectedData2: ' + this.gridApi.getSelectedRows());
+      let resData = {};
+      let temp = this;
       let postData = {
         csvFileName,
         fromdate: this.fromdate, 
         todate: this.todate,
       };
       axios.post('http://127.0.0.1:8000/supplydemand/api/rightChartList/',
-        {
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'JWT fefege...'
-        }, postData})
-        .then(function(response) {
-          console.log(response);
-          // temp.rowData = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        })
-        .finally({
+      {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'JWT fefege...'
+      }, postData})
+      .then(function(response) {
+        console.log(response);
+        console.log('QuickInterestStockLeft_extractStockDays;;;'+response.data.extractStockDays);
+        console.log('QuickInterestStockLeft_extractStockPrice;;;'+response.data.extractStockPrice);
 
-        });
+        resData = {
+          extractStockDays : response.data.extractStockDays,
+          extractStockPrice : response.data.extractStockPrice,
+        };
+        temp.$emit('showchart', resData)
+      })
+      // .then(function(response) {
 
-      this.$emit('showlog', selectedData)
+      // })
+      .catch(function(error) {
+        console.log(error);
+      })
+      .finally({
+        
+      });
+
+      
     },
 
   },

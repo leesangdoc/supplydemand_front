@@ -57,7 +57,7 @@
                           tile
                         >
                         <QuickInterestStockLeft
-                          v-on:showlog="printText"
+                          v-on:showchart="showChart"
                         />
                         </v-card>
                       </v-col>
@@ -69,7 +69,7 @@
                           tile
                         >
                         <QuickInterestStockRight 
-                          :rightsenddata="todo"
+                          :stla="todo"
                         />
                         </v-card>
                       </v-col>
@@ -139,14 +139,11 @@ export default {
   },
   name: 'App',
   methods: {
-    printText:function(selectedData){
-      console.log("app.vue: selectedData", selectedData[0].price);
+    showChart:function(responseData){
       this.todo =  {
-        csvFileName: selectedData[0].fileTitle,
+        extractStockPrice: responseData.extractStockPrice,
+        extractStockDays: responseData.extractStockDays,
       };
-    },
-    showLog:function(){
-      console.log('showLog');
     },
     cancel() {
       console.log("cancel()...");
@@ -173,9 +170,10 @@ export default {
       '빠른 관심 종목', '시장수급', '수급분석표 검색',
     ],
     text: 'Lorem ',
+    stockPrice: {},
     todo: {
-      text: 'Learn Vue',
-      isComplete: false
+      extractStockPrice: [],
+      extractStockDays: []
     },
   }),
 };

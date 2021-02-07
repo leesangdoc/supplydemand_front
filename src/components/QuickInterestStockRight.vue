@@ -1,7 +1,6 @@
 <template>
   <v-app>
-    이곳은 빠른 종목검색2 입니다...{{rightsenddata}}
-    
+    {{stla}}
     <highcharts 
       :options="chartOptions"
       :constructor-type="'stockChart'"
@@ -20,13 +19,19 @@ import stockInit from 'highcharts/modules/stock'
 stockInit(Highcharts)
 
 export default {
-  props: ['rightsenddata'],
+  beforeCreate() {     
+    console.log('beforeCreate');
+  },
+  updated() {             
+    console.log('QuickInterestStockRight updated stla ! ', this.stla); 
+    this.chartOptions.series[0].data = this.stla.extractStockPrice;
+  },
+  props: ['stla'],
   components: {
     highcharts: Chart 
   },
   name: 'QuickInterestStockRight',
   methods: {
-
     cancel() {
       console.log("cancel()...");
       alert('캔슬입니다......')
@@ -43,7 +48,6 @@ export default {
       setOptions: {
 
       },
-       
       chartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
@@ -153,7 +157,24 @@ export default {
           name: '준봉',
           pointStart: Date.UTC(2018, 1, 1),
           pointInterval: 1000 * 3600 * 24,
-          data: [1,2,3,4,5,6,7,8,10,11,12,13,77,8,65,4,2,4,5,7,88], // sample data
+          // data: [1,2,3,4,5,6,7,8,10,11,12,13,77,8,65,4,2,4,5,7,88], // sample data
+          data: [],
+        //   (function () {
+        //     // generate an array of random data
+        //     var data = [],
+        //         time = (new Date()).getTime(),
+        //         i;
+
+        //     for (i = -999; i <= 0; i += 1) {
+        //         data.push([
+        //             time + i * 1000,
+        //             Math.round(Math.random() * 100)
+        //         ]);
+        //     }
+        //     return data;
+
+
+        // }()), 
           marker: {
             enabled: null, // auto
             radius: 3,
