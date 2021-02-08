@@ -74,7 +74,6 @@
 <script>
 import { AgGridVue } from "ag-grid-vue";
 import axios from "axios"; 
-// import EventBus from "./event_bus";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 export default {
   props: ['leftSendData'],

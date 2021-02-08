@@ -1,15 +1,50 @@
 <template>
   <v-app>
-    
-    <highcharts 
-      :options="chartOptions"
-      :constructor-type="'stockChart'"
-      :callback="someFunction"
-      :highcharts="hcInstance"
-    >
-    {{stla}}
-    </highcharts>
-    
+
+      <v-row no-gutters class="fill-height">
+        <v-col>
+          
+        <!-- cols="12"
+            sm="10"
+            offset-sm="1"
+            md="8"
+            offset-md="2"
+            lg="6"
+            offset-lg="3"
+            xl="4"
+            offset-xl="4" -->
+          <!-- <v-card class="pa-2" outlined tile> -->
+            <highcharts 
+              :options="chartOptions"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="hcInstance"
+            >
+            {{stla}}
+            </highcharts>
+          <!-- </v-card> -->
+        </v-col>
+      </v-row>
+
+      <v-row no-gutters class="fill-height">
+        <v-col>
+          <!-- <v-card class="pa-2" outlined tile> -->
+
+            <ag-grid-vue
+                style="width: 100%; height: 100%;"
+                class="ag-theme-alpine"
+                :columnDefs="columnDefs"
+                :rowData="rowData"
+                rowSelection="single"
+                @grid-ready="onGridReady"
+                :defaultColDef="defaultColDef">
+            </ag-grid-vue>
+
+          <!-- </v-card> -->
+        </v-col>
+      </v-row>
+
+
   </v-app>
 </template>
 <script>
@@ -17,10 +52,35 @@
 import {Chart} from 'highcharts-vue'
 import Highcharts from 'highcharts'
 import stockInit from 'highcharts/modules/stock'
+import { AgGridVue } from "ag-grid-vue";
 
 stockInit(Highcharts)
 
 export default {
+  beforeMount() {
+    this.defaultColDef={
+        resizable: true
+    },
+    this.columnDefs = [
+      { field: 'titleObj', sortable: true, filter: true, },
+      { field: 'close', sortable: true, filter: true, },
+      { field: 'individual', sortable: true, filter: true, },
+      { field: 'grossSum', sortable: true, filter: true, },
+      { field: 'foreigner', sortable: true, filter: true, },
+      { field: 'finance', sortable: true, filter: true, },
+      { field: 'insurance', sortable: true, filter: true, },
+      { field: 'investment', sortable: true, filter: true, },
+      { field: 'bank', sortable: true, filter: true, },
+      { field: 'etcFinance', sortable: true, filter: true, },
+      { field: 'pensionFund', sortable: true, filter: true, },
+      { field: 'government', sortable: true, filter: true, },
+      { field: 'etcCorp', sortable: true, filter: true, },
+      { field: 'etcForeigner', sortable: true, filter: true, },
+      { field: 'privateEquity', sortable: true, filter: true, },
+    ];
+    this.rowData = [];
+
+  },
   beforeCreate() {     
     console.log('beforeCreate');
   },
@@ -42,10 +102,16 @@ export default {
   },
   props: ['stla'],
   components: {
-    highcharts: Chart 
+    AgGridVue,
+    highcharts: Chart,
   },
   name: 'QuickInterestStockRight',
   methods: {
+    onGridReady(params) {
+      this.gridApi = params.api;
+      this.columnApi = params.columnApi;
+      //this.gridApi.sizeColumnsToFit();
+    },
     cancel() {
       console.log("cancel()...");
       alert('캔슬입니다......')
@@ -152,11 +218,11 @@ export default {
         responsive: {
           rules: [{
             condition: {
-                maxWidth: 500,
+                maxWidth: 300,
             },
             chartOptions: {
                 chart: {
-                    height: 500,
+                    height: 300,
                 },
                 subtitle: {
                     text: null,
