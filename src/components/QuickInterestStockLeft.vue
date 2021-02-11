@@ -1,13 +1,11 @@
-
-
 <template>
   <v-app>
-    <!-- mandatory -->
-    <v-radio-group v-model="row" row column>
-        <v-radio label="관심1" value="radio-1" @click=interest1 @change=interest1Change></v-radio>
+    <div class="loader" v-if="loading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
+    <v-radio-group v-model="row" row column :disabled=loading>
+        <v-radio label="관심1" value="radio-1" @click=interest1 @change=interest1Change />
         <v-radio label="관심2" value="radio-2" @click=interest2></v-radio>
       </v-radio-group>
-      <div v-if="inter1">
+    <div v-if="inter1">
       <table width="100%">
         <tr><td>FROM(달력):</td>
           <td>
@@ -40,8 +38,8 @@
             <td><v-checkbox v-model="privateEquity" @click="changeNotGrossSum(e)" :label="`사모펀드`"/></td>
           </tr>
         </table>
-      </div>
-      
+    </div>
+
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
@@ -56,9 +54,12 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios"; 
+import axios from "axios";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 export default {
+  created() {
+     console.log('created');
+  },
   beforeMount() {
     console.log('beforeMount');
     this.defaultColDef={
@@ -80,6 +81,7 @@ export default {
       { field: 'privateEquity', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
       { field: 'fileTitle', sortable: true, filter: true, hide: true }
     ];
+
     let date = new Date();
     let year = date.getFullYear();
     let month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -93,6 +95,10 @@ export default {
   mounted(){},
   name: 'QuickInterestStock',
   methods: {
+    reset(){
+      this.success = false;
+      this.error = false;
+    },
     cellStyleFormatter(params) {
       if (params.value > 0) return {color: 'red'};
       else return {color: 'blue'};
@@ -165,7 +171,6 @@ export default {
         return;
       }
 
-      
       let temp = this;
       let postData = {
         fromdate: this.fromdate, 
@@ -189,6 +194,8 @@ export default {
       
       console.log("interest1()...");
       console.log("postData.checkbx.." + postData.checkbx);
+      this.loading = true;
+      temp.rowData = [];
       axios.post('http://127.0.0.1:8000/supplydemand/api/leftFastList/',
         {
           headers: {
@@ -196,14 +203,17 @@ export default {
               'Authorization': 'JWT fefege...'
         }, postData})
         .then(function(response) {
+          temp.reset();
+          temp.success = true;
           console.log(response);
           temp.rowData = response.data;
         })
         .catch(function(error) {
+          temp.error = true;
           console.log(error);
         })
-        .finally({
-
+        .finally(()=>{
+          temp.loading = false;
         });
     },
 
@@ -272,6 +282,11 @@ export default {
     VueEnglishdatepicker,
   },
   data: () => ({
+    // spinner
+    success: false,
+    error: false,
+    loading: false,
+
     // ag grid 관련
     columnDefs: null,
     rowData: null,
