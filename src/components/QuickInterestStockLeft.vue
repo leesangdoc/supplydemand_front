@@ -2,35 +2,18 @@
 
 <template>
   <v-app>
-    이곳은 빠른 종목검색1 입니다.
     <!-- mandatory -->
-    <v-radio-group
-        v-model="row"
-        row
-        column
-      >
-        <v-radio
-          label="관심1"
-          value="radio-1"
-          @click=interest1
-          @change=interest1Change
-        ></v-radio>
-        <v-radio
-          label="관심2"
-          value="radio-2"
-          @click=interest2
-        ></v-radio>
+    <v-radio-group v-model="row" row column>
+        <v-radio label="관심1" value="radio-1" @click=interest1 @change=interest1Change></v-radio>
+        <v-radio label="관심2" value="radio-2" @click=interest2></v-radio>
       </v-radio-group>
       <div v-if="inter1">
       <table width="100%">
-        <tr>
-          <td>FROM(달력): </td>
+        <tr><td>FROM(달력):</td>
           <td>
             <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeFromDate" 
-              :value="fromdate"/>
+              format="YYYY-MM-DD" @change="changeFromDate" :value="fromdate"/>
           </td>
-
           <td>TO(달력):</td>
           <td>
             <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
@@ -39,7 +22,7 @@
         </tr>
         </table>
         <table>
-          <tr><!-- : ${individual.toString()} -->
+          <tr>
             <td><v-checkbox v-model="individual" :label="`개인`" /></td>
             <td><v-checkbox v-model="grossSum" @click="changeGrossSum" :label="`세력합`"/></td> 
             <td><v-checkbox v-model="foreigner" @click="changeNotGrossSum(e)" :label="`외인`"/></td>
@@ -58,6 +41,7 @@
           </tr>
         </table>
       </div>
+      
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
@@ -66,8 +50,7 @@
         rowSelection="single"
         @grid-ready="onGridReady"
         @selection-changed="getSelectedRows"
-        :defaultColDef="defaultColDef"
-    >
+        :defaultColDef="defaultColDef">
     </ag-grid-vue>
   </v-app>
 </template>
@@ -76,33 +59,26 @@ import { AgGridVue } from "ag-grid-vue";
 import axios from "axios"; 
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 export default {
-  props: ['leftSendData'],
   beforeMount() {
     console.log('beforeMount');
     this.defaultColDef={
         resizable: true
     },
-
     this.columnDefs = [
       { field: 'stockName', sortable: true, filter: true},
-      { field: 'individual', sortable: true, filter: true },
-      { field: 'grossSum', sortable: true, filter: true },
-      { field: 'foreigner', sortable: true, filter: true },
-      { field: 'finance', sortable: true, filter: true },
-      { field: 'insurance', sortable: true, filter: true },
-      { field: 'investment', sortable: true, filter: true },
-      { field: 'bank', sortable: true, filter: true },
-      { field: 'etcFinance', sortable: true, filter: true },
-      { field: 'pensionFund', sortable: true, filter: true },
-      { field: 'government', sortable: true, filter: true },
-      { field: 'etcForeigner', sortable: true, filter: true },
-      { field: 'privateEquity', sortable: true, filter: true },
+      { field: 'individual', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'grossSum', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'foreigner', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'finance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'insurance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'investment', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'bank', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'etcFinance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'pensionFund', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'government', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'etcForeigner', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
+      { field: 'privateEquity', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
       { field: 'fileTitle', sortable: true, filter: true, hide: true }
-      
-      // { field: 'make', sortable: true, filter: true},
-      // { field: 'model', sortable: true, filter: true },
-      // { field: 'price', sortable: true, filter: true },
-
     ];
     let date = new Date();
     let year = date.getFullYear();
@@ -112,26 +88,21 @@ export default {
     // this.fromdate = year + '-' +month + '-' + day;
     this.fromdate =  '2020-12-01';
     this.rowData = [
-    /**
-     * { make: 'Toyota', model: 'Celica', price: 35000 },
-      { make: 'Ford', model: 'Mondeo', price: 32000 },
-      { make: 'Porsche', model: 'Boxter', price: 72000 }
-     */
     ];
-
   },
-
-  mounted(){
-    
-  },
-
+  mounted(){},
   name: 'QuickInterestStock',
-
   methods: {
+    cellStyleFormatter(params) {
+      if (params.value > 0) return {color: 'red'};
+      else return {color: 'blue'};
+    },
+    curruncyFormatter(params){ 
+      return Math.floor(params.value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    },
     keyFromDate(e){
       console.log('keyUpFromDate e;;;'+e);
     },
-
     changeNotGrossSum(e){
       console.log('changeNotGrossSum e;;;'+e);
       if(this.finance && this.foreigner && this.finance && this.insurance
@@ -140,15 +111,11 @@ export default {
         this.grossSum = true;
         return;
       }
-
       if(!e){
         this.grossSum = false;
         return;
       }
-
-      
     },
-
     changeGrossSum(){
       console.log('세력합 체크박스 찍으면...'); 
       this.foreigner = this.grossSum;
