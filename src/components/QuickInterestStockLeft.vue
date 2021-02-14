@@ -49,17 +49,9 @@
             </th>
           </tr>
         </thead>
-        <!-- <tbody>
-          <tr>
-            <td>{{ inOnLftRowLength }}</td>
-            <td>1,000,000원</td>
-          </tr>
-        </tbody> -->
+        <!-- <tbody><tr><td></td><td></td></tr></tbody> -->
     </v-simple-table>
     </div>
-
-    
-
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
@@ -76,7 +68,8 @@
 import { AgGridVue } from "ag-grid-vue";
 import axios from "axios";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
-import {mapGetters, mapState, mapMutations, mapActions} from 'vuex'
+import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import {CommonUtil} from '../CommonUtil';
 
 export default {
   computed: {
@@ -94,23 +87,23 @@ export default {
   },
   beforeMount() {
     console.log('beforeMount');
+    const commonUtil = new CommonUtil(); 
     this.columnDefs = [
-      { field: 'stockName', sortable: true, filter: true},
-      { field: 'individual', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'grossSum', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'foreigner', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'finance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'insurance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'investment', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'bank', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'etcFinance', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'pensionFund', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'government', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'etcForeigner', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'privateEquity', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
-      { field: 'fileTitle', sortable: true, filter: true, hide: true }
+      { headerName: '종목명', field: 'stockName', sortable: true, filter: true},
+      { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '세력합', field: 'grossSum', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '외국인', field: 'foreigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '금융', field: 'finance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '보험', field: 'insurance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '투신', field: 'investment', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '은행', field: 'bank', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '기타금융', field: 'etcFinance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '연기금', field: 'pensionFund', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '국가(지자체)', field: 'government', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '기타외인', field: 'etcForeigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '사모펀드', field: 'privateEquity', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '파일명', field: 'fileTitle', sortable: true, filter: true, hide: true }
     ];
-
     let date = new Date();
     let year = date.getFullYear();
     let month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -145,13 +138,6 @@ export default {
     reset(){
       this.success = false;
       this.error = false;
-    },
-    cellStyleFormatter(params) {
-      if (params.value > 0) return {color: 'red'};
-      else return {color: 'blue'};
-    },
-    curruncyFormatter(params){ 
-      return Math.floor(params.value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     },
     keyFromDate(e){
       console.log('keyUpFromDate e;;;'+e);

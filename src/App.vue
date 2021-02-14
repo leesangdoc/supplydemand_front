@@ -20,7 +20,6 @@
         <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + item">
           <v-card flat>
             <v-card-text>
-              <h3>인덱스: {{index }}</h3>
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters>

@@ -33,7 +33,6 @@ export default new Vuex.Store({
          *   return getters.getStkNm / getters.inOnLftRowLength // 이런식으로 사용가능
          * }
          */
-
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
@@ -47,7 +46,7 @@ export default new Vuex.Store({
         // 액션 함수명... 뮤테이션과는 다르나 이름을 매치시켜야 구분하기 쉬움.
         emptyRowData: ({commit}, payload) => {
             commit('emptyRowData', payload);
-        }
+        },
     },
 
 });

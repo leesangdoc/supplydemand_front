@@ -1,8 +1,8 @@
 <template>
   <v-app>
 
-      <v-row no-gutters class="fill-height">
-        <v-col>
+      <!-- <v-row no-gutters class="fill-height">
+        <v-col> -->
           <!-- <h1>{{$store.getters.getStkNm}}</h1> -->
         <!-- cols="12"
             sm="10"
@@ -22,27 +22,32 @@
             >
             {{stla}}
             </highcharts>
-          <!-- </v-card> -->
-        </v-col>
-      </v-row>
-
-      <v-row no-gutters class="fill-height">
-        <v-col>
-          <!-- <v-card class="pa-2" outlined tile> -->
-
+             <highcharts 
+              :options="chartOptions"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="hcInstance"
+            >
+            {{stla}}
+            </highcharts>
             <ag-grid-vue
-                style="width: 100%; height: 100%;"
+                style="width: 100%; height: 30%;"
                 class="ag-theme-alpine"
                 :columnDefs="columnDefs"
                 :rowData="rowData"
                 rowSelection="single"
                 @grid-ready="onGridReady"
-                :defaultColDef="defaultColDef">
+                :defaultColDef="this.$store.state.defaultColDef">
             </ag-grid-vue>
-
           <!-- </v-card> -->
+        <!-- </v-col>
+      </v-row> -->
+<!-- 
+      <v-row no-gutters class="fill-height">
+        <v-col>
+
         </v-col>
-      </v-row>
+      </v-row> -->
 
 
   </v-app>
@@ -58,9 +63,6 @@ stockInit(Highcharts)
 
 export default {
   beforeMount() {
-    this.defaultColDef={
-        resizable: true
-    },
     this.columnDefs = [
       { field: 'titleObj', sortable: true, filter: true, },
       { field: 'close', sortable: true, filter: true, },
@@ -125,15 +127,13 @@ export default {
   },
   data: () => ({
       hcInstance: Highcharts,
-      setOptions: {
-
-      },
+      setOptions: {},
       chartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 230,
+          y: 205,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -169,6 +169,9 @@ export default {
             },
             selected: 1
         },
+        legend: {
+          enabled: true,
+        },
         xAxis: {
           type: "datetime",
           title: {
@@ -182,9 +185,17 @@ export default {
           },
           
         },
+        plotOptions: {
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
         chart: { 
           renderTo: 'container',
           type: 'line',
+          zoomType: 'x',
           //marginBottom: 80
         },
         title: {
@@ -218,11 +229,11 @@ export default {
         responsive: {
           rules: [{
             condition: {
-                maxWidth: 300,
+                maxWidth: 200,
             },
             chartOptions: {
                 chart: {
-                    height: 300,
+                    height: 200,
                 },
                 subtitle: {
                     text: null,
@@ -230,9 +241,9 @@ export default {
                 navigator: {
                     enabled: true,
                 },
-                legend: {
-                  enabled: false,
-                },
+                // legend: {
+                //   enabled: true,
+                // },
                 yAxis: {
                   title: {
                     enabled: false,
@@ -253,6 +264,7 @@ export default {
             lineColor: '#FFFFFF',
           },
           tooltip: {
+              split: true,
               valueDecimals: 0,
               valueSuffix: '원',
           },
