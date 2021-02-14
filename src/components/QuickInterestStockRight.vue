@@ -3,7 +3,7 @@
 
       <v-row no-gutters class="fill-height">
         <v-col>
-          
+          <!-- <h1>{{$store.getters.getStkNm}}</h1> -->
         <!-- cols="12"
             sm="10"
             offset-sm="1"

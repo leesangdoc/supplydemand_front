@@ -26,7 +26,7 @@
     "vue-types": "^3.0.2",
     "vue3-datepicker-lite": "^1.8.3",
     "vuetify": "^2.2.11",
-    "vuex": "^3.6.0"
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

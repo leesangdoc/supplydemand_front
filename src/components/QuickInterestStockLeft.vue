@@ -38,17 +38,37 @@
             <td><v-checkbox v-model="privateEquity" @click="changeNotGrossSum(e)" :label="`사모펀드`"/></td>
           </tr>
         </table>
+        <v-simple-table>
+        <thead>
+          <tr>
+            <th class="text-left">
+              항목수(길이){{ inOnLftRowLength }}
+            </th>
+            <th class="text-left">
+              단위(백만)
+            </th>
+          </tr>
+        </thead>
+        <!-- <tbody>
+          <tr>
+            <td>{{ inOnLftRowLength }}</td>
+            <td>1,000,000원</td>
+          </tr>
+        </tbody> -->
+    </v-simple-table>
     </div>
+
+    
 
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
         :columnDefs="columnDefs"
-        :rowData="rowData"
+        :rowData="this.$store.state.rowData"
         rowSelection="single"
         @grid-ready="onGridReady"
         @selection-changed="getSelectedRows"
-        :defaultColDef="defaultColDef">
+        :defaultColDef="this.$store.state.defaultColDef">
     </ag-grid-vue>
   </v-app>
 </template>
@@ -56,15 +76,24 @@
 import { AgGridVue } from "ag-grid-vue";
 import axios from "axios";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
+import {mapGetters, mapState, mapMutations, mapActions} from 'vuex'
+
 export default {
+  computed: {
+    ...mapGetters(['inOnLftRowLength', 'getStkNm']),
+    /** 다른 방법
+     * ...mapGetters({
+     *    lth: 'inOnLftRowLength', // 해당 컴포넌트 내에서, 'inOnLftRowLength'를 lth로 사용하겠다.
+     *    stockName: 'getStkNm', // 해당 컴포넌트 내에서, 'getStkNm'를 stockName로 사용하겠다.
+     * })
+     */
+    ...mapState(['inOnLftRowData', 'rowData'])
+  },
   created() {
      console.log('created');
   },
   beforeMount() {
     console.log('beforeMount');
-    this.defaultColDef={
-        resizable: true
-    },
     this.columnDefs = [
       { field: 'stockName', sortable: true, filter: true},
       { field: 'individual', sortable: true, filter: true, valueFormatter: this.curruncyFormatter, cellStyle: this.cellStyleFormatter, },
@@ -89,12 +118,30 @@ export default {
     this.todate = year + '-' +month + '-' + day;
     // this.fromdate = year + '-' +month + '-' + day;
     this.fromdate =  '2020-12-01';
-    this.rowData = [
-    ];
+    this.$store.state.inOnLftRowData = [];
+    // this.$store.state.rowData = [];
+    // this.emptyRowData([]);
+    // this.$store.commit('emptyRowData', []); // commit 뮤테이션(스테이트 변화주기 위함.)
+    this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
   },
-  mounted(){},
+  mounted(){
+    // 이벤트버스 활용 예
+    /**  
+     * // 받는 부분
+     * EventBus.$on('signUp', users => {
+     *   this.allUsers.push(users);
+     * });
+     */
+
+    /**
+     * // 보내는 부분
+     * EventBus.$emit('signUp', userObj);
+     */
+  },
   name: 'QuickInterestStock',
   methods: {
+    ...mapMutations([]), // 'emptyRowData'
+    ...mapActions(['emptyRowData']),
     reset(){
       this.success = false;
       this.error = false;
@@ -136,18 +183,15 @@ export default {
       this.etcForeigner = this.grossSum;
       this.privateEquity = this.grossSum;
     },
-
     changeFromDate(e){
       this.fromdate = e;
     },
-
     changeToDate(e){
       this.todate = e;
     },
 
     async interest1() {
       this.inter1 = true;
-      
       if(this.fromdate === undefined){
         let date = new Date();
         let year = date.getFullYear();
@@ -156,7 +200,6 @@ export default {
         this.fromdate = year + '-'+month + '-'+day;
         console.log('interest1 undefined this.fromdate', this.fromdate);
       }
-
       if(this.todate === undefined){
         let date = new Date();
         let year = date.getFullYear();
@@ -165,13 +208,11 @@ export default {
         this.todate = year + '-'+ month +'-'+ day;
         console.log('interest1 undefined this.todate', this.todate);
       } 
-
       if(parseInt(this.fromdate.replace(/-/gi, ""))>parseInt(this.todate.replace(/-/gi, ""))){
         alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
         return;
       }
-
-      let temp = this;
+      let ths = this;
       let postData = {
         fromdate: this.fromdate, 
         todate: this.todate,
@@ -191,11 +232,13 @@ export default {
           privateEquity: this.privateEquity,
         },
       };
-      
-      console.log("interest1()...");
-      console.log("postData.checkbx.." + postData.checkbx);
       this.loading = true;
-      temp.rowData = [];
+      this.$store.state.inOnLftRowData = [];
+      // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
+      // this.emptyRowData([]);
+      // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
+      // 액션함수를 불러올 때, dispatch 함수를 사용한다.
+      this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
       axios.post('http://127.0.0.1:8000/supplydemand/api/leftFastList/',
         {
           headers: {
@@ -203,17 +246,18 @@ export default {
               'Authorization': 'JWT fefege...'
         }, postData})
         .then(function(response) {
-          temp.reset();
-          temp.success = true;
+          ths.reset();
+          ths.success = true;
           console.log(response);
-          temp.rowData = response.data;
+          ths.$store.state.inOnLftRowData = response.data;
+          ths.$store.state.rowData = response.data;
         })
         .catch(function(error) {
-          temp.error = true;
+          ths.error = true;
           console.log(error);
         })
         .finally(()=>{
-          temp.loading = false;
+          ths.loading = false;
         });
     },
 
@@ -225,9 +269,7 @@ export default {
     async interest2() {
       this.inter1 = false;
       this.inter2 = true;
-      let temp = this;
       console.log("interest2()...");
-      temp.rowData = [];
     },
 
     onGridReady(params) {
@@ -245,7 +287,7 @@ export default {
       console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
       console.log('selectedData2: ' + this.gridApi.getSelectedRows());
       let resData = {};
-      let temp = this;
+      let ths = this;
       let postData = {
         csvFileName,
         fromdate: this.fromdate, 
@@ -259,23 +301,18 @@ export default {
       }, postData})
       .then(function(response) {
         console.log(response);
-
         resData = {
           resultStockInfo: response.data.resultStockInfo,
           stockName,
         };
-        temp.$emit('showchart', resData)
+        ths.$emit('showchart', resData);
+        ths.$store.state.inOnLftClkStkNm = stockName;
       })
       .catch(function(error) {
         console.log(error);
       })
-      .finally({
-        
-      });
-
-      
+      .finally({});
     },
-
   },
   components: {
     AgGridVue,
@@ -289,7 +326,7 @@ export default {
 
     // ag grid 관련
     columnDefs: null,
-    rowData: null,
+    
     // 관심1 라디오 박스
     inter1: false,
     // 관심1 체크: 개인
