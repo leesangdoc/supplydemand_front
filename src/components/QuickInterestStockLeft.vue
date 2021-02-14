@@ -232,6 +232,7 @@ export default {
               'Authorization': 'JWT fefege...'
         }, postData})
         .then(function(response) {
+          
           ths.reset();
           ths.success = true;
           console.log(response);
@@ -291,8 +292,24 @@ export default {
           resultStockInfo: response.data.resultStockInfo,
           stockName,
         };
+        const commonUtil = new CommonUtil(); 
         ths.$emit('showchart', resData);
         ths.$store.state.inOnLftClkStkNm = stockName;
+        ths.$store.state.acuIndividualStkInfo = commonUtil.changeDate(response.data.acuIndividualStkInfo);
+        ths.$store.state.acuForeignerStkInfo = commonUtil.changeDate(response.data.acuForeignerStkInfo);
+        ths.$store.state.acuFinanceStkInfo = commonUtil.changeDate(response.data.acuFinanceStkInfo);
+        ths.$store.state.acuInsuranceStkInfo = commonUtil.changeDate(response.data.acuInsuranceStkInfo);
+        ths.$store.state.acuInvestmentStkInfo = commonUtil.changeDate(response.data.acuInvestmentStkInfo);
+        ths.$store.state.acuBankStkInfo = commonUtil.changeDate(response.data.acuBankStkInfo);
+        ths.$store.state.acuEtcFinanceStkInfo = commonUtil.changeDate(response.data.acuEtcFinanceStkInfo);
+        ths.$store.state.acuPensionFundStkInfo = commonUtil.changeDate(response.data.acuPensionFundStkInfo);
+        ths.$store.state.acuGovernmentStkInfo = commonUtil.changeDate(response.data.acuGovernmentStkInfo);
+        ths.$store.state.acuEtcCorpStkInfo = commonUtil.changeDate(response.data.acuEtcCorpStkInfo);
+        ths.$store.state.acuEtcForeignerStkInfo = commonUtil.changeDate(response.data.acuEtcForeignerStkInfo);
+        ths.$store.state.acuPrivateEquityStkInfo = commonUtil.changeDate(response.data.acuPrivateEquityStkInfo);
+        ths.$store.state.acuGrossSumStkInfo = commonUtil.changeDate(response.data.acuGrossSumStkInfo);
+
+
       })
       .catch(function(error) {
         console.log(error);

@@ -12,9 +12,23 @@ export default new Vuex.Store({
         inOnLftClkStkNm: '',
         // 현재 그리드 상에 보여주는 로우 데이터
         rowData: [],
-        defaultColDef: {
-            resizable: true,
-        }
+        defaultColDef: { resizable: true, },
+        // 관심1 우측 차트2 매집량 관련
+        acuIndividualStkInfo: [],
+        acuForeignerStkInfo: [],
+        acuFinanceStkInfo: [],
+        acuInsuranceStkInfo: [],
+        acuInvestmentStkInfo: [],
+        acuBankStkInfo: [],
+        acuEtcFinanceStkInfo: [],
+        acuPensionFundStkInfo: [],
+        acuGovernmentStkInfo: [],
+        acuEtcCorpStkInfo: [],
+        acuEtcForeignerStkInfo: [],
+        acuPrivateEquityStkInfo: [],
+        acuGrossSumStkInfo: [],
+
+
     },
     // computed 같은??
     getters:{
@@ -26,7 +40,7 @@ export default new Vuex.Store({
 
         inOnLftRowLength: state => {
             return state.inOnLftRowData.length;
-        }
+        },
         // 만약 getStkNm랑 inOnLftRowLength를 직접 사용하고 싶을때...
         /** 2번째 인자로 getters가 들어오기 때문에 2개 인자로 넣어야 함.
          * percentOfSeoul: (state, getters) =>{
