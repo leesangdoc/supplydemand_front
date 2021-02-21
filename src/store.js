@@ -27,6 +27,20 @@ export default new Vuex.Store({
         acuEtcForeignerStkInfo: [],
         acuPrivateEquityStkInfo: [],
         acuGrossSumStkInfo: [],
+        // 관심1 우측 차트3 분산비율 관련
+        indiDispersionArr: [],
+        foreignerDispersionArr: [],
+        financeInvestDispersionArr: [],
+        insuranceDispersionArr: [],
+        assetManageDispersionArr: [],
+        bankDispersionArr: [],
+        etcFinanceDispersionArr: [],
+        pensionFundDispersionArr: [],
+        governmentDispersionArr: [],
+        etcCoporDispersionArr: [],
+        etcForeignerDispersionArr: [],
+        privateEquityDispersionArr: [],
+        grossSumDispersionArr: [],
 
 
     },

@@ -294,7 +294,9 @@ export default {
         };
         const commonUtil = new CommonUtil(); 
         ths.$emit('showchart', resData);
+        // 종가(close price)
         ths.$store.state.inOnLftClkStkNm = stockName;
+        // 매집량
         ths.$store.state.acuIndividualStkInfo = commonUtil.changeDate(response.data.acuIndividualStkInfo);
         ths.$store.state.acuForeignerStkInfo = commonUtil.changeDate(response.data.acuForeignerStkInfo);
         ths.$store.state.acuFinanceStkInfo = commonUtil.changeDate(response.data.acuFinanceStkInfo);
@@ -308,7 +310,20 @@ export default {
         ths.$store.state.acuEtcForeignerStkInfo = commonUtil.changeDate(response.data.acuEtcForeignerStkInfo);
         ths.$store.state.acuPrivateEquityStkInfo = commonUtil.changeDate(response.data.acuPrivateEquityStkInfo);
         ths.$store.state.acuGrossSumStkInfo = commonUtil.changeDate(response.data.acuGrossSumStkInfo);
-
+        // 분산비율
+        ths.$store.state.indiDispersionArr = commonUtil.changeDate(response.data.indiDispersionArr);
+        ths.$store.state.foreignerDispersionArr = commonUtil.changeDate(response.data.foreignerDispersionArr);
+        ths.$store.state.financeInvestDispersionArr = commonUtil.changeDate(response.data.financeInvestDispersionArr);
+        ths.$store.state.insuranceDispersionArr = commonUtil.changeDate(response.data.insuranceDispersionArr);
+        ths.$store.state.assetManageDispersionArr = commonUtil.changeDate(response.data.assetManageDispersionArr);
+        ths.$store.state.bankDispersionArr = commonUtil.changeDate(response.data.bankDispersionArr);
+        ths.$store.state.etcFinanceDispersionArr = commonUtil.changeDate(response.data.etcFinanceDispersionArr);
+        ths.$store.state.pensionFundDispersionArr = commonUtil.changeDate(response.data.pensionFundDispersionArr);
+        ths.$store.state.governmentDispersionArr = commonUtil.changeDate(response.data.governmentDispersionArr);
+        ths.$store.state.etcCoporDispersionArr = commonUtil.changeDate(response.data.etcCoporDispersionArr);
+        ths.$store.state.etcForeignerDispersionArr = commonUtil.changeDate(response.data.etcForeignerDispersionArr);
+        ths.$store.state.privateEquityDispersionArr = commonUtil.changeDate(response.data.privateEquityDispersionArr);
+        ths.$store.state.grossSumDispersionArr = commonUtil.changeDate(response.data.grossSumDispersionArr);
 
       })
       .catch(function(error) {
