@@ -47,6 +47,14 @@
             <th class="text-left">
               단위(백만)
             </th>
+             <th class="text-left">
+               <v-btn
+                color="primary"
+                elevation="4"
+                small
+                v-on:click="onBtnExport()"
+              >CSV 다운로드</v-btn>
+            </th>
           </tr>
         </thead>
         <!-- <tbody><tr><td></td><td></td></tr></tbody> -->
@@ -90,7 +98,7 @@ export default {
     const commonUtil = new CommonUtil(); 
     this.columnDefs = [
       { headerName: '종목명', field: 'stockName', sortable: true, filter: true},
-      { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
+      { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, maxWidth: 100,},
       { headerName: '세력합', field: 'grossSum', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
       { headerName: '외국인', field: 'foreigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
       { headerName: '금융', field: 'finance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
@@ -133,6 +141,9 @@ export default {
   },
   name: 'QuickInterestStock',
   methods: {
+     onBtnExport() {
+      this.gridApi.exportDataAsCsv(); 
+     },
     ...mapMutations([]), // 'emptyRowData'
     ...mapActions(['emptyRowData']),
     reset(){
@@ -324,6 +335,7 @@ export default {
         ths.$store.state.etcForeignerDispersionArr = commonUtil.changeDate(response.data.etcForeignerDispersionArr);
         ths.$store.state.privateEquityDispersionArr = commonUtil.changeDate(response.data.privateEquityDispersionArr);
         ths.$store.state.grossSumDispersionArr = commonUtil.changeDate(response.data.grossSumDispersionArr);
+        ths.$store.state.resultRowData = response.data.resultRowData;
 
       })
       .catch(function(error) {

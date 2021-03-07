@@ -20,20 +20,35 @@
         <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + item">
           <v-card flat>
             <v-card-text>
+
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
-                    <v-row mb-6 no-gutters>
-                      <v-col><v-card class="pa-2" outlined tile>
+                    <v-row mb-6 no-gutters dense>
+                      <v-col auto>
+                        <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
-                        </v-card></v-col>
-                      <v-col><v-card class="pa-2" outlined tile>
+                        </v-card>
+                        
+                      </v-col>
+                      <v-col>
+                        <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card></v-col>
+                        </v-card>
+                        
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col>
+                         <v-card>
+                           <SupplyDemandGraph />
+                         </v-card>
+                        </v-col>
                     </v-row>
                   </v-container>
               </div>
-              <div v-else-if="index === 1"> <MarketSupplyDemand/> </div>
-              <div v-else-if="index === 2"> <SearchSupplyDemand/> </div>
+
+              <div v-else-if="index === 1"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 2"> <SearchSupplyDemand/></div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -49,6 +64,8 @@ import QuickInterestStockLeft from './components/QuickInterestStockLeft';
 import QuickInterestStockRight from './components/QuickInterestStockRight';
 import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
+import SupplyDemandGraph from './components/SupplyDemandGraph';
+
 export default {
   setup() {
     console.log('setup');
@@ -94,11 +111,13 @@ export default {
     QuickInterestStockRight,
     SearchSupplyDemand,
     MarketSupplyDemand,
+    SupplyDemandGraph,
+
   },
   data: () => ({
     currentItem: 'tab-Web',
     items: [
-      '빠른 관심 종목', '시장수급', '수급분석표 검색',
+      '빠른 관심 종목', '수급분석표','시장수급', '수급분석표 검색',
     ],
     stockinfo: {
       resultStockInfo: [],

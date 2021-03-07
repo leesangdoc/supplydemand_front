@@ -127,7 +127,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 205,
+          y: 235,
           x: 0,
           buttons: [{
                 type: 'month',
