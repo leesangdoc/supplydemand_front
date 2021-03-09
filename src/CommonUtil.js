@@ -4,8 +4,18 @@ export class CommonUtil{
         else return {color: 'blue'};
     }
 
-    curruncyFormatter(params){ 
-        return Math.floor(params.value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    curruncyFormatter(params){
+        if(params.data.period == "주가선도(%)"){
+            if(params.value !==""){
+                return params.value + "%";
+            } else {
+                return params.value;
+            }
+            
+        } else {
+            return Math.floor(params.value).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        }
+        
     }
 
     changeDate(list){
