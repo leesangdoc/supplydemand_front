@@ -7,8 +7,9 @@ export class CommonUtil{
     curruncyFormatter(params){
         if(params.data.period == "주가선도(%)" 
             || params.data.period == "보유비중(%)"
-            || params.data.period == "분산비율(%)"){
-                
+            || params.data.period == "분산비율(%)"
+            || params.data.period == "분산비율_보정"){
+
             if(params.value !==""){
                 return params.value + "%";
             } else {

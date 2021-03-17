@@ -41,7 +41,9 @@ export default new Vuex.Store({
         etcForeignerDispersionArr: [],
         privateEquityDispersionArr: [],
         grossSumDispersionArr: [],
-        // 관심1 하단 그리드
+        // 관심1 하단 1번째 평균단가 그리드
+        averagePriceRowData: [],
+        // 관심1 하단 2번째 그리드
         resultRowData: [],
 
 

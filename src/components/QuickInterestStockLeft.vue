@@ -336,6 +336,7 @@ export default {
         ths.$store.state.privateEquityDispersionArr = commonUtil.changeDate(response.data.privateEquityDispersionArr);
         ths.$store.state.grossSumDispersionArr = commonUtil.changeDate(response.data.grossSumDispersionArr);
         ths.$store.state.resultRowData = response.data.resultRowData;
+        ths.$store.state.averagePriceRowData = response.data.averagePriceRowData;
 
       })
       .catch(function(error) {

@@ -1,6 +1,5 @@
 <template>
   <v-app>
-    <h1>SupplyDemandGraph 수급분석표 입니다.</h1>
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
@@ -9,7 +8,6 @@
         rowSelection="single"
         @grid-ready="onGridReady"
         :defaultColDef="this.$store.state.defaultColDef">
-        <!-- @selection-changed="getSelectedRows" -->
     </ag-grid-vue>
   </v-app>
 </template>

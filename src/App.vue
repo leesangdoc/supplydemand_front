@@ -40,6 +40,13 @@
                     <v-row>
                        <v-col>
                          <v-card>
+                           <AveragePriceGraph />
+                         </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col>
+                         <v-card>
                            <SupplyDemandGraph />
                          </v-card>
                         </v-col>
@@ -65,6 +72,7 @@ import QuickInterestStockRight from './components/QuickInterestStockRight';
 import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
 import SupplyDemandGraph from './components/SupplyDemandGraph';
+import AveragePriceGraph from './components/AveragePriceGraph';
 
 export default {
   setup() {
@@ -112,6 +120,7 @@ export default {
     SearchSupplyDemand,
     MarketSupplyDemand,
     SupplyDemandGraph,
+    AveragePriceGraph,
 
   },
   data: () => ({
