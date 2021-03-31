@@ -47,6 +47,7 @@ export default new Vuex.Store({
         resultRowData: [],
 
 
+
     },
     // computed 같은??
     getters:{

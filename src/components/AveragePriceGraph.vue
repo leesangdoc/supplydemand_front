@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <ag-grid-vue 
-        style="width: 100%; height: 100%;"
+        style="width: 100%; height: 15%;"
         class="ag-theme-alpine"
         :columnDefs="columnDefs"
         :rowData="this.$store.state.averagePriceRowData"
@@ -21,7 +21,7 @@ export default {
     console.log('beforeMount');
     const commonUtil = new CommonUtil(); 
     this.columnDefs = [
-      { headerName: '퍼센트(%)', field: 'percent(%)',},
+      { headerName: '평균단가', field: 'period',},
       { headerName: '개인', field: 'individual', valueFormatter: commonUtil.curruncyFormatter, },
       { headerName: '세력합', field: 'grossSum', valueFormatter: commonUtil.curruncyFormatter, },
       { headerName: '외국인', field: 'foreigner', valueFormatter: commonUtil.curruncyFormatter, },

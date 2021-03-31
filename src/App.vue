@@ -34,12 +34,11 @@
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
-                        
                       </v-col>
                     </v-row>
-                    <v-row>
-                       <v-col>
-                         <v-card>
+                    <v-row mb-6 no-gutters dense>
+                       <v-col auto>
+                         <v-card class="pa-2" outlined tile height="200px">
                            <AveragePriceGraph />
                          </v-card>
                         </v-col>
