@@ -24,7 +24,7 @@
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
-                      <v-col auto>
+                      <v-col  md="4"> <!--auto-->
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
                         </v-card>
@@ -52,16 +52,51 @@
                     </v-row>
                   </v-container>
               </div>
+              <div v-else-if="index === 1">
+                <v-container class="grey lighten-5" fluid>
+                <v-tabs>
+                  <v-tab
+                    v-for="source in sourceGroup" 
+                    :key="source"
+                     @change="handleTabChange(source)"
+                    >
+                      {{source}}
+                  </v-tab>
+                  <v-tab-item v-for="source in sourceGroup" :key="source">
+                    <v-row mb-20 no-gutters dense>
 
-              <div v-else-if="index === 1"> <MarketSupplyDemand/></div>
+                        <v-col md="4">
+                          <v-card class="pa-1" outlined tile>
+                            <IndustryRanking :sources="source"/>
+                          </v-card>
+                        </v-col>
+
+                        <v-col md="8">
+                          <v-card>
+                            <IndustryCashFlow :sources="source"/>
+                          </v-card>
+                        </v-col>
+                     
+
+
+
+                </v-row>
+                 </v-tab-item>
+                </v-tabs>
+                </v-container>
+
+              </div>
               <div v-else-if="index === 2"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 3"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 4"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 5"> <SearchSupplyDemand/></div>
             </v-card-text>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
     </v-main>
     <v-footer app color="primary" dark>
-      Copyright BPInvesting Corp. All rights reserved. Deep Learning Stock under Big data
+      Authored by sdlee. All rights reserved. Deep Learning Stock under Big data
     </v-footer>
   </v-app>
 </template>
@@ -72,6 +107,8 @@ import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
 import SupplyDemandGraph from './components/SupplyDemandGraph';
 import AveragePriceGraph from './components/AveragePriceGraph';
+import IndustryRanking from './components/IndustryRanking';
+import IndustryCashFlow from './components/IndustryCashFlow';
 
 export default {
   setup() {
@@ -112,24 +149,41 @@ export default {
     cancel() {
       console.log("cancel()...");
     },
+    handleTabChange(sourceName){
+      console.log('sourceName;;;;;', sourceName);
+      this.$store.dispatch('changeIndustryRankingData', sourceName);
+    },
+    handleInit(sourceName){
+      console.log('handleInit_sourceName;;;;;', sourceName);
+    },
   },
   components: {
-    QuickInterestStockLeft,
-    QuickInterestStockRight,
-    SearchSupplyDemand,
-    MarketSupplyDemand,
-    SupplyDemandGraph,
-    AveragePriceGraph,
+    QuickInterestStockLeft
+    , QuickInterestStockRight
+    , SearchSupplyDemand
+     ,MarketSupplyDemand
+     ,SupplyDemandGraph
+     ,AveragePriceGraph
+    , IndustryRanking
+    , IndustryCashFlow
 
   },
   data: () => ({
-    currentItem: 'tab-Web',
-    items: [
-      '빠른 관심 종목', '수급분석표','시장수급', '수급분석표 검색',
-    ],
-    stockinfo: {
+    currentItem: 'tab-Web'
+    , items: [
+      '빠른 관심 종목'
+      , '업종흐름(코스피)'
+      , '업종흐름(코스닥)'
+      , '수급분석표'
+      ,'시장수급'
+      , '수급분석표 검색',
+    ]
+    , stockinfo: {
       resultStockInfo: [],
-    },
+    }
+    , sourceGroup: ["외국인", "세력합", "보험", "연기금", "금융투자"
+                    , "개인", "투신", "은행", "기타금융", "사모펀드"
+                    , "국가,지자체", "기타법인", "기타외인"]
   }),
 };
 </script>

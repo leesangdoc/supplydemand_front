@@ -1,5 +1,5 @@
 <template>
-<h1>SearchSupplyDemand 수급분석표 검색입니다.</h1>
+<h1>SearchSupplyDemand 시장수급 검색입니다.</h1>
 
 </template>
 

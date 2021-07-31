@@ -236,7 +236,7 @@ export default {
       // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
       // 액션함수를 불러올 때, dispatch 함수를 사용한다.
       this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
-      axios.post('http://127.0.0.1:8000/supplydemand/api/leftFastList/',
+      axios.post('http://supplydemand.iptime.org/supplydemand/api/leftFastList/',
         {
           headers: {
               'Content-Type': 'application/json',
@@ -291,7 +291,7 @@ export default {
         fromdate: this.fromdate, 
         todate: this.todate,
       };
-      axios.post('http://127.0.0.1:8000/supplydemand/api/rightChartList/',
+      axios.post('http://supplydemand.iptime.org/supplydemand/api/rightChartList/',
       {
         headers: {
             'Content-Type': 'application/json',

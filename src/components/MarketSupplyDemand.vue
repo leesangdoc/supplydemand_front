@@ -1,5 +1,5 @@
 <template>
-<h1>MarketSupplyDemand 시장수급입니다.</h1>
+<h1>MarketSupplyDemand 수급분석표입니다.</h1>
 
 </template>
 
