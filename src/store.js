@@ -90,11 +90,11 @@ export default new Vuex.Store({
         kospiIndustryCashFlowArr: [],
         kospiIndustryCashFlowRowData: [],
 
-        // 업종흐름순위(코스피)
+        // 업종흐름순위(코스닥)
         kosdaqIndustryRankingArr: [],
         kosdaqIndustryRankingRowData: [],
         kosdaqIndustryHeroRankingRowData: [],
-        // 업종 돈냄새(코스피)
+        // 업종 돈냄새(코스닥)
         kosdaqIndustryCashFlowArr: [],
         kosdaqIndustryCashFlowRowData: [],
 
