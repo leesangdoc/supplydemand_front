@@ -152,31 +152,31 @@ import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
 
 export default {
   setup() {
-    console.log('setup');
+    // console.log('setup');
   },
   beforeCreate() {     
-     console.log('beforeCreate');   
+    //  console.log('beforeCreate');   
   },
   created() {     
-     console.log('created');   
+    //  console.log('created');   
   },
   beforeMount() {
-     console.log('beforeMount');
+    //  console.log('beforeMount');
   },
   mounted() {             
-    console.log('mounted!');         
+    // console.log('mounted!');         
   },
   beforeUpdate() {
-    console.log("beforeUpdate");
+    // console.log("beforeUpdate");
   },
   beforeUnmount() {
-     console.log('beforeUnmount');
+    //  console.log('beforeUnmount');
    },
   updated() {             
-    console.log('updated!');  
+    // console.log('updated!');  
   },
   unmounted() { /* Options API */
-    console.log('unmounted');
+    // console.log('unmounted');
   },
   name: 'App',
   methods: {
@@ -187,15 +187,15 @@ export default {
       };
     },
     cancel() {
-      console.log("cancel()...");
+      // console.log("cancel()...");
     },
     handleTabChange(sourceName){
-      console.log('sourceName;;;;;', sourceName);
+      // console.log('sourceName;;;;;', sourceName);
       this.$store.dispatch('changeKospiIndustryRankingData', sourceName);
       this.$store.dispatch('changeKospiIndustryCashFlowData', sourceName);
-    },
-    handleInit(sourceName){
-      console.log('handleInit_sourceName;;;;;', sourceName);
+
+      this.$store.dispatch('changeKosdaqIndustryRankingData', sourceName);
+      this.$store.dispatch('changeKosdaqIndustryCashFlowData', sourceName);
     },
   },
   components: {
