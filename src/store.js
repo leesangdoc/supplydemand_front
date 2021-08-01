@@ -1,11 +1,30 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import {CommonUtil} from './CommonUtil';
 
 Vue.use(Vuex);
 
+const commonUtil = new CommonUtil(); 
 export default new Vuex.Store({
     // 데이타
     state: {
+
+        industryHeroRankingColumns: [
+            { headerName: '주체', field: 'period', width: 100}
+            , { headerName: '1위', field: 'No1', width: 140}
+            , { headerName: '2위', field: 'No2', width: 140}
+            , { headerName: '3위', field: 'No3', width: 140}
+            , { headerName: '4위', field: 'No4', width: 140}
+            , { headerName: '5위', field: 'No5', width: 140}
+            , { headerName: '6위', field: 'No6', width: 140}
+            , { headerName: '7위', field: 'No7', width: 140}
+            , { headerName: '8위', field: 'No8', width: 140}
+            , { headerName: '9위', field: 'No9', width: 140}
+            , { headerName: '10위', field: 'No10', width: 140}
+            , { headerName: '11위', field: 'No11', width: 140}
+            , { headerName: '12위', field: 'No12', width: 140}
+            , { headerName: '주체', field: 'source', hide: true }
+        ],
 
         industryRankingColumns: [
             { headerName: '주체', field: 'period', width: 100}
@@ -33,9 +52,54 @@ export default new Vuex.Store({
             , { headerName: '22위', field: 'No22', width: 140}
             , { headerName: '주체', field: 'source', hide: true }
         ],
-        // 업종흐름(코스피)
+
+        industryCashFlowColumns: [
+            { headerName: '업종', field: 'title', width: 120}
+            , { headerName: '1D', field: '1day', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '2D', field: '2day', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '3D', field: '3day', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '4D', field: '4day', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '5D', field: '5day', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '1W', field: '1week', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '2W', field: '2week', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '3W', field: '3week', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '4W', field: '4week', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '1M', field: '1month', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '2M', field: '2month', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '3M', field: '3month', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '1Q', field: 'firstQuarter', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '2Q', field: 'secondQuarter', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '3Q', field: 'thirdQuarter', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '4Q', field: 'fourthQuarter', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '1Y', field: '1year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '2Y', field: '2year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '3Y', field: '3year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '4Y', field: '4year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '5Y', field: '5year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '6Y', field: '6year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '7Y', field: '7year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            , { headerName: '8Y', field: '8year', width: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
+            
+        ],
+
+        // 업종흐름순위(코스피)
         kospiIndustryRankingArr: [],
         kospiIndustryRankingRowData: [],
+        kospiIndustryHeroRankingRowData: [],
+        // 업종 돈냄새(코스피)
+        kospiIndustryCashFlowArr: [],
+        kospiIndustryCashFlowRowData: [],
+
+        // 업종흐름순위(코스피)
+        kosdaqIndustryRankingArr: [],
+        kosdaqIndustryRankingRowData: [],
+        kosdaqIndustryHeroRankingRowData: [],
+        // 업종 돈냄새(코스피)
+        kosdaqIndustryCashFlowArr: [],
+        kosdaqIndustryCashFlowRowData: [],
+
+
+
         // 관심1 로우 데이터
         inOnLftRowData: [],
         // 관심1 로우 데이터 클릭 시, 주식명
@@ -96,14 +160,27 @@ export default new Vuex.Store({
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
         emptyRowData: (state, payload)=> {
-            console.log("payload;;;", payload);
             state.rowData = payload;
         },
-        changeIndustryRankingData: (state, payload)=>{
-            console.log("changeIndustryRankingData;;;", payload);
-            console.log("state.kospiIndustryRankingArr[payload];;;", state.kospiIndustryRankingArr[payload]);
+        changeKospiIndustryRankingData: (state, payload)=>{
             state.kospiIndustryRankingRowData = state.kospiIndustryRankingArr[payload];
-        }
+        },
+        changeKospiIndustryCashFlowData: (state, payload)=>{
+            state.kospiIndustryCashFlowRowData = state.kospiIndustryCashFlowArr[payload];
+        },
+        changeKospiIndustryHeroRankingData: (state, payload)=>{
+            state.kospiIndustryHeroRankingRowData = state.kospiIndustryRankingArr[payload];
+        },
+
+        changeKosdaqIndustryRankingData: (state, payload)=>{
+            state.kosdaqIndustryRankingRowData = state.kosdaqIndustryRankingArr[payload];
+        },
+        changeKosdaqIndustryCashFlowData: (state, payload)=>{
+            state.kosdaqIndustryCashFlowRowData = state.kosdaqIndustryCashFlowArr[payload];
+        },
+        changeKosdaqIndustryHeroRankingData: (state, payload)=>{
+            state.kosdaqIndustryHeroRankingRowData = state.kosdaqIndustryRankingArr[payload];
+        },
     },
     // 
     actions: {
@@ -111,9 +188,27 @@ export default new Vuex.Store({
         emptyRowData: ({commit}, payload) => {
             commit('emptyRowData', payload);
         },
-        changeIndustryRankingData: ({commit}, payload) => {
-            commit('changeIndustryRankingData', payload);
+        changeKospiIndustryRankingData: ({commit}, payload) => {
+            commit('changeKospiIndustryRankingData', payload);
         },
+        changeKospiIndustryCashFlowData: ({commit}, payload) => {
+            commit('changeKospiIndustryCashFlowData', payload);
+        },
+        changeKospiIndustryHeroRankingData: ({commit}, payload) => {
+            commit('changeKospiIndustryHeroRankingData', payload);
+        },
+
+        changeKosdaqIndustryRankingData: ({commit}, payload) => {
+            commit('changeKosdaqIndustryRankingData', payload);
+        },
+        changeKosdaqIndustryCashFlowData: ({commit}, payload) => {
+            commit('changeKosdaqIndustryCashFlowData', payload);
+        },
+        changeKosdaqIndustryHeroRankingData: ({commit}, payload) => {
+            commit('changeKosdaqIndustryHeroRankingData', payload);
+        },
+
+        
     },
 
 });

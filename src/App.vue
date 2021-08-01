@@ -52,6 +52,11 @@
                     </v-row>
                   </v-container>
               </div>
+
+
+
+
+
               <div v-else-if="index === 1">
                 <v-container class="grey lighten-5" fluid>
                 <v-tabs>
@@ -66,27 +71,60 @@
                     <v-row mb-20 no-gutters dense>
 
                         <v-col md="4">
-                          <v-card class="pa-1" outlined tile>
-                            <IndustryRanking :sources="source"/>
+                          <v-card class="pa-2" outlined tile>
+                            <KospiIndustryRanking :sources="source"/>
                           </v-card>
                         </v-col>
 
                         <v-col md="8">
-                          <v-card>
-                            <IndustryCashFlow :sources="source"/>
+                          <v-card class="pa-2" outlined tile>
+                            <KospiIndustryCashFlow :sources="source"/>
                           </v-card>
                         </v-col>
-                     
-
-
-
                 </v-row>
                  </v-tab-item>
                 </v-tabs>
                 </v-container>
-
               </div>
-              <div v-else-if="index === 2"> <SearchSupplyDemand/></div>
+
+
+
+
+
+
+
+              <div v-else-if="index === 2">
+              <v-container class="grey lighten-5" fluid>
+                <v-tabs>
+                  <v-tab
+                    v-for="source in sourceGroup" 
+                    :key="source"
+                     @change="handleTabChange(source)"
+                    >
+                      {{source}}
+                  </v-tab>
+                  <v-tab-item v-for="source in sourceGroup" :key="source">
+                    <v-row mb-20 no-gutters dense>
+
+                        <v-col md="4">
+                          <v-card class="pa-2" outlined tile>
+                            <KosdaqIndustryRanking :sources="source"/>
+                          </v-card>
+                        </v-col>
+
+                        <v-col md="8">
+                          <v-card class="pa-2" outlined tile>
+                            <KosdaqIndustryCashFlow :sources="source"/>
+                          </v-card>
+                        </v-col>
+                </v-row>
+                 </v-tab-item>
+                </v-tabs>
+                </v-container>
+              
+              
+              
+              </div>
               <div v-else-if="index === 3"> <SearchSupplyDemand/></div>
               <div v-else-if="index === 4"> <MarketSupplyDemand/></div>
               <div v-else-if="index === 5"> <SearchSupplyDemand/></div>
@@ -107,8 +145,10 @@ import SearchSupplyDemand from './components/SearchSupplyDemand';
 import MarketSupplyDemand from './components/MarketSupplyDemand';
 import SupplyDemandGraph from './components/SupplyDemandGraph';
 import AveragePriceGraph from './components/AveragePriceGraph';
-import IndustryRanking from './components/IndustryRanking';
-import IndustryCashFlow from './components/IndustryCashFlow';
+import KospiIndustryRanking from './components/KospiIndustryRanking';
+import KospiIndustryCashFlow from './components/KospiIndustryCashFlow';
+import KosdaqIndustryRanking from './components/KosdaqIndustryRanking';
+import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
 
 export default {
   setup() {
@@ -151,7 +191,8 @@ export default {
     },
     handleTabChange(sourceName){
       console.log('sourceName;;;;;', sourceName);
-      this.$store.dispatch('changeIndustryRankingData', sourceName);
+      this.$store.dispatch('changeKospiIndustryRankingData', sourceName);
+      this.$store.dispatch('changeKospiIndustryCashFlowData', sourceName);
     },
     handleInit(sourceName){
       console.log('handleInit_sourceName;;;;;', sourceName);
@@ -164,8 +205,10 @@ export default {
      ,MarketSupplyDemand
      ,SupplyDemandGraph
      ,AveragePriceGraph
-    , IndustryRanking
-    , IndustryCashFlow
+    , KospiIndustryRanking
+    , KospiIndustryCashFlow
+    , KosdaqIndustryRanking
+    , KosdaqIndustryCashFlow
 
   },
   data: () => ({

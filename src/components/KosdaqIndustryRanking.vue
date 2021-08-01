@@ -1,10 +1,21 @@
 <template>
   <v-app>
     <ag-grid-vue 
-      style="width: 100%; height: 100%;"
+      style="width: 100%; height: 30%;"
       class="ag-theme-alpine"
-      :columnDefs="this.$store.state.industryCashFlowColumns"
-      :rowData="this.$store.state.kospiIndustryCashFlowRowData"
+      :columnDefs="this.$store.state.industryRankingColumns"
+      :rowData="this.$store.state.kosdaqIndustryRankingRowData"
+      rowSelection="single"
+      @grid-ready="onGridReady"
+      :defaultColDef="this.$store.state.defaultColDef"
+    >
+    </ag-grid-vue>
+    <br/>
+    <ag-grid-vue 
+      style="width: 100%; height: 30%;"
+      class="ag-theme-alpine"
+      :columnDefs="this.$store.state.industryHeroRankingColumns"
+      :rowData="this.$store.state.kosdaqIndustryHeroRankingRowData"
       rowSelection="single"
       @grid-ready="onGridReady"
       :defaultColDef="this.$store.state.defaultColDef"
@@ -30,7 +41,7 @@ export default {
   created() {
     let postData = {};
     let ths = this;    
-    axios.post('http://supplydemand.iptime.org/supplydemand/api/industryCashFlowResultList/',
+    axios.post('http://supplydemand.iptime.org/supplydemand/api/kosdaqIndustryRankingResultList/',
       {
         headers: {
             'Content-Type': 'application/json',
@@ -38,11 +49,11 @@ export default {
       }, postData})
       .then(function(response) {
         ths.success = true;
-        console.log(response);
-        ths.$store.state.kospiIndustryCashFlowArr = response.data;
+        ths.$store.state.kosdaqIndustryRankingArr = response.data;
       })
       .then(function() {
-        ths.$store.dispatch('changeIndustryCashFlowData', ths.hero);
+        ths.$store.dispatch('changeKosdaqIndustryRankingData', ths.hero);
+        ths.$store.dispatch('changeKosdaqIndustryHeroRankingData', 'rank');
       })
       .catch(function(error) {
         ths.error = true;
@@ -51,26 +62,25 @@ export default {
       .finally(()=>{});
   },
   beforeMount() {
-    console.log('beforeMount_hero;;;;;;;;;;;', this.hero);
-    console.log('IndustryRanking_beforeMount');
+    // console.log('beforeMount_hero;;;;;;;;;;;');
     
   },
   mounted(){
-    console.log('mounted_hero;;;;;;;;;;;', this.hero);
+    // console.log('mounted_hero;;;;;;;;;;;', this.hero);
   },
   beforeUpdate(){
-    console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
+    // console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
     
   },
   updated(){
-    console.log('updated_hero;;;;;;;;;;;', this.hero);
+    // console.log('updated_hero;;;;;;;;;;;', this.hero);
     
   },
 
   name: 'QuickInterestStock',
   methods: {
     ...mapMutations([]),
-    ...mapActions(['changeIndustryRankingData']),
+    ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData']),
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
@@ -78,8 +88,6 @@ export default {
     },
     setHeaderNames(){
       let columnDefs = this.$store.state.industryRankingColumns;
-      console.log('this.gridApi;;;;;', this.gridApi);
-      console.log('sdfsdfsdfsdfsdf', this.$store.state.kospiForeignerIndustryRankingArr);
       columnDefs.forEach(function (colDef, index) {
         if(index == 0){
           // colDef.headerName = 'C' + index;
