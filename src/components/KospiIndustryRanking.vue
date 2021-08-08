@@ -11,7 +11,7 @@
     >
     </ag-grid-vue>
     <br/>
-    <ag-grid-vue 
+    <ag-grid-vue
       style="width: 100%; height: 30%;"
       class="ag-theme-alpine"
       :columnDefs="this.$store.state.industryHeroRankingColumns"

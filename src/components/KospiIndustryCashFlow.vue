@@ -74,18 +74,7 @@ export default {
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
-      this.setHeaderNames();
-      this.gridApi.sizeColumnsToFit()
-    },
-    setHeaderNames(){
-      let columnDefs = this.$store.state.industryRankingColumns;
-      columnDefs.forEach(function (colDef, index) {
-        if(index == 0){
-          // colDef.headerName = 'C' + index;
-          colDef.headerName = this.hero;
-        }
-      });
-      this.gridApi.setColumnDefs(columnDefs);
+      this.gridApi.sizeColumnsToFit();
     },
   },
   components: {
