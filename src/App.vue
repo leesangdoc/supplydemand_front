@@ -53,10 +53,6 @@
                   </v-container>
               </div>
 
-
-
-
-
               <div v-else-if="index === 1">
                 <v-container class="grey lighten-5" fluid>
                 <v-tabs>
@@ -121,13 +117,34 @@
                  </v-tab-item>
                 </v-tabs>
                 </v-container>
-              
-              
-              
               </div>
-              <div v-else-if="index === 3"> <SearchSupplyDemand/></div>
-              <div v-else-if="index === 4"> <MarketSupplyDemand/></div>
-              <div v-else-if="index === 5"> <SearchSupplyDemand/></div>
+
+
+
+
+
+
+
+
+
+
+              <div v-else-if="index === 3"> 
+                <KospiMarketIndexFlow/>
+              </div>
+
+
+
+
+
+              <div v-else-if="index === 4"> 
+                <KosdaqMarketIndexFlow/>
+              </div>
+
+
+
+              <div v-else-if="index === 5"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 6"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 7"> <SearchSupplyDemand/></div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -149,6 +166,10 @@ import KospiIndustryRanking from './components/KospiIndustryRanking';
 import KospiIndustryCashFlow from './components/KospiIndustryCashFlow';
 import KosdaqIndustryRanking from './components/KosdaqIndustryRanking';
 import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
+import KospiMarketIndexFlow from './components/KospiMarketIndexFlow';
+import KosdaqMarketIndexFlow from './components/KosdaqMarketIndexFlow';
+
+
 
 export default {
   setup() {
@@ -209,6 +230,8 @@ export default {
     , KospiIndustryCashFlow
     , KosdaqIndustryRanking
     , KosdaqIndustryCashFlow
+    , KospiMarketIndexFlow
+    , KosdaqMarketIndexFlow
 
   },
   data: () => ({
@@ -217,6 +240,8 @@ export default {
       '빠른 관심 종목'
       , '업종흐름(코스피)'
       , '업종흐름(코스닥)'
+      , '지수흐름(코스피)'
+      , '지수흐름(코스닥)'
       , '수급분석표'
       ,'시장수급'
       , '수급분석표 검색',

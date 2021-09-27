@@ -195,7 +195,7 @@ export default {
         let month = ("0" + (1 + date.getMonth())).slice(-2);
         let day = ("0" + date.getDate()).slice(-2);
         this.fromdate = year + '-'+month + '-'+day;
-        console.log('interest1 undefined this.fromdate', this.fromdate);
+        // console.log('interest1 undefined this.fromdate', this.fromdate);
       }
       if(this.todate === undefined){
         let date = new Date();
@@ -203,7 +203,7 @@ export default {
         let month = ("0" + (1 + date.getMonth())).slice(-2);
         let day = ("0" + date.getDate()).slice(-2);
         this.todate = year + '-'+ month +'-'+ day;
-        console.log('interest1 undefined this.todate', this.todate);
+        // console.log('interest1 undefined this.todate', this.todate);
       } 
       if(parseInt(this.fromdate.replace(/-/gi, ""))>parseInt(this.todate.replace(/-/gi, ""))){
         alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');

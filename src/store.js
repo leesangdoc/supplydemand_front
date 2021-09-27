@@ -1,15 +1,33 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import {CommonUtil} from './CommonUtil';
+import axios from "axios";
+import constants from "./Constants";
+import chartSetting from "./ChartSetting"
 
 Vue.use(Vuex);
 
 const commonUtil = new CommonUtil(); 
 export default new Vuex.Store({
-    // 데이타
+    // data
     state: {
+        // [시작] 지수흐름
+        kospiMarketIndexAcuChart: chartSetting.acuChartOptions
+        , kospiMarketIndexAcuHcInstance: chartSetting.hcInstance
+        , kospiMarketIndexDispersionChart: chartSetting.dsprChartOptions
+        , kospiMarketIndexDispersionHcInstance: chartSetting.hcInstance
 
-        industryHeroRankingColumns: [
+        , kosdaqMarketIndexAcuChart: chartSetting.acuChartOptions
+        , kosdaqMarketIndexAcuHcInstance: chartSetting.hcInstance
+
+        // 지수흐름(코스피)
+        , kospiMarketIndexFlow: {}
+
+        // 지수흐름(코스닥)
+        , kosdaqMarketIndexFlow: {}
+        // [종료] 지수흐름
+
+        , industryHeroRankingColumns: [
             { headerName: '주체', field: 'period', width: 100}
             , { headerName: '1위', field: 'No1', width: 140}
             , { headerName: '2위', field: 'No2', width: 140}
@@ -24,9 +42,9 @@ export default new Vuex.Store({
             , { headerName: '11위', field: 'No11', width: 140}
             , { headerName: '12위', field: 'No12', width: 140}
             , { headerName: '주체', field: 'source', hide: true }
-        ],
+        ]
 
-        industryRankingColumns: [
+        , industryRankingColumns: [
             { headerName: '주체', field: 'period', width: 100}
             , { headerName: '1위', field: 'No1', width: 140}
             , { headerName: '2위', field: 'No2', width: 140}
@@ -51,9 +69,9 @@ export default new Vuex.Store({
             , { headerName: '21위', field: 'No21', width: 140}
             , { headerName: '22위', field: 'No22', width: 140}
             , { headerName: '주체', field: 'source', hide: true }
-        ],
+        ]
 
-        industryCashFlowColumns: [
+        , industryCashFlowColumns: [
             { headerName: '업종', field: 'title', minWidth: 120}
             , { headerName: '1D', field: '1day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
             , { headerName: '2D', field: '2day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
@@ -79,66 +97,73 @@ export default new Vuex.Store({
             , { headerName: '6Y', field: '6year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
             , { headerName: '7Y', field: '7year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
             , { headerName: '8Y', field: '8year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            
-        ],
+        ]
 
         // 업종흐름순위(코스피)
-        kospiIndustryRankingArr: [],
-        kospiIndustryRankingRowData: [],
-        kospiIndustryHeroRankingRowData: [],
+        , kospiIndustryRankingArr: []
+        , kospiIndustryRankingRowData: []
+        , kospiIndustryHeroRankingRowData: []
+        
         // 업종 돈냄새(코스피)
-        kospiIndustryCashFlowArr: [],
-        kospiIndustryCashFlowRowData: [],
+        , kospiIndustryCashFlowArr: []
+        , kospiIndustryCashFlowRowData: []
 
         // 업종흐름순위(코스닥)
-        kosdaqIndustryRankingArr: [],
-        kosdaqIndustryRankingRowData: [],
-        kosdaqIndustryHeroRankingRowData: [],
+        , kosdaqIndustryRankingArr: []
+        , kosdaqIndustryRankingRowData: []
+        , kosdaqIndustryHeroRankingRowData: []
+        
         // 업종 돈냄새(코스닥)
-        kosdaqIndustryCashFlowArr: [],
-        kosdaqIndustryCashFlowRowData: [],
-
-
+        , kosdaqIndustryCashFlowArr: []
+        , kosdaqIndustryCashFlowRowData: []
 
         // 관심1 로우 데이터
-        inOnLftRowData: [],
+        , inOnLftRowData: []
+        
         // 관심1 로우 데이터 클릭 시, 주식명
-        inOnLftClkStkNm: '',
+        , inOnLftClkStkNm: ''
+        
         // 현재 그리드 상에 보여주는 로우 데이터
-        rowData: [],
-        defaultColDef: { resizable: true, },
+        , rowData: []
+        , defaultColDef: { resizable: true, }
+        
         // 관심1 우측 차트2 매집량 관련
-        acuIndividualStkInfo: [],
-        acuForeignerStkInfo: [],
-        acuFinanceStkInfo: [],
-        acuInsuranceStkInfo: [],
-        acuInvestmentStkInfo: [],
-        acuBankStkInfo: [],
-        acuEtcFinanceStkInfo: [],
-        acuPensionFundStkInfo: [],
-        acuGovernmentStkInfo: [],
-        acuEtcCorpStkInfo: [],
-        acuEtcForeignerStkInfo: [],
-        acuPrivateEquityStkInfo: [],
-        acuGrossSumStkInfo: [],
+        , acuIndividualStkInfo: []
+        , acuForeignerStkInfo: []
+        , acuFinanceStkInfo: []
+        , acuInsuranceStkInfo: []
+        , acuInvestmentStkInfo: []
+        , acuBankStkInfo: []
+        , acuEtcFinanceStkInfo: []
+        , acuPensionFundStkInfo: []
+        , acuGovernmentStkInfo: []
+        , acuEtcCorpStkInfo: []
+        , acuEtcForeignerStkInfo: []
+        , acuPrivateEquityStkInfo: []
+        , acuGrossSumStkInfo: []
+        
         // 관심1 우측 차트3 분산비율 관련
-        indiDispersionArr: [],
-        foreignerDispersionArr: [],
-        financeInvestDispersionArr: [],
-        insuranceDispersionArr: [],
-        assetManageDispersionArr: [],
-        bankDispersionArr: [],
-        etcFinanceDispersionArr: [],
-        pensionFundDispersionArr: [],
-        governmentDispersionArr: [],
-        etcCoporDispersionArr: [],
-        etcForeignerDispersionArr: [],
-        privateEquityDispersionArr: [],
-        grossSumDispersionArr: [],
+        , indiDispersionArr: []
+        , foreignerDispersionArr: []
+        , financeInvestDispersionArr: []
+        , insuranceDispersionArr: []
+        , assetManageDispersionArr: []
+        , bankDispersionArr: []
+        , etcFinanceDispersionArr: []
+        , pensionFundDispersionArr: []
+        , governmentDispersionArr: []
+        , etcCoporDispersionArr: []
+        , etcForeignerDispersionArr: []
+        , privateEquityDispersionArr: []
+        , grossSumDispersionArr: []
+        
         // 관심1 하단 1번째 평균단가 그리드
-        averagePriceRowData: [],
+        , averagePriceRowData: []
+        
         // 관심1 하단 2번째 그리드
-        resultRowData: [],
+        , resultRowData: []
+
+        , stla: []
     },
     // computed 같은??
     getters:{
@@ -150,6 +175,7 @@ export default new Vuex.Store({
         inOnLftRowLength: state => {
             return state.inOnLftRowData.length;
         },
+
         // 만약 getStkNm랑 inOnLftRowLength를 직접 사용하고 싶을때...
         /** 2번째 인자로 getters가 들어오기 때문에 2개 인자로 넣어야 함.
          * percentOfSeoul: (state, getters) =>{
@@ -181,6 +207,55 @@ export default new Vuex.Store({
         changeKosdaqIndustryHeroRankingData: (state, payload)=>{
             state.kosdaqIndustryHeroRankingRowData = state.kosdaqIndustryRankingArr[payload];
         },
+        callKospiMarketIndexFlow: (state, payload)=>{
+            state.kospiMarketIndexFlow = payload;
+            let response = payload;
+            // state.kospiMarketIndexFlow.acuForeignerStkInfo = commonUtil.changeDate(response.acuForeignerStkInfo);
+            // state.kospiMarketIndexAcuChart.series[1].data = state.kospiMarketIndexFlow.acuForeignerStkInfo;
+            state.kospiMarketIndexAcuChart.title.text = "매집금액";
+            state.kospiMarketIndexAcuChart.yAxis.title.text = "매집량 공식으로 환산";
+            state.kospiMarketIndexAcuChart.series[0].data = commonUtil.changeDate(response.acuIndividualStkInfo);
+            state.kospiMarketIndexAcuChart.series[1].data = commonUtil.changeDate(response.acuForeignerStkInfo);
+            state.kospiMarketIndexAcuChart.series[2].data = commonUtil.changeDate(response.acuFinanceStkInfo);
+            state.kospiMarketIndexAcuChart.series[3].data = commonUtil.changeDate(response.acuInsuranceStkInfo);
+            state.kospiMarketIndexAcuChart.series[4].data = commonUtil.changeDate(response.acuInvestmentStkInfo);
+            state.kospiMarketIndexAcuChart.series[5].data = commonUtil.changeDate(response.acuBankStkInfo);
+            state.kospiMarketIndexAcuChart.series[6].data = commonUtil.changeDate(response.acuEtcFinanceStkInfo);
+            state.kospiMarketIndexAcuChart.series[7].data = commonUtil.changeDate(response.acuPensionFundStkInfo);
+            state.kospiMarketIndexAcuChart.series[8].data = commonUtil.changeDate(response.acuGovernmentStkInfo);
+            state.kospiMarketIndexAcuChart.series[9].data = commonUtil.changeDate(response.acuEtcCorpStkInfo);
+            state.kospiMarketIndexAcuChart.series[10].data = commonUtil.changeDate(response.acuEtcForeignerStkInfo);
+            state.kospiMarketIndexAcuChart.series[11].data = commonUtil.changeDate(response.acuPrivateEquityStkInfo);
+            state.kospiMarketIndexAcuChart.series[12].data = commonUtil.changeDate(response.acuGrossSumStkInfo);     
+
+            state.kospiMarketIndexAcuChart.series[0].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[1].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[2].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[3].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[4].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[5].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[6].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[7].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[8].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[9].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[10].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[11].tooltip.valueSuffix = "십억원";
+            state.kospiMarketIndexAcuChart.series[12].tooltip.valueSuffix = "십억원";
+
+            state.kospiMarketIndexDispersionChart.series[0].data = commonUtil.changeDate(response.indiDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[1].data = commonUtil.changeDate(response.foreignerDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[2].data = commonUtil.changeDate(response.financeInvestDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[3].data = commonUtil.changeDate(response.insuranceDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[4].data = commonUtil.changeDate(response.assetManageDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[5].data = commonUtil.changeDate(response.bankDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[6].data = commonUtil.changeDate(response.etcFinanceDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[7].data = commonUtil.changeDate(response.pensionFundDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[8].data = commonUtil.changeDate(response.governmentDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[9].data = commonUtil.changeDate(response.etcCoporDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[10].data = commonUtil.changeDate(response.etcForeignerDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[11].data = commonUtil.changeDate(response.privateEquityDispersionArr);
+            state.kospiMarketIndexDispersionChart.series[12].data = commonUtil.changeDate(response.grossSumDispersionArr);  
+        },
     },
     // 
     actions: {
@@ -206,6 +281,22 @@ export default new Vuex.Store({
         },
         changeKosdaqIndustryHeroRankingData: ({commit}, payload) => {
             commit('changeKosdaqIndustryHeroRankingData', payload);
+        },
+
+        callKospiMarketIndexFlow: ({commit}, payload) => {
+            console.log('action callKospiMarketIndexFlow passed!');
+            axios.post(
+                `${constants.URL}${'kospiIndexAnalysis/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                console.log('action callKospiMarketIndexFlow response;;;;;', response);
+                commit('callKospiMarketIndexFlow', response.data);
+            });
         },
 
         

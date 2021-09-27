@@ -60,7 +60,7 @@ export default {
   beforeCreate() {     
     console.log('beforeCreate');
   },
-  updated() {             
+  updated() {
     this.stla.resultStockInfo.forEach(
       element => {
         var eltStr = element[0].toString();

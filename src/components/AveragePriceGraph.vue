@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <ag-grid-vue 
-        style="width: 100%; height: 15%;"
+        style="width: 100%; height: 30%;"
         class="ag-theme-alpine"
         :columnDefs="columnDefs"
         :rowData="this.$store.state.averagePriceRowData"
