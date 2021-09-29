@@ -4,6 +4,7 @@ import {CommonUtil} from './CommonUtil';
 import axios from "axios";
 import constants from "./Constants";
 import chartSetting from "./ChartSetting"
+import gridSetting from "./GridSetting"
 
 Vue.use(Vuex);
 
@@ -19,85 +20,17 @@ export default new Vuex.Store({
 
         , kosdaqMarketIndexAcuChart: chartSetting.acuChartOptions
         , kosdaqMarketIndexAcuHcInstance: chartSetting.hcInstance
-
+        // [종료] 지수흐름
+        , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
         // 지수흐름(코스피)
         , kospiMarketIndexFlow: {}
 
         // 지수흐름(코스닥)
         , kosdaqMarketIndexFlow: {}
         // [종료] 지수흐름
-
-        , industryHeroRankingColumns: [
-            { headerName: '주체', field: 'period', width: 100}
-            , { headerName: '1위', field: 'No1', width: 140}
-            , { headerName: '2위', field: 'No2', width: 140}
-            , { headerName: '3위', field: 'No3', width: 140}
-            , { headerName: '4위', field: 'No4', width: 140}
-            , { headerName: '5위', field: 'No5', width: 140}
-            , { headerName: '6위', field: 'No6', width: 140}
-            , { headerName: '7위', field: 'No7', width: 140}
-            , { headerName: '8위', field: 'No8', width: 140}
-            , { headerName: '9위', field: 'No9', width: 140}
-            , { headerName: '10위', field: 'No10', width: 140}
-            , { headerName: '11위', field: 'No11', width: 140}
-            , { headerName: '12위', field: 'No12', width: 140}
-            , { headerName: '주체', field: 'source', hide: true }
-        ]
-
-        , industryRankingColumns: [
-            { headerName: '주체', field: 'period', width: 100}
-            , { headerName: '1위', field: 'No1', width: 140}
-            , { headerName: '2위', field: 'No2', width: 140}
-            , { headerName: '3위', field: 'No3', width: 140}
-            , { headerName: '4위', field: 'No4', width: 140}
-            , { headerName: '5위', field: 'No5', width: 140}
-            , { headerName: '6위', field: 'No6', width: 140}
-            , { headerName: '7위', field: 'No7', width: 140}
-            , { headerName: '8위', field: 'No8', width: 140}
-            , { headerName: '9위', field: 'No9', width: 140}
-            , { headerName: '10위', field: 'No10', width: 140}
-            , { headerName: '11위', field: 'No11', width: 140}
-            , { headerName: '12위', field: 'No12', width: 140}
-            , { headerName: '13위', field: 'No13', width: 140}
-            , { headerName: '14위', field: 'No14', width: 140}
-            , { headerName: '15위', field: 'No15', width: 140}
-            , { headerName: '16위', field: 'No16', width: 140}
-            , { headerName: '17위', field: 'No17', width: 140}
-            , { headerName: '18위', field: 'No18', width: 140}
-            , { headerName: '19위', field: 'No19', width: 140}
-            , { headerName: '20위', field: 'No20', width: 140}
-            , { headerName: '21위', field: 'No21', width: 140}
-            , { headerName: '22위', field: 'No22', width: 140}
-            , { headerName: '주체', field: 'source', hide: true }
-        ]
-
-        , industryCashFlowColumns: [
-            { headerName: '업종', field: 'title', minWidth: 120}
-            , { headerName: '1D', field: '1day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '2D', field: '2day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '3D', field: '3day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '4D', field: '4day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '5D', field: '5day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '1W', field: '1week', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '2W', field: '2week', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '3W', field: '3week', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '4W', field: '4week', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '1M', field: '1month', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '2M', field: '2month', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '3M', field: '3month', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '1Q', field: 'firstQuarter', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '2Q', field: 'secondQuarter', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '3Q', field: 'thirdQuarter', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '4Q', field: 'fourthQuarter', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '1Y', field: '1year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '2Y', field: '2year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '3Y', field: '3year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '4Y', field: '4year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '5Y', field: '5year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '6Y', field: '6year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '7Y', field: '7year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-            , { headerName: '8Y', field: '8year', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
-        ]
+        , industryHeroRankingColumns: gridSetting.industryHeroRankingColumns
+        , industryRankingColumns: gridSetting.industryRankingColumns
+        , industryCashFlowColumns: gridSetting.industryCashFlowColumns
 
         // 업종흐름순위(코스피)
         , kospiIndustryRankingArr: []
@@ -213,7 +146,7 @@ export default new Vuex.Store({
             // state.kospiMarketIndexFlow.acuForeignerStkInfo = commonUtil.changeDate(response.acuForeignerStkInfo);
             // state.kospiMarketIndexAcuChart.series[1].data = state.kospiMarketIndexFlow.acuForeignerStkInfo;
             state.kospiMarketIndexAcuChart.title.text = "매집금액";
-            state.kospiMarketIndexAcuChart.yAxis.title.text = "매집량 공식으로 환산";
+            state.kospiMarketIndexAcuChart.yAxis.title.text = "매집량 공식 적용";
             state.kospiMarketIndexAcuChart.series[0].data = commonUtil.changeDate(response.acuIndividualStkInfo);
             state.kospiMarketIndexAcuChart.series[1].data = commonUtil.changeDate(response.acuForeignerStkInfo);
             state.kospiMarketIndexAcuChart.series[2].data = commonUtil.changeDate(response.acuFinanceStkInfo);
@@ -255,35 +188,38 @@ export default new Vuex.Store({
             state.kospiMarketIndexDispersionChart.series[10].data = commonUtil.changeDate(response.etcForeignerDispersionArr);
             state.kospiMarketIndexDispersionChart.series[11].data = commonUtil.changeDate(response.privateEquityDispersionArr);
             state.kospiMarketIndexDispersionChart.series[12].data = commonUtil.changeDate(response.grossSumDispersionArr);  
-        },
+        }
+        , callKosdaqIndustryCashFlow: (state, payload)=>{
+            state.kosdaqIndustryCashFlowArr = payload;
+        }
     },
     // 
     actions: {
         // 액션 함수명... 뮤테이션과는 다르나 이름을 매치시켜야 구분하기 쉬움.
         emptyRowData: ({commit}, payload) => {
             commit('emptyRowData', payload);
-        },
-        changeKospiIndustryRankingData: ({commit}, payload) => {
+        }
+        , changeKospiIndustryRankingData: ({commit}, payload) => {
             commit('changeKospiIndustryRankingData', payload);
-        },
-        changeKospiIndustryCashFlowData: ({commit}, payload) => {
+        }
+        , changeKospiIndustryCashFlowData: ({commit}, payload) => {
             commit('changeKospiIndustryCashFlowData', payload);
-        },
-        changeKospiIndustryHeroRankingData: ({commit}, payload) => {
+        }
+        , changeKospiIndustryHeroRankingData: ({commit}, payload) => {
             commit('changeKospiIndustryHeroRankingData', payload);
-        },
+        }
 
-        changeKosdaqIndustryRankingData: ({commit}, payload) => {
+        , changeKosdaqIndustryRankingData: ({commit}, payload) => {
             commit('changeKosdaqIndustryRankingData', payload);
-        },
-        changeKosdaqIndustryCashFlowData: ({commit}, payload) => {
+        }
+        , changeKosdaqIndustryCashFlowData: ({commit}, payload) => {
             commit('changeKosdaqIndustryCashFlowData', payload);
-        },
-        changeKosdaqIndustryHeroRankingData: ({commit}, payload) => {
+        }
+        , changeKosdaqIndustryHeroRankingData: ({commit}, payload) => {
             commit('changeKosdaqIndustryHeroRankingData', payload);
-        },
+        }
 
-        callKospiMarketIndexFlow: ({commit}, payload) => {
+        , callKospiMarketIndexFlow: ({commit}, payload) => {
             console.log('action callKospiMarketIndexFlow passed!');
             axios.post(
                 `${constants.URL}${'kospiIndexAnalysis/'}`
@@ -297,7 +233,34 @@ export default new Vuex.Store({
                 console.log('action callKospiMarketIndexFlow response;;;;;', response);
                 commit('callKospiMarketIndexFlow', response.data);
             });
-        },
+        }
+
+        , callKosdaqIndustryCashFlow: ({commit}, payload) => {
+            let postData = {
+                _val: payload,
+            };
+            let ths = this;
+            axios.post(
+                `${constants.URL}${'kosdaqIndustryCashFlowResultList/'}`
+                , {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'JWT fefege...'
+                }, postData})
+            .then(function(response) {
+                // ths.success = true;
+                console.log(response);
+                commit('callKosdaqIndustryCashFlow', response.data);
+            })
+            .then(function() {
+                commit('changeKosdaqIndustryCashFlowData', payload.hero);
+            })
+            .catch(function(error) {
+                ths.error = true;
+                console.log(error);
+            })
+            .finally(()=>{});
+        }
 
         
     },

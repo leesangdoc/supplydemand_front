@@ -274,6 +274,7 @@ export default {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
       //this.gridApi.sizeColumnsToFit();
+      this.gridApi.sizeColumnsToFit();
     },
 
     getSelectedRows() {

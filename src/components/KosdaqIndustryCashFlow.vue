@@ -14,64 +14,39 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios";
 import {mapMutations, mapActions} from 'vuex';
-// import {CommonUtil} from '../CommonUtil';
 
 export default {
-  computed: {
-
-  },
-  
-  beforeCreate() {
-    
-  },
-
+  computed: {},
+  beforeCreate() {},
   created() {
-    let postData = {};
-    let ths = this;    
-    axios.post('http://supplydemand.iptime.org/supplydemand/api/kosdaqIndustryCashFlowResultList/',
-      {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege...'
-      }, postData})
-      .then(function(response) {
-        ths.success = true;
-        console.log(response);
-        ths.$store.state.kosdaqIndustryCashFlowArr = response.data;
-      })
-      .then(function() {
-        ths.$store.dispatch('changeKosdaqIndustryCashFlowData', ths.hero);
-      })
-      .catch(function(error) {
-        ths.error = true;
-        console.log(error);
-      })
-      .finally(()=>{});
+    this.kosdaqIndustryCashFlow();
   },
-  beforeMount() {
-    // console.log('beforeMount_hero;;;;;;;;;;;', this.hero);
-    // console.log('IndustryRanking_beforeMount');
-    
-  },
-  mounted(){
-    // console.log('mounted_hero;;;;;;;;;;;', this.hero);
-  },
-  beforeUpdate(){
-    // console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
-    
-  },
+  beforeMount() {},
+  mounted(){},
+  beforeUpdate(){},
   updated(){
-    // console.log('updated_hero;;;;;;;;;;;', this.hero);
-    
+    // this.kosdaqIndustryCashFlow();
   },
 
   name: 'QuickInterestStock',
   methods: {
-    ...mapMutations([]),
-    ...mapActions(['changeKosdaqIndustryCashFlowData']),
-    onGridReady(params) {
+    ...mapMutations([])
+    , ...mapActions(['changeKosdaqIndustryCashFlowData'])
+    , async kosdaqIndustryCashFlow(){
+      let ths = this;
+      try{
+          let postData = {
+            hero: ths.hero
+          };
+          // console.log("postData;;;", postData);
+          await this.$store.dispatch('callKosdaqIndustryCashFlow', postData);
+          await this.$store.dispatch('changeKosdaqIndustryCashFlowData', postData);
+       } catch(error){
+          console.log(error);
+       }
+    }
+    , onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
