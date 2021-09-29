@@ -282,9 +282,9 @@ export default {
       const selectedData = selectedNodes.map(node => node.data);
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
-      console.log('selectedData1 fileTitle: ' + csvFileName);
-      console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
-      console.log('selectedData2: ' + this.gridApi.getSelectedRows());
+      // console.log('selectedData1 fileTitle: ' + csvFileName);
+      // console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
+      // console.log('selectedData2: ' + this.gridApi.getSelectedRows());
       let resData = {};
       let ths = this;
       let postData = {
