@@ -25,62 +25,35 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios";
 import {mapMutations, mapActions} from 'vuex';
-// import {CommonUtil} from '../CommonUtil';
 
 export default {
-  computed: {
-
-  },
-  
-  beforeCreate() {
-    
-  },
-
+  computed: {},
+  beforeCreate() {},
   created() {
-    let postData = {};
-    let ths = this;    
-    axios.post('http://supplydemand.iptime.org/supplydemand/api/kospiIndustryRankingResultList/',
-      {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege...'
-      }, postData})
-      .then(function(response) {
-        ths.success = true;
-        ths.$store.state.kospiIndustryRankingArr = response.data;
-      })
-      .then(function() {
-        ths.$store.dispatch('changeKospiIndustryRankingData', ths.hero);
-        ths.$store.dispatch('changeKospiIndustryHeroRankingData', 'rank');
-      })
-      .catch(function(error) {
-        ths.error = true;
-        console.log(error);
-      })
-      .finally(()=>{});
+    this.kospiIndustryRanking();
   },
-  beforeMount() {
-    // console.log('beforeMount_hero;;;;;;;;;;;');
-    
-  },
-  mounted(){
-    // console.log('mounted_hero;;;;;;;;;;;', this.hero);
-  },
-  beforeUpdate(){
-    // console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
-    
-  },
-  updated(){
-    // console.log('updated_hero;;;;;;;;;;;', this.hero);
-    
-  },
-
-  name: 'QuickInterestStock',
+  beforeMount() {},
+  mounted(){},
+  beforeUpdate(){},
+  updated(){},
+  name: 'KospiIndustryRanking',
   methods: {
     ...mapMutations([]),
-    ...mapActions(['changeKospiIndustryRankingData', 'changeKospiIndustryHeroRankingData']),
+    ...mapActions(['changeKospiIndustryRankingData', 'changeKospiIndustryHeroRankingData', 'callKospiIndustryRanking']),
+    async kospiIndustryRanking(){
+      let _this = this;
+      try{
+          let postData = {
+            hero: _this.hero
+          };
+          await this.$store.dispatch('callKospiIndustryRanking', postData);
+          await this.$store.dispatch('changeKospiIndustryRankingData', postData);
+          await this.$store.dispatch('changeKospiIndustryHeroRankingData', 'rank');
+      } catch(error) {
+          console.log(error);
+      }
+    },
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
@@ -90,16 +63,11 @@ export default {
       let columnDefs = this.$store.state.industryRankingColumns;
       columnDefs.forEach(function (colDef, index) {
         if(index == 0){
-          // colDef.headerName = 'C' + index;
-          colDef.headerName = ' ';
-          
-        }
-        
+          colDef.headerName = ' '; 
+        } 
       });
       this.gridApi.setColumnDefs(columnDefs);
     },
-
-
   },
   components: {
     AgGridVue,

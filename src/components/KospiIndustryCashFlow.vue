@@ -14,7 +14,6 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios";
 import {mapMutations, mapActions} from 'vuex';
 // import {CommonUtil} from '../CommonUtil';
 
@@ -23,54 +22,33 @@ export default {
 
   },
   
-  beforeCreate() {
-    
-  },
+  beforeCreate() {},
 
   created() {
-    let postData = {};
-    let ths = this;    
-    axios.post('http://supplydemand.iptime.org/supplydemand/api/kospiIndustryCashFlowResultList/',
-      {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege...'
-      }, postData})
-      .then(function(response) {
-        ths.success = true;
-        console.log(response);
-        ths.$store.state.kospiIndustryCashFlowArr = response.data;
-      })
-      .then(function() {
-        ths.$store.dispatch('changeKospiIndustryCashFlowData', ths.hero);
-      })
-      .catch(function(error) {
-        ths.error = true;
-        console.log(error);
-      })
-      .finally(()=>{});
+    this.kospiIndustryCashFlow();
   },
-  beforeMount() {
-    // console.log('beforeMount_hero;;;;;;;;;;;', this.hero);
-    // console.log('IndustryRanking_beforeMount');
-    
-  },
-  mounted(){
-    // console.log('mounted_hero;;;;;;;;;;;', this.hero);
-  },
-  beforeUpdate(){
-    // console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
-    
-  },
-  updated(){
-    // console.log('updated_hero;;;;;;;;;;;', this.hero);
-    
-  },
+  beforeMount() {},
+  mounted(){},
+  beforeUpdate(){},
+  updated(){},
 
   name: 'QuickInterestStock',
   methods: {
     ...mapMutations([]),
-    ...mapActions(['changeKospiIndustryCashFlowData']),
+    ...mapActions(['changeKospiIndustryCashFlowData', 'callKospiIndustryCashFlow']),
+    async kospiIndustryCashFlow(){
+      let ths = this;
+      try{
+          let postData = {
+            hero: ths.hero
+          };
+          await this.$store.dispatch('callKospiIndustryCashFlow', postData);
+          await this.$store.dispatch('changeKospiIndustryCashFlowData', postData);
+
+      } catch(error) {
+          console.log(error);
+      }
+    },
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;

@@ -22,6 +22,7 @@ export default new Vuex.Store({
         , kosdaqMarketIndexAcuHcInstance: chartSetting.hcInstance
         // [종료] 지수흐름
         , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
+        , supplyDemandGraphColumns: gridSetting.supplyDemandGraphColumns
         // 지수흐름(코스피)
         , kospiMarketIndexFlow: {}
 
@@ -120,77 +121,58 @@ export default new Vuex.Store({
     mutations: {
         emptyRowData: (state, payload)=> {
             state.rowData = payload;
-        },
-        changeKospiIndustryRankingData: (state, payload)=>{
+        }
+        , changeKospiIndustryRankingData: (state, payload)=>{
             state.kospiIndustryRankingRowData = state.kospiIndustryRankingArr[payload];
-        },
-        changeKospiIndustryCashFlowData: (state, payload)=>{
+        }
+        , changeKospiIndustryCashFlowData: (state, payload)=>{
             state.kospiIndustryCashFlowRowData = state.kospiIndustryCashFlowArr[payload];
-        },
-        changeKospiIndustryHeroRankingData: (state, payload)=>{
+        }
+        , changeKospiIndustryHeroRankingData: (state, payload)=>{
             state.kospiIndustryHeroRankingRowData = state.kospiIndustryRankingArr[payload];
-        },
-
-        changeKosdaqIndustryRankingData: (state, payload)=>{
+        }
+        , changeKosdaqIndustryRankingData: (state, payload)=>{
             state.kosdaqIndustryRankingRowData = state.kosdaqIndustryRankingArr[payload];
-        },
-        changeKosdaqIndustryCashFlowData: (state, payload)=>{
+        }
+        , changeKosdaqIndustryCashFlowData: (state, payload)=>{
             state.kosdaqIndustryCashFlowRowData = state.kosdaqIndustryCashFlowArr[payload];
-        },
-        changeKosdaqIndustryHeroRankingData: (state, payload)=>{
+        }
+        , changeKosdaqIndustryHeroRankingData: (state, payload)=>{
             state.kosdaqIndustryHeroRankingRowData = state.kosdaqIndustryRankingArr[payload];
-        },
-        callKospiMarketIndexFlow: (state, payload)=>{
+        }
+        , callKosdaqIndustryRanking:(state, payload)=>{
+            state.kosdaqIndustryRankingArr = payload;
+        }
+        , callKospiIndustryRanking:(state, payload)=>{
+            state.kospiIndustryRankingArr = payload;
+        }
+        , callKospiMarketIndexFlow: (state, payload)=>{
             state.kospiMarketIndexFlow = payload;
             let response = payload;
-            // state.kospiMarketIndexFlow.acuForeignerStkInfo = commonUtil.changeDate(response.acuForeignerStkInfo);
-            // state.kospiMarketIndexAcuChart.series[1].data = state.kospiMarketIndexFlow.acuForeignerStkInfo;
             state.kospiMarketIndexAcuChart.title.text = "매집금액";
             state.kospiMarketIndexAcuChart.yAxis.title.text = "매집량 공식 적용";
-            state.kospiMarketIndexAcuChart.series[0].data = commonUtil.changeDate(response.acuIndividualStkInfo);
-            state.kospiMarketIndexAcuChart.series[1].data = commonUtil.changeDate(response.acuForeignerStkInfo);
-            state.kospiMarketIndexAcuChart.series[2].data = commonUtil.changeDate(response.acuFinanceStkInfo);
-            state.kospiMarketIndexAcuChart.series[3].data = commonUtil.changeDate(response.acuInsuranceStkInfo);
-            state.kospiMarketIndexAcuChart.series[4].data = commonUtil.changeDate(response.acuInvestmentStkInfo);
-            state.kospiMarketIndexAcuChart.series[5].data = commonUtil.changeDate(response.acuBankStkInfo);
-            state.kospiMarketIndexAcuChart.series[6].data = commonUtil.changeDate(response.acuEtcFinanceStkInfo);
-            state.kospiMarketIndexAcuChart.series[7].data = commonUtil.changeDate(response.acuPensionFundStkInfo);
-            state.kospiMarketIndexAcuChart.series[8].data = commonUtil.changeDate(response.acuGovernmentStkInfo);
-            state.kospiMarketIndexAcuChart.series[9].data = commonUtil.changeDate(response.acuEtcCorpStkInfo);
-            state.kospiMarketIndexAcuChart.series[10].data = commonUtil.changeDate(response.acuEtcForeignerStkInfo);
-            state.kospiMarketIndexAcuChart.series[11].data = commonUtil.changeDate(response.acuPrivateEquityStkInfo);
-            state.kospiMarketIndexAcuChart.series[12].data = commonUtil.changeDate(response.acuGrossSumStkInfo);     
+            let acuChartInfo = [response.acuIndividualStkInfo, response.acuForeignerStkInfo, response.acuFinanceStkInfo
+                                , response.acuInsuranceStkInfo, response.acuInvestmentStkInfo, response.acuBankStkInfo
+                                , response.acuEtcFinanceStkInfo, response.acuPensionFundStkInfo, response.acuGovernmentStkInfo
+                                , response.acuEtcCorpStkInfo, response.acuEtcForeignerStkInfo, response.acuPrivateEquityStkInfo
+                                , response.acuGrossSumStkInfo];
+            
+            let dispersionInfo = [  response.indiDispersionArr, response.foreignerDispersionArr, response.financeInvestDispersionArr
+                                    , response.insuranceDispersionArr, response.assetManageDispersionArr, response.bankDispersionArr
+                                    , response.etcFinanceDispersionArr, response.pensionFundDispersionArr, response.governmentDispersionArr
+                                    , response.etcCoporDispersionArr, response.etcForeignerDispersionArr, response.privateEquityDispersionArr
+                                    , response.grossSumDispersionArr];
 
-            state.kospiMarketIndexAcuChart.series[0].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[1].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[2].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[3].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[4].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[5].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[6].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[7].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[8].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[9].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[10].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[11].tooltip.valueSuffix = "십억원";
-            state.kospiMarketIndexAcuChart.series[12].tooltip.valueSuffix = "십억원";
+            for(let i=0; i < acuChartInfo.length; i++){
+                state.kospiMarketIndexAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
+                state.kospiMarketIndexDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
+                state.kospiMarketIndexAcuChart.series[i].tooltip.valueSuffix = "십억원";
+            }
 
-            state.kospiMarketIndexDispersionChart.series[0].data = commonUtil.changeDate(response.indiDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[1].data = commonUtil.changeDate(response.foreignerDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[2].data = commonUtil.changeDate(response.financeInvestDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[3].data = commonUtil.changeDate(response.insuranceDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[4].data = commonUtil.changeDate(response.assetManageDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[5].data = commonUtil.changeDate(response.bankDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[6].data = commonUtil.changeDate(response.etcFinanceDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[7].data = commonUtil.changeDate(response.pensionFundDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[8].data = commonUtil.changeDate(response.governmentDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[9].data = commonUtil.changeDate(response.etcCoporDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[10].data = commonUtil.changeDate(response.etcForeignerDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[11].data = commonUtil.changeDate(response.privateEquityDispersionArr);
-            state.kospiMarketIndexDispersionChart.series[12].data = commonUtil.changeDate(response.grossSumDispersionArr);  
-        }
-        , callKosdaqIndustryCashFlow: (state, payload)=>{
+        } , callKosdaqIndustryCashFlow: (state, payload)=>{
             state.kosdaqIndustryCashFlowArr = payload;
+        }, callKospiIndustryCashFlow: (state, payload)=>{
+            state.kospiIndustryCashFlowArr = payload;
         }
     },
     // 
@@ -248,8 +230,6 @@ export default new Vuex.Store({
                         'Authorization': 'JWT fefege...'
                 }, postData})
             .then(function(response) {
-                // ths.success = true;
-                console.log(response);
                 commit('callKosdaqIndustryCashFlow', response.data);
             })
             .then(function() {
@@ -260,10 +240,77 @@ export default new Vuex.Store({
                 console.log(error);
             })
             .finally(()=>{});
+        }, callKosdaqIndustryRanking: ({commit}, payload) => {
+            let postData = {
+                _val: payload,
+            };
+            let ths = this;
+            axios.post(`${constants.URL}${'kosdaqIndustryRankingResultList/'}`
+            , {
+                headers: {
+                    'Content-Type': 'application/json'
+                    , 'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                commit('callKosdaqIndustryRanking', response.data);
+            })
+            .then(function() {
+                commit('changeKosdaqIndustryRankingData', payload.hero);
+                commit('changeKosdaqIndustryHeroRankingData', 'rank');
+            })
+            .catch(function(error) {
+                ths.error = true;
+                console.log(error);
+            })
+            .finally(()=>{
+    
+            });
+        }, callKospiIndustryCashFlow: ({commit}, payload) => {
+            let postData = {};
+            axios.post(`${constants.URL}${'kospiIndustryCashFlowResultList/'}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                commit('callKospiIndustryCashFlow', response.data);
+            })
+            .then(function() {
+                commit('changeKospiIndustryCashFlowData', payload.hero);
+            })
+            .catch(function(error) {
+                console.log(error);
+            })
+            .finally(()=>{});
+        }, callKospiIndustryRanking: ({commit}, payload) => {
+            let postData = {
+                _val: payload,
+            };
+            let ths = this;
+            axios.post(`${constants.URL}${'kospiIndustryRankingResultList/'}`
+            , {
+                headers: {
+                    'Content-Type': 'application/json'
+                    , 'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                commit('callKospiIndustryRanking', response.data);
+            })
+            .then(function() {
+                commit('changeKospiIndustryRankingData', payload.hero);
+                commit('changeKospiIndustryHeroRankingData', 'rank');
+            })
+            .catch(function(error) {
+                ths.error = true;
+                console.log(error);
+            })
+            .finally(()=>{
+    
+            });
         }
-
-        
-    },
+    }
+    
 
 });
 

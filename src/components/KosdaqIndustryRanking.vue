@@ -25,74 +25,47 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios";
-import {mapMutations, mapActions} from 'vuex';
-// import {CommonUtil} from '../CommonUtil';
+import { mapMutations, mapActions } from 'vuex';
 
 export default {
-  computed: {
-
-  },
+  computed: {},
   
-  beforeCreate() {
-    
-  },
-
+  beforeCreate() {},
   created() {
-    let postData = {};
-    let ths = this;    
-    axios.post('http://supplydemand.iptime.org/supplydemand/api/kosdaqIndustryRankingResultList/',
-      {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege...'
-      }, postData})
-      .then(function(response) {
-        ths.success = true;
-        ths.$store.state.kosdaqIndustryRankingArr = response.data;
-      })
-      .then(function() {
-        ths.$store.dispatch('changeKosdaqIndustryRankingData', ths.hero);
-        ths.$store.dispatch('changeKosdaqIndustryHeroRankingData', 'rank');
-      })
-      .catch(function(error) {
-        ths.error = true;
-        console.log(error);
-      })
-      .finally(()=>{});
+    this.kosdaqIndustryRanking();
   },
-  beforeMount() {
-    // console.log('beforeMount_hero;;;;;;;;;;;');
-    
-  },
-  mounted(){
-    // console.log('mounted_hero;;;;;;;;;;;', this.hero);
-  },
-  beforeUpdate(){
-    // console.log('beforeUpdate_hero;;;;;;;;;;;', this.hero);
-    
-  },
-  updated(){
-    // console.log('updated_hero;;;;;;;;;;;', this.hero);
-    
-  },
+  beforeMount() {},
+  mounted(){},
+  beforeUpdate(){},
+  updated(){},
 
   name: 'QuickInterestStock',
   methods: {
-    ...mapMutations([]),
-    ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData']),
-    onGridReady(params) {
+     ...mapMutations([])
+    , ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData', 'callKosdaqIndustryRanking'])
+    , async kosdaqIndustryRanking(){
+      let _this = this;
+      try{
+          let postData = {
+            hero: _this.hero
+          };
+          await this.$store.dispatch('callKosdaqIndustryRanking', postData);
+          await this.$store.dispatch('changeKosdaqIndustryRankingData', postData);
+          await this.$store.dispatch('changeKosdaqIndustryHeroRankingData', 'rank');
+      } catch(error) {
+          console.log(error);
+      }
+    }
+    , onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
       this.setHeaderNames();
-    },
-    setHeaderNames(){
+    }
+    , setHeaderNames(){
       let columnDefs = this.$store.state.industryRankingColumns;
       columnDefs.forEach(function (colDef, index) {
         if(index == 0){
-          // colDef.headerName = 'C' + index;
           colDef.headerName = ' ';
-          
         }
         
       });

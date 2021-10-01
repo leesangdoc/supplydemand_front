@@ -167,7 +167,6 @@ export default {
       }
     },
     changeGrossSum(){
-      console.log('세력합 체크박스 찍으면...'); 
       this.foreigner = this.grossSum;
       this.finance = this.grossSum;
       this.insurance = this.grossSum;
@@ -273,8 +272,7 @@ export default {
     onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
-      //this.gridApi.sizeColumnsToFit();
-      this.gridApi.sizeColumnsToFit();
+      // this.gridApi.sizeColumnsToFit();
     },
 
     getSelectedRows() {
