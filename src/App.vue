@@ -4,6 +4,7 @@
 </style>
 <template>
   <v-app>
+    
     <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-app-bar-title>수급분석</v-app-bar-title>
@@ -23,6 +24,7 @@
 
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
+                    
                     <v-row mb-6 no-gutters dense>
                       <v-col  md="4"> <!--auto-->
                         <v-card class="pa-2" outlined tile>

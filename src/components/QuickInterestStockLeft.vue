@@ -1,7 +1,15 @@
 <template>
   <v-app>
-    <div class="loader" v-if="loading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
-    <v-radio-group v-model="row" row column :disabled=loading>
+    <div class="text-center">
+    <v-progress-circular
+        :size="this.$store.state.spinnerLoading ? 70 : 0"
+        :width="10"
+        color="purple"
+        :indeterminate="this.$store.state.spinnerLoading"
+      ></v-progress-circular>
+    </div>
+    <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
+    <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
         <v-radio label="관심1" value="radio-1" @click=interest1 @change=interest1Change />
         <v-radio label="관심2" value="radio-2" @click=interest2></v-radio>
       </v-radio-group>
@@ -63,7 +71,7 @@
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
-        :columnDefs="columnDefs"
+        :columnDefs="this.$store.state.quickInterestStockLeftGridColumns"
         :rowData="this.$store.state.rowData"
         rowSelection="single"
         @grid-ready="onGridReady"
@@ -74,10 +82,8 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import axios from "axios";
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
-import {CommonUtil} from '../CommonUtil';
 
 export default {
   computed: {
@@ -95,23 +101,6 @@ export default {
   },
   beforeMount() {
     console.log('beforeMount');
-    const commonUtil = new CommonUtil(); 
-    this.columnDefs = [
-      { headerName: '종목명', field: 'stockName', sortable: true, filter: true, width: 120,},
-      { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '세력합', field: 'grossSum', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '외국인', field: 'foreigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '금융', field: 'finance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '보험', field: 'insurance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '투신', field: 'investment', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '은행', field: 'bank', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '기타금융', field: 'etcFinance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '연기금', field: 'pensionFund', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '국가(지자체)', field: 'government', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '기타외인', field: 'etcForeigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '사모펀드', field: 'privateEquity', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
-      { headerName: '파일명', field: 'fileTitle', sortable: true, filter: true, hide: true }
-    ];
     let date = new Date();
     let year = date.getFullYear();
     let month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -144,12 +133,8 @@ export default {
      onBtnExport() {
       this.gridApi.exportDataAsCsv(); 
      },
-    ...mapMutations([]), // 'emptyRowData'
+    ...mapMutations(['callInOnLftRowData']), // 'emptyRowData'
     ...mapActions(['emptyRowData']),
-    reset(){
-      this.success = false;
-      this.error = false;
-    },
     keyFromDate(e){
       console.log('keyUpFromDate e;;;'+e);
     },
@@ -204,11 +189,10 @@ export default {
         this.todate = year + '-'+ month +'-'+ day;
         // console.log('interest1 undefined this.todate', this.todate);
       } 
-      if(parseInt(this.fromdate.replace(/-/gi, ""))>parseInt(this.todate.replace(/-/gi, ""))){
+      if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
         alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
         return;
       }
-      let ths = this;
       let postData = {
         fromdate: this.fromdate, 
         todate: this.todate,
@@ -228,39 +212,21 @@ export default {
           privateEquity: this.privateEquity,
         },
       };
-      this.loading = true;
-      this.$store.state.inOnLftRowData = [];
+      await this.$store.commit('callInOnLftRowData', []);
       // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
       // this.emptyRowData([]);
       // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
       // 액션함수를 불러올 때, dispatch 함수를 사용한다.
-      this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
-      axios.post('http://supplydemand.iptime.org/supplydemand/api/leftFastList/',
-        {
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'JWT fefege...'
-        }, postData})
-        .then(function(response) {
-          
-          ths.reset();
-          ths.success = true;
-          console.log(response);
-          ths.$store.state.inOnLftRowData = response.data;
-          ths.$store.state.rowData = response.data;
-        })
-        .catch(function(error) {
-          ths.error = true;
-          console.log(error);
-        })
-        .finally(()=>{
-          ths.loading = false;
-        });
+      await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
+      try {
+        await this.$store.dispatch('callQuickInterestStockLeft', postData);
+      } catch(error){
+        console.log(error);
+      }
     },
 
     interest1Change(){
       console.log('inter1 changed...');
-
     },
 
     async interest2() {
@@ -275,73 +241,21 @@ export default {
       // this.gridApi.sizeColumnsToFit();
     },
 
-    getSelectedRows() {
+    async getSelectedRows() {
       const selectedNodes = this.gridApi.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
-      // console.log('selectedData1 fileTitle: ' + csvFileName);
-      // console.log('selectedData1 selectedData[0]: ' + selectedData[0]);
-      // console.log('selectedData2: ' + this.gridApi.getSelectedRows());
-      let resData = {};
-      let ths = this;
-      let postData = {
-        csvFileName,
-        fromdate: this.fromdate, 
-        todate: this.todate,
-      };
-      axios.post('http://supplydemand.iptime.org/supplydemand/api/rightChartList/',
-      {
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'JWT fefege...'
-      }, postData})
-      .then(function(response) {
-        console.log(response);
-        resData = {
-          resultStockInfo: response.data.resultStockInfo,
-          stockName,
-        };
-        const commonUtil = new CommonUtil(); 
-        ths.$emit('showchart', resData);
-        // 종가(close price)
-        ths.$store.state.inOnLftClkStkNm = stockName;
-        // 매집량
-        ths.$store.state.acuIndividualStkInfo = commonUtil.changeDate(response.data.acuIndividualStkInfo);
-        ths.$store.state.acuForeignerStkInfo = commonUtil.changeDate(response.data.acuForeignerStkInfo);
-        ths.$store.state.acuFinanceStkInfo = commonUtil.changeDate(response.data.acuFinanceStkInfo);
-        ths.$store.state.acuInsuranceStkInfo = commonUtil.changeDate(response.data.acuInsuranceStkInfo);
-        ths.$store.state.acuInvestmentStkInfo = commonUtil.changeDate(response.data.acuInvestmentStkInfo);
-        ths.$store.state.acuBankStkInfo = commonUtil.changeDate(response.data.acuBankStkInfo);
-        ths.$store.state.acuEtcFinanceStkInfo = commonUtil.changeDate(response.data.acuEtcFinanceStkInfo);
-        ths.$store.state.acuPensionFundStkInfo = commonUtil.changeDate(response.data.acuPensionFundStkInfo);
-        ths.$store.state.acuGovernmentStkInfo = commonUtil.changeDate(response.data.acuGovernmentStkInfo);
-        ths.$store.state.acuEtcCorpStkInfo = commonUtil.changeDate(response.data.acuEtcCorpStkInfo);
-        ths.$store.state.acuEtcForeignerStkInfo = commonUtil.changeDate(response.data.acuEtcForeignerStkInfo);
-        ths.$store.state.acuPrivateEquityStkInfo = commonUtil.changeDate(response.data.acuPrivateEquityStkInfo);
-        ths.$store.state.acuGrossSumStkInfo = commonUtil.changeDate(response.data.acuGrossSumStkInfo);
-        // 분산비율
-        ths.$store.state.indiDispersionArr = commonUtil.changeDate(response.data.indiDispersionArr);
-        ths.$store.state.foreignerDispersionArr = commonUtil.changeDate(response.data.foreignerDispersionArr);
-        ths.$store.state.financeInvestDispersionArr = commonUtil.changeDate(response.data.financeInvestDispersionArr);
-        ths.$store.state.insuranceDispersionArr = commonUtil.changeDate(response.data.insuranceDispersionArr);
-        ths.$store.state.assetManageDispersionArr = commonUtil.changeDate(response.data.assetManageDispersionArr);
-        ths.$store.state.bankDispersionArr = commonUtil.changeDate(response.data.bankDispersionArr);
-        ths.$store.state.etcFinanceDispersionArr = commonUtil.changeDate(response.data.etcFinanceDispersionArr);
-        ths.$store.state.pensionFundDispersionArr = commonUtil.changeDate(response.data.pensionFundDispersionArr);
-        ths.$store.state.governmentDispersionArr = commonUtil.changeDate(response.data.governmentDispersionArr);
-        ths.$store.state.etcCoporDispersionArr = commonUtil.changeDate(response.data.etcCoporDispersionArr);
-        ths.$store.state.etcForeignerDispersionArr = commonUtil.changeDate(response.data.etcForeignerDispersionArr);
-        ths.$store.state.privateEquityDispersionArr = commonUtil.changeDate(response.data.privateEquityDispersionArr);
-        ths.$store.state.grossSumDispersionArr = commonUtil.changeDate(response.data.grossSumDispersionArr);
-        ths.$store.state.resultRowData = response.data.resultRowData;
-        ths.$store.state.averagePriceRowData = response.data.averagePriceRowData;
-
-      })
-      .catch(function(error) {
+      try {
+        await this.$store.dispatch('callQuickInterestStockRight', { 
+          csvFileName
+          , stockName
+          , fromdate: this.fromdate
+          , todate: this.todate
+        });
+      } catch(error){
         console.log(error);
-      })
-      .finally({});
+      }
     },
   },
   components: {
@@ -350,8 +264,6 @@ export default {
   },
   data: () => ({
     // spinner
-    success: false,
-    error: false,
     loading: false,
 
     // ag grid 관련

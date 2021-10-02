@@ -1,5 +1,13 @@
 <template>
   <v-app>
+    <div class="text-center">
+    <v-progress-circular
+        :size="this.$store.state.spinnerLoading ? 70 : 0"
+        :width="10"
+        color="purple"
+        :indeterminate="this.$store.state.spinnerLoading"
+      ></v-progress-circular>
+    </div>
     <ag-grid-vue 
       style="width: 100%; height: 30%;"
       class="ag-theme-alpine"

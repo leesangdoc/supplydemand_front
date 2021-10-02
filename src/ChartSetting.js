@@ -448,6 +448,16 @@ export default {
         }]
       }
 
+
+
+
+
+
+
+
+
+
+
       // 분산차트용 설정
       // 분산비율 차트(관심1 하단)
       , dsprChartOptions: {
@@ -886,4 +896,163 @@ export default {
           }
         }]
       }
+
+
+
+
+
+
+
+
+
+      // 종가 차트(관심1 상단)
+      , closePriceChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 235,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: false,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          
+        },
+        plotOptions: {
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: '종목명'
+        },
+        subtitle: {
+          text: '수급분석 주식차트'
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+              text: '주가(종가)'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          name: '종목',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 0,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        }]
+      },
 }

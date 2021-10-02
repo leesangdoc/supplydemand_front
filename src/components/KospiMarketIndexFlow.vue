@@ -1,5 +1,13 @@
 <template>
   <v-app>
+    <div class="text-center">
+    <v-progress-circular
+        :size="this.$store.state.spinnerLoading ? 70 : 0"
+        :width="10"
+        color="purple"
+        :indeterminate="this.$store.state.spinnerLoading"
+      ></v-progress-circular>
+    </div>
     <div>
       <highcharts 
         :options="this.$store.state.kospiMarketIndexAcuChart"

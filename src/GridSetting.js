@@ -2,7 +2,23 @@ import {CommonUtil} from './CommonUtil';
 
 const commonUtil = new CommonUtil(); 
 export default {
-    supplyDemandGraphColumns : [
+    quickInterestStockLeftGridColumns: [
+        { headerName: '종목명', field: 'stockName', sortable: true, filter: true, width: 120,},
+        { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '세력합', field: 'grossSum', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '외국인', field: 'foreigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '금융', field: 'finance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '보험', field: 'insurance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '투신', field: 'investment', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '은행', field: 'bank', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '기타금융', field: 'etcFinance', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '연기금', field: 'pensionFund', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '국가(지자체)', field: 'government', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '기타외인', field: 'etcForeigner', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '사모펀드', field: 'privateEquity', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, width: 90,},
+        { headerName: '파일명', field: 'fileTitle', sortable: true, filter: true, hide: true }
+    ] 
+    , supplyDemandGraphColumns : [
       { headerName: '기간', field: 'period', sortable: true, filter: true},
       { headerName: '종가', field: 'closePrice', sortable: true, filter: true},
       { headerName: '개인', field: 'individual', sortable: true, filter: true, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter, },
