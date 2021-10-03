@@ -66,12 +66,20 @@ export default {
               return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
             }
           },
-          
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
         },
         plotOptions: {
           series: {
             events: {
-                legendItemClick: function () {}
+                legendItemClick: function () {
+
+                },
             }
           }
         },
@@ -513,6 +521,13 @@ export default {
             // autoRotationLimit: 40
             formatter: function() {
               return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
             }
           },
           
@@ -959,6 +974,13 @@ export default {
             // autoRotationLimit: 40
             formatter: function() {
               return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
             }
           },
           

@@ -8,109 +8,110 @@ import gridSetting from "./GridSetting"
 
 Vue.use(Vuex);
 
-const commonUtil = new CommonUtil(); 
+const commonUtil = new CommonUtil();
+const unvisibleArr = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 export default new Vuex.Store({
+   
     // data
     state: {
+      spinnerLoading: false 
+      , quickInterestStockRightStockInfoChart: chartSetting.closePriceChartOptions
+      , quickInterestStockRightStockInfoHcInstance: chartSetting.hcInstance
 
-        spinnerLoading: false
-        , quickInterestStockRightStockInfoChart: chartSetting.closePriceChartOptions
-        , quickInterestStockRightStockInfoHcInstance: chartSetting.hcInstance
+      , quickInterestStockRightAcuChart: chartSetting.acuChartOptions
+      , quickInterestStockRightAcuHcInstance: chartSetting.hcInstance
 
-        , quickInterestStockRightAcuChart: chartSetting.acuChartOptions
-        , quickInterestStockRightAcuHcInstance: chartSetting.hcInstance
+      , quickInterestStockRightDispersionChart: chartSetting.dsprChartOptions
+      , quickInterestStockRightDispersionHcInstance: chartSetting.hcInstance
+      
 
-        , quickInterestStockRightDispersionChart: chartSetting.dsprChartOptions
-        , quickInterestStockRightDispersionHcInstance: chartSetting.hcInstance
-        
+      // [시작] 지수흐름
+      , kospiMarketIndexAcuChart: chartSetting.acuChartOptions
+      , kospiMarketIndexAcuHcInstance: chartSetting.hcInstance
+      , kospiMarketIndexDispersionChart: chartSetting.dsprChartOptions
+      , kospiMarketIndexDispersionHcInstance: chartSetting.hcInstance
 
-        // [시작] 지수흐름
-        , kospiMarketIndexAcuChart: chartSetting.acuChartOptions
-        , kospiMarketIndexAcuHcInstance: chartSetting.hcInstance
-        , kospiMarketIndexDispersionChart: chartSetting.dsprChartOptions
-        , kospiMarketIndexDispersionHcInstance: chartSetting.hcInstance
+      , kosdaqMarketIndexAcuChart: chartSetting.acuChartOptions
+      , kosdaqMarketIndexAcuHcInstance: chartSetting.hcInstance
+      // [종료] 지수흐름
+      , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
+      , supplyDemandGraphColumns: gridSetting.supplyDemandGraphColumns
+      // 지수흐름(코스피)
+      , kospiMarketIndexFlow: {}
 
-        , kosdaqMarketIndexAcuChart: chartSetting.acuChartOptions
-        , kosdaqMarketIndexAcuHcInstance: chartSetting.hcInstance
-        // [종료] 지수흐름
-        , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
-        , supplyDemandGraphColumns: gridSetting.supplyDemandGraphColumns
-        // 지수흐름(코스피)
-        , kospiMarketIndexFlow: {}
+      // 지수흐름(코스닥)
+      , kosdaqMarketIndexFlow: {}
+      // [종료] 지수흐름
+      , industryHeroRankingColumns: gridSetting.industryHeroRankingColumns
+      , industryRankingColumns: gridSetting.industryRankingColumns
+      , industryCashFlowColumns: gridSetting.industryCashFlowColumns
+      , quickInterestStockLeftGridColumns: gridSetting.quickInterestStockLeftGridColumns
 
-        // 지수흐름(코스닥)
-        , kosdaqMarketIndexFlow: {}
-        // [종료] 지수흐름
-        , industryHeroRankingColumns: gridSetting.industryHeroRankingColumns
-        , industryRankingColumns: gridSetting.industryRankingColumns
-        , industryCashFlowColumns: gridSetting.industryCashFlowColumns
-        , quickInterestStockLeftGridColumns: gridSetting.quickInterestStockLeftGridColumns
+      // 업종흐름순위(코스피)
+      , kospiIndustryRankingArr: []
+      , kospiIndustryRankingRowData: []
+      , kospiIndustryHeroRankingRowData: []
+      
+      // 업종 돈냄새(코스피)
+      , kospiIndustryCashFlowArr: []
+      , kospiIndustryCashFlowRowData: []
 
-        // 업종흐름순위(코스피)
-        , kospiIndustryRankingArr: []
-        , kospiIndustryRankingRowData: []
-        , kospiIndustryHeroRankingRowData: []
-        
-        // 업종 돈냄새(코스피)
-        , kospiIndustryCashFlowArr: []
-        , kospiIndustryCashFlowRowData: []
+      // 업종흐름순위(코스닥)
+      , kosdaqIndustryRankingArr: []
+      , kosdaqIndustryRankingRowData: []
+      , kosdaqIndustryHeroRankingRowData: []
+      
+      // 업종 돈냄새(코스닥)
+      , kosdaqIndustryCashFlowArr: []
+      , kosdaqIndustryCashFlowRowData: []
 
-        // 업종흐름순위(코스닥)
-        , kosdaqIndustryRankingArr: []
-        , kosdaqIndustryRankingRowData: []
-        , kosdaqIndustryHeroRankingRowData: []
-        
-        // 업종 돈냄새(코스닥)
-        , kosdaqIndustryCashFlowArr: []
-        , kosdaqIndustryCashFlowRowData: []
+      // 관심1 로우 데이터
+      , inOnLftRowData: []
+      
+      // 관심1 로우 데이터 클릭 시, 주식명
+      , inOnLftClkStkNm: ''
+      
+      // 현재 그리드 상에 보여주는 로우 데이터
+      , rowData: []
+      , defaultColDef: { resizable: true, }
+      
+      // 관심1 우측 차트2 매집량 관련
+      , acuIndividualStkInfo: []
+      , acuForeignerStkInfo: []
+      , acuFinanceStkInfo: []
+      , acuInsuranceStkInfo: []
+      , acuInvestmentStkInfo: []
+      , acuBankStkInfo: []
+      , acuEtcFinanceStkInfo: []
+      , acuPensionFundStkInfo: []
+      , acuGovernmentStkInfo: []
+      , acuEtcCorpStkInfo: []
+      , acuEtcForeignerStkInfo: []
+      , acuPrivateEquityStkInfo: []
+      , acuGrossSumStkInfo: []
+      
+      // 관심1 우측 차트3 분산비율 관련
+      , indiDispersionArr: []
+      , foreignerDispersionArr: []
+      , financeInvestDispersionArr: []
+      , insuranceDispersionArr: []
+      , assetManageDispersionArr: []
+      , bankDispersionArr: []
+      , etcFinanceDispersionArr: []
+      , pensionFundDispersionArr: []
+      , governmentDispersionArr: []
+      , etcCoporDispersionArr: []
+      , etcForeignerDispersionArr: []
+      , privateEquityDispersionArr: []
+      , grossSumDispersionArr: []
+      
+      // 관심1 하단 1번째 평균단가 그리드
+      , averagePriceRowData: []
+      
+      // 관심1 하단 2번째 그리드
+      , resultRowData: []
 
-        // 관심1 로우 데이터
-        , inOnLftRowData: []
-        
-        // 관심1 로우 데이터 클릭 시, 주식명
-        , inOnLftClkStkNm: ''
-        
-        // 현재 그리드 상에 보여주는 로우 데이터
-        , rowData: []
-        , defaultColDef: { resizable: true, }
-        
-        // 관심1 우측 차트2 매집량 관련
-        , acuIndividualStkInfo: []
-        , acuForeignerStkInfo: []
-        , acuFinanceStkInfo: []
-        , acuInsuranceStkInfo: []
-        , acuInvestmentStkInfo: []
-        , acuBankStkInfo: []
-        , acuEtcFinanceStkInfo: []
-        , acuPensionFundStkInfo: []
-        , acuGovernmentStkInfo: []
-        , acuEtcCorpStkInfo: []
-        , acuEtcForeignerStkInfo: []
-        , acuPrivateEquityStkInfo: []
-        , acuGrossSumStkInfo: []
-        
-        // 관심1 우측 차트3 분산비율 관련
-        , indiDispersionArr: []
-        , foreignerDispersionArr: []
-        , financeInvestDispersionArr: []
-        , insuranceDispersionArr: []
-        , assetManageDispersionArr: []
-        , bankDispersionArr: []
-        , etcFinanceDispersionArr: []
-        , pensionFundDispersionArr: []
-        , governmentDispersionArr: []
-        , etcCoporDispersionArr: []
-        , etcForeignerDispersionArr: []
-        , privateEquityDispersionArr: []
-        , grossSumDispersionArr: []
-        
-        // 관심1 하단 1번째 평균단가 그리드
-        , averagePriceRowData: []
-        
-        // 관심1 하단 2번째 그리드
-        , resultRowData: []
-
-        , stla: []
+      , stla: []
     },
     // computed 같은??
     getters:{
@@ -188,6 +189,14 @@ export default new Vuex.Store({
                 state.kospiMarketIndexAcuChart.series[i].tooltip.valueSuffix = "십억원";
             }
 
+            state.kospiMarketIndexAcuChart.rangeSelector.selected = 5;
+            state.kospiMarketIndexDispersionChart.rangeSelector.selected = 5;
+
+            for(let i = 0; i < unvisibleArr.length; i++){
+              state.kospiMarketIndexAcuChart.series[unvisibleArr[i]].visible = false;
+              state.kospiMarketIndexDispersionChart.series[unvisibleArr[i]].visible = false;
+            }
+            
         }, 
         callKosdaqIndustryCashFlow: (state, payload)=>{
             state.kosdaqIndustryCashFlowArr = payload;
@@ -196,12 +205,13 @@ export default new Vuex.Store({
             state.kospiIndustryCashFlowArr = payload;
         }, 
         callSpinnerLoading: (state, payload)=>{
-            state.spinnerLoading = payload.val;
+          state.spinnerLoading = payload.val;
         }, 
         callQuickInterestStockRight: (state, payload)=>{
             state.quickInterestStockRightStockInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
+            state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
             state.inOnLftClkStkNm = payload;
@@ -213,20 +223,28 @@ export default new Vuex.Store({
                 , response.acuEtcFinanceStkInfo, response.acuPensionFundStkInfo, response.acuGovernmentStkInfo
                 , response.acuEtcCorpStkInfo, response.acuEtcForeignerStkInfo, response.acuPrivateEquityStkInfo
                 , response.acuGrossSumStkInfo];
-
             let dispersionInfo = [  response.indiDispersionArr, response.foreignerDispersionArr, response.financeInvestDispersionArr
                     , response.insuranceDispersionArr, response.assetManageDispersionArr, response.bankDispersionArr
                     , response.etcFinanceDispersionArr, response.pensionFundDispersionArr, response.governmentDispersionArr
                     , response.etcCoporDispersionArr, response.etcForeignerDispersionArr, response.privateEquityDispersionArr
                     , response.grossSumDispersionArr];
-
+            state.quickInterestStockRightAcuChart.yAxis.title.text = "매집량";
             for(let i=0; i < acuChartInfo.length; i++){
                 state.quickInterestStockRightAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
                 state.quickInterestStockRightDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
+                state.quickInterestStockRightAcuChart.series[i].tooltip.valueSuffix = "주";
             }
-            
             state.resultRowData = response.resultRowData;
             state.averagePriceRowData = response.averagePriceRowData;
+
+            
+            state.quickInterestStockRightAcuChart.rangeSelector.selected = 5;
+            state.quickInterestStockRightDispersionChart.rangeSelector.selected = 5;
+
+            for(let i = 0; i < unvisibleArr.length; i++){
+              state.quickInterestStockRightAcuChart.series[unvisibleArr[i]].visible = false;
+              state.quickInterestStockRightDispersionChart.series[unvisibleArr[i]].visible = false;
+            }
         }
     },
     // 
@@ -244,7 +262,6 @@ export default new Vuex.Store({
         , changeKospiIndustryHeroRankingData: ({commit}, payload) => {
             commit('changeKospiIndustryHeroRankingData', payload);
         }
-
         , changeKosdaqIndustryRankingData: ({commit}, payload) => {
             commit('changeKosdaqIndustryRankingData', payload);
         }
@@ -255,7 +272,15 @@ export default new Vuex.Store({
             commit('changeKosdaqIndustryHeroRankingData', payload);
         }
 
+
+
+
+
+
+
+
         , callKospiMarketIndexFlow: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
             axios.post(
                 `${constants.URL}${'kospiIndexAnalysis/'}`
                 , {
@@ -266,14 +291,22 @@ export default new Vuex.Store({
                 , payload})
             .then(function(response) {
                 commit('callKospiMarketIndexFlow', response.data);
+                commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
                 console.log(error);
+                commit('callSpinnerLoading', {val: false});
             })
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
         }
+
+
+
+
+
+
         , callKosdaqIndustryCashFlow: ({commit}, payload) => {
             let postData = {
                 _val: payload,
@@ -291,6 +324,7 @@ export default new Vuex.Store({
             })
             .then(function() {
                 commit('changeKosdaqIndustryCashFlowData', payload.hero);
+                commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
                 console.log(error);
@@ -298,7 +332,14 @@ export default new Vuex.Store({
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
-        }, callKosdaqIndustryRanking: ({commit}, payload) => {
+        }
+        
+        
+        
+        
+        
+        
+        , callKosdaqIndustryRanking: ({commit}, payload) => {
             let postData = {
                 _val: payload,
             };
@@ -319,9 +360,15 @@ export default new Vuex.Store({
                 console.log(error);
             })
             .finally(()=>{
-    
+                commit('callSpinnerLoading', {val: false});
             });
-        }, callKospiIndustryCashFlow: ({commit}, payload) => {
+        }
+        
+        
+        
+        
+        
+        , callKospiIndustryCashFlow: ({commit}, payload) => {
             let postData = {};
             commit('callSpinnerLoading', {val: true});
             axios.post(`${constants.URL}${'kospiIndustryCashFlowResultList/'}`,
@@ -343,7 +390,14 @@ export default new Vuex.Store({
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
-        }, callKospiIndustryRanking: ({commit}, payload) => {
+        }
+        
+        
+        
+        
+
+
+        , callKospiIndustryRanking: ({commit}, payload) => {
             let postData = {
                 _val: payload,
             };
@@ -369,7 +423,13 @@ export default new Vuex.Store({
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
-        }, callQuickInterestStockLeft: ({commit}, payload) => {
+        }
+        
+
+
+
+
+        , callQuickInterestStockLeft: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
                 fromdate: payload.fromdate
@@ -394,7 +454,13 @@ export default new Vuex.Store({
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
-        }, callQuickInterestStockRight: ({commit}, payload) => {
+        }
+        
+
+
+
+
+        , callQuickInterestStockRight: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let resData = {};
             let postData = {

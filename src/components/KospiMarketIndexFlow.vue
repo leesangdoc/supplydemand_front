@@ -13,7 +13,8 @@
         :options="this.$store.state.kospiMarketIndexAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiMarketIndexAcuHcInstance">
+        :highcharts="this.$store.state.kospiMarketIndexAcuHcInstance"
+      ><!--:highcharts="this.$store.state.kospiMarketIndexAcuHcInstance"--> 
       {{this.$store.state.stla}}
       </highcharts>
 
