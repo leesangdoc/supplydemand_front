@@ -1,13 +1,16 @@
 import {Chart} from 'highcharts-vue'
 import stockInit from 'highcharts/modules/stock'
-import constants from './Constants'
+import Highcharts from 'highcharts'
 
-stockInit(constants.HIGHCHARTS);
+stockInit(Highcharts);
 
 export default {
-    hcInstance: constants.HIGHCHARTS
+    hcInstance: Highcharts
     , components: {
         highcharts: Chart,
+    }
+    , methods: {
+      testFunc() {}
     }
 
     // 매집 차트용 설정
@@ -63,7 +66,7 @@ export default {
           labels: {
             // autoRotationLimit: 40
             formatter: function() {
-              return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
             }
           },
           setExtremes: function(e) {
@@ -520,7 +523,7 @@ export default {
           labels: {
             // autoRotationLimit: 40
             formatter: function() {
-              return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
             }
           },
           setExtremes: function(e) {
@@ -926,7 +929,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 235,
+          y: 205,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -963,7 +966,7 @@ export default {
             selected: 1
         },
         legend: {
-          enabled: false,
+          enabled: true,
         },
         xAxis: {
           type: "datetime",
@@ -973,7 +976,7 @@ export default {
           labels: {
             // autoRotationLimit: 40
             formatter: function() {
-              return constants.HIGHCHARTS.dateFormat('%b/%e/%Y', this.value);
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
             }
           },
           setExtremes: function(e) {
@@ -1066,6 +1069,150 @@ export default {
           tooltip: {
               split: true,
               valueDecimals: 0,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '5일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FF0000',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '10일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFB33',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '20일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#A6FF33',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '60일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#419332',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '100일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#676E65',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
+              valueSuffix: '원',
+          },
+          dataGrouping:{
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
+          }
+        },
+        {
+          name: '200일선',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#1B2B16',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 1,
               valueSuffix: '원',
           },
           dataGrouping:{
