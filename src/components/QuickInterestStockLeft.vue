@@ -107,7 +107,7 @@ export default {
     let day = ("0" + date.getDate()).slice(-2);
     this.todate = year + '-' +month + '-' + day;
     // this.fromdate = year + '-' +month + '-' + day;
-    this.fromdate =  '2020-12-01';
+    this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
     this.$store.state.inOnLftRowData = [];
     // this.$store.state.rowData = [];
     // this.emptyRowData([]);
