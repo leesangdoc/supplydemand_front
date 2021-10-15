@@ -10,6 +10,15 @@
     </div>
     <div>
       <highcharts 
+        :options="this.$store.state.kosdaqMarketIndexChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.kosdaqMarketIndexHcInstance"
+      ><!--:highcharts="this.$store.state.kospiMarketIndexAcuHcInstance"--> 
+      {{this.$store.state.stla}}
+      </highcharts>
+
+      <highcharts 
         :options="this.$store.state.kosdaqMarketIndexAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
@@ -47,6 +56,7 @@ export default {
        try{
           let postData = {};
           await this.$store.dispatch('callKosdaqMarketIndexFlow', postData);
+          await this.$store.dispatch('callKosdaqMarketIndexCandleChartData', postData);
        } catch(error){
           console.log(error);
        } finally{

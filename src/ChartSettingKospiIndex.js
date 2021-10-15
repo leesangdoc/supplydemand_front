@@ -924,7 +924,7 @@ export default {
 
 
       // 종가 차트(관심1 상단)
-      , closePriceChartOptions: {
+      , kospiMarketChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -989,6 +989,10 @@ export default {
           
         },
         plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
           series: {
             events: {
                 legendItemClick: function () {}
@@ -1002,10 +1006,10 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: '종목명'
+          text: 'KOSPI INDEX'
         },
         subtitle: {
-          text: '수급분석 주식차트'
+          text: '유가증권시장' 
         },
         
         tooltip: {
@@ -1017,7 +1021,7 @@ export default {
         },
         yAxis: {
           title: {
-              text: '주가(종가)'
+            text: '지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -1056,7 +1060,8 @@ export default {
           }]
         },
         series: [{
-          name: '종목',
+          type: 'candlestick',
+          name: '코스피 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -1068,160 +1073,13 @@ export default {
           },
           tooltip: {
               split: true,
-              valueDecimals: 0,
-              valueSuffix: '원',
+              valueDecimals: 2,
+              // valueSuffix: 'point',
           },
           dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
+            
           }
         },
-        {
-          name: '5일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FF0000',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        },
-        {
-          name: '10일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFB33',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        },
-        {
-          name: '20일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#A6FF33',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        },
-        {
-          name: '60일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#419332',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        },
-        {
-          name: '100일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#676E65',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        },
-        {
-          name: '200일선',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#1B2B16',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 1,
-              valueSuffix: '원',
-          },
-          dataGrouping:{
-            approximation: 'average',
-            enabled:true,
-            forced:true,
-            groupAll:true,
-            groupPixelWidth:15,
-          }
-        }]
+        ]
       },
 }

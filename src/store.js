@@ -32,11 +32,18 @@ export default new Vuex.Store({
       , kospiMarketIndexAcuHcInstance: chartSettingKospiIndex.hcInstance
       , kospiMarketIndexDispersionChart: chartSettingKospiIndex.dsprChartOptions
       , kospiMarketIndexDispersionHcInstance: chartSettingKospiIndex.hcInstance
+      , kospiMarketIndexChart: chartSettingKospiIndex.kospiMarketChartOptions
+      , kospiMarketIndexHcInstance: chartSettingKospiIndex.hcInstance
 
       , kosdaqMarketIndexAcuChart: chartSettingKosdaqIndex.acuChartOptions
       , kosdaqMarketIndexAcuHcInstance: chartSettingKosdaqIndex.hcInstance
       , kosdaqMarketIndexDispersionChart: chartSettingKosdaqIndex.dsprChartOptions
       , kosdaqMarketIndexDispersionHcInstance: chartSettingKosdaqIndex.hcInstance
+      , kosdaqMarketIndexChart: chartSettingKosdaqIndex.kosdaqMarketChartOptions
+      , kosdaqMarketIndexHcInstance: chartSettingKosdaqIndex.hcInstance
+      , kospiIndexData: []
+      , kosdaqIndexData: []
+
 
       // [종료] 지수흐름
       , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
@@ -44,7 +51,6 @@ export default new Vuex.Store({
       // 지수흐름(코스피)
       , kospiMarketIndexFlow: {}
       , kosdaqMarketIndexFlow: {}
-
       , industryHeroRankingColumns: gridSetting.industryHeroRankingColumns
       , industryRankingColumns: gridSetting.industryRankingColumns
       , industryCashFlowColumns: gridSetting.industryCashFlowColumns
@@ -289,7 +295,15 @@ export default new Vuex.Store({
               state.quickInterestStockRightAcuChart.series[unvisibleArr[i]].visible = false;
               state.quickInterestStockRightDispersionChart.series[unvisibleArr[i]].visible = false;
             }
-        }
+        },
+        callKospiMarketIndexCandleChartData: (state, payload)=>{
+            state.kospiMarketIndexChart.series[0].data = commonUtil.changeDate(payload);
+            state.kospiMarketIndexChart.rangeSelector.selected = 5;
+        },
+        callKosdaqMarketIndexCandleChartData: (state, payload)=>{
+            state.kosdaqMarketIndexChart.series[0].data = commonUtil.changeDate(payload);
+            state.kosdaqMarketIndexChart.rangeSelector.selected = 5;
+        },
     },
     // 
     actions: {
@@ -563,6 +577,59 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             })
             .finally(function(){
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+
+
+
+
+
+
+        , callKospiMarketIndexCandleChartData: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'kospiIndexCandleChartAnalysis/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callKospiMarketIndexCandleChartData', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+        , callKosdaqMarketIndexCandleChartData: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'kosdaqIndexCandleChartAnalysis/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callKosdaqMarketIndexCandleChartData', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
         }
