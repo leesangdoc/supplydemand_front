@@ -101,17 +101,9 @@ export default {
   },
   beforeMount() {
     console.log('beforeMount');
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = ("0" + (1 + date.getMonth())).slice(-2);
-    let day = ("0" + date.getDate()).slice(-2);
-    this.todate = year + '-' +month + '-' + day;
-    // this.fromdate = year + '-' +month + '-' + day;
+    this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
     this.$store.state.inOnLftRowData = [];
-    // this.$store.state.rowData = [];
-    // this.emptyRowData([]);
-    // this.$store.commit('emptyRowData', []); // commit 뮤테이션(스테이트 변화주기 위함.)
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
   },
   mounted(){
