@@ -24,20 +24,29 @@
 
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
-                    
                     <v-row mb-6 no-gutters dense>
-                      <v-col  md="4"> <!--auto-->
+                      <v-col auto> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
-                        </v-card>
-                        
+                        </v-card>  
                       </v-col>
-                      <v-col>
+                      
+                      <!-- <v-col>
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
+                      </v-col> -->
+
+                    </v-row>
+
+                    <v-row mb-6 no-gutters dense>
+                      <v-col auto>
+                        <v-card class="pa-2" outlined tile>
+                          <QuickInterestStockRight :stla="stockinfo"/>
+                        </v-card>
                       </v-col>
                     </v-row>
+
                     <v-row mb-6 no-gutters dense>
                        <v-col auto>
                          <v-card class="pa-2" outlined tile height="200px">
