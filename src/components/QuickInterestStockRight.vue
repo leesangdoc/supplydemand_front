@@ -22,6 +22,20 @@
         :highcharts="this.$store.state.quickInterestStockRightDispersionHcInstance">
       {{stla}}
       </highcharts>
+      <highcharts 
+        :options="this.$store.state.shortSellingChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.shortSellingHcInstance">
+      {{stla}}
+      </highcharts>
+      <highcharts 
+        :options="this.$store.state.loanTransactionChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.loanTransactionHcInstance">
+      {{stla}}
+      </highcharts>
     </div>
     
   </v-app>

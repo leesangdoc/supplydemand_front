@@ -243,6 +243,18 @@ export default {
           , fromdate: this.fromdate
           , todate: this.todate
         });
+        await this.$store.dispatch('callQuickInterestOneShortSelling', { 
+          csvFileName
+          , stockName
+          , fromdate: this.fromdate
+          , todate: this.todate
+        });
+        await this.$store.dispatch('callQuickInterestOneLoanTransaction', { 
+          csvFileName
+          , stockName
+          , fromdate: this.fromdate
+          , todate: this.todate
+        });
       } catch(error){
         console.log(error);
       }

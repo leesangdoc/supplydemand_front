@@ -69,32 +69,32 @@ export default {
     ]
     , industryRankingColumns: [
         { headerName: '주체', field: 'period', width: 100}
-        , { headerName: '1위', field: 'No1', width: 200}
-        , { headerName: '2위', field: 'No2', width: 200}
-        , { headerName: '3위', field: 'No3', width: 200}
-        , { headerName: '4위', field: 'No4', width: 200}
-        , { headerName: '5위', field: 'No5', width: 200}
-        , { headerName: '6위', field: 'No6', width: 200}
-        , { headerName: '7위', field: 'No7', width: 200}
-        , { headerName: '8위', field: 'No8', width: 200}
-        , { headerName: '9위', field: 'No9', width: 200}
-        , { headerName: '10위', field: 'No10', width: 200}
-        , { headerName: '11위', field: 'No11', width: 200}
-        , { headerName: '12위', field: 'No12', width: 200}
-        , { headerName: '13위', field: 'No13', width: 200}
-        , { headerName: '14위', field: 'No14', width: 200}
-        , { headerName: '15위', field: 'No15', width: 200}
-        , { headerName: '16위', field: 'No16', width: 200}
-        , { headerName: '17위', field: 'No17', width: 200}
-        , { headerName: '18위', field: 'No18', width: 200}
-        , { headerName: '19위', field: 'No19', width: 200}
-        , { headerName: '20위', field: 'No20', width: 200}
-        , { headerName: '21위', field: 'No21', width: 200}
-        , { headerName: '22위', field: 'No22', width: 200}
+        , { headerName: '1위', field: 'No1', width: 220}
+        , { headerName: '2위', field: 'No2', width: 220}
+        , { headerName: '3위', field: 'No3', width: 220}
+        , { headerName: '4위', field: 'No4', width: 220}
+        , { headerName: '5위', field: 'No5', width: 220}
+        , { headerName: '6위', field: 'No6', width: 220}
+        , { headerName: '7위', field: 'No7', width: 220}
+        , { headerName: '8위', field: 'No8', width: 220}
+        , { headerName: '9위', field: 'No9', width: 220}
+        , { headerName: '10위', field: 'No10', width: 220}
+        , { headerName: '11위', field: 'No11', width: 220}
+        , { headerName: '12위', field: 'No12', width: 220}
+        , { headerName: '13위', field: 'No13', width: 220}
+        , { headerName: '14위', field: 'No14', width: 220}
+        , { headerName: '15위', field: 'No15', width: 220}
+        , { headerName: '16위', field: 'No16', width: 220}
+        , { headerName: '17위', field: 'No17', width: 220}
+        , { headerName: '18위', field: 'No18', width: 220}
+        , { headerName: '19위', field: 'No19', width: 220}
+        , { headerName: '20위', field: 'No20', width: 220}
+        , { headerName: '21위', field: 'No21', width: 220}
+        , { headerName: '22위', field: 'No22', width: 220}
         , { headerName: '주체', field: 'source', hide: true }
     ]
     , industryCashFlowColumns: [
-        { headerName: '업종', field: 'title', minWidth: 120}
+        { headerName: '업종', field: 'title', minWidth: 250}
         , { headerName: '1D', field: '1day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
         , { headerName: '2D', field: '2day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}
         , { headerName: '3D', field: '3day', minWidth: 120, valueFormatter: commonUtil.curruncyFormatter, cellStyle: commonUtil.cellStyleFormatter}

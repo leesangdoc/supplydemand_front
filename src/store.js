@@ -44,6 +44,14 @@ export default new Vuex.Store({
       , kospiIndexData: []
       , kosdaqIndexData: []
 
+      // 공매도 차트
+      , shortSellingChart: chartSettingInOne.shortSellingOptions
+      , shortSellingHcInstance: chartSettingInOne.hcInstance
+
+      // 대차잔고 차트
+      , loanTransactionChart: chartSettingInOne.loanTransactionChartOptions
+      , loanTransactionHcInstance: chartSettingInOne.hcInstance
+
 
       // [종료] 지수흐름
       , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
@@ -304,6 +312,27 @@ export default new Vuex.Store({
             state.kosdaqMarketIndexChart.series[0].data = commonUtil.changeDate(payload);
             state.kosdaqMarketIndexChart.rangeSelector.selected = 5;
         },
+        callQuickInterestOneShortSelling: (state, payload)=>{
+            state.shortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+            state.shortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+            state.shortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+            state.shortSellingChart.series[1].visible = false;
+            state.shortSellingChart.series[2].visible = false;
+            state.shortSellingChart.rangeSelector.selected = 5;
+        },
+        callQuickInterestOneLoanTransaction: (state, payload)=>{
+            state.loanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+            state.loanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+            state.loanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+            state.loanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+            state.loanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+            state.loanTransactionChart.series[0].visible = false;
+            state.loanTransactionChart.series[1].visible = false;
+            state.loanTransactionChart.series[2].visible = false;
+            state.loanTransactionChart.series[4].visible = false;
+            state.loanTransactionChart.rangeSelector.selected = 5;
+        },
+
     },
     // 
     actions: {
@@ -579,6 +608,7 @@ export default new Vuex.Store({
             .finally(function(){
                 commit('callSpinnerLoading', {val: false});
             });
+
         }
 
 
@@ -630,6 +660,70 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             })
             .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+
+
+
+
+        , callQuickInterestOneShortSelling: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            let postData = {
+                csvFileName: payload.csvFileName
+                , fromdate: payload.fromdate
+                , todate: payload.todate
+            };
+            axios.post(`${constants.URL}${'shortSellingChartAnalysis/'}`
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                console.log('callQuickInterestOneShortSelling_response;;;;;', response);
+                commit('callQuickInterestOneShortSelling', response.data);
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(function(){
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+
+
+
+
+
+
+
+        , callQuickInterestOneLoanTransaction: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            let postData = {
+                csvFileName: payload.csvFileName
+                , fromdate: payload.fromdate
+                , todate: payload.todate
+            };
+            axios.post(`${constants.URL}${'loanTransactionChartAnalysis/'}`
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                commit('callQuickInterestOneLoanTransaction', response.data);
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(function(){
                 commit('callSpinnerLoading', {val: false});
             });
         }
