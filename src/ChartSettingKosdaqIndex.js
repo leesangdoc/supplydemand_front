@@ -1346,7 +1346,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '중형주 시가총액 지수'
+            text: '코스닥중간300 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -1386,7 +1386,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '중형주 지수',
+          name: '코스닥중간300 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -1411,7 +1411,7 @@ export default {
 
 
 
-      , smallCompanyChartOptions: {
+      , kosdaqSmallChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -1493,7 +1493,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(소형주 지수)'
+          text: 'KOSDAQ INDEX(코스닥 소형주 지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -1508,7 +1508,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '소형주 시가총액 지수'
+            text: '코스닥 소형주 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -1548,7 +1548,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '소형주 지수',
+          name: '코스닥 소형주 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -1573,7 +1573,7 @@ export default {
 
 
 
-      , beverageFoodChartOptions: {
+      , kosdaqEtcChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -1655,7 +1655,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(음식료 지수)'
+          text: 'KOSDAQ INDEX(코스닥 기타지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -1670,7 +1670,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '음식료 지수'
+            text: '코스닥 기타지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -1710,7 +1710,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '음식료 지수',
+          name: '코스닥 기타지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -1735,7 +1735,7 @@ export default {
 
 
 
-      , fiberClothChartOptions: {
+      , kosdaqItTotalChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -1817,7 +1817,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(섬유의복 지수)'
+          text: 'KOSDAQ INDEX(IT종합 지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -1832,7 +1832,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '섬유의복 지수'
+            text: 'IT종합 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -1872,7 +1872,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '섬유의복 지수',
+          name: 'IT종합 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -1898,7 +1898,7 @@ export default {
 
 
 
-      , paperWoodChartOptions: {
+      , distributionIndustryChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -1980,7 +1980,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(종이목재 지수)'
+          text: 'KOSDAQ INDEX(유통업 지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -1995,7 +1995,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '종이목재 지수'
+            text: '유통업 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2035,7 +2035,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '종이목재 지수',
+          name: '유통업 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2060,7 +2060,7 @@ export default {
 
 
 
-      , chemicalChartOptions: {
+      , transportationChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2142,7 +2142,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(화학지수)'
+          text: 'KOSDAQ INDEX(운송지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2157,7 +2157,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '화학지수'
+            text: '운송지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2197,7 +2197,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '화학지수',
+          name: '운송지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2222,7 +2222,7 @@ export default {
 
 
 
-      , medicineChartOptions: {
+      , financeChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2304,7 +2304,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(의약품지수)'
+          text: 'KOSDAQ INDEX(금융지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2319,7 +2319,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '의약품지수'
+            text: '금융지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2359,7 +2359,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '의약품지수',
+          name: '금융지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2384,7 +2384,7 @@ export default {
 
 
 
-      , nonmetallicMineralChartOptions: {
+      , leisureCultureChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2466,7 +2466,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(비금속광물지수)'
+          text: 'KOSDAQ INDEX(오락문화 지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2481,7 +2481,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '비금속광물지수'
+            text: '오락문화 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2521,7 +2521,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '비금속광물지수',
+          name: '오락문화 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2546,7 +2546,7 @@ export default {
 
 
 
-      , steelMetallicMineralChartOptions: {
+      , networkBroadcastingServiceChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2628,7 +2628,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(철강금속지수)'
+          text: 'KOSDAQ INDEX(통신방송서비스지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2643,7 +2643,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '철강금속지수'
+            text: '통신방송서비스지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2683,7 +2683,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '철강금속지수',
+          name: '통신방송서비스지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
