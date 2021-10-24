@@ -25,27 +25,27 @@
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
-                      <v-col auto> <!-- auto md="4" -->
+                      <v-col md="3"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
                         </v-card>  
                       </v-col>
                       
-                      <!-- <v-col>
+                      <v-col>
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
-                      </v-col> -->
+                      </v-col>
 
                     </v-row>
 
-                    <v-row mb-6 no-gutters dense>
+                    <!-- <v-row mb-6 no-gutters dense>
                       <v-col auto>
                         <v-card class="pa-2" outlined tile>
                           <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
                       </v-col>
-                    </v-row>
+                    </v-row> -->
 
                     <v-row mb-6 no-gutters dense>
                        <v-col auto>
@@ -93,13 +93,6 @@
                 </v-tabs>
                 </v-container>
               </div>
-
-
-
-
-
-
-
               <div v-else-if="index === 2">
               <v-container class="grey lighten-5" fluid>
                 <v-tabs>
@@ -129,33 +122,21 @@
                 </v-tabs>
                 </v-container>
               </div>
-
-
-
-
-
-
-
-
-
-
               <div v-else-if="index === 3"> 
+                <KospiMarketIndustryIndexFlow/>
+              </div>
+              <div v-else-if="index === 4"> 
+                <KosdaqMarketIndustryIndexFlow/>
+              </div>
+              <div v-else-if="index === 5"> 
                 <KospiMarketIndexFlow/>
               </div>
-
-
-
-
-
-              <div v-else-if="index === 4"> 
+              <div v-else-if="index === 6"> 
                 <KosdaqMarketIndexFlow/>
               </div>
-
-
-
-              <div v-else-if="index === 5"> <MarketSupplyDemand/></div>
-              <div v-else-if="index === 6"> <SearchSupplyDemand/></div>
-              <div v-else-if="index === 7"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 7"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 8"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 9"> <SearchSupplyDemand/></div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -179,7 +160,8 @@ import KosdaqIndustryRanking from './components/KosdaqIndustryRanking';
 import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
 import KospiMarketIndexFlow from './components/KospiMarketIndexFlow';
 import KosdaqMarketIndexFlow from './components/KosdaqMarketIndexFlow';
-
+import KospiMarketIndustryIndexFlow from './components/KospiMarketIndustryIndexFlow';
+import KosdaqMarketIndustryIndexFlow from './components/KosdaqMarketIndustryIndexFlow';
 
 
 export default {
@@ -243,7 +225,8 @@ export default {
     , KosdaqIndustryCashFlow
     , KospiMarketIndexFlow
     , KosdaqMarketIndexFlow
-
+    , KospiMarketIndustryIndexFlow
+    , KosdaqMarketIndustryIndexFlow
   },
   data: () => ({
     currentItem: 'tab-Web'
@@ -251,6 +234,8 @@ export default {
       '빠른 관심 종목'
       , '업종흐름(코스피)'
       , '업종흐름(코스닥)'
+      , '업종별_지수흐름(코스피)'
+      , '업종별_지수흐름(코스닥)'
       , '지수흐름(코스피)'
       , '지수흐름(코스닥)'
       , '수급분석표'

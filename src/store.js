@@ -33,16 +33,92 @@ export default new Vuex.Store({
       , kospiMarketIndexDispersionChart: chartSettingKospiIndex.dsprChartOptions
       , kospiMarketIndexDispersionHcInstance: chartSettingKospiIndex.hcInstance
       , kospiMarketIndexChart: chartSettingKospiIndex.kospiMarketChartOptions
+
+      , kospiMarketBigCompanyIndexChart: chartSettingKospiIndex.bigCompanyChartOptions
+      , kospiMarketMiddleCompanyIndexChart: chartSettingKospiIndex.middleCompanyChartOptions
+      , kospiMarketSmallCompanyIndexChart: chartSettingKospiIndex.smallCompanyChartOptions
+      , kospiMarketBeverageFoodIndexChart: chartSettingKospiIndex.beverageFoodChartOptions
+      , kospiMarketFiberClothIndexChart: chartSettingKospiIndex.fiberClothChartOptions
+      , kospiMarketPaperWoodIndexChart: chartSettingKospiIndex.paperWoodChartOptions
+      , kospiMarketChemicalIndexChart: chartSettingKospiIndex.chemicalChartOptions
+      , kospiMarketMedicineIndexChart: chartSettingKospiIndex.medicineChartOptions
+      , kospiMarketNonmetallicMineralIndexChart: chartSettingKospiIndex.nonmetallicMineralChartOptions
+      , kospiMarketSteelMetallicMineralIndexChart: chartSettingKospiIndex.steelMetallicMineralChartOptions
+      , kospiMarketMerchineIndexChart: chartSettingKospiIndex.merchineChartOptions
+      , kospiMarketElectricalElectronicsIndexChart: chartSettingKospiIndex.electricalElectronicsChartOptions
+      , kospiMarketMedicalPrecisionIndexChart: chartSettingKospiIndex.medicalPrecisionChartOptions
+      , kospiMarketTransportationEquipmentIndexChart: chartSettingKospiIndex.transportationEquipmentChartOptions
+      , kospiMarketDistributionIndustryIndexChart: chartSettingKospiIndex.distributionIndustryIndexChartOptions
+      , kospiMarketElectricGasIndexChart: chartSettingKospiIndex.electricGasIndexChartOptions
+      , kospiMarketConstructionIndexChart: chartSettingKospiIndex.constructionChartOptions
+      , kospiMarketTransportWarehouseIndexChart: chartSettingKospiIndex.transportWarehouseChartOptions
+      , kospiMarketNetworkingBusinessIndexChart: chartSettingKospiIndex.networkingBusinessChartOptions
+      , kospiMarketFinanceIndexChart: chartSettingKospiIndex.financeChartOptions
+      , kospiMarketBankIndexChart: chartSettingKospiIndex.bankChartOptions
+      , kospiMarketStockSecurityIndexChart: chartSettingKospiIndex.stockSecurityChartOptions
+      , kospiMarketInsuranceIndexChart: chartSettingKospiIndex.insuranceChartOptions
+      , kospiMarketServiceIndexChart: chartSettingKospiIndex.serviceChartOptions
+      , kospiMarketManufacturingIndexChart: chartSettingKospiIndex.manufacturingChartOptions
+      , kospiMarketKospi200IndexChart: chartSettingKospiIndex.kospi200ChartOptions
       , kospiMarketIndexHcInstance: chartSettingKospiIndex.hcInstance
+
+      
 
       , kosdaqMarketIndexAcuChart: chartSettingKosdaqIndex.acuChartOptions
       , kosdaqMarketIndexAcuHcInstance: chartSettingKosdaqIndex.hcInstance
       , kosdaqMarketIndexDispersionChart: chartSettingKosdaqIndex.dsprChartOptions
       , kosdaqMarketIndexDispersionHcInstance: chartSettingKosdaqIndex.hcInstance
       , kosdaqMarketIndexChart: chartSettingKosdaqIndex.kosdaqMarketChartOptions
+
+      
+      , kosdaq100IndexChart: chartSettingKosdaqIndex.kosdaq100ChartOptions
+      , kosdaqMid300IndexChart: chartSettingKosdaqIndex.kosdaqMid300ChartOptions
+      , kosdaqSmallIndexChart: chartSettingKosdaqIndex.kosdaqSmallChartOptions
+      , kosdaqEtcIndexChart: chartSettingKosdaqIndex.kosdaqEtcChartOptions
+      , kosdaqItTotalIndexChart: chartSettingKosdaqIndex.kosdaqItTotalChartOptions
+      , kosdaqDistributionIndustryIndexChart: chartSettingKosdaqIndex.distributionIndustryChartOptions
+      , kosdaqTransportationIndexChart: chartSettingKosdaqIndex.transportationChartOptions
+      , kosdaqFinanceIndexChart: chartSettingKosdaqIndex.financeChartOptions
+      , kosdaqLeisureCultureIndexChart: chartSettingKosdaqIndex.leisureCultureChartOptions
+      , kosdaqNetworkBroadcastingServiceIndexChart: chartSettingKosdaqIndex.networkBroadcastingServiceChartOptions
+      , kosdaqItSoftwareSvcIndexChart: chartSettingKosdaqIndex.itSoftwareSvcChartOptions
+      , kosdaqItHardwareIndexChart: chartSettingKosdaqIndex.itHardwareChartOptions
+      , kosdaqBeverageFoodCigaretteIndexChart: chartSettingKosdaqIndex.beverageFoodCigaretteChartOptions
+      , kosdaqFiberClothEquipmentIndexChart: chartSettingKosdaqIndex.fiberClothChartOptions
+      , kosdaqPaperWoodIndexChart: chartSettingKosdaqIndex.paperWoodChartOptions
+      , kosdaqPublishingMediaCopyIndexChart: chartSettingKosdaqIndex.publishingMediaCopyChartOptions
+      , kosdaqChemicalIndexChart: chartSettingKosdaqIndex.chemicalChartOptions
+      , kosdaqMedicineIndexChart: chartSettingKosdaqIndex.medicineChartOptions
+      , kosdaqNonmetallicMineralIndexChart: chartSettingKosdaqIndex.nonmetallicMineralChartOptions
+      , kosdaqMetallicMineralIndexChart: chartSettingKosdaqIndex.metallicMineralChartOptions
+      , kosdaqMerchineEquipmentIndexChart: chartSettingKosdaqIndex.merchineEquipmentChartOptions
+      , kosdaqGeneralElectricalElectronicsIndexChart: chartSettingKosdaqIndex.generalElectricalElectronicsChartOptions
+      , kosdaqMedicalPrecisionMerchineryIndexChart: chartSettingKosdaqIndex.medicalPrecisionMerchineryChartOptions
+      , kosdaqTransportationEquipmentComponentIndexChart: chartSettingKosdaqIndex.transportationEquipmentComponentChartOptions
+      , kosdaqEtcMenufacturingIndexChart: chartSettingKosdaqIndex.etcMenufacturingChartOptions
+      , kosdaqNetworkingServiceIndexChart: chartSettingKosdaqIndex.networkingServiceChartOptions
+      , kosdaqMediaServiceIndexChart: chartSettingKosdaqIndex.mediaServiceChartOptions
+      , kosdaqInternetIndexChart: chartSettingKosdaqIndex.internetChartOptions
+      , kosdaqDigitalContentsIndexChart: chartSettingKosdaqIndex.digitalContentsChartOptions
+      , kosdaqSoftwareIndexChart: chartSettingKosdaqIndex.softwareChartOptions
+      , kosdaqComputerServiceIndexChart: chartSettingKosdaqIndex.computerServiceChartOptions
+      , kosdaqNetworkingEquipmentIndexChart: chartSettingKosdaqIndex.networkingEquipmentIndexChartOptions
+      , kosdaqInformationMerchineryIndexChart: chartSettingKosdaqIndex.informationMerchineryChartOptions
+      , kosdaqSemiconductorIndexChart: chartSettingKosdaqIndex.semiconductorChartOptions
+      , kosdaqItComponentIndexChart: chartSettingKosdaqIndex.itComponentChartOptions
+      , kosdaqBestCompanyIndexChart: chartSettingKosdaqIndex.bestCompanyChartOptions
+      , kosdaqVentureCompanyIndexChart: chartSettingKosdaqIndex.ventureCompanyChartOptions
+      , kosdaqMiddleCompanyIndexChart: chartSettingKosdaqIndex.middleCompanyChartOptions
+      , kosdaqTechGrowingCompanyIndexChart: chartSettingKosdaqIndex.techGrowingCompanyChartOptions
+      , kosdaqMenufacturingIndexChart: chartSettingKosdaqIndex.menufacturingChartOptions
+      , kosdaqConstructionIndexChart: chartSettingKosdaqIndex.constructionChartOptions
       , kosdaqMarketIndexHcInstance: chartSettingKosdaqIndex.hcInstance
       , kospiIndexData: []
       , kosdaqIndexData: []
+
+      
+      
+
 
       // 공매도 차트
       , shortSellingChart: chartSettingInOne.shortSellingOptions
@@ -331,6 +407,86 @@ export default new Vuex.Store({
             state.loanTransactionChart.series[2].visible = false;
             state.loanTransactionChart.series[4].visible = false;
             state.loanTransactionChart.rangeSelector.selected = 5;
+        },
+        callKospiMarketIndustryIndexCandleChartData: (state, payload)=>{
+            state.kospiMarketBigCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.bigCompany);
+            state.kospiMarketBigCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketMiddleCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.middleCompany);
+            state.kospiMarketMiddleCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketSmallCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.smallCompany);
+            state.kospiMarketSmallCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketBeverageFoodIndexChart.series[0].data = commonUtil.changeDate(payload.beverageFood);
+            state.kospiMarketBeverageFoodIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketFiberClothIndexChart.series[0].data = commonUtil.changeDate(payload.fiberCloth);
+            state.kospiMarketFiberClothIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketPaperWoodIndexChart.series[0].data = commonUtil.changeDate(payload.paperWood);
+            state.kospiMarketPaperWoodIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketChemicalIndexChart.series[0].data = commonUtil.changeDate(payload.chemical);
+            state.kospiMarketChemicalIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketMedicineIndexChart.series[0].data = commonUtil.changeDate(payload.medicine);
+            state.kospiMarketMedicineIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketNonmetallicMineralIndexChart.series[0].data = commonUtil.changeDate(payload.nonmetallicMineral);
+            state.kospiMarketNonmetallicMineralIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketSteelMetallicMineralIndexChart.series[0].data = commonUtil.changeDate(payload.steelMetallicMineral);
+            state.kospiMarketSteelMetallicMineralIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketMerchineIndexChart.series[0].data = commonUtil.changeDate(payload.merchine);
+            state.kospiMarketMerchineIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketElectricalElectronicsIndexChart.series[0].data = commonUtil.changeDate(payload.electricalElectronics);
+            state.kospiMarketElectricalElectronicsIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketMedicalPrecisionIndexChart.series[0].data = commonUtil.changeDate(payload.medicalPrecision);
+            state.kospiMarketMedicalPrecisionIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketTransportationEquipmentIndexChart.series[0].data = commonUtil.changeDate(payload.transportationEquipment);
+            state.kospiMarketTransportationEquipmentIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketDistributionIndustryIndexChart.series[0].data = commonUtil.changeDate(payload.distributionIndustry);
+            state.kospiMarketDistributionIndustryIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketElectricGasIndexChart.series[0].data = commonUtil.changeDate(payload.electricGas);
+            state.kospiMarketElectricGasIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketConstructionIndexChart.series[0].data = commonUtil.changeDate(payload.construction);
+            state.kospiMarketConstructionIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketTransportWarehouseIndexChart.series[0].data = commonUtil.changeDate(payload.transportWarehouse);
+            state.kospiMarketTransportWarehouseIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketNetworkingBusinessIndexChart.series[0].data = commonUtil.changeDate(payload.networkingBusiness);
+            state.kospiMarketNetworkingBusinessIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketFinanceIndexChart.series[0].data = commonUtil.changeDate(payload.finance);
+            state.kospiMarketFinanceIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketBankIndexChart.series[0].data = commonUtil.changeDate(payload.bank);
+            state.kospiMarketBankIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketStockSecurityIndexChart.series[0].data = commonUtil.changeDate(payload.stockSecurity);
+            state.kospiMarketStockSecurityIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketInsuranceIndexChart.series[0].data = commonUtil.changeDate(payload.insurance);
+            state.kospiMarketInsuranceIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketServiceIndexChart.series[0].data = commonUtil.changeDate(payload.service);
+            state.kospiMarketServiceIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketManufacturingIndexChart.series[0].data = commonUtil.changeDate(payload.manufacturing);
+            state.kospiMarketManufacturingIndexChart.rangeSelector.selected = 5;
+
+            state.kospiMarketKospi200IndexChart.series[0].data = commonUtil.changeDate(payload.kospi200);
+            state.kospiMarketKospi200IndexChart.rangeSelector.selected = 5;
+
         },
 
     },
@@ -724,6 +880,63 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             })
             .finally(function(){
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+
+
+        , callKospiMarketIndustryIndexCandleChartData: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'kospiMarketIndustryIndexCandleChartAnalysis/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callKospiMarketIndustryIndexCandleChartData', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+
+
+
+
+
+
+
+        , callKosdaqMarketIndustryIndexCandleChartData: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'kosdaqMarketIndustryIndexCandleChartAnalysis/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callKosdaqMarketIndustryIndexCandleChartData', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
         }
