@@ -8,6 +8,7 @@
       rowSelection="single"
       @grid-ready="onGridReady"
       :defaultColDef="this.$store.state.defaultColDef"
+      @cell-double-clicked="onCellDoubleClicked"
     >
     </ag-grid-vue>
   </v-app>
@@ -36,6 +37,20 @@ export default {
   methods: {
     ...mapMutations([]),
     ...mapActions(['changeKospiIndustryCashFlowData', 'callKospiIndustryCashFlow']),
+    async onCellDoubleClicked(params){
+      // console.log('params_onCellDoubleClicked111111;;;;;', params);
+      console.log('params.getValue()_onCellDoubleClicked222222;;;;;', params);
+      const selectedNodes = this.gridApi.getSelectedNodes();
+      console.log('onCellDoubleClicked_selectedNodes111111;;;;;', selectedNodes);
+      // getSelectedNodes
+      if(params.colDef.field == 'title'){
+        console.log('업종더블클릭');
+
+      } else {
+        console.log('업종더블클릭 아님');
+      }
+      
+    },
     async kospiIndustryCashFlow(){
       let ths = this;
       try{
@@ -54,6 +69,11 @@ export default {
       this.columnApi = params.columnApi;
       this.gridApi.sizeColumnsToFit();
     },
+  },
+  async onCellDoubleClicked(params){
+    if(params.api.colDef.field == 'title'){
+      alert('업종 데이터 클릭');
+    }
   },
   components: {
     AgGridVue,

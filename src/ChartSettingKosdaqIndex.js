@@ -2466,7 +2466,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(오락문화 지수)'
+          text: 'KOSDAQ INDEX(오락문화지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2481,7 +2481,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '오락문화 지수'
+            text: '오락문화지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2521,7 +2521,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '오락문화 지수',
+          name: '오락문화지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2708,7 +2708,7 @@ export default {
 
 
 
-      , merchineChartOptions: {
+      , itSoftwareSvcChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2790,7 +2790,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(기계지수)'
+          text: 'KOSDAQ INDEX(IT 소프트웨어 서비스 지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2805,7 +2805,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '기계지수'
+            text: 'IT 소프트웨어 서비스 지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -2845,7 +2845,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '기계지수',
+          name: 'IT 소프트웨어 서비스 지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -2870,7 +2870,7 @@ export default {
 
 
 
-      , electricalElectronicsChartOptions: {
+      , itHardwareChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -2952,7 +2952,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(전기전자지수)'
+          text: 'KOSDAQ INDEX(IT_하드웨어_지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -2967,7 +2967,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '전기전자지수'
+            text: 'IT_하드웨어_지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3007,7 +3007,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '전기전자지수',
+          name: 'IT_하드웨어_지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -3032,7 +3032,7 @@ export default {
 
 
 
-      , medicalPrecisionChartOptions: {
+      , beverageFoodCigaretteChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -3114,7 +3114,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(의료정밀지수)'
+          text: 'KOSDAQ INDEX(음식료담배지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -3129,7 +3129,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '의료정밀지수'
+            text: '음식료담배지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3169,7 +3169,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '의료정밀지수',
+          name: '음식료담배지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -3194,7 +3194,7 @@ export default {
 
 
 
-      , transportationEquipmentChartOptions: {
+      , fiberClothChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -3276,7 +3276,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(운송장비지수)'
+          text: 'KOSDAQ INDEX(섬유의복지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -3291,7 +3291,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '운송장비지수'
+            text: '섬유의복지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3331,7 +3331,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '운송장비지수',
+          name: '섬유의복지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -3356,7 +3356,7 @@ export default {
 
 
 
-      , distributionIndustryIndexChartOptions: {
+      , paperWoodChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -3438,7 +3438,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(유통업지수)'
+          text: 'KOSDAQ INDEX(종이목재지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -3453,7 +3453,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '유통업지수'
+            text: '종이목재지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3493,7 +3493,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '유통업지수',
+          name: '종이목재지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -3518,7 +3518,7 @@ export default {
 
 
 
-      , electricGasIndexChartOptions: {
+      , publishingMediaCopyChartOptions: {
         rangeSelector: {
           allButtonsEnabled: true,
           verticalAlign: "top",
@@ -3600,7 +3600,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(전기가스지수)'
+          text: 'KOSDAQ INDEX(출판매체복제지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -3615,7 +3615,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '전기가스지수'
+            text: '출판매체복제지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3655,7 +3655,3900 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '전기가스지수',
+          name: '출판매체복제지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , chemicalChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(화학지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '화학지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '화학지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , medicineChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(제약지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '제약지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '제약지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , nonmetallicMineralChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(비금속지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '비금속지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '비금속지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , metallicMineralChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(금속지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '금속지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '금속지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+
+      , merchineEquipmentChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(기계장비지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '기계장비지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '기계장비지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+
+      , generalElectricalElectronicsChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(일반전기전자지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '일반전기전자지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '일반전기전자지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , medicalPrecisionMerchineryChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(의료정밀기기지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '의료정밀기기지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '의료정밀기기지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+
+      , transportationEquipmentComponentChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(운송장비부품지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '운송장비부품지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '운송장비부품지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+
+      , etcMenufacturingChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(기타제조지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '기타제조지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '기타제조지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+
+      , networkingServiceChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(통신서비스지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '통신서비스지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '통신서비스지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , mediaServiceChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(방송서비스지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '방송서비스지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '방송서비스지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , internetChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(인터넷지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '인터넷지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '인터넷지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , digitalContentsChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(디지털콘텐츠지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '디지털콘텐츠지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '디지털콘텐츠지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , softwareChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(소프트웨어지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '소프트웨어지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '소프트웨어지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , computerServiceChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(컴퓨터서비스지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '컴퓨터서비스지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '컴퓨터서비스지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , networkingEquipmentIndexChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(통신장비지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '통신장비지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '통신장비지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , informationMerchineryChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(정보기기지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '정보기기지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '정보기기지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , semiconductorChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(반도체지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '반도체지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '반도체지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , itComponentChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(IT부품지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: 'IT부품지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: 'IT부품지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , bestCompanyChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(우량기업지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '우량기업지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '우량기업지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , ventureCompanyChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(벤처기업지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '벤처기업지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '벤처기업지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , middleCompanyChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(중견기업지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '중견기업지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '중견기업지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , techGrowingCompanyChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(기술성장기업지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '기술성장기업지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '기술성장기업지수',
+          // pointStart: Date.UTC(2018, 1, 1),
+          // pointInterval: 1000 * 3600 * 24,
+          data: [],
+          marker: {
+            enabled: null, // auto
+            radius: 3,
+            lineWidth: 1,
+            lineColor: '#FFFFFF',
+          },
+          tooltip: {
+              split: true,
+              valueDecimals: 2,
+              // valueSuffix: 'point',
+          },
+          dataGrouping:{
+            
+          }
+        },
+        ]
+      }
+
+
+
+
+      , menufacturingChartOptions: {
+        rangeSelector: {
+          allButtonsEnabled: true,
+          verticalAlign: "top",
+          floating: true,
+          y: 205,
+          x: 0,
+          buttons: [{
+                type: 'month',
+                count: 1,
+                text: '1m',
+                title: 'View 1 month'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m',
+                title: 'View 3 months'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m',
+                title: 'View 6 months'
+            }, {
+                type: 'ytd',
+                text: 'YTD',
+                title: 'View year to date'
+            }, {
+                type: 'year',
+                count: 1,
+                text: '1y',
+                title: 'View 1 year'
+            }, {
+                type: 'all',
+                text: 'All',
+                title: 'View all'
+            }],
+            buttonTheme: {
+                width: 30
+            },
+            selected: 1
+        },
+        legend: {
+          enabled: true,
+        },
+        xAxis: {
+          type: "datetime",
+          title: {
+            text: '날짜(기간)'
+          },
+          labels: {
+            // autoRotationLimit: 40
+            formatter: function() {
+              return Highcharts.dateFormat('%b/%e/%Y', this.value);
+            }
+          },
+          setExtremes: function(e) {
+            console.log(this);
+            if(typeof(e.rangeSelectorButton)!== 'undefined') {
+              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+            }
+          },
+          
+        },
+        plotOptions: {
+          candlestick: {
+            color: 'blue',
+            upColor: 'red'
+         },
+          series: {
+            events: {
+                legendItemClick: function () {}
+            }
+        }
+        },
+        chart: { 
+          renderTo: 'container',
+          type: 'line',
+          zoomType: 'x',
+          //marginBottom: 80
+        },
+        title: {
+          text: 'KOSDAQ INDEX(제조지수)'
+        },
+        subtitle: {
+          text: '코스닥시장' 
+        },
+        
+        tooltip: {
+          crosshairs: true,
+          shared: true
+        },
+        credits: {
+          enabled: true
+        },
+        yAxis: {
+          title: {
+            text: '제조지수'
+          },
+          alignTicks:'left', 
+          textAlign:'left',
+          align:'middle',
+          opposite:false,
+          labels: {
+            formatter: function () {
+                return this.value;
+            }
+          }
+        },
+        responsive: {
+          rules: [{
+            condition: {
+                maxWidth: 200,
+            },
+            chartOptions: {
+                chart: {
+                    height: 200,
+                },
+                subtitle: {
+                    text: null,
+                },
+                navigator: {
+                    enabled: true,
+                },
+                legend: {
+                  enabled: false,
+                },
+                yAxis: {
+                  title: {
+                    enabled: false,
+                  }
+                }
+            }
+          }]
+        },
+        series: [{
+          type: 'candlestick',
+          name: '제조지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],
@@ -3762,7 +7655,7 @@ export default {
           //marginBottom: 80
         },
         title: {
-          text: 'KOSDAQ INDEX(건설업지수)'
+          text: 'KOSDAQ INDEX(건설지수)'
         },
         subtitle: {
           text: '코스닥시장' 
@@ -3777,7 +7670,7 @@ export default {
         },
         yAxis: {
           title: {
-            text: '건설업지수'
+            text: '건설지수'
           },
           alignTicks:'left', 
           textAlign:'left',
@@ -3817,1470 +7710,7 @@ export default {
         },
         series: [{
           type: 'candlestick',
-          name: '건설업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-      , transportWarehouseChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(운수창고지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '운수창고지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '운수창고지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-      , networkingBusinessChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(통신업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '통신업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '통신업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-      , financeChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(금융업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '금융업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '금융업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-
-      , bankChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(은행업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '은행업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '은행업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-
-      , stockSecurityChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(증권업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '증권업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '증권업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-      , insuranceChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(보험업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '보험업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '보험업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-
-      , serviceChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(서비스업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '서비스업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '서비스업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-
-      , manufacturingChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(제조업지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '제조업지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '제조업지수',
-          // pointStart: Date.UTC(2018, 1, 1),
-          // pointInterval: 1000 * 3600 * 24,
-          data: [],
-          marker: {
-            enabled: null, // auto
-            radius: 3,
-            lineWidth: 1,
-            lineColor: '#FFFFFF',
-          },
-          tooltip: {
-              split: true,
-              valueDecimals: 2,
-              // valueSuffix: 'point',
-          },
-          dataGrouping:{
-            
-          }
-        },
-        ]
-      }
-
-
-
-
-
-      , kospi200ChartOptions: {
-        rangeSelector: {
-          allButtonsEnabled: true,
-          verticalAlign: "top",
-          floating: true,
-          y: 205,
-          x: 0,
-          buttons: [{
-                type: 'month',
-                count: 1,
-                text: '1m',
-                title: 'View 1 month'
-            }, {
-                type: 'month',
-                count: 3,
-                text: '3m',
-                title: 'View 3 months'
-            }, {
-                type: 'month',
-                count: 6,
-                text: '6m',
-                title: 'View 6 months'
-            }, {
-                type: 'ytd',
-                text: 'YTD',
-                title: 'View year to date'
-            }, {
-                type: 'year',
-                count: 1,
-                text: '1y',
-                title: 'View 1 year'
-            }, {
-                type: 'all',
-                text: 'All',
-                title: 'View all'
-            }],
-            buttonTheme: {
-                width: 30
-            },
-            selected: 1
-        },
-        legend: {
-          enabled: true,
-        },
-        xAxis: {
-          type: "datetime",
-          title: {
-            text: '날짜(기간)'
-          },
-          labels: {
-            // autoRotationLimit: 40
-            formatter: function() {
-              return Highcharts.dateFormat('%b/%e/%Y', this.value);
-            }
-          },
-          setExtremes: function(e) {
-            console.log(this);
-            if(typeof(e.rangeSelectorButton)!== 'undefined') {
-              // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
-            }
-          },
-          
-        },
-        plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-         },
-          series: {
-            events: {
-                legendItemClick: function () {}
-            }
-        }
-        },
-        chart: { 
-          renderTo: 'container',
-          type: 'line',
-          zoomType: 'x',
-          //marginBottom: 80
-        },
-        title: {
-          text: 'KOSDAQ INDEX(코스피200지수)'
-        },
-        subtitle: {
-          text: '코스닥시장' 
-        },
-        
-        tooltip: {
-          crosshairs: true,
-          shared: true
-        },
-        credits: {
-          enabled: true
-        },
-        yAxis: {
-          title: {
-            text: '코스피200지수'
-          },
-          alignTicks:'left', 
-          textAlign:'left',
-          align:'middle',
-          opposite:false,
-          labels: {
-            formatter: function () {
-                return this.value;
-            }
-          }
-        },
-        responsive: {
-          rules: [{
-            condition: {
-                maxWidth: 200,
-            },
-            chartOptions: {
-                chart: {
-                    height: 200,
-                },
-                subtitle: {
-                    text: null,
-                },
-                navigator: {
-                    enabled: true,
-                },
-                legend: {
-                  enabled: false,
-                },
-                yAxis: {
-                  title: {
-                    enabled: false,
-                  }
-                }
-            }
-          }]
-        },
-        series: [{
-          type: 'candlestick',
-          name: '코스피200지수',
+          name: '건설지수',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
           data: [],

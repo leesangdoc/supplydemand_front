@@ -16,7 +16,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketBigCompanyIndexChart"
+              :options="this.$store.state.kosdaq100IndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -25,7 +25,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketMiddleCompanyIndexChart"
+              :options="this.$store.state.kosdaqMid300IndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -34,39 +34,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketSmallCompanyIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-        </v-row>
-
-
-
-        <v-row mb-20 no-gutters dense>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketBeverageFoodIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketFiberClothIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketPaperWoodIndexChart"
+              :options="this.$store.state.kosdaqSmallIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -80,7 +48,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketChemicalIndexChart"
+              :options="this.$store.state.kosdaqEtcIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -89,7 +57,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketMedicineIndexChart"
+              :options="this.$store.state.kosdaqItTotalIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -98,7 +66,39 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketNonmetallicMineralIndexChart"
+              :options="this.$store.state.kosdaqDistributionIndustryIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqTransportationIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqFinanceIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqLeisureCultureIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -109,7 +109,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketSteelMetallicMineralIndexChart"
+              :options="this.$store.state.kosdaqNetworkBroadcastingServiceIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -118,7 +118,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketMerchineIndexChart"
+              :options="this.$store.state.kosdaqItSoftwareSvcIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -127,36 +127,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketElectricalElectronicsIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-        </v-row>
-        <v-row mb-20 no-gutters dense>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketMedicalPrecisionIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketTransportationEquipmentIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketDistributionIndustryIndexChart"
+              :options="this.$store.state.kosdaqItHardwareIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -167,7 +138,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketElectricGasIndexChart"
+              :options="this.$store.state.kosdaqBeverageFoodCigaretteIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -176,7 +147,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketConstructionIndexChart"
+              :options="this.$store.state.kosdaqFiberClothEquipmentIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -185,36 +156,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketTransportWarehouseIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-        </v-row>
-        <v-row mb-20 no-gutters dense>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketNetworkingBusinessIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketFinanceIndexChart"
-              :constructor-type="'stockChart'"
-              :callback="someFunction"
-              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
-              {{this.$store.state.stla}}
-            </highcharts>
-          </v-col>
-          <v-col md="4">
-            <highcharts 
-              :options="this.$store.state.kosdaqMarketBankIndexChart"
+              :options="this.$store.state.kosdaqPaperWoodIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -225,7 +167,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketStockSecurityIndexChart"
+              :options="this.$store.state.kosdaqPublishingMediaCopyIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -234,7 +176,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketInsuranceIndexChart"
+              :options="this.$store.state.kosdaqChemicalIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -243,7 +185,7 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketServiceIndexChart"
+              :options="this.$store.state.kosdaqMedicineIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -254,7 +196,7 @@
         <v-row mb-20 no-gutters dense>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketManufacturingIndexChart"
+              :options="this.$store.state.kosdaqNonmetallicMineralIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
@@ -263,7 +205,215 @@
           </v-col>
           <v-col md="4">
             <highcharts 
-              :options="this.$store.state.kosdaqMarketKosdaq200IndexChart"
+              :options="this.$store.state.kosdaqMetallicMineralIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqMerchineEquipmentIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqGeneralElectricalElectronicsIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqMedicalPrecisionMerchineryIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqTransportationEquipmentComponentIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqEtcMenufacturingIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqNetworkingServiceIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqMediaServiceIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqInternetIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqDigitalContentsIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqSoftwareIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqComputerServiceIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqNetworkingEquipmentIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqInformationMerchineryIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqSemiconductorIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqItComponentIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqBestCompanyIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqVentureCompanyIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqMiddleCompanyIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqTechGrowingCompanyIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+        </v-row>
+
+        <v-row mb-20 no-gutters dense>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqMenufacturingIndexChart"
+              :constructor-type="'stockChart'"
+              :callback="someFunction"
+              :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">
+              {{this.$store.state.stla}}
+            </highcharts>
+          </v-col>
+          <v-col md="4">
+            <highcharts 
+              :options="this.$store.state.kosdaqConstructionIndexChart"
               :constructor-type="'stockChart'"
               :callback="someFunction"
               :highcharts="this.$store.state.kosdaqMarketIndexHcInstance">

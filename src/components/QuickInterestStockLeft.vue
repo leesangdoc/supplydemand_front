@@ -63,7 +63,7 @@
             </th>
           </tr>
         </thead>
-        <!-- <tbody><tr><td></td><td></td></tr></tbody> -->
+        <!-- <tbody><tr><td></td><td></td></tr></tbody> @selection-changed="getSelectedRows"-->
     </v-simple-table>
     </div>
     <ag-grid-vue 
@@ -73,8 +73,9 @@
         :rowData="this.$store.state.rowData"
         rowSelection="single"
         @grid-ready="onGridReady"
-        @selection-changed="getSelectedRows"
-        :defaultColDef="this.$store.state.defaultColDef">
+        @row-selected="getSelectedRows"
+        :defaultColDef="this.$store.state.defaultColDef"
+        >
     </ag-grid-vue>
   </v-app>
 </template>
@@ -230,7 +231,6 @@ export default {
       this.columnApi = params.columnApi;
       // this.gridApi.sizeColumnsToFit();
     },
-
     async getSelectedRows() {
       const selectedNodes = this.gridApi.getSelectedNodes();
       const selectedData = selectedNodes.map(node => node.data);

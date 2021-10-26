@@ -14,8 +14,9 @@
       :columnDefs="this.$store.state.industryRankingColumns"
       :rowData="this.$store.state.kospiIndustryRankingRowData"
       rowSelection="single"
-      @grid-ready="onGridReady"
+      @grid-ready="onGridReady1"
       :defaultColDef="this.$store.state.defaultColDef"
+      @cell-double-clicked="onCellDoubleClicked1"
     >
     </ag-grid-vue>
     <br/>
@@ -25,8 +26,9 @@
       :columnDefs="this.$store.state.industryHeroRankingColumns"
       :rowData="this.$store.state.kospiIndustryHeroRankingRowData"
       rowSelection="single"
-      @grid-ready="onGridReady"
+      @grid-ready="onGridReady2"
       :defaultColDef="this.$store.state.defaultColDef"
+      @cell-double-clicked="onCellDoubleClicked2"
     >
     </ag-grid-vue>
   </v-app>
@@ -49,6 +51,26 @@ export default {
   methods: {
     ...mapMutations([]),
     ...mapActions(['changeKospiIndustryRankingData', 'changeKospiIndustryHeroRankingData', 'callKospiIndustryRanking']),
+    async onCellDoubleClicked1(params){
+      let temp = params.value.split('(');
+      console.log('temp[0];;;', temp[0]);
+      console.log(' params.data.period;;;',  params.data.period);
+      try {
+        await this.$store.dispatch('callKospiIndustryStock', { 
+          stockIndustry: temp
+          , period: params.data.period 
+        });  
+      } catch(error){
+        console.log(error);
+      }
+      
+    },
+    async onCellDoubleClicked2(params){
+      // console.log('params_onCellDoubleClicked222222;;;;;', params);
+      console.log('params.getValue()_onCellDoubleClicked222222;;;;;', params.value);
+      const selectedNodes = this.gridApi2.getSelectedNodes();
+      console.log('onCellDoubleClicked_selectedNodes111111;;;;;', selectedNodes);
+    },
     async kospiIndustryRanking(){
       let _this = this;
       try{
@@ -62,19 +84,33 @@ export default {
           console.log(error);
       }
     },
-    onGridReady(params) {
-      this.gridApi = params.api;
-      this.columnApi = params.columnApi;
-      this.setHeaderNames();
+    onGridReady1(params) {
+      this.gridApi1 = params.api;
+      this.columnApi1 = params.columnApi;
+      this.setHeaderNames1();
     },
-    setHeaderNames(){
+    onGridReady2(params) {
+      this.gridApi2 = params.api;
+      this.columnApi2 = params.columnApi;
+      this.setHeaderNames2();
+    },
+    setHeaderNames1(){
       let columnDefs = this.$store.state.industryRankingColumns;
       columnDefs.forEach(function (colDef, index) {
         if(index == 0){
           colDef.headerName = ' '; 
         } 
       });
-      this.gridApi.setColumnDefs(columnDefs);
+      this.gridApi1.setColumnDefs(columnDefs);
+    },
+    setHeaderNames2(){
+      let columnDefs = this.$store.state.industryHeroRankingColumns;
+      columnDefs.forEach(function (colDef, index) {
+        if(index == 0){
+          colDef.headerName = ' '; 
+        } 
+      });
+      this.gridApi2.setColumnDefs(columnDefs);
     },
   },
   components: {

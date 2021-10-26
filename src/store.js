@@ -62,15 +62,12 @@ export default new Vuex.Store({
       , kospiMarketKospi200IndexChart: chartSettingKospiIndex.kospi200ChartOptions
       , kospiMarketIndexHcInstance: chartSettingKospiIndex.hcInstance
 
-      
-
       , kosdaqMarketIndexAcuChart: chartSettingKosdaqIndex.acuChartOptions
       , kosdaqMarketIndexAcuHcInstance: chartSettingKosdaqIndex.hcInstance
       , kosdaqMarketIndexDispersionChart: chartSettingKosdaqIndex.dsprChartOptions
       , kosdaqMarketIndexDispersionHcInstance: chartSettingKosdaqIndex.hcInstance
       , kosdaqMarketIndexChart: chartSettingKosdaqIndex.kosdaqMarketChartOptions
 
-      
       , kosdaq100IndexChart: chartSettingKosdaqIndex.kosdaq100ChartOptions
       , kosdaqMid300IndexChart: chartSettingKosdaqIndex.kosdaqMid300ChartOptions
       , kosdaqSmallIndexChart: chartSettingKosdaqIndex.kosdaqSmallChartOptions
@@ -116,10 +113,6 @@ export default new Vuex.Store({
       , kospiIndexData: []
       , kosdaqIndexData: []
 
-      
-      
-
-
       // 공매도 차트
       , shortSellingChart: chartSettingInOne.shortSellingOptions
       , shortSellingHcInstance: chartSettingInOne.hcInstance
@@ -128,10 +121,10 @@ export default new Vuex.Store({
       , loanTransactionChart: chartSettingInOne.loanTransactionChartOptions
       , loanTransactionHcInstance: chartSettingInOne.hcInstance
 
-
       // [종료] 지수흐름
       , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
       , supplyDemandGraphColumns: gridSetting.supplyDemandGraphColumns
+      
       // 지수흐름(코스피)
       , kospiMarketIndexFlow: {}
       , kosdaqMarketIndexFlow: {}
@@ -205,6 +198,20 @@ export default new Vuex.Store({
       , resultRowData: []
 
       , stla: []
+
+      // 코스피 종목 더블클릭하고 넘어오는 곳
+      // 그리드
+      , ospiEachIndustryRowData: []
+      // 차트 종가
+      // 차트 매집량
+      // 차트 분산비율
+      // 차트 대차잔고
+      // 차트 공매도
+      // 그리드 평균단가
+      // 그리드 수급분석표
+      , 
+
+      // 코스닥
     },
     // computed 같은??
     getters:{
@@ -408,7 +415,131 @@ export default new Vuex.Store({
             state.loanTransactionChart.series[4].visible = false;
             state.loanTransactionChart.rangeSelector.selected = 5;
         },
-        callKospiMarketIndustryIndexCandleChartData: (state, payload)=>{
+        callKosdaqMarketIndustryIndexCandleChartData: (state, payload)=>{
+            state.kosdaq100IndexChart.series[0].data = commonUtil.changeDate(payload.kosdaq100);
+            state.kosdaq100IndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMid300IndexChart.series[0].data = commonUtil.changeDate(payload.kosdaqMid300);
+            state.kosdaqMid300IndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqSmallIndexChart.series[0].data = commonUtil.changeDate(payload.kosdaqSmall);
+            state.kosdaqSmallIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqEtcIndexChart.series[0].data = commonUtil.changeDate(payload.kosdaqEtc);
+            state.kosdaqEtcIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqItTotalIndexChart.series[0].data = commonUtil.changeDate(payload.kosdaqItTotal);
+            state.kosdaqItTotalIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqDistributionIndustryIndexChart.series[0].data = commonUtil.changeDate(payload.distributionIndustry);
+            state.kosdaqDistributionIndustryIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqTransportationIndexChart.series[0].data = commonUtil.changeDate(payload.transportation);
+            state.kosdaqTransportationIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqFinanceIndexChart.series[0].data = commonUtil.changeDate(payload.finance);
+            state.kosdaqFinanceIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqLeisureCultureIndexChart.series[0].data = commonUtil.changeDate(payload.leisureCulture);
+            state.kosdaqLeisureCultureIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqNetworkBroadcastingServiceIndexChart.series[0].data = commonUtil.changeDate(payload.networkBroadcastingService);
+            state.kosdaqNetworkBroadcastingServiceIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqItSoftwareSvcIndexChart.series[0].data = commonUtil.changeDate(payload.itSoftwareSvc);
+            state.kosdaqItSoftwareSvcIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqItHardwareIndexChart.series[0].data = commonUtil.changeDate(payload.itHardware);
+            state.kosdaqItHardwareIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqBeverageFoodCigaretteIndexChart.series[0].data = commonUtil.changeDate(payload.beverageFoodCigarette);
+            state.kosdaqBeverageFoodCigaretteIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqFiberClothEquipmentIndexChart.series[0].data = commonUtil.changeDate(payload.fiberCloth);
+            state.kosdaqFiberClothEquipmentIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqPaperWoodIndexChart.series[0].data = commonUtil.changeDate(payload.paperWood);
+            state.kosdaqPaperWoodIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqPublishingMediaCopyIndexChart.series[0].data = commonUtil.changeDate(payload.publishingMediaCopy);
+            state.kosdaqPublishingMediaCopyIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqChemicalIndexChart.series[0].data = commonUtil.changeDate(payload.chemical);
+            state.kosdaqChemicalIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMedicineIndexChart.series[0].data = commonUtil.changeDate(payload.medicine);
+            state.kosdaqMedicineIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqNonmetallicMineralIndexChart.series[0].data = commonUtil.changeDate(payload.nonmetallicMineral);
+            state.kosdaqNonmetallicMineralIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMetallicMineralIndexChart.series[0].data = commonUtil.changeDate(payload.metallicMineral);
+            state.kosdaqMetallicMineralIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMerchineEquipmentIndexChart.series[0].data = commonUtil.changeDate(payload.merchineEquipment);
+            state.kosdaqMerchineEquipmentIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqGeneralElectricalElectronicsIndexChart.series[0].data = commonUtil.changeDate(payload.generalElectricalElectronics);
+            state.kosdaqGeneralElectricalElectronicsIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMedicalPrecisionMerchineryIndexChart.series[0].data = commonUtil.changeDate(payload.medicalPrecisionMerchinery);
+            state.kosdaqMedicalPrecisionMerchineryIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqTransportationEquipmentComponentIndexChart.series[0].data = commonUtil.changeDate(payload.transportationEquipmentComponent);
+            state.kosdaqTransportationEquipmentComponentIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqEtcMenufacturingIndexChart.series[0].data = commonUtil.changeDate(payload.etcMenufacturing);
+            state.kosdaqEtcMenufacturingIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqNetworkingServiceIndexChart.series[0].data = commonUtil.changeDate(payload.networkingService);
+            state.kosdaqNetworkingServiceIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMediaServiceIndexChart.series[0].data = commonUtil.changeDate(payload.mediaService);
+            state.kosdaqMediaServiceIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqInternetIndexChart.series[0].data = commonUtil.changeDate(payload.internet);
+            state.kosdaqInternetIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqDigitalContentsIndexChart.series[0].data = commonUtil.changeDate(payload.digitalContents);
+            state.kosdaqDigitalContentsIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqSoftwareIndexChart.series[0].data = commonUtil.changeDate(payload.software);
+            state.kosdaqSoftwareIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqComputerServiceIndexChart.series[0].data = commonUtil.changeDate(payload.computerService);
+            state.kosdaqComputerServiceIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqNetworkingEquipmentIndexChart.series[0].data = commonUtil.changeDate(payload.networkingEquipment);
+            state.kosdaqNetworkingEquipmentIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqInformationMerchineryIndexChart.series[0].data = commonUtil.changeDate(payload.informationMerchinery);
+            state.kosdaqInformationMerchineryIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqSemiconductorIndexChart.series[0].data = commonUtil.changeDate(payload.semiconductor);
+            state.kosdaqSemiconductorIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqItComponentIndexChart.series[0].data = commonUtil.changeDate(payload.itComponent);
+            state.kosdaqItComponentIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqBestCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.bestCompany);
+            state.kosdaqBestCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqVentureCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.ventureCompany);
+            state.kosdaqVentureCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMiddleCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.middleCompany);
+            state.kosdaqMiddleCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqTechGrowingCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.techGrowingCompany);
+            state.kosdaqTechGrowingCompanyIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqMenufacturingIndexChart.series[0].data = commonUtil.changeDate(payload.menufacturing);
+            state.kosdaqMenufacturingIndexChart.rangeSelector.selected = 5;
+
+            state.kosdaqConstructionIndexChart.series[0].data = commonUtil.changeDate(payload.construction);
+            state.kosdaqConstructionIndexChart.rangeSelector.selected = 5;
+        }
+        , callKospiMarketIndustryIndexCandleChartData: (state, payload)=>{
             state.kospiMarketBigCompanyIndexChart.series[0].data = commonUtil.changeDate(payload.bigCompany);
             state.kospiMarketBigCompanyIndexChart.rangeSelector.selected = 5;
 
@@ -487,7 +618,11 @@ export default new Vuex.Store({
             state.kospiMarketKospi200IndexChart.series[0].data = commonUtil.changeDate(payload.kospi200);
             state.kospiMarketKospi200IndexChart.rangeSelector.selected = 5;
 
-        },
+        }
+
+        , callKospiEachIndustryStock: (state, payload)=>{
+
+        }
 
     },
     // 
@@ -514,14 +649,6 @@ export default new Vuex.Store({
         , changeKosdaqIndustryHeroRankingData: ({commit}, payload) => {
             commit('changeKosdaqIndustryHeroRankingData', payload);
         }
-
-
-
-
-
-
-
-
         , callKospiMarketIndexFlow: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
@@ -544,7 +671,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
         , callKosdaqMarketIndexFlow: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
@@ -567,12 +693,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
-
-
-
-
-
         , callKosdaqIndustryCashFlow: ({commit}, payload) => {
             let postData = {
                 _val: payload,
@@ -599,12 +719,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        
-        
-        
-        
-        
-        
         , callKosdaqIndustryRanking: ({commit}, payload) => {
             let postData = {
                 _val: payload,
@@ -629,11 +743,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        
-        
-        
-        
-        
         , callKospiIndustryCashFlow: ({commit}, payload) => {
             let postData = {};
             commit('callSpinnerLoading', {val: true});
@@ -657,12 +766,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        
-        
-        
-        
-
-
         , callKospiIndustryRanking: ({commit}, payload) => {
             let postData = {
                 _val: payload,
@@ -690,11 +793,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        
-
-
-
-
         , callQuickInterestStockLeft: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
@@ -721,11 +819,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        
-
-
-
-
         , callQuickInterestStockRight: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let resData = {};
@@ -766,14 +859,6 @@ export default new Vuex.Store({
             });
 
         }
-
-
-
-
-
-
-
-
         , callKospiMarketIndexCandleChartData: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
@@ -819,12 +904,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
-
-
-
-
-
         , callQuickInterestOneShortSelling: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
@@ -850,15 +929,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
-
-
-
-
-
-
-
-
         , callQuickInterestOneLoanTransaction: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
@@ -883,10 +953,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
-
-
-
         , callKospiMarketIndustryIndexCandleChartData: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
@@ -909,15 +975,6 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-
-
-
-
-
-
-
-
-
         , callKosdaqMarketIndustryIndexCandleChartData: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
@@ -930,6 +987,29 @@ export default new Vuex.Store({
                 , payload})
             .then(function(response) {
                 commit('callKosdaqMarketIndustryIndexCandleChartData', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+        , callKospiEachIndustryStock: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'callKospiEachIndustryStock/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callKospiEachIndustryStock', response.data);
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
