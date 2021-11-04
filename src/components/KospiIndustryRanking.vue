@@ -59,7 +59,8 @@ export default {
         await this.$store.dispatch('callKospiEachIndustryStock', { 
           stockIndustry: temp[0]
           , period: params.data.period 
-        });  
+        });
+        
       } catch(error){
         console.log(error);
       }

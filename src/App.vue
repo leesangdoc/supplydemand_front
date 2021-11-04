@@ -5,6 +5,7 @@
 <template>
 
   <v-app>
+     
     <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-app-bar-title>수급분석</v-app-bar-title>
@@ -21,8 +22,8 @@
         <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + index">
           <v-card flat>
             <v-card-text>
-
               <div v-if="index === 0">
+                 
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
                       <v-col md="4"> <!-- auto md="4" -->
@@ -98,13 +99,13 @@
                     <v-row mb-6 no-gutters dense>
                       <v-col md="3"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockLeft v-on:showchart="showChart"/>
+                        <KospiIndustryFlowStockLeft v-on:showchart="showChart"/>
                         </v-card>  
                       </v-col>
                       
                       <v-col>
                         <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockRight :stla="stockinfo"/>
+                        <KospiIndustryFlowStockRight :stla="stockinfo"/>
                         </v-card>
                       </v-col>
 
@@ -245,7 +246,8 @@ import KospiMarketIndexFlow from './components/KospiMarketIndexFlow';
 import KosdaqMarketIndexFlow from './components/KosdaqMarketIndexFlow';
 import KospiMarketIndustryIndexFlow from './components/KospiMarketIndustryIndexFlow';
 import KosdaqMarketIndustryIndexFlow from './components/KosdaqMarketIndustryIndexFlow';
-
+import KospiIndustryFlowStockLeft from './components/KospiIndustryFlowStockLeft';
+import KospiIndustryFlowStockRight from './components/KospiIndustryFlowStockRight';
 
 export default {
   setup() {
@@ -310,6 +312,8 @@ export default {
     , KosdaqMarketIndexFlow
     , KospiMarketIndustryIndexFlow
     , KosdaqMarketIndustryIndexFlow
+    , KospiIndustryFlowStockLeft
+    , KospiIndustryFlowStockRight
   },
   data: () => ({
     currentItem: 'tabWeb'

@@ -133,6 +133,9 @@ export default new Vuex.Store({
       , industryCashFlowColumns: gridSetting.industryCashFlowColumns
       , quickInterestStockLeftGridColumns: gridSetting.quickInterestStockLeftGridColumns
 
+      , kospiIndustryFlowStockLeftGridColumns: gridSetting.kospiIndustryFlowStockLeftGridColumns
+      , kospiIndustryFlowStockLeftRowData: []
+
       // 업종흐름순위(코스피)
       , kospiIndustryRankingArr: []
       , kospiIndustryRankingRowData: []
@@ -623,6 +626,7 @@ export default new Vuex.Store({
         , callKospiEachIndustryStock: (state, payload)=>{
             console.log('state;;;;;', state);
             console.log('payload;;;', payload);
+            state.kospiIndustryFlowStockLeftRowData = payload.kospiIndustryStock;
         }
 
     },
@@ -1012,6 +1016,7 @@ export default new Vuex.Store({
             .then(function(response) {
                 commit('callKospiEachIndustryStock', response.data);
                 commit('callSpinnerLoading', {val: false});
+                alert('종목 검색이 끝났습니다. 업종흐름종목(코스피)로 가서 확인해보세요!');
             })
             .catch(function(error) {
                 console.log(error);
