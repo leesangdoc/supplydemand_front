@@ -3,29 +3,29 @@
   @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 </style>
 <template>
+
   <v-app>
-    
     <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-app-bar-title>수급분석</v-app-bar-title>
     <v-spacer></v-spacer>
     <template v-slot:extension> 
         <v-tabs align-with-title dark slider color="yellow" v-model="currentItem">
-            <v-tab v-for="item in items" :key="item" :href="'#tab-' + item">{{ item }}</v-tab>
+            <v-tab v-for="(item, index) in items" :key="item" :href="'#tab-' + index">{{ item }}</v-tab>
         </v-tabs>
       </template>
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-main>
         <v-tabs-items v-model="currentItem">
-        <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + item">
+        <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + index">
           <v-card flat>
             <v-card-text>
 
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
-                      <v-col md="3"> <!-- auto md="4" -->
+                      <v-col md="4"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
                         </v-card>  
@@ -93,7 +93,48 @@
                 </v-tabs>
                 </v-container>
               </div>
-              <div v-else-if="index === 2">
+              <div v-if="index === 2">
+                  <v-container class="grey lighten-5" fluid>
+                    <v-row mb-6 no-gutters dense>
+                      <v-col md="3"> <!-- auto md="4" -->
+                        <v-card class="pa-2" outlined tile>
+                        <QuickInterestStockLeft v-on:showchart="showChart"/>
+                        </v-card>  
+                      </v-col>
+                      
+                      <v-col>
+                        <v-card class="pa-2" outlined tile>
+                        <QuickInterestStockRight :stla="stockinfo"/>
+                        </v-card>
+                      </v-col>
+
+                    </v-row>
+
+                    <!-- <v-row mb-6 no-gutters dense>
+                      <v-col auto>
+                        <v-card class="pa-2" outlined tile>
+                          <QuickInterestStockRight :stla="stockinfo"/>
+                        </v-card>
+                      </v-col>
+                    </v-row> -->
+
+                    <v-row mb-6 no-gutters dense>
+                       <v-col auto>
+                         <v-card class="pa-2" outlined tile height="200px">
+                           <AveragePriceGraph />
+                         </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col>
+                         <v-card>
+                           <SupplyDemandGraph />
+                         </v-card>
+                        </v-col>
+                    </v-row>
+                  </v-container>
+              </div>
+              <div v-else-if="index === 3">
               <v-container class="grey lighten-5" fluid>
                 <v-tabs>
                   <v-tab
@@ -122,21 +163,62 @@
                 </v-tabs>
                 </v-container>
               </div>
-              <div v-else-if="index === 3"> 
-                <KospiMarketIndustryIndexFlow/>
-              </div>
-              <div v-else-if="index === 4"> 
-                <KosdaqMarketIndustryIndexFlow/>
+              <div v-if="index === 4">
+                  <v-container class="grey lighten-5" fluid>
+                    <v-row mb-6 no-gutters dense>
+                      <v-col md="3"> <!-- auto md="4" -->
+                        <v-card class="pa-2" outlined tile>
+                        <QuickInterestStockLeft v-on:showchart="showChart"/>
+                        </v-card>  
+                      </v-col>
+                      
+                      <v-col>
+                        <v-card class="pa-2" outlined tile>
+                        <QuickInterestStockRight :stla="stockinfo"/>
+                        </v-card>
+                      </v-col>
+
+                    </v-row>
+
+                    <!-- <v-row mb-6 no-gutters dense>
+                      <v-col auto>
+                        <v-card class="pa-2" outlined tile>
+                          <QuickInterestStockRight :stla="stockinfo"/>
+                        </v-card>
+                      </v-col>
+                    </v-row> -->
+
+                    <v-row mb-6 no-gutters dense>
+                       <v-col auto>
+                         <v-card class="pa-2" outlined tile height="200px">
+                           <AveragePriceGraph />
+                         </v-card>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                       <v-col>
+                         <v-card>
+                           <SupplyDemandGraph />
+                         </v-card>
+                        </v-col>
+                    </v-row>
+                  </v-container>
               </div>
               <div v-else-if="index === 5"> 
-                <KospiMarketIndexFlow/>
+                <KospiMarketIndustryIndexFlow/>
               </div>
               <div v-else-if="index === 6"> 
+                <KosdaqMarketIndustryIndexFlow/>
+              </div>
+              <div v-else-if="index === 7"> 
+                <KospiMarketIndexFlow/>
+              </div>
+              <div v-else-if="index === 8"> 
                 <KosdaqMarketIndexFlow/>
               </div>
-              <div v-else-if="index === 7"> <MarketSupplyDemand/></div>
-              <div v-else-if="index === 8"> <SearchSupplyDemand/></div>
-              <div v-else-if="index === 9"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 9"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 10"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 11"> <SearchSupplyDemand/></div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -145,6 +227,7 @@
     <v-footer app color="primary" dark>
       Authored by sdlee. All rights reserved. Deep Learning Stock under Big data
     </v-footer>
+    
   </v-app>
 </template>
 <script>
@@ -199,8 +282,8 @@ export default {
         resultStockInfo : responseData.resultStockInfo,
         stockName : responseData.stockName,
       };
-    },
-    cancel() {
+    }
+    , cancel() {
       // console.log("cancel()...");
     },
     handleTabChange(sourceName){
@@ -229,11 +312,13 @@ export default {
     , KosdaqMarketIndustryIndexFlow
   },
   data: () => ({
-    currentItem: 'tab-Web'
+    currentItem: 'tabWeb'
     , items: [
       '빠른 관심 종목'
       , '업종흐름(코스피)'
+      , '업종흐름종목(코스피)'
       , '업종흐름(코스닥)'
+      , '업종흐름종목(코스닥)'
       , '업종별_지수흐름(코스피)'
       , '업종별_지수흐름(코스닥)'
       , '지수흐름(코스피)'

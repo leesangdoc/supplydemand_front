@@ -4,13 +4,18 @@ import vuetify from './plugins/vuetify';
 import store from './store';
 import vueMoment from 'vue-moment'
 import moment from "moment";
+import VueRouter from "vue-router"
 
 Vue.config.productionTip = false
-Vue.use(vueMoment, moment)
-// export const EventBus = new Vue();
+Vue.use(vueMoment, moment, VueRouter)
+ 
+const router = new VueRouter({
+  mode: 'history'
+});
 
 new Vue({
-  vuetify,
-  store,
-  render: h => h(App)
+  vuetify
+  , router
+  , store
+  , render: h => h(App)
 }).$mount('#app')

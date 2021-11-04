@@ -53,11 +53,11 @@ export default {
     ...mapActions(['changeKospiIndustryRankingData', 'changeKospiIndustryHeroRankingData', 'callKospiIndustryRanking']),
     async onCellDoubleClicked1(params){
       let temp = params.value.split('(');
-      console.log('temp[0];;;', temp[0]);
-      console.log(' params.data.period;;;',  params.data.period);
+      // console.log('temp[0];;;', temp[0]);
+      // console.log(' params.data.period;;;',  params.data.period);
       try {
-        await this.$store.dispatch('callKospiIndustryStock', { 
-          stockIndustry: temp
+        await this.$store.dispatch('callKospiEachIndustryStock', { 
+          stockIndustry: temp[0]
           , period: params.data.period 
         });  
       } catch(error){

@@ -621,7 +621,8 @@ export default new Vuex.Store({
         }
 
         , callKospiEachIndustryStock: (state, payload)=>{
-
+            console.log('state;;;;;', state);
+            console.log('payload;;;', payload);
         }
 
     },
