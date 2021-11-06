@@ -25,6 +25,8 @@ export default new Vuex.Store({
 
       , quickInterestStockRightDispersionChart: chartSettingInOne.dsprChartOptions
       , quickInterestStockRightDispersionHcInstance: chartSettingInOne.hcInstance
+
+      
       
 
       // [시작] 지수흐름
@@ -135,6 +137,10 @@ export default new Vuex.Store({
 
       , kospiIndustryFlowStockLeftGridColumns: gridSetting.kospiIndustryFlowStockLeftGridColumns
       , kospiIndustryFlowStockLeftRowData: []
+      , kosdaqIndustryFlowStockLeftGridColumns: gridSetting.kosdaqIndustryFlowStockLeftGridColumns
+      , kosdaqIndustryFlowStockLeftRowData: []
+
+      
 
       // 업종흐름순위(코스피)
       , kospiIndustryRankingArr: []
@@ -204,17 +210,48 @@ export default new Vuex.Store({
 
       // 코스피 종목 더블클릭하고 넘어오는 곳
       // 그리드
-      , ospiEachIndustryRowData: []
-      // 차트 종가
-      // 차트 매집량
-      // 차트 분산비율
-      // 차트 대차잔고
-      // 차트 공매도
-      // 그리드 평균단가
-      // 그리드 수급분석표
-      , 
+      , kospiEachIndustryRowData: []
+      , kospiIndustryStockLength: 0
+      , kospiIndustryName: ''
+      , kospiStockIndustryPeriod: ''
+      , kospiIndustryFlowStockName: ''
+      , kospiIndustryFlowStockRightInfoChart: chartSettingInOne.kospiIndustryFlowStockRightInfoChartOptions
+      , kospiIndustryFlowStockRightInfoChartHcInstance: chartSettingInOne.hcInstance
+      , kospiIndustryFlowStockRightAcuChart: chartSettingInOne.kospiIndustryFlowStockRightAcuChartOptions
+      , kospiIndustryFlowStockRightAcuChartHcInstance: chartSettingInOne.hcInstance
+      , kospiIndustryFlowStockRightDispersionChart: chartSettingInOne.kospiIndustryFlowStockRightDispersionChartOptions
+      , kospiIndustryFlowStockRightDispersionChartHcInstance: chartSettingInOne.hcInstance
+      , kospiIndustryFlowStockRightResultRowData: []
+      , kospiIndustryFlowStockRightAveragePriceRowData: []
+      // 공매도 차트
+      , kospiIndustryFlowStockRightShortSellingChart: chartSettingInOne.kospiIndustryFlowStockRightShortSellingChartOptions
+      , kospiIndustryFlowStockRightShortSellingHcInstance: chartSettingInOne.hcInstance
+      // 대차잔고 차트
+      , kospiIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kospiIndustryFlowStockRightLoanTransactionChartOptions
+      , kospiIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
 
-      // 코스닥
+
+      // 코스닥 종목 더블클릭하고 넘어오는 곳
+      // 그리드
+      , kosdaqEachIndustryRowData: []
+      , kosdaqIndustryStockLength: 0
+      , kosdaqIndustryName: ''
+      , kosdaqStockIndustryPeriod: ''
+      , kosdaqIndustryFlowStockName: ''
+      , kosdaqIndustryFlowStockRightInfoChart: chartSettingInOne.kosdaqIndustryFlowStockRightInfoChartOptions
+      , kosdaqIndustryFlowStockRightInfoChartHcInstance: chartSettingInOne.hcInstance
+      , kosdaqIndustryFlowStockRightAcuChart: chartSettingInOne.kosdaqIndustryFlowStockRightAcuChartOptions
+      , kosdaqIndustryFlowStockRightAcuChartHcInstance: chartSettingInOne.hcInstance
+      , kosdaqIndustryFlowStockRightDispersionChart: chartSettingInOne.kosdaqIndustryFlowStockRightDispersionChartOptions
+      , kosdaqIndustryFlowStockRightDispersionChartHcInstance: chartSettingInOne.hcInstance
+      , kosdaqIndustryFlowStockRightResultRowData: []
+      , kosdaqIndustryFlowStockRightAveragePriceRowData: []
+      // 공매도 차트
+      , kosdaqIndustryFlowStockRightShortSellingChart: chartSettingInOne.kosdaqIndustryFlowStockRightShortSellingChartOptions
+      , kosdaqIndustryFlowStockRightShortSellingHcInstance: chartSettingInOne.hcInstance
+      // 대차잔고 차트
+      , kosdaqIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kosdaqIndustryFlowStockRightLoanTransactionChartOptions
+      , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
     },
     // computed 같은??
     getters:{
@@ -342,7 +379,7 @@ export default new Vuex.Store({
         callSpinnerLoading: (state, payload)=>{
           state.spinnerLoading = payload.val;
         }, 
-        callQuickInterestStockRight: (state, payload)=>{
+        callStockRight: (state, payload)=>{
             state.quickInterestStockRightStockInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
             state.quickInterestStockRightStockInfoChart.series[1].data = commonUtil.changeDate(payload.ma005);
             state.quickInterestStockRightStockInfoChart.series[2].data = commonUtil.changeDate(payload.ma010);
@@ -354,8 +391,11 @@ export default new Vuex.Store({
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
             state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
             state.quickInterestStockRightStockInfoChart.series[1].visible = false;
+            state.quickInterestStockRightStockInfoChart.series[2].visible = false;
             state.quickInterestStockRightStockInfoChart.series[3].visible = false;
+            state.quickInterestStockRightStockInfoChart.series[4].visible = false;
             state.quickInterestStockRightStockInfoChart.series[5].visible = false;
+            state.quickInterestStockRightStockInfoChart.series[6].visible = false;
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
             state.inOnLftClkStkNm = payload;
@@ -398,7 +438,7 @@ export default new Vuex.Store({
             state.kosdaqMarketIndexChart.series[0].data = commonUtil.changeDate(payload);
             state.kosdaqMarketIndexChart.rangeSelector.selected = 5;
         },
-        callQuickInterestOneShortSelling: (state, payload)=>{
+        callShortSelling: (state, payload)=>{
             state.shortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
             state.shortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
             state.shortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
@@ -406,7 +446,7 @@ export default new Vuex.Store({
             state.shortSellingChart.series[2].visible = false;
             state.shortSellingChart.rangeSelector.selected = 5;
         },
-        callQuickInterestOneLoanTransaction: (state, payload)=>{
+        callLoanTransaction: (state, payload)=>{
             state.loanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
             state.loanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
             state.loanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
@@ -624,9 +664,164 @@ export default new Vuex.Store({
         }
 
         , callKospiEachIndustryStock: (state, payload)=>{
-            console.log('state;;;;;', state);
-            console.log('payload;;;', payload);
             state.kospiIndustryFlowStockLeftRowData = payload.kospiIndustryStock;
+            state.kospiIndustryStockLength = payload.kospiIndustryStockLength;
+            state.kospiIndustryName = payload.kospiIndustryName;
+            state.kospiStockIndustryPeriod = payload.kospiStockIndustryPeriod;
+        }
+
+        , callKospiIndustryFlowStockRight: (state, payload)=>{
+            state.kospiIndustryFlowStockRightInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
+            state.kospiIndustryFlowStockRightInfoChart.series[1].data = commonUtil.changeDate(payload.ma005);
+            state.kospiIndustryFlowStockRightInfoChart.series[2].data = commonUtil.changeDate(payload.ma010);
+            state.kospiIndustryFlowStockRightInfoChart.series[3].data = commonUtil.changeDate(payload.ma020);
+            state.kospiIndustryFlowStockRightInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
+            state.kospiIndustryFlowStockRightInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
+            state.kospiIndustryFlowStockRightInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.kospiIndustryFlowStockRightInfoChart.title.text = payload.stockName;
+            state.kospiIndustryFlowStockRightInfoChart.series[0].name = payload.stockName;
+            state.kospiIndustryFlowStockRightInfoChart.rangeSelector.selected = 5;
+            state.kospiIndustryFlowStockRightInfoChart.series[1].visible = false;
+            state.kospiIndustryFlowStockRightInfoChart.series[2].visible = false;
+            state.kospiIndustryFlowStockRightInfoChart.series[3].visible = false;
+            state.kospiIndustryFlowStockRightInfoChart.series[4].visible = false;
+            state.kospiIndustryFlowStockRightInfoChart.series[5].visible = false;
+            state.kospiIndustryFlowStockRightInfoChart.series[6].visible = false;
+        } 
+        , setKospiIndustryFlowStockName: (state, payload)=>{
+            state.kospiIndustryFlowStockName = payload;
+        }
+        , callKospiIndustryAcuDispersionChartData: (state, payload)=>{
+            let response = payload;
+            let acuChartInfo = [response.acuIndividualStkInfo, response.acuForeignerStkInfo, response.acuFinanceStkInfo
+                , response.acuInsuranceStkInfo, response.acuInvestmentStkInfo, response.acuBankStkInfo
+                , response.acuEtcFinanceStkInfo, response.acuPensionFundStkInfo, response.acuGovernmentStkInfo
+                , response.acuEtcCorpStkInfo, response.acuEtcForeignerStkInfo, response.acuPrivateEquityStkInfo
+                , response.acuGrossSumStkInfo];
+            let dispersionInfo = [  response.indiDispersionArr, response.foreignerDispersionArr, response.financeInvestDispersionArr
+                    , response.insuranceDispersionArr, response.assetManageDispersionArr, response.bankDispersionArr
+                    , response.etcFinanceDispersionArr, response.pensionFundDispersionArr, response.governmentDispersionArr
+                    , response.etcCoporDispersionArr, response.etcForeignerDispersionArr, response.privateEquityDispersionArr
+                    , response.grossSumDispersionArr];
+            state.kospiIndustryFlowStockRightAcuChart.yAxis.title.text = "매집량";
+            for(let i=0; i < acuChartInfo.length; i++){
+                state.kospiIndustryFlowStockRightAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
+                state.kospiIndustryFlowStockRightDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
+                state.kospiIndustryFlowStockRightAcuChart.series[i].tooltip.valueSuffix = "주";
+            }
+            state.kospiIndustryFlowStockRightResultRowData = response.resultRowData;
+            state.kospiIndustryFlowStockRightAveragePriceRowData = response.averagePriceRowData;
+
+            
+            state.kospiIndustryFlowStockRightAcuChart.rangeSelector.selected = 5;
+            state.kospiIndustryFlowStockRightDispersionChart.rangeSelector.selected = 5;
+
+            for(let i = 0; i < unvisibleArr.length; i++){
+              state.kospiIndustryFlowStockRightAcuChart.series[unvisibleArr[i]].visible = false;
+              state.kospiIndustryFlowStockRightDispersionChart.series[unvisibleArr[i]].visible = false;
+            }
+        }
+        , callKospiIndustryFlowStockRightShortSelling: (state, payload)=>{
+            state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+            state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+            state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+            state.kospiIndustryFlowStockRightShortSellingChart.series[1].visible = false;
+            state.kospiIndustryFlowStockRightShortSellingChart.series[2].visible = false;
+            state.kospiIndustryFlowStockRightShortSellingChart.rangeSelector.selected = 5;
+        }
+        , callKospiIndustryFlowStockRightLoanTransaction: (state, payload)=>{
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].visible = false;
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].visible = false;
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].visible = false;
+            state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].visible = false;
+            state.kospiIndustryFlowStockRightLoanTransactionChart.rangeSelector.selected = 5;
+        }
+
+
+        , callKosdaqEachIndustryStock: (state, payload)=>{
+            state.kosdaqIndustryFlowStockLeftRowData = payload.kosdaqIndustryStock;
+            state.kosdaqIndustryStockLength = payload.kosdaqIndustryStockLength;
+            state.kosdaqIndustryName = payload.kosdaqIndustryName;
+            state.kosdaqStockIndustryPeriod = payload.kosdaqStockIndustryPeriod;
+        }
+
+        , callKosdaqIndustryFlowStockRight: (state, payload)=>{
+            state.kosdaqIndustryFlowStockRightInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[1].data = commonUtil.changeDate(payload.ma005);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[2].data = commonUtil.changeDate(payload.ma010);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[3].data = commonUtil.changeDate(payload.ma020);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.kosdaqIndustryFlowStockRightInfoChart.title.text = payload.stockName;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[0].name = payload.stockName;
+            state.kosdaqIndustryFlowStockRightInfoChart.rangeSelector.selected = 5;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[1].visible = false;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[2].visible = false;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[3].visible = false;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[4].visible = false;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[5].visible = false;
+            state.kosdaqIndustryFlowStockRightInfoChart.series[6].visible = false;
+            
+        } 
+        , setKosdaqIndustryFlowStockName: (state, payload)=>{
+            state.kosdaqIndustryFlowStockName = payload;
+        }
+        , callKosdaqIndustryAcuDispersionChartData: (state, payload)=>{
+            let response = payload;
+            let acuChartInfo = [response.acuIndividualStkInfo, response.acuForeignerStkInfo, response.acuFinanceStkInfo
+                , response.acuInsuranceStkInfo, response.acuInvestmentStkInfo, response.acuBankStkInfo
+                , response.acuEtcFinanceStkInfo, response.acuPensionFundStkInfo, response.acuGovernmentStkInfo
+                , response.acuEtcCorpStkInfo, response.acuEtcForeignerStkInfo, response.acuPrivateEquityStkInfo
+                , response.acuGrossSumStkInfo];
+            let dispersionInfo = [  response.indiDispersionArr, response.foreignerDispersionArr, response.financeInvestDispersionArr
+                    , response.insuranceDispersionArr, response.assetManageDispersionArr, response.bankDispersionArr
+                    , response.etcFinanceDispersionArr, response.pensionFundDispersionArr, response.governmentDispersionArr
+                    , response.etcCoporDispersionArr, response.etcForeignerDispersionArr, response.privateEquityDispersionArr
+                    , response.grossSumDispersionArr];
+            state.kosdaqIndustryFlowStockRightAcuChart.yAxis.title.text = "매집량";
+            for(let i=0; i < acuChartInfo.length; i++){
+                state.kosdaqIndustryFlowStockRightAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
+                state.kosdaqIndustryFlowStockRightDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
+                state.kosdaqIndustryFlowStockRightAcuChart.series[i].tooltip.valueSuffix = "주";
+            }
+            state.kosdaqIndustryFlowStockRightResultRowData = response.resultRowData;
+            state.kosdaqIndustryFlowStockRightAveragePriceRowData = response.averagePriceRowData;
+
+            
+            state.kosdaqIndustryFlowStockRightAcuChart.rangeSelector.selected = 5;
+            state.kosdaqIndustryFlowStockRightDispersionChart.rangeSelector.selected = 5;
+
+            for(let i = 0; i < unvisibleArr.length; i++){
+              state.kosdaqIndustryFlowStockRightAcuChart.series[unvisibleArr[i]].visible = false;
+              state.kosdaqIndustryFlowStockRightDispersionChart.series[unvisibleArr[i]].visible = false;
+            }
+        }
+
+        , callKosdaqIndustryFlowStockRightShortSelling: (state, payload)=>{
+            state.kosdaqIndustryFlowStockRightShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+            state.kosdaqIndustryFlowStockRightShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+            state.kosdaqIndustryFlowStockRightShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+            state.kosdaqIndustryFlowStockRightShortSellingChart.series[1].visible = false;
+            state.kosdaqIndustryFlowStockRightShortSellingChart.series[2].visible = false;
+            state.kosdaqIndustryFlowStockRightShortSellingChart.rangeSelector.selected = 5;
+        }
+        , callKosdaqIndustryFlowStockRightLoanTransaction: (state, payload)=>{
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[0].visible = false;
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[1].visible = false;
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[2].visible = false;
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[4].visible = false;
+            state.kosdaqIndustryFlowStockRightLoanTransactionChart.rangeSelector.selected = 5;
         }
 
     },
@@ -824,13 +1019,11 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        , callQuickInterestStockRight: ({commit}, payload) => {
+        , callStockRight: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let resData = {};
             let postData = {
-                csvFileName: payload.csvFileName
-                , fromdate: payload.fromdate
-                , todate: payload.todate
+                csvFileName: payload.csvFileName,
             };
             axios.post(`${constants.URL}${'rightChartList/'}`
             , {
@@ -850,10 +1043,24 @@ export default new Vuex.Store({
                     ma200: response.data.ma200,
                     stockName: payload.stockName,
                 };
-                commit('callQuickInterestStockRight', resData);
-                commit('setInOnLftClkStkNm', payload.stockName);
-                commit('callAcuDispersionChartData', response.data);
+
+                if(payload.category == 'quickOne'){
+                    commit('callStockRight', resData);
+                    commit('setInOnLftClkStkNm', payload.stockName);
+                    commit('callAcuDispersionChartData', response.data);
+                } else if(payload.category == 'kospiIndustry'){
+                    commit('callKospiIndustryFlowStockRight', resData);
+                    commit('setKospiIndustryFlowStockName', payload.stockName);
+                    commit('callKospiIndustryAcuDispersionChartData', response.data);
+                } else if(payload.category == 'kosdaqIndustry'){
+                    commit('callKosdaqIndustryFlowStockRight', resData);
+                    commit('setKosdaqIndustryFlowStockName', payload.stockName);
+                    commit('callKosdaqIndustryAcuDispersionChartData', response.data);
+                }
+
+                
                 commit('callSpinnerLoading', {val: false});
+
             })
             .catch(function(error) {
                 console.log(error);
@@ -909,12 +1116,10 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        , callQuickInterestOneShortSelling: ({commit}, payload) => {
+        , callShortSelling: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
-                csvFileName: payload.csvFileName
-                , fromdate: payload.fromdate
-                , todate: payload.todate
+                csvFileName: payload.csvFileName,
             };
             axios.post(`${constants.URL}${'shortSellingChartAnalysis/'}`
             , {
@@ -923,8 +1128,14 @@ export default new Vuex.Store({
                     'Authorization': 'JWT fefege...'
             }, postData})
             .then(function(response) {
-                console.log('callQuickInterestOneShortSelling_response;;;;;', response);
-                commit('callQuickInterestOneShortSelling', response.data);
+                if(payload.category === 'quickOne'){
+                    commit('callShortSelling', response.data);
+                } else if (payload.category === 'kospiIndustry'){
+                    commit('callKospiIndustryFlowStockRightShortSelling', response.data);
+                } else if (payload.category === 'kosdaqIndustry'){
+                    commit('callKosdaqIndustryFlowStockRightShortSelling', response.data);
+                }
+                
             })
             .catch(function(error) {
                 console.log(error);
@@ -934,12 +1145,10 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
-        , callQuickInterestOneLoanTransaction: ({commit}, payload) => {
+        , callLoanTransaction: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             let postData = {
-                csvFileName: payload.csvFileName
-                , fromdate: payload.fromdate
-                , todate: payload.todate
+                csvFileName: payload.csvFileName,
             };
             axios.post(`${constants.URL}${'loanTransactionChartAnalysis/'}`
             , {
@@ -948,7 +1157,13 @@ export default new Vuex.Store({
                     'Authorization': 'JWT fefege...'
             }, postData})
             .then(function(response) {
-                commit('callQuickInterestOneLoanTransaction', response.data);
+                if (payload.category === 'quickOne'){
+                    commit('callLoanTransaction', response.data);
+                } else if (payload.category === 'kospiIndustry'){
+                    commit('callKospiIndustryFlowStockRightLoanTransaction', response.data);
+                } else if (payload.category === 'kosdaqIndustry'){
+                    commit('callKosdaqIndustryFlowStockRightLoanTransaction', response.data);
+                }
             })
             .catch(function(error) {
                 console.log(error);
@@ -1003,10 +1218,10 @@ export default new Vuex.Store({
             });
         }
 
-        , callKospiEachIndustryStock: ({commit}, payload) => {
+        , callEachIndustryStock: ({commit}, payload) => {
             commit('callSpinnerLoading', {val: true});
             axios.post(
-                `${constants.URL}${'callKospiEachIndustryStock/'}`
+                `${constants.URL}${'callEachIndustryStock/'}`
                 , {
                     headers: {
                       'Content-Type': 'application/json',
@@ -1014,9 +1229,18 @@ export default new Vuex.Store({
                     }
                 , payload})
             .then(function(response) {
-                commit('callKospiEachIndustryStock', response.data);
-                commit('callSpinnerLoading', {val: false});
-                alert('종목 검색이 끝났습니다. 업종흐름종목(코스피)로 가서 확인해보세요!');
+                if(payload.category === 'kospi'){
+                    commit('callKospiEachIndustryStock', response.data);
+                    commit('callSpinnerLoading', {val: false});
+                    alert('종목 검색이 끝났습니다. 업종흐름종목(코스피)로 가서 확인해보세요!');
+                } else if(payload.category === 'kosdaq'){
+                    commit('callKosdaqEachIndustryStock', response.data);
+                    commit('callSpinnerLoading', {val: false});
+                    alert('종목 검색이 끝났습니다. 업종흐름종목(코스피)로 가서 확인해보세요!');
+                } 
+                
+                
+                
             })
             .catch(function(error) {
                 console.log(error);
@@ -1026,6 +1250,7 @@ export default new Vuex.Store({
                 commit('callSpinnerLoading', {val: false});
             });
         }
+
     }
     
 

@@ -102,34 +102,23 @@
                         <KospiIndustryFlowStockLeft v-on:showchart="showChart"/>
                         </v-card>  
                       </v-col>
-                      
                       <v-col>
                         <v-card class="pa-2" outlined tile>
                         <KospiIndustryFlowStockRight :stla="stockinfo"/>
                         </v-card>
                       </v-col>
-
                     </v-row>
-
-                    <!-- <v-row mb-6 no-gutters dense>
-                      <v-col auto>
-                        <v-card class="pa-2" outlined tile>
-                          <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row> -->
-
                     <v-row mb-6 no-gutters dense>
                        <v-col auto>
                          <v-card class="pa-2" outlined tile height="200px">
-                           <AveragePriceGraph />
+                           <KospiIndustryFlowAveragePriceGraph />
                          </v-card>
                         </v-col>
                     </v-row>
                     <v-row>
                        <v-col>
                          <v-card>
-                           <SupplyDemandGraph />
+                           <KospiIndustryFlowSupplyDemandGraph />
                          </v-card>
                         </v-col>
                     </v-row>
@@ -169,37 +158,26 @@
                     <v-row mb-6 no-gutters dense>
                       <v-col md="3"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockLeft v-on:showchart="showChart"/>
+                        <KosdaqIndustryFlowStockLeft v-on:showchart="showChart"/>
                         </v-card>  
                       </v-col>
-                      
                       <v-col>
                         <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockRight :stla="stockinfo"/>
+                        <KosdaqIndustryFlowStockRight :stla="stockinfo"/>
                         </v-card>
                       </v-col>
-
                     </v-row>
-
-                    <!-- <v-row mb-6 no-gutters dense>
-                      <v-col auto>
-                        <v-card class="pa-2" outlined tile>
-                          <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row> -->
-
                     <v-row mb-6 no-gutters dense>
                        <v-col auto>
                          <v-card class="pa-2" outlined tile height="200px">
-                           <AveragePriceGraph />
+                           <KosdaqIndustryFlowAveragePriceGraph />
                          </v-card>
                         </v-col>
                     </v-row>
                     <v-row>
                        <v-col>
                          <v-card>
-                           <SupplyDemandGraph />
+                           <KosdaqIndustryFlowSupplyDemandGraph />
                          </v-card>
                         </v-col>
                     </v-row>
@@ -248,6 +226,12 @@ import KospiMarketIndustryIndexFlow from './components/KospiMarketIndustryIndexF
 import KosdaqMarketIndustryIndexFlow from './components/KosdaqMarketIndustryIndexFlow';
 import KospiIndustryFlowStockLeft from './components/KospiIndustryFlowStockLeft';
 import KospiIndustryFlowStockRight from './components/KospiIndustryFlowStockRight';
+import KospiIndustryFlowAveragePriceGraph from './components/KospiIndustryFlowAveragePriceGraph';
+import KospiIndustryFlowSupplyDemandGraph from './components/KospiIndustryFlowSupplyDemandGraph';
+import KosdaqIndustryFlowStockLeft from './components/KosdaqIndustryFlowStockLeft';
+import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRight';
+import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
+import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
 
 export default {
   setup() {
@@ -314,6 +298,12 @@ export default {
     , KosdaqMarketIndustryIndexFlow
     , KospiIndustryFlowStockLeft
     , KospiIndustryFlowStockRight
+    , KospiIndustryFlowAveragePriceGraph
+    , KospiIndustryFlowSupplyDemandGraph
+    , KosdaqIndustryFlowStockLeft
+    , KosdaqIndustryFlowStockRight
+    , KosdaqIndustryFlowAveragePriceGraph
+    , KosdaqIndustryFlowSupplyDemandGraph
   },
   data: () => ({
     currentItem: 'tabWeb'
@@ -328,7 +318,7 @@ export default {
       , '지수흐름(코스피)'
       , '지수흐름(코스닥)'
       , '수급분석표'
-      ,'시장수급'
+      , '시장수급'
       , '수급분석표 검색',
     ]
     , stockinfo: {

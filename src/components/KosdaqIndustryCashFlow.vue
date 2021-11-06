@@ -8,6 +8,7 @@
       rowSelection="single"
       @grid-ready="onGridReady"
       :defaultColDef="this.$store.state.defaultColDef"
+      @cell-double-clicked="onCellDoubleClicked"
     >
     </ag-grid-vue>
   </v-app>
@@ -33,6 +34,28 @@ export default {
   methods: {
     ...mapMutations([])
     , ...mapActions(['changeKosdaqIndustryCashFlowData'])
+    , async onCellDoubleClicked(params){
+      // const selectedNodes = this.gridApi.getSelectedNodes();
+      // console.log('params;;;;;', params);
+      // console.log('selectedNodes;;;;;', selectedNodes);
+      try {
+        if(params.colDef.field != 'title'){
+          if(params.data.title == '(코스닥)종합'){
+            alert('(코스닥)종합은 종목 검색이 불가합니다.');
+            return;
+          }
+          console.log('더블클릭');
+          await this.$store.dispatch('callEachIndustryStock', { 
+            stockIndustry: params.data.title
+            , period: params.colDef.headerName
+            , category: 'kosdaq'
+          });
+        }
+      } catch(error){
+        console.log(error);
+      }
+      
+    }
     , async kosdaqIndustryCashFlow(){
       let ths = this;
       try{

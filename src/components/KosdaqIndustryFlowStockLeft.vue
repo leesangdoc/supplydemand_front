@@ -8,12 +8,12 @@
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
     </div>
-    업종명: {{this.$store.kospiIndustryName}} / 종목수: {{this.$store.kospiIndustryStockLength}} / 기간: {{this.$store.kospiStockIndustryPeriod}}
+    업종명: {{this.$store.kosdaqIndustryName}} / 종목수: {{this.$store.kosdaqIndustryStockLength}} / 기간: {{this.$store.kosdaqStockIndustryPeriod}}
     <ag-grid-vue 
       style="width: 100%; height: 100%;"
       class="ag-theme-alpine"
-      :columnDefs="this.$store.state.kospiIndustryFlowStockLeftGridColumns"
-      :rowData="this.$store.state.kospiIndustryFlowStockLeftRowData"
+      :columnDefs="this.$store.state.kosdaqIndustryFlowStockLeftGridColumns"
+      :rowData="this.$store.state.kosdaqIndustryFlowStockLeftRowData"
       rowSelection="single"
       @grid-ready="onGridReady"
       @cell-clicked="getSelectedRows"
@@ -28,14 +28,14 @@ import {mapGetters, mapState} from 'vuex';
 
 export default {
   computed: {
-    ...mapGetters(['kospiIndustryFlowStockLeftRowLength', 'kospiIndustryFlowStockLeftGetStkNm']),
+    ...mapGetters(['kosdaqIndustryFlowStockLeftRowLength', 'kosdaqIndustryFlowStockLeftGetStkNm']),
     /** 다른 방법
      * ...mapGetters({
      *    lth: 'inOnLftRowLength', // 해당 컴포넌트 내에서, 'inOnLftRowLength'를 lth로 사용하겠다. @row-selected
      *    stockName: 'getStkNm', // 해당 컴포넌트 내에서, 'getStkNm'를 stockName로 사용하겠다.
      * })
      */
-    ...mapState(['kospiIndustryFlowStockLeftRowData'])
+    ...mapState(['kosdaqIndustryFlowStockLeftRowData'])
   },
   created() {
      console.log('created');
@@ -50,7 +50,7 @@ export default {
   mounted(){
    
   },
-  name: 'KospiIndustryFlowStockLeft',
+  name: 'KosdaqIndustryFlowStockLeft',
   methods: {
     onGridReady(params) {
       this.gridApi = params.api;
@@ -69,21 +69,21 @@ export default {
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
-          , category: 'kospiIndustry'
+          , category: 'kosdaqIndustry'
         });
         await this.$store.dispatch('callShortSelling', { 
           csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
-          , category: 'kospiIndustry'
+          , category: 'kosdaqIndustry'
         });
         await this.$store.dispatch('callLoanTransaction', { 
           csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
-          , category: 'kospiIndustry'
+          , category: 'kosdaqIndustry'
         });
       } catch(error){
         console.log(error);

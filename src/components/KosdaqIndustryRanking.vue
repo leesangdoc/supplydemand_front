@@ -14,8 +14,9 @@
       :columnDefs="this.$store.state.industryRankingColumns"
       :rowData="this.$store.state.kosdaqIndustryRankingRowData"
       rowSelection="single"
-      @grid-ready="onGridReady"
+      @grid-ready="onGridReady1"
       :defaultColDef="this.$store.state.defaultColDef"
+      @cell-double-clicked="onCellDoubleClicked1"
     >
     </ag-grid-vue>
     <br/>
@@ -25,7 +26,7 @@
       :columnDefs="this.$store.state.industryHeroRankingColumns"
       :rowData="this.$store.state.kosdaqIndustryHeroRankingRowData"
       rowSelection="single"
-      @grid-ready="onGridReady"
+      @grid-ready="onGridReady2"
       :defaultColDef="this.$store.state.defaultColDef"
     >
     </ag-grid-vue>
@@ -51,6 +52,22 @@ export default {
   methods: {
      ...mapMutations([])
     , ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData', 'callKosdaqIndustryRanking'])
+    , async onCellDoubleClicked1(params){
+      let temp = params.value.split('(');
+      // console.log('temp[0];;;', temp[0]);
+      // console.log(' params.data.period;;;',  params.data.period);
+      try {
+        await this.$store.dispatch('callEachIndustryStock', { 
+          stockIndustry: temp[0]
+          , period: params.data.period
+          , category: 'kosdaq'
+        });
+        
+      } catch(error){
+        console.log(error);
+      }
+      
+    }
     , async kosdaqIndustryRanking(){
       let _this = this;
       try{
@@ -64,12 +81,17 @@ export default {
           console.log(error);
       }
     }
-    , onGridReady(params) {
-      this.gridApi = params.api;
-      this.columnApi = params.columnApi;
-      this.setHeaderNames();
+    , onGridReady1(params) {
+      this.gridApi1 = params.api;
+      this.columnApi1 = params.columnApi;
+      this.setHeaderNames1();
     }
-    , setHeaderNames(){
+    , onGridReady2(params) {
+      this.gridApi2 = params.api;
+      this.columnApi2 = params.columnApi;
+      this.setHeaderNames2();
+    }
+    , setHeaderNames1(){
       let columnDefs = this.$store.state.industryRankingColumns;
       columnDefs.forEach(function (colDef, index) {
         if(index == 0){
@@ -77,8 +99,17 @@ export default {
         }
         
       });
-      this.gridApi.setColumnDefs(columnDefs);
-    },
+      this.gridApi1.setColumnDefs(columnDefs);
+    }
+    , setHeaderNames2(){
+      let columnDefs = this.$store.state.industryHeroRankingColumns;
+      columnDefs.forEach(function (colDef, index) {
+        if(index == 0){
+          colDef.headerName = ' '; 
+        } 
+      });
+      this.gridApi2.setColumnDefs(columnDefs);
+    }
 
 
   },

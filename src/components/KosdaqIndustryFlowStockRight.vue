@@ -2,38 +2,38 @@
   <v-app>
     <div>
       <highcharts 
-        :options="this.$store.state.kospiIndustryFlowStockRightInfoChart"
+        :options="this.$store.state.kosdaqIndustryFlowStockRightInfoChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightInfoChartHcInstance">
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightInfoChartHcInstance">
       {{stla}}
       </highcharts>
       <highcharts 
-        :options="this.$store.state.kospiIndustryFlowStockRightAcuChart"
+        :options="this.$store.state.kosdaqIndustryFlowStockRightAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightAcuChartHcInstance">
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightAcuChartHcInstance">
       {{stla}}
       </highcharts>
       <highcharts 
-        :options="this.$store.state.kospiIndustryFlowStockRightDispersionChart"
+        :options="this.$store.state.kosdaqIndustryFlowStockRightDispersionChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightDispersionChartHcInstance">
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightDispersionChartHcInstance">
       {{stla}}
       </highcharts>
       <highcharts 
-        :options="this.$store.state.kospiIndustryFlowStockRightShortSellingChart"
+        :options="this.$store.state.kosdaqIndustryFlowStockRightShortSellingChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightShortSellingHcInstance">
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightShortSellingHcInstance">
       {{stla}}
       </highcharts>
       <highcharts 
-        :options="this.$store.state.kospiIndustryFlowStockRightLoanTransactionChart"
+        :options="this.$store.state.kosdaqIndustryFlowStockRightLoanTransactionChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightLoanTransactionHcInstance">
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightLoanTransactionHcInstance">
       {{stla}}
       </highcharts>
     </div>

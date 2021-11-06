@@ -48,9 +48,10 @@ export default {
             return;
           }
           console.log('더블클릭');
-          await this.$store.dispatch('callKospiEachIndustryStock', { 
+          await this.$store.dispatch('callEachIndustryStock', { 
             stockIndustry: params.data.title
             , period: params.colDef.headerName
+            , category: 'kospi'
           });
         }
       } catch(error){

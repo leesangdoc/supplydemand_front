@@ -63,7 +63,7 @@
             </th>
           </tr>
         </thead>
-        <!-- <tbody><tr><td></td><td></td></tr></tbody> @selection-changed="getSelectedRows"-->
+        <!-- <tbody><tr><td></td><td></td></tr></tbody> @selection-changed="getSelectedRows" @row-selected-->
     </v-simple-table>
     </div>
     <ag-grid-vue 
@@ -73,7 +73,7 @@
         :rowData="this.$store.state.rowData"
         rowSelection="single"
         @grid-ready="onGridReady"
-        @row-selected="getSelectedRows"
+        @cell-clicked="getSelectedRows"
         :defaultColDef="this.$store.state.defaultColDef"
         >
     </ag-grid-vue>
@@ -237,23 +237,26 @@ export default {
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
       try {
-        await this.$store.dispatch('callQuickInterestStockRight', { 
+        await this.$store.dispatch('callStockRight', { 
           csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
+          , category: 'quickOne'
         });
-        await this.$store.dispatch('callQuickInterestOneShortSelling', { 
+        await this.$store.dispatch('callShortSelling', { 
           csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
+          , category: 'quickOne'
         });
-        await this.$store.dispatch('callQuickInterestOneLoanTransaction', { 
+        await this.$store.dispatch('callLoanTransaction', { 
           csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
+          , category: 'quickOne'
         });
       } catch(error){
         console.log(error);
