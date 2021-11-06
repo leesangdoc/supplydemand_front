@@ -28,7 +28,6 @@
       rowSelection="single"
       @grid-ready="onGridReady2"
       :defaultColDef="this.$store.state.defaultColDef"
-      @cell-double-clicked="onCellDoubleClicked2"
     >
     </ag-grid-vue>
   </v-app>
@@ -65,12 +64,6 @@ export default {
         console.log(error);
       }
       
-    },
-    async onCellDoubleClicked2(params){
-      // console.log('params_onCellDoubleClicked222222;;;;;', params);
-      console.log('params.getValue()_onCellDoubleClicked222222;;;;;', params.value);
-      const selectedNodes = this.gridApi2.getSelectedNodes();
-      console.log('onCellDoubleClicked_selectedNodes111111;;;;;', selectedNodes);
     },
     async kospiIndustryRanking(){
       let _this = this;

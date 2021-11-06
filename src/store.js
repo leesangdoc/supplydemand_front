@@ -630,7 +630,7 @@ export default new Vuex.Store({
         }
 
     },
-    // 
+
     actions: {
         // 액션 함수명... 뮤테이션과는 다르나 이름을 매치시켜야 구분하기 쉬움.
         emptyRowData: ({commit}, payload) => {

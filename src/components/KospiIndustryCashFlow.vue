@@ -38,16 +38,23 @@ export default {
     ...mapMutations([]),
     ...mapActions(['changeKospiIndustryCashFlowData', 'callKospiIndustryCashFlow']),
     async onCellDoubleClicked(params){
-      // console.log('params_onCellDoubleClicked111111;;;;;', params);
-      console.log('params.getValue()_onCellDoubleClicked222222;;;;;', params);
-      const selectedNodes = this.gridApi.getSelectedNodes();
-      console.log('onCellDoubleClicked_selectedNodes111111;;;;;', selectedNodes);
-      // getSelectedNodes
-      if(params.colDef.field == 'title'){
-        console.log('업종더블클릭');
-
-      } else {
-        console.log('업종더블클릭 아님');
+      // const selectedNodes = this.gridApi.getSelectedNodes();
+      // console.log('params;;;;;', params);
+      // console.log('selectedNodes;;;;;', selectedNodes);
+      try {
+        if(params.colDef.field != 'title'){
+          if(params.data.title == '종합주가지수'){
+            alert('종합주가지수는 종목 검색이 불가합니다.');
+            return;
+          }
+          console.log('더블클릭');
+          await this.$store.dispatch('callKospiEachIndustryStock', { 
+            stockIndustry: params.data.title
+            , period: params.colDef.headerName
+          });
+        }
+      } catch(error){
+        console.log(error);
       }
       
     },
