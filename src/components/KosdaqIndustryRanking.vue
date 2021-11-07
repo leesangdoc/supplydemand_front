@@ -53,20 +53,17 @@ export default {
      ...mapMutations([])
     , ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData', 'callKosdaqIndustryRanking'])
     , async onCellDoubleClicked1(params){
-      let temp = params.value.split('(');
-      // console.log('temp[0];;;', temp[0]);
-      // console.log(' params.data.period;;;',  params.data.period);
-      try {
-        await this.$store.dispatch('callEachIndustryStock', { 
-          stockIndustry: temp[0]
-          , period: params.data.period
-          , category: 'kosdaq'
-        });
-        
-      } catch(error){
-        console.log(error);
-      }
-      
+        let temp = params.value.split('(');
+        try {
+          await this.$store.dispatch('callEachIndustryStock', { 
+            stockIndustry: '('+temp[1]
+            , period: params.data.period
+            , category: 'kosdaq'
+          });
+          
+        } catch(error){
+          console.log(error);
+        }
     }
     , async kosdaqIndustryRanking(){
       let _this = this;

@@ -8,7 +8,9 @@
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
     </div>
-    업종명: {{this.$store.kospiIndustryName}} / 종목수: {{this.$store.kospiIndustryStockLength}} / 기간: {{this.$store.kospiStockIndustryPeriod}}
+    업종명: {{this.$store.state.kospiIndustryName}} / 
+    종목수: {{this.$store.state.kospiIndustryStockLength}} / 
+    기간: {{this.$store.state.kospiStockIndustryPeriod}}
     <ag-grid-vue 
       style="width: 100%; height: 100%;"
       class="ag-theme-alpine"
