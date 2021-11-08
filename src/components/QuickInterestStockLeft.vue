@@ -79,7 +79,7 @@
             <v-select
               v-model="e6"
               :items="this.$store.state.industries"
-              :menu-props="{ maxHeight: '100' }"
+              :menu-props="{ maxHeight: '300' }"
               label="Select"
               multiple
               dense
