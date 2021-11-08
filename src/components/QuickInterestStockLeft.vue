@@ -68,10 +68,24 @@
     </div>
     <div v-if="inter2">
       <table width="100%">
-        <tr><td>조회일자:</td>
+        <tr>
+          <td>조회일자:</td>
           <td>
             <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
               format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
+          </td>
+          <td>업종:</td>
+          <td>
+            <v-select
+              v-model="e6"
+              :items="this.$store.state.industries"
+              :menu-props="{ maxHeight: '100' }"
+              label="Select"
+              multiple
+              dense
+              full-width
+              @change="selectIndustries"
+            ></v-select>
           </td>
           <td>
             <v-btn
@@ -125,6 +139,7 @@ export default {
 
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
+    this.$store.dispatch('callQuickInterestTwoIndustrySelectBox', []);
   },
   mounted(){
     // 이벤트버스 활용 예
@@ -142,7 +157,11 @@ export default {
   },
   name: 'QuickInterestStock',
   methods: {
-    async searchData(){
+    async selectIndustries(e){
+      console.log(e);
+      this.$store.commit('setSendIndustries', e); 
+    }
+    , async searchData(){
       let num = this.searchDate2.replace(/-/gi, "").toString();
       if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
           || !Number(this.searchDate2.replace(/-/gi, ""))

@@ -16,7 +16,9 @@ export default new Vuex.Store({
    
     // data
     state: {
-      spinnerLoading: false 
+      spinnerLoading: false
+      , industries: []
+      , sendIndustries: []
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
       , quickInterestStockRightStockInfoHcInstance: chartSettingInOne.hcInstance
 
@@ -273,6 +275,10 @@ export default new Vuex.Store({
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
+        setSendIndustries: (state, payload)=> {
+            state.sendIndustries = payload;
+            console.log('state.sendIndustries;;;;;', state.sendIndustries)
+        }, 
         callInOnLftRowData: (state, payload)=> {
             state.inOnLftRowData  = payload;
         }, 
@@ -824,6 +830,10 @@ export default new Vuex.Store({
             state.kosdaqIndustryFlowStockRightLoanTransactionChart.rangeSelector.selected = 5;
         }
 
+        , callQuickInterestTwoIndustrySelectBox: (state, payload)=>{
+            state.industries = payload.interestTwoIndustrySelectBox;
+        }
+
     },
 
     actions: {
@@ -1261,6 +1271,30 @@ export default new Vuex.Store({
                 , payload})
             .then(function(response) {
                 commit('callQuickInterestTwoStockLeft', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+        // 관심2 셀렉트박스 호출
+        , callQuickInterestTwoIndustrySelectBox:({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'callQuickInterestTwoIndustrySelectBox/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callQuickInterestTwoIndustrySelectBox', response.data);
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
