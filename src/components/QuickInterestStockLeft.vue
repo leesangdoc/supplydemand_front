@@ -10,8 +10,8 @@
     </div>
     <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
     <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
-        <v-radio label="관심1" value="radio-1" @click=interest1 @change=interest1Change />
-        <v-radio label="관심2" value="radio-2" @click=interest2></v-radio>
+        <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change" > </v-radio>
+        <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change"> </v-radio>
       </v-radio-group>
     <div v-if="inter1">
       <table width="100%">
@@ -66,6 +66,25 @@
         <!-- <tbody><tr><td></td><td></td></tr></tbody> @selection-changed="getSelectedRows" @row-selected-->
     </v-simple-table>
     </div>
+    <div v-if="inter2">
+      <table width="100%">
+        <tr><td>조회일자:</td>
+          <td>
+            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
+              format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
+          </td>
+          <td>
+            <v-btn
+              icon
+              color="primary"
+              dark
+              @click="searchData">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+      </table>
+    </div>
     <ag-grid-vue 
         style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
@@ -102,6 +121,8 @@ export default {
     console.log('beforeMount');
     this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
+    this.searchDate2 = this.$moment(new Date()).format('YYYY-MM-DD');
+
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
   },
@@ -121,7 +142,23 @@ export default {
   },
   name: 'QuickInterestStock',
   methods: {
-     onBtnExport() {
+    async searchData(){
+      let num = this.searchDate2.replace(/-/gi, "").toString();
+      if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
+          || !Number(this.searchDate2.replace(/-/gi, ""))
+          || num.length != 8) {
+        alert('관심2 조회일자를 정확하게 입력하세요!');
+        return;
+      }
+
+      try{
+        let postData = { searchDate2: this.searchDate2, category: 'interestTwo', };
+        await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
+      } catch(error){
+        console.log(error);
+      }
+    }
+     , onBtnExport() {
       this.gridApi.exportDataAsCsv(); 
      },
     ...mapMutations(['callInOnLftRowData']), // 'emptyRowData'
@@ -160,64 +197,69 @@ export default {
     },
     changeToDate(e){
       this.todate = e;
-    },
-
-    async interest1() {
-      this.inter1 = true;
-      if(this.fromdate === undefined){
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = ("0" + (1 + date.getMonth())).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        this.fromdate = year + '-'+month + '-'+day;
-        // console.log('interest1 undefined this.fromdate', this.fromdate);
-      }
-      if(this.todate === undefined){
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = ("0" + (1 + date.getMonth())).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        this.todate = year + '-'+ month +'-'+ day;
-        // console.log('interest1 undefined this.todate', this.todate);
-      } 
-      if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
-        alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
-        return;
-      }
-      let postData = {
-        fromdate: this.fromdate, 
-        todate: this.todate,
-        checkbx: {
-          individual: this.individual,
-          grossSum: this.grossSum,
-          foreigner: this.foreigner,
-          finance: this.finance,
-          insurance: this.insurance,
-          investment: this.investment,
-          bank: this.bank,
-          etcFinance: this.etcFinance,
-          pensionFund: this.pensionFund,
-          government: this.government,
-          etcCorp: this.etcCorp,
-          etcForeigner: this.etcForeigner,
-          privateEquity: this.privateEquity,
-        },
-      };
-      await this.$store.commit('callInOnLftRowData', []);
-      // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
-      // this.emptyRowData([]);
-      // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
-      // 액션함수를 불러올 때, dispatch 함수를 사용한다.
-      await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
-      try {
-        await this.$store.dispatch('callQuickInterestStockLeft', postData);
-      } catch(error){
-        console.log(error);
-      }
+    }
+    , async interest1() {
+        this.inter1 = true;
+        this.inter2 = false;
+        if(this.fromdate === undefined){
+          let date = new Date();
+          let year = date.getFullYear();
+          let month = ("0" + (1 + date.getMonth())).slice(-2);
+          let day = ("0" + date.getDate()).slice(-2);
+          this.fromdate = year + '-'+month + '-'+day;
+          // console.log('interest1 undefined this.fromdate', this.fromdate);
+        }
+        if(this.todate === undefined){
+          let date = new Date();
+          let year = date.getFullYear();
+          let month = ("0" + (1 + date.getMonth())).slice(-2);
+          let day = ("0" + date.getDate()).slice(-2);
+          this.todate = year + '-'+ month +'-'+ day;
+          // console.log('interest1 undefined this.todate', this.todate);
+        } 
+        if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
+          alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
+          return;
+        }
+        let postData = {
+          fromdate: this.fromdate, 
+          todate: this.todate,
+          checkbx: {
+            individual: this.individual,
+            grossSum: this.grossSum,
+            foreigner: this.foreigner,
+            finance: this.finance,
+            insurance: this.insurance,
+            investment: this.investment,
+            bank: this.bank,
+            etcFinance: this.etcFinance,
+            pensionFund: this.pensionFund,
+            government: this.government,
+            etcCorp: this.etcCorp,
+            etcForeigner: this.etcForeigner,
+            privateEquity: this.privateEquity,
+          },
+          category: 'interestOne',
+        };
+        await this.$store.commit('callInOnLftRowData', []);
+        // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
+        // this.emptyRowData([]);
+        // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
+        // 액션함수를 불러올 때, dispatch 함수를 사용한다.
+        await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
+        try {
+          await this.$store.dispatch('callQuickInterestStockLeft', postData);
+        } catch(error){
+          console.log(error);
+        }
     },
 
     interest1Change(){
       console.log('inter1 changed...');
+    },
+
+    interest2Change(){
+      console.log('inter2 changed...');
     },
 
     async interest2() {

@@ -1237,10 +1237,31 @@ export default new Vuex.Store({
                     commit('callKosdaqEachIndustryStock', response.data);
                     commit('callSpinnerLoading', {val: false});
                     alert('종목 검색이 끝났습니다. 업종흐름종목(코스피)로 가서 확인해보세요!');
-                } 
-                
-                
-                
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+
+        , callQuickInterestTwoStockLeft:({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'callQuickInterestTwoStockLeft/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                commit('callQuickInterestTwoStockLeft', response.data);
+                commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
                 console.log(error);

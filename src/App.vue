@@ -276,7 +276,6 @@ export default {
       // console.log('sourceName;;;;;', sourceName);
       this.$store.dispatch('changeKospiIndustryRankingData', sourceName);
       this.$store.dispatch('changeKospiIndustryCashFlowData', sourceName);
-
       this.$store.dispatch('changeKosdaqIndustryRankingData', sourceName);
       this.$store.dispatch('changeKosdaqIndustryCashFlowData', sourceName);
     },
