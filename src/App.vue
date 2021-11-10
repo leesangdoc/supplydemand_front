@@ -97,7 +97,7 @@
               <div v-if="index === 2">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
-                      <v-col md="3"> <!-- auto md="4" -->
+                      <v-col md="4"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
                         <KospiIndustryFlowStockLeft v-on:showchart="showChart"/>
                         </v-card>  
@@ -156,7 +156,7 @@
               <div v-if="index === 4">
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
-                      <v-col md="3"> <!-- auto md="4" -->
+                      <v-col md="4"> <!-- auto md="4" -->
                         <v-card class="pa-2" outlined tile>
                         <KosdaqIndustryFlowStockLeft v-on:showchart="showChart"/>
                         </v-card>  
