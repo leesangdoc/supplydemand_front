@@ -75,16 +75,18 @@
               format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
           </td>
           <td>업종:</td>
-          <td>
+          <td :style= "{width: '250px'}">
             <v-select
-              v-model="e6"
+              v-model="this.$store.state.industries[0]"
               :items="this.$store.state.industries"
               :menu-props="{ maxHeight: '300' }"
               label="Select"
-              multiple
               dense
               full-width
               @change="selectIndustries"
+              persistent-hint
+              return-object
+              single-line
             ></v-select>
           </td>
           <td>
@@ -136,7 +138,6 @@ export default {
     this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
     this.searchDate2 = this.$moment(new Date()).format('YYYY-MM-DD');
-
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
     this.$store.dispatch('callQuickInterestTwoIndustrySelectBox', []);
@@ -159,23 +160,34 @@ export default {
   methods: {
     async selectIndustries(e){
       console.log(e);
-      this.$store.commit('setSendIndustries', e); 
+      this.$store.commit('setSendIndustry', e); 
     }
     , async searchData(){
-      let num = this.searchDate2.replace(/-/gi, "").toString();
-      if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
-          || !Number(this.searchDate2.replace(/-/gi, ""))
-          || num.length != 8) {
-        alert('관심2 조회일자를 정확하게 입력하세요!');
-        return;
-      }
+        let num = this.searchDate2.replace(/-/gi, "").toString();
+        if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
+            || !Number(this.searchDate2.replace(/-/gi, ""))
+            || num.length != 8) {
+          alert('관심2 조회일자를 정확하게 입력하세요!');
+          return;
+        }
 
-      try{
-        let postData = { searchDate2: this.searchDate2, category: 'interestTwo', };
-        await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
-      } catch(error){
-        console.log(error);
-      }
+        if( this.$store.state.sendIndustry === null ||
+            this.$store.state.sendIndustry === undefined || 
+            this.$store.state.sendIndustry === ''){
+          alert('업종을 선택해주세요!');
+          return;
+        }
+
+        try{
+          let postData = { 
+            searchDate2: this.searchDate2
+            , category: 'interestTwo'
+            , industry: this.$store.state.sendIndustry
+          };
+          await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
+        } catch(error){
+          console.log(error);
+        }
     }
      , onBtnExport() {
       this.gridApi.exportDataAsCsv(); 
@@ -329,9 +341,6 @@ export default {
     VueEnglishdatepicker,
   },
   data: () => ({
-    // spinner
-    loading: false,
-
     // ag grid 관련
     columnDefs: null,
     

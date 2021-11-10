@@ -18,7 +18,7 @@ export default new Vuex.Store({
     state: {
       spinnerLoading: false
       , industries: []
-      , sendIndustries: []
+      , sendIndustry: ''
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
       , quickInterestStockRightStockInfoHcInstance: chartSettingInOne.hcInstance
 
@@ -275,9 +275,9 @@ export default new Vuex.Store({
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
-        setSendIndustries: (state, payload)=> {
-            state.sendIndustries = payload;
-            console.log('state.sendIndustries;;;;;', state.sendIndustries)
+        setSendIndustry: (state, payload)=> {
+            state.sendIndustry = payload;
+            // console.log('state.sendIndustry;;;;;', state.sendIndustry)
         }, 
         callInOnLftRowData: (state, payload)=> {
             state.inOnLftRowData  = payload;
@@ -832,6 +832,7 @@ export default new Vuex.Store({
 
         , callQuickInterestTwoIndustrySelectBox: (state, payload)=>{
             state.industries = payload.interestTwoIndustrySelectBox;
+            state.sendIndustry = payload.interestTwoIndustrySelectBox[0];
         }
 
     },
