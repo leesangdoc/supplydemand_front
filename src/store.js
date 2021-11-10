@@ -364,7 +364,7 @@ export default new Vuex.Store({
             for(let i=0; i < acuChartInfo.length; i++){
                 state.kosdaqMarketIndexAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
                 state.kosdaqMarketIndexDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
-                state.kosdaqMarketIndexAcuChart.series[i].tooltip.valueSuffix = "십억원";
+                state.kosdaqMarketIndexAcuChart.series[i].tooltip.valueSuffix = "억원";
             }
 
             state.kosdaqMarketIndexAcuChart.rangeSelector.selected = 5;
@@ -393,6 +393,9 @@ export default new Vuex.Store({
             state.quickInterestStockRightStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.quickInterestStockRightStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.quickInterestStockRightStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            console.log('state.quickInterestStockRightStockInfoChart.series.length;;;', state.quickInterestStockRightStockInfoChart.series.length);
+
+
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
             state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
@@ -1271,7 +1274,7 @@ export default new Vuex.Store({
                     }
                 , payload})
             .then(function(response) {
-                commit('callQuickInterestTwoStockLeft', response.data);
+                commit('callRowData', response.data.grossSumGridData);
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {

@@ -10,8 +10,12 @@
     </div>
     <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
     <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
-        <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change" > </v-radio>
-        <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change"> </v-radio>
+        <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change" > 
+        </v-radio>
+        
+        <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change">
+        </v-radio>
+         
       </v-radio-group>
     <div v-if="inter1">
       <table width="100%">
@@ -63,7 +67,6 @@
             </th>
           </tr>
         </thead>
-        <!-- <tbody><tr><td></td><td></td></tr></tbody> @selection-changed="getSelectedRows" @row-selected-->
     </v-simple-table>
     </div>
     <div v-if="inter2">
@@ -77,7 +80,7 @@
           <td>업종:</td>
           <td :style= "{width: '250px'}">
             <v-select
-              v-model="this.$store.state.industries[0]"
+              v-model="defaultSelected"
               :items="this.$store.state.industries"
               :menu-props="{ maxHeight: '300' }"
               label="Select"
@@ -102,7 +105,7 @@
       </table>
     </div>
     <ag-grid-vue 
-        style="width: 100%; height: 100%;"
+        style="width: 100%; height: 80%;"
         class="ag-theme-alpine"
         :columnDefs="this.$store.state.quickInterestStockLeftGridColumns"
         :rowData="this.$store.state.rowData"
@@ -341,6 +344,7 @@ export default {
     VueEnglishdatepicker,
   },
   data: () => ({
+    defaultSelected: {text: '전체', value: '000'},
     // ag grid 관련
     columnDefs: null,
     
