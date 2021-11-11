@@ -72,12 +72,12 @@
     <div v-if="inter2">
       <table width="100%">
         <tr>
-          <td>조회일자:</td>
+          <th>조회일자:</th>
           <td>
             <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
               format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
           </td>
-          <td>업종:</td>
+          <th>업종:</th>
           <td :style= "{width: '250px'}">
             <v-select
               v-model="defaultSelected"
@@ -100,6 +100,16 @@
               @click="searchData">
               <v-icon>mdi-magnify</v-icon>
             </v-btn>
+          </td>
+        </tr>
+        <tr>
+          <th>이평선:</th>
+          <td :style= "{width: '200px'}">
+            <v-text-field
+              v-model="interestTwoTextField"
+              @change = "changeAvgLine"
+              label="AVG Line..."
+            ></v-text-field>
           </td>
         </tr>
       </table>
@@ -160,12 +170,22 @@ export default {
      */
   },
   name: 'QuickInterestStock',
+  
   methods: {
-    async selectIndustries(e){
-      console.log(e);
+    changeAvgLine(e){
+      console.log('changeAvgLine;;;', e);
+      this.$store.commit('setAvgLineList', e);
+    }
+    //, async changeAvgLineList(e){
+      // console.log(e);
+      // this.$store.commit('setAvgLineList', e); 
+    //}
+    , async selectIndustries(e){
+      
       this.$store.commit('setSendIndustry', e); 
     }
     , async searchData(){
+        this.$store.commit('validationCheckAvgLineList', this.$store.state.avgLineList);
         let num = this.searchDate2.replace(/-/gi, "").toString();
         if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
             || !Number(this.searchDate2.replace(/-/gi, ""))
@@ -186,6 +206,7 @@ export default {
             searchDate2: this.searchDate2
             , category: 'interestTwo'
             , industry: this.$store.state.sendIndustry
+            , avgLineList: this.$store.state.avgLineList
           };
           await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
         } catch(error){
@@ -231,6 +252,9 @@ export default {
     },
     changeToDate(e){
       this.todate = e;
+    }
+    , changeSearchDate2(e){
+      this.searchDate2 = e;
     }
     , async interest1() {
         this.inter1 = true;
@@ -288,12 +312,15 @@ export default {
         }
     },
 
-    interest1Change(){
+    async interest1Change(){
       console.log('inter1 changed...');
+      await this.$store.commit('setInterestValue', 'interestOne'); 
+      
     },
 
-    interest2Change(){
+    async interest2Change(){
       console.log('inter2 changed...');
+      await this.$store.commit('setInterestValue', 'interestTwo'); 
     },
 
     async interest2() {
@@ -344,6 +371,7 @@ export default {
     VueEnglishdatepicker,
   },
   data: () => ({
+    interestTwoTextField: '',
     defaultSelected: {text: '전체', value: '000'},
     // ag grid 관련
     columnDefs: null,

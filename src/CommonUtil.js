@@ -37,5 +37,33 @@ export class CommonUtil{
           });
           return list;
     }
+
+    addArrSeriesData(){
+        let series = {
+            name: '테스트용',
+            // pointStart: Date.UTC(2018, 1, 1),
+            // pointInterval: 1000 * 3600 * 24,
+            data: [],
+            marker: {
+              enabled: null, // auto
+              radius: 3,
+              lineWidth: 1,
+              lineColor: '#800000',
+            },
+            tooltip: {
+                split: true,
+                valueDecimals: 0,
+                valueSuffix: '원',
+            },
+            dataGrouping:{
+              approximation: 'average',
+              enabled:true,
+              forced:true,
+              groupAll:true,
+              groupPixelWidth:15,
+            }
+          };
+          return series;
+    }
 }
 

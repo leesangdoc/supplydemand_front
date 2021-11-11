@@ -17,6 +17,7 @@ export default new Vuex.Store({
     // data
     state: {
       spinnerLoading: false
+      , interestValue: ''
       , industries: []
       , sendIndustry: ''
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
@@ -254,6 +255,8 @@ export default new Vuex.Store({
       // 대차잔고 차트
       , kosdaqIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kosdaqIndustryFlowStockRightLoanTransactionChartOptions
       , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
+      , stockClosePriceAxisLength: 0
+      , avgLineList: []
     },
     // computed 같은??
     getters:{
@@ -275,6 +278,27 @@ export default new Vuex.Store({
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
+        validationCheckAvgLineList: (state, payload)=> {
+            console.log('payload;;;', payload);
+            state.avgLineList = new Array();
+            let temp = payload.split(',');
+            
+            for(let ele = 0; ele < temp.length; ele++){
+                console.log('ele;;;', ele);
+                if(isNaN(temp[ele])){
+                    state.avgLineList = [];
+                    alert('숫자를 입력해주세요!');
+                    return;
+                } else {
+                    state.avgLineList.push(new Number(temp[ele].trim()));
+                }
+            }
+            state.avgLineList.sort();
+        }
+        , setInterestValue: (state, payload)=> {
+            state.interestValue = payload;
+            // console.log('state.interestValue;;;;;', state.interestValue)
+        },
         setSendIndustry: (state, payload)=> {
             state.sendIndustry = payload;
             // console.log('state.sendIndustry;;;;;', state.sendIndustry)
@@ -385,7 +409,16 @@ export default new Vuex.Store({
         callSpinnerLoading: (state, payload)=>{
           state.spinnerLoading = payload.val;
         }, 
-        callStockRight: (state, payload)=>{
+
+        setStockClosePriceAxisLength: (state, payload)=>{
+            state.stockClosePriceAxisLength = payload;
+            console.log('state.stockClosePriceAxisLength;;;', state.stockClosePriceAxisLength);
+        }, 
+        setAvgLineList: (state, payload)=>{
+            state.avgLineList = payload;
+            console.log('state.avgLineList;;;', state.avgLineList);
+        }
+        , callStockRight: (state, payload)=>{
             state.quickInterestStockRightStockInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
             state.quickInterestStockRightStockInfoChart.series[1].data = commonUtil.changeDate(payload.ma005);
             state.quickInterestStockRightStockInfoChart.series[2].data = commonUtil.changeDate(payload.ma010);
@@ -393,9 +426,19 @@ export default new Vuex.Store({
             state.quickInterestStockRightStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.quickInterestStockRightStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.quickInterestStockRightStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
-            console.log('state.quickInterestStockRightStockInfoChart.series.length;;;', state.quickInterestStockRightStockInfoChart.series.length);
-
-
+            /*
+                1. 만들 이평선 갯수
+                2. 몇 일선인지
+             */
+            
+            if(state.interestValue === 'interestTwo'){
+                console.log('dfsdfsdfsdfs', payload);
+                let newSeries = commonUtil.addArrSeriesData();
+                state.quickInterestStockRightStockInfoChart.series[7] = newSeries;
+            } else if(state.interestValue === 'interestOne'){
+                state.quickInterestStockRightStockInfoChart.series.splice(state.stockClosePriceAxisLength, payload.avgLineList.length);
+                
+            }
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
             state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
@@ -1056,6 +1099,7 @@ export default new Vuex.Store({
                     ma100: response.data.ma100,
                     ma200: response.data.ma200,
                     stockName: payload.stockName,
+                    avgLineList: response.avgLineList,
                 };
 
                 if(payload.category == 'quickOne'){

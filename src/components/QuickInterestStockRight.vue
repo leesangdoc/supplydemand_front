@@ -45,7 +45,9 @@
 import {Chart} from 'highcharts-vue'
 
 export default {
-  beforeMount() {},
+  beforeMount() {
+    this.$store.commit('setStockClosePriceAxisLength', this.$store.state.quickInterestStockRightStockInfoChart.series.length);
+  },
   beforeCreate() {     
     console.log('beforeCreate');
   },
