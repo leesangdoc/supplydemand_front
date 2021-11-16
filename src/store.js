@@ -295,7 +295,7 @@ export default new Vuex.Store({
                     alert('숫자를 입력해주세요!');
                     callback(false);
                     return;
-                } else {
+                } else { 
                     // console.log('temp[ele].trim();;;;;', temp[ele].trim());
                     if( temp[ele].trim() === '' 
                         || temp[ele].trim() === 5
