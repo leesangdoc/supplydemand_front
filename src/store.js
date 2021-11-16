@@ -297,7 +297,7 @@ export default new Vuex.Store({
                     return;
                 } else {
                     // console.log('temp[ele].trim();;;;;', temp[ele].trim());
-                    if(temp[ele].trim() === '' 
+                    if( temp[ele].trim() === '' 
                         || temp[ele].trim() === 5
                         || temp[ele].trim() === 10
                         || temp[ele].trim() === 20
