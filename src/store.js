@@ -17,7 +17,7 @@ export default new Vuex.Store({
     // data
     state: {
       spinnerLoading: false
-      , interestValue: ''
+      , interestValue: 'interestOne'
       , industries: []
       , sendIndustry: ''
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
@@ -256,7 +256,7 @@ export default new Vuex.Store({
       , kosdaqIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kosdaqIndustryFlowStockRightLoanTransactionChartOptions
       , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
       , stockClosePriceAxisLength: 0
-      , avgLineList: []
+      , avgLineList: ''
     },
     // computed 같은??
     getters:{
@@ -278,22 +278,45 @@ export default new Vuex.Store({
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
-        validationCheckAvgLineList: (state, payload)=> {
-            console.log('payload;;;', payload);
+        validationCheckAvgLineList: (state, {payload, callback})=> {
+            let payload2 = payload;
+            // console.log('payload2;;;;;', payload2);
+            // console.log('typeof payload2;;;;;', typeof payload2);
+            if (Array.isArray(payload2)){
+                callback(true);
+                return;
+            }
             state.avgLineList = new Array();
-            let temp = payload.split(',');
-            
+            let temp = payload2.split(',');
             for(let ele = 0; ele < temp.length; ele++){
-                console.log('ele;;;', ele);
+                // console.log('ele;;;', ele);
                 if(isNaN(temp[ele])){
                     state.avgLineList = [];
                     alert('숫자를 입력해주세요!');
+                    callback(false);
                     return;
                 } else {
+                    // console.log('temp[ele].trim();;;;;', temp[ele].trim());
+                    if(temp[ele].trim() === '' 
+                        || temp[ele].trim() === 5
+                        || temp[ele].trim() === 10
+                        || temp[ele].trim() === 20
+                        || temp[ele].trim() === 60
+                        || temp[ele].trim() === 100
+                        || temp[ele].trim() === 200){
+                        continue;
+                    }
                     state.avgLineList.push(new Number(temp[ele].trim()));
                 }
             }
-            state.avgLineList.sort();
+
+            let filtered = state.avgLineList.filter((element) => element !== 0);
+            state.avgLineList = filtered;
+            state.avgLineList = state.avgLineList.sort(function(a, b){
+                return a - b;
+            });
+            callback(true);
+            return;
         }
         , setInterestValue: (state, payload)=> {
             state.interestValue = payload;
@@ -1352,6 +1375,12 @@ export default new Vuex.Store({
             .finally(()=>{
                 commit('callSpinnerLoading', {val: false});
             });
+        }
+
+        , validationCheckAvgLineList:({commit}, payload) => {
+            return new Promise((resolve) => {
+                commit('validationCheckAvgLineList', {payload, callback: resolve});
+              });
         }
 
     }

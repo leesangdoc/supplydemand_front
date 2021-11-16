@@ -106,7 +106,7 @@
           <th>이평선:</th>
           <td :style= "{width: '200px'}">
             <v-text-field
-              v-model="interestTwoTextField"
+              :v-model="this.$store.state.avgLineList"
               @change = "changeAvgLine"
               label="AVG Line..."
             ></v-text-field>
@@ -181,33 +181,46 @@ export default {
       // this.$store.commit('setAvgLineList', e); 
     //}
     , async selectIndustries(e){
-      
       this.$store.commit('setSendIndustry', e); 
     }
     , async searchData(){
-        this.$store.commit('validationCheckAvgLineList', this.$store.state.avgLineList);
-        let num = this.searchDate2.replace(/-/gi, "").toString();
-        if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
-            || !Number(this.searchDate2.replace(/-/gi, ""))
-            || num.length != 8) {
-          alert('관심2 조회일자를 정확하게 입력하세요!');
-          return;
-        }
-
-        if( this.$store.state.sendIndustry === null ||
-            this.$store.state.sendIndustry === undefined || 
-            this.$store.state.sendIndustry === ''){
-          alert('업종을 선택해주세요!');
-          return;
-        }
-
         try{
+          let resultBool = this.$store.dispatch('validationCheckAvgLineList', this.$store.state.avgLineList);
+          // console.log("resultBool;;;;;", resultBool);
+          resultBool.then((result)=>{
+            resultBool = result;
+          }).catch(function(error) {
+            console.log(error);
+            resultBool = false;
+          });
+          
+
+          if (!resultBool){
+            return;
+          }
+          console.log("1");
+          let num = this.searchDate2.replace(/-/gi, "").toString();
+          if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
+              || !Number(this.searchDate2.replace(/-/gi, ""))
+              || num.length != 8) {
+            alert('관심2 조회일자를 정확하게 입력하세요!');
+            return;
+          }
+          console.log("2");
+          if( this.$store.state.sendIndustry === null ||
+              this.$store.state.sendIndustry === undefined || 
+              this.$store.state.sendIndustry === ''){
+            alert('업종을 선택해주세요!');
+            return;
+          }
+          console.log("3");
           let postData = { 
             searchDate2: this.searchDate2
             , category: 'interestTwo'
             , industry: this.$store.state.sendIndustry
             , avgLineList: this.$store.state.avgLineList
           };
+          console.log('postData;;;;;', postData);
           await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
         } catch(error){
           console.log(error);
