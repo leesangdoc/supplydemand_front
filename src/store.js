@@ -1103,7 +1103,9 @@ export default new Vuex.Store({
             commit('callSpinnerLoading', {val: true});
             let resData = {};
             let postData = {
-                csvFileName: payload.csvFileName,
+                csvFileName: payload.csvFileName
+                , radioBoxKind: payload.radioBoxKind
+                , avgLineList: payload.avgLineList
             };
             axios.post(`${constants.URL}${'rightChartList/'}`
             , {
@@ -1122,7 +1124,7 @@ export default new Vuex.Store({
                     ma100: response.data.ma100,
                     ma200: response.data.ma200,
                     stockName: payload.stockName,
-                    avgLineList: response.avgLineList,
+                    avgLineList: response.data.avgLineList,
                 };
 
                 if(payload.category == 'quickOne'){

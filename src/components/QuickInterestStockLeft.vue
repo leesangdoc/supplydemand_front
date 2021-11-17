@@ -18,6 +18,7 @@
          
       </v-radio-group>
     <div v-if="inter1">
+      설명: 특정 세력별 수급분석
       <table width="100%">
         <tr><td>FROM(달력):</td>
           <td>
@@ -70,6 +71,7 @@
     </v-simple-table>
     </div>
     <div v-if="inter2">
+      설명: 특정날짜 특정 이평선
       <table width="100%">
         <tr>
           <th>조회일자:</th>
@@ -214,6 +216,19 @@ export default {
             return;
           }
           console.log("3");
+
+          if( typeof this.$store.state.avgLineList === 'string' 
+              || this.$store.state.avgLineList === '' 
+              || this.$store.state.avgLineList.length === 0){
+            alert('검색을 원하는 이평선 일수를 1개 이상 입력 해주세요(4개 이하).\n예) 100,200,300,400');
+            return;
+          }
+
+          if(this.$store.state.avgLineList.length > 4){
+            alert('이평선은 최대 4개까지 입력 가능합니다.');
+            return;
+          }
+
           let postData = { 
             searchDate2: this.searchDate2
             , category: 'interestTwo'
@@ -354,11 +369,13 @@ export default {
       const stockName = selectedData[0].stockName;
       try {
         await this.$store.dispatch('callStockRight', { 
-          csvFileName
+          csvFileName: csvFileName
           , stockName
           , fromdate: this.fromdate
           , todate: this.todate
           , category: 'quickOne'
+          , radioBoxKind: this.$store.state.interestValue
+          , avgLineList: this.$store.state.avgLineList
         });
         await this.$store.dispatch('callShortSelling', { 
           csvFileName
