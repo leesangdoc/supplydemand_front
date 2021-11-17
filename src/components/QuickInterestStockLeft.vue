@@ -185,18 +185,23 @@ export default {
     , async selectIndustries(e){
       this.$store.commit('setSendIndustry', e); 
     }
+
+    , async validationCheckAvgLineList(){
+        let resultBool = this.$store.dispatch('validationCheckAvgLineList', this.$store.state.avgLineList);
+        // console.log("resultBool;;;;;", resultBool);
+        resultBool.then((result)=>{
+          resultBool = result;
+        }).catch(function(error) {
+          console.log(error);
+          resultBool = false;
+        });
+        return resultBool;
+    }
+
     , async searchData(){
         try{
-          let resultBool = this.$store.dispatch('validationCheckAvgLineList', this.$store.state.avgLineList);
-          // console.log("resultBool;;;;;", resultBool);
-          resultBool.then((result)=>{
-            resultBool = result;
-          }).catch(function(error) {
-            console.log(error);
-            resultBool = false;
-          });
+          let resultBool = this.validationCheckAvgLineList();
           
-
           if (!resultBool){
             return;
           }
@@ -220,12 +225,12 @@ export default {
           if( typeof this.$store.state.avgLineList === 'string' 
               || this.$store.state.avgLineList === '' 
               || this.$store.state.avgLineList.length === 0){
-            alert('검색을 원하는 이평선 일수를 1개 이상 입력 해주세요(4개 이하).\n예) 100,200,300,400');
+            alert('검색을 원하는 이평선 일수를 1개 이상 입력 해주세요(4개 이하).\n5, 10, 20, 60, 100, 200일선 제외.\n예) 100,200,300,400');
             return;
           }
 
           if(this.$store.state.avgLineList.length > 4){
-            alert('이평선은 최대 4개까지 입력 가능합니다.');
+            alert('이평선은 최대 4개까지 입력 가능합니다.\n예) 100,200,300,400');
             return;
           }
 
@@ -368,6 +373,12 @@ export default {
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
       try {
+        if (this.$store.state.interestValue === 'interestTwo'){
+          let resultBool = this.validationCheckAvgLineList();
+          if (!resultBool){
+            return;
+          }
+        }
         await this.$store.dispatch('callStockRight', { 
           csvFileName: csvFileName
           , stockName

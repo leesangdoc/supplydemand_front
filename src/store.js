@@ -298,12 +298,12 @@ export default new Vuex.Store({
                 } else { 
                     // console.log('temp[ele].trim();;;;;', temp[ele].trim());
                     if( temp[ele].trim() === '' 
-                        || temp[ele].trim() === 5
-                        || temp[ele].trim() === 10
-                        || temp[ele].trim() === 20
-                        || temp[ele].trim() === 60
-                        || temp[ele].trim() === 100
-                        || temp[ele].trim() === 200){
+                        || temp[ele].trim() === '5'
+                        || temp[ele].trim() === '10'
+                        || temp[ele].trim() === '20'
+                        || temp[ele].trim() === '60'
+                        || temp[ele].trim() === '100'
+                        || temp[ele].trim() === '200'){
                         continue;
                     }
                     state.avgLineList.push(new Number(temp[ele].trim()));
@@ -455,7 +455,13 @@ export default new Vuex.Store({
              */
             
             if(state.interestValue === 'interestTwo'){
-                console.log('dfsdfsdfsdfs', payload);
+                if(payload.addAvgList > 0){
+                    let startIndex = 7;
+                    for(let i = 0; i < payload.addAvgList.length; i++){
+                        state.quickInterestStockRightStockInfoChart.series[startIndex].data = commonUtil.changeDate(payload[payload.addAvgList[i]]);
+                        startIndex++;
+                    }
+                }
                 let newSeries = commonUtil.addArrSeriesData();
                 state.quickInterestStockRightStockInfoChart.series[7] = newSeries;
             } else if(state.interestValue === 'interestOne'){
@@ -1115,6 +1121,18 @@ export default new Vuex.Store({
             }, postData})
             .then(function(response) {
                 console.log(response);
+                let addAvgObject = new Object();
+                let addAvgList = new Array();
+                if(payload.radioBoxKind === 'interestTwo'){
+                    let key1 = Object.keys(response.data);
+                    console.log(key1);
+                    addAvgList = response.data.addAvg;
+                    if(addAvgList.length > 0){
+                        for(let i = 0; i < addAvgList.length; i++){
+                            addAvgObject[addAvgList[i]] = response.data[addAvgList[i]];
+                        }
+                    }
+                }
                 resData = {
                     resultStockInfo: response.data.resultStockInfo,
                     ma005: response.data.ma005,
@@ -1125,7 +1143,12 @@ export default new Vuex.Store({
                     ma200: response.data.ma200,
                     stockName: payload.stockName,
                     avgLineList: response.data.avgLineList,
+                    addAvgList: addAvgList,
                 };
+
+                if(!isEmpty(addAvgObject)){
+                    Object.assign(resData, addAvgObject);
+                }
 
                 if(payload.category == 'quickOne'){
                     commit('callStockRight', resData);
