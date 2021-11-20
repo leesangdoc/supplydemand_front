@@ -20,6 +20,9 @@ export default new Vuex.Store({
       , interestValue: 'interestOne'
       , industries: []
       , sendIndustry: ''
+      , sendAvgCross: {text: '골든크로스', value: 'avgUp'}
+      , sendBuySubject: {text: '세력합', value: 'grossSum'}
+
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
       , quickInterestStockRightStockInfoHcInstance: chartSettingInOne.hcInstance
 
@@ -257,6 +260,11 @@ export default new Vuex.Store({
       , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
       , stockClosePriceAxisLength: 0
       , avgLineList: ''
+      // 서버에서 넘어온 관심2 이평선 리스트 정보
+      , getAvgList: []
+      // 이평선 골든크로스 데드크로스
+      , avgCross: [{text: '골든크로스', value: 'avgUp'}, {text: '데드크로스', value: 'avgDown'}]
+      , buySubject: [{text: '세력합', value: 'grossSum'}, {text: '개인', value: 'individual'}]
     },
     // computed 같은??
     getters:{
@@ -280,8 +288,8 @@ export default new Vuex.Store({
     mutations: {
         validationCheckAvgLineList: (state, {payload, callback})=> {
             let payload2 = payload;
-            // console.log('payload2;;;;;', payload2);
-            // console.log('typeof payload2;;;;;', typeof payload2);
+            console.log('payload2;;;;;', payload2);
+            console.log('typeof payload2;;;;;', typeof payload2);
             if (Array.isArray(payload2)){
                 callback(true);
                 return;
@@ -297,13 +305,13 @@ export default new Vuex.Store({
                     return;
                 } else { 
                     // console.log('temp[ele].trim();;;;;', temp[ele].trim());
-                    if( temp[ele].trim() === '' 
-                        || temp[ele].trim() === '5'
-                        || temp[ele].trim() === '10'
-                        || temp[ele].trim() === '20'
-                        || temp[ele].trim() === '60'
-                        || temp[ele].trim() === '100'
-                        || temp[ele].trim() === '200'){
+                    if( temp[ele].trim() === '' ){
+                        // || temp[ele].trim() === '5'
+                        // || temp[ele].trim() === '10'
+                        // || temp[ele].trim() === '20'
+                        // || temp[ele].trim() === '60'
+                        // || temp[ele].trim() === '100'
+                        // || temp[ele].trim() === '200'
                         continue;
                     }
                     state.avgLineList.push(new Number(temp[ele].trim()));
@@ -325,8 +333,16 @@ export default new Vuex.Store({
         setSendIndustry: (state, payload)=> {
             state.sendIndustry = payload;
             // console.log('state.sendIndustry;;;;;', state.sendIndustry)
-        }, 
-        callInOnLftRowData: (state, payload)=> {
+        }
+        , setSendAvgCross: (state, payload)=> {
+            state.sendAvgCross = payload;
+            // console.log('state.sendAvgCross;;;;;', state.sendAvgCross)
+        }
+        , setSendBuySubject: (state, payload)=> {
+            state.sendBuySubject = payload;
+            // console.log('state.sendAvgCross;;;;;', state.sendAvgCross)
+        }
+        , callInOnLftRowData: (state, payload)=> {
             state.inOnLftRowData  = payload;
         }, 
         callRowData: (state, payload)=> {
@@ -435,11 +451,11 @@ export default new Vuex.Store({
 
         setStockClosePriceAxisLength: (state, payload)=>{
             state.stockClosePriceAxisLength = payload;
-            console.log('state.stockClosePriceAxisLength;;;', state.stockClosePriceAxisLength);
+            // console.log('state.stockClosePriceAxisLength;;;', state.stockClosePriceAxisLength);
         }, 
         setAvgLineList: (state, payload)=>{
             state.avgLineList = payload;
-            console.log('state.avgLineList;;;', state.avgLineList);
+            // console.log('state.avgLineList;;;', state.avgLineList);
         }
         , callStockRight: (state, payload)=>{
             state.quickInterestStockRightStockInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
@@ -449,34 +465,72 @@ export default new Vuex.Store({
             state.quickInterestStockRightStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.quickInterestStockRightStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.quickInterestStockRightStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
-            /*
-                1. 만들 이평선 갯수
-                2. 몇 일선인지
-             */
             
-            if(state.interestValue === 'interestTwo'){
-                if(payload.addAvgList > 0){
-                    let startIndex = 7;
-                    for(let i = 0; i < payload.addAvgList.length; i++){
-                        state.quickInterestStockRightStockInfoChart.series[startIndex].data = commonUtil.changeDate(payload[payload.addAvgList[i]]);
-                        startIndex++;
-                    }
-                }
-                let newSeries = commonUtil.addArrSeriesData();
-                state.quickInterestStockRightStockInfoChart.series[7] = newSeries;
-            } else if(state.interestValue === 'interestOne'){
-                state.quickInterestStockRightStockInfoChart.series.splice(state.stockClosePriceAxisLength, payload.avgLineList.length);
-                
-            }
-            state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
-            state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
-            state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
             state.quickInterestStockRightStockInfoChart.series[1].visible = false;
             state.quickInterestStockRightStockInfoChart.series[2].visible = false;
             state.quickInterestStockRightStockInfoChart.series[3].visible = false;
             state.quickInterestStockRightStockInfoChart.series[4].visible = false;
             state.quickInterestStockRightStockInfoChart.series[5].visible = false;
             state.quickInterestStockRightStockInfoChart.series[6].visible = false;
+            /*
+                1. 만들 이평선 갯수
+                2. 몇 일선인지
+             */
+            
+            if(state.interestValue === 'interestTwo'){
+                if(payload.addAvgList.length > 0){
+                    state.getAvgList = payload.addAvgList;
+                    let startIndex = 7;
+                    const colorHexCodeArr = ['#F661D7', '#83D6A2', '#FFFED0', '#7692DF'];
+                    for(let i = 0; i < payload.addAvgList.length; i++){
+                        let newSeries = commonUtil.addArrSeriesData((payload.addAvgList[i].substring(2)+"일선"),colorHexCodeArr[i]);
+                        state.quickInterestStockRightStockInfoChart.series[startIndex] = newSeries;
+                        state.quickInterestStockRightStockInfoChart.series[startIndex].data = commonUtil.changeDate(payload[payload.addAvgList[i]]);
+                        startIndex++;
+                    }
+                }
+                if(payload.avgLineList.length > 0){
+                    for(let i = 0; i < payload.avgLineList.length; i++){
+                        if(payload.avgLineList[i] == 5){
+                            state.quickInterestStockRightStockInfoChart.series[1].visible = true;
+                            continue;
+                        }
+
+                        if(payload.avgLineList[i] == 10){
+                            state.quickInterestStockRightStockInfoChart.series[2].visible = true;
+                            continue;
+                        }
+
+                        if(payload.avgLineList[i] == 20){
+                            state.quickInterestStockRightStockInfoChart.series[3].visible = true;
+                            continue;
+                        }
+
+                        if(payload.avgLineList[i] == 60){
+                            state.quickInterestStockRightStockInfoChart.series[4].visible = true;
+                            continue;
+                        }
+
+                        if(payload.avgLineList[i] == 100){
+                            state.quickInterestStockRightStockInfoChart.series[5].visible = true;
+                            continue;
+                        }
+
+                        if(payload.avgLineList[i] == 200){
+                            state.quickInterestStockRightStockInfoChart.series[6].visible = true;
+                            continue;
+                        }
+                    }
+                }
+                
+            } else if(state.interestValue === 'interestOne'){
+                state.quickInterestStockRightStockInfoChart.series.splice(state.stockClosePriceAxisLength, state.getAvgList.length);
+                
+            }
+            state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
+            state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
+            state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
+            
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
             state.inOnLftClkStkNm = payload;
@@ -1146,9 +1200,11 @@ export default new Vuex.Store({
                     addAvgList: addAvgList,
                 };
 
-                if(!isEmpty(addAvgObject)){
+                if(Object.keys(addAvgObject).length > 0){
                     Object.assign(resData, addAvgObject);
                 }
+
+                console.log('resData;;;', resData);
 
                 if(payload.category == 'quickOne'){
                     commit('callStockRight', resData);

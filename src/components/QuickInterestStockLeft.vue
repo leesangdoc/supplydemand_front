@@ -10,13 +10,9 @@
     </div>
     <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
     <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
-        <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change" > 
-        </v-radio>
-        
-        <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change">
-        </v-radio>
-         
-      </v-radio-group>
+      <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change"></v-radio>
+      <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change"></v-radio>
+    </v-radio-group>
     <div v-if="inter1">
       설명: 특정 세력별 수급분석
       <table width="100%">
@@ -40,13 +36,27 @@
             <td><v-checkbox v-model="finance" @click="changeNotGrossSum(e)" :label="`금융`"/></td>
             <td><v-checkbox v-model="insurance" @click="changeNotGrossSum(e)" :label="`보험`"/></td>
             <td><v-checkbox v-model="investment" @click="changeNotGrossSum(e)" :label="`투신`"/></td>
+          </tr>
+          <tr>
+            
             <td><v-checkbox v-model="bank" @click="changeNotGrossSum(e)" :label="`은행`"/></td>
             <td><v-checkbox v-model="etcFinance" @click="changeNotGrossSum(e)" :label="`기타금융`"/></td>
             <td><v-checkbox v-model="pensionFund" @click="changeNotGrossSum(e)" :label="`연기금`"/></td>
             <td><v-checkbox v-model="government" @click="changeNotGrossSum(e)" :label="`국가`"/></td>
             <td><v-checkbox v-model="etcCorp" @click="changeNotGrossSum(e)" :label="`기타법인`"/></td>
             <td><v-checkbox v-model="etcForeigner" @click="changeNotGrossSum(e)" :label="`기타외인`"/></td>
+          </tr>
+          <tr>
             <td><v-checkbox v-model="privateEquity" @click="changeNotGrossSum(e)" :label="`사모펀드`"/></td>
+            <td>
+            <v-btn
+              icon
+              color="primary"
+              dark
+              @click="getInterest1">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </td>
           </tr>
         </table>
         <v-simple-table>
@@ -71,7 +81,7 @@
     </v-simple-table>
     </div>
     <div v-if="inter2">
-      설명: 특정날짜 특정 이평선
+      설명: 특정날짜 특정 이평선 상향돌파와 하향돌파
       <table width="100%">
         <tr>
           <th>조회일자:</th>
@@ -108,10 +118,42 @@
           <th>이평선:</th>
           <td :style= "{width: '200px'}">
             <v-text-field
-              :v-model="this.$store.state.avgLineList"
               @change = "changeAvgLine"
               label="AVG Line..."
+              :value="this.$store.state.avgLineList"
             ></v-text-field>
+          </td>
+          <th>이평선 돌파:</th>
+          <td :style= "{width: '250px'}">
+            <v-select
+              v-model="defaultAvgCrossSelected"
+              :items="this.$store.state.avgCross"
+              :menu-props="{ maxHeight: '300' }"
+              label="Select"
+              dense
+              full-width
+              @change="selectAvgCross"
+              persistent-hint
+              return-object
+              single-line
+            ></v-select>
+          </td>
+        </tr>
+        <tr>
+          <th>매수주체:</th>
+          <td :style= "{width: '250px'}">
+            <v-select
+              v-model="defaultBuySubjectSelected"
+              :items="this.$store.state.buySubject"
+              :menu-props="{ maxHeight: '300' }"
+              label="Select"
+              dense
+              full-width
+              @change="selectBuySubject"
+              persistent-hint
+              return-object
+              single-line
+            ></v-select>
           </td>
         </tr>
       </table>
@@ -153,6 +195,7 @@ export default {
     this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
     this.searchDate2 = this.$moment(new Date()).format('YYYY-MM-DD');
+    this.searchDate3 = this.$moment(new Date()).format('YYYY-MM-DD');
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
     this.$store.dispatch('callQuickInterestTwoIndustrySelectBox', []);
@@ -175,7 +218,7 @@ export default {
   
   methods: {
     changeAvgLine(e){
-      console.log('changeAvgLine;;;', e);
+      // console.log('changeAvgLine;;;', e);
       this.$store.commit('setAvgLineList', e);
     }
     //, async changeAvgLineList(e){
@@ -183,10 +226,15 @@ export default {
       // this.$store.commit('setAvgLineList', e); 
     //}
     , async selectIndustries(e){
-      this.$store.commit('setSendIndustry', e); 
+      this.$store.commit('setSendIndustry', e);
     }
-
-    , async validationCheckAvgLineList(){
+    , async selectAvgCross(e){
+        this.$store.commit('setSendAvgCross', e);
+    }
+    , async selectBuySubject(e){
+      this.$store.commit('setSendBuySubject', e);
+    }
+    , async validationCheckAvgLineList() {
         let resultBool = this.$store.dispatch('validationCheckAvgLineList', this.$store.state.avgLineList);
         // console.log("resultBool;;;;;", resultBool);
         resultBool.then((result)=>{
@@ -205,7 +253,13 @@ export default {
           if (!resultBool){
             return;
           }
-          console.log("1");
+
+          if(this.$store.state.spinnerLoading){
+            alert('아직 조회중입니다. 조회가 끝나고 버튼을 클릭해주세요.');
+            return;
+          }
+
+          // console.log("1");
           let num = this.searchDate2.replace(/-/gi, "").toString();
           if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
               || !Number(this.searchDate2.replace(/-/gi, ""))
@@ -213,14 +267,14 @@ export default {
             alert('관심2 조회일자를 정확하게 입력하세요!');
             return;
           }
-          console.log("2");
+          // console.log("2");
           if( this.$store.state.sendIndustry === null ||
               this.$store.state.sendIndustry === undefined || 
               this.$store.state.sendIndustry === ''){
             alert('업종을 선택해주세요!');
             return;
           }
-          console.log("3");
+          // console.log("3");
 
           if( typeof this.$store.state.avgLineList === 'string' 
               || this.$store.state.avgLineList === '' 
@@ -239,6 +293,8 @@ export default {
             , category: 'interestTwo'
             , industry: this.$store.state.sendIndustry
             , avgLineList: this.$store.state.avgLineList
+            , avgCross: this.$store.state.sendAvgCross
+            , buySubject: this.$store.state.sendBuySubject
           };
           console.log('postData;;;;;', postData);
           await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
@@ -255,7 +311,7 @@ export default {
       console.log('keyUpFromDate e;;;'+e);
     },
     changeNotGrossSum(e){
-      console.log('changeNotGrossSum e;;;'+e);
+      // console.log('changeNotGrossSum e;;;'+e);
       if(this.finance && this.foreigner && this.finance && this.insurance
       && this.investment && this.bank && this.etcFinance && this.pensionFund
       && this.government && this.etcCorp && this.etcForeigner && this.privateEquity){
@@ -289,60 +345,67 @@ export default {
     , changeSearchDate2(e){
       this.searchDate2 = e;
     }
+    , async interest2() {
+      this.inter1 = false;
+      this.inter2 = true;
+      console.log("interest2()...");
+    }
     , async interest1() {
-        this.inter1 = true;
-        this.inter2 = false;
-        if(this.fromdate === undefined){
-          let date = new Date();
-          let year = date.getFullYear();
-          let month = ("0" + (1 + date.getMonth())).slice(-2);
-          let day = ("0" + date.getDate()).slice(-2);
-          this.fromdate = year + '-'+month + '-'+day;
-          // console.log('interest1 undefined this.fromdate', this.fromdate);
-        }
-        if(this.todate === undefined){
-          let date = new Date();
-          let year = date.getFullYear();
-          let month = ("0" + (1 + date.getMonth())).slice(-2);
-          let day = ("0" + date.getDate()).slice(-2);
-          this.todate = year + '-'+ month +'-'+ day;
-          // console.log('interest1 undefined this.todate', this.todate);
-        } 
-        if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
-          alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
-          return;
-        }
-        let postData = {
-          fromdate: this.fromdate, 
-          todate: this.todate,
-          checkbx: {
-            individual: this.individual,
-            grossSum: this.grossSum,
-            foreigner: this.foreigner,
-            finance: this.finance,
-            insurance: this.insurance,
-            investment: this.investment,
-            bank: this.bank,
-            etcFinance: this.etcFinance,
-            pensionFund: this.pensionFund,
-            government: this.government,
-            etcCorp: this.etcCorp,
-            etcForeigner: this.etcForeigner,
-            privateEquity: this.privateEquity,
-          },
-          category: 'interestOne',
-        };
-        await this.$store.commit('callInOnLftRowData', []);
-        // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
-        // this.emptyRowData([]);
-        // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
-        // 액션함수를 불러올 때, dispatch 함수를 사용한다.
-        await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
-        try {
-          await this.$store.dispatch('callQuickInterestStockLeft', postData);
-        } catch(error){
-          console.log(error);
-        }
+      this.inter1 = true;
+      this.inter2 = false;
+    }
+    , async getInterest1(){
+      if(this.fromdate === undefined){
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        this.fromdate = year + '-'+month + '-'+day;
+        // console.log('interest1 undefined this.fromdate', this.fromdate);
+      }
+      if(this.todate === undefined){
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = ("0" + (1 + date.getMonth())).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        this.todate = year + '-'+ month +'-'+ day;
+        // console.log('interest1 undefined this.todate', this.todate);
+      } 
+      if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
+        alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
+        return;
+      }
+      let postData = {
+        fromdate: this.fromdate, 
+        todate: this.todate,
+        checkbx: {
+          individual: this.individual,
+          grossSum: this.grossSum,
+          foreigner: this.foreigner,
+          finance: this.finance,
+          insurance: this.insurance,
+          investment: this.investment,
+          bank: this.bank,
+          etcFinance: this.etcFinance,
+          pensionFund: this.pensionFund,
+          government: this.government,
+          etcCorp: this.etcCorp,
+          etcForeigner: this.etcForeigner,
+          privateEquity: this.privateEquity,
+        },
+        category: 'interestOne',
+      };
+      await this.$store.commit('callInOnLftRowData', []);
+      // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
+      // this.emptyRowData([]);
+      // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
+      // 액션함수를 불러올 때, dispatch 함수를 사용한다.
+      await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
+      try {
+        await this.$store.dispatch('callQuickInterestStockLeft', postData);
+      } catch(error){
+        console.log(error);
+      }
     },
 
     async interest1Change(){
@@ -356,11 +419,7 @@ export default {
       await this.$store.commit('setInterestValue', 'interestTwo'); 
     },
 
-    async interest2() {
-      this.inter1 = false;
-      this.inter2 = true;
-      console.log("interest2()...");
-    },
+    
 
     onGridReady(params) {
       this.gridApi = params.api;
@@ -372,10 +431,16 @@ export default {
       const selectedData = selectedNodes.map(node => node.data);
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
+      console.log('selectedData;;;;;', selectedData);
       try {
         if (this.$store.state.interestValue === 'interestTwo'){
           let resultBool = this.validationCheckAvgLineList();
           if (!resultBool){
+            return;
+          }
+
+          if(JSON.stringify(this.$store.state.avgLineList) != JSON.stringify(selectedData[0].avgList)){
+            alert('변경된 이평선을 조회하기 위해 그리드를 재조회 후 사용해주세요!');
             return;
           }
         }
@@ -414,6 +479,8 @@ export default {
   data: () => ({
     interestTwoTextField: '',
     defaultSelected: {text: '전체', value: '000'},
+    defaultAvgCrossSelected: {text: '골든크로스', value: 'avgUp'},
+    defaultBuySubjectSelected: {text: '세력합', value: 'grossSum'},
     // ag grid 관련
     columnDefs: null,
     

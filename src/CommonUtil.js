@@ -38,9 +38,9 @@ export class CommonUtil{
           return list;
     }
 
-    addArrSeriesData(){
+    addArrSeriesData(_name, _color){
         let series = {
-            name: '테스트용',
+            name: _name,
             // pointStart: Date.UTC(2018, 1, 1),
             // pointInterval: 1000 * 3600 * 24,
             data: [],
@@ -48,7 +48,7 @@ export class CommonUtil{
               enabled: null, // auto
               radius: 3,
               lineWidth: 1,
-              lineColor: '#800000',
+              lineColor: _color,
             },
             tooltip: {
                 split: true,
