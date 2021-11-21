@@ -259,7 +259,7 @@ export default new Vuex.Store({
       , kosdaqIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kosdaqIndustryFlowStockRightLoanTransactionChartOptions
       , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
       , stockClosePriceAxisLength: 0
-      , avgLineList: ''
+      , avgLineList: '111,222,333,444'
       // 서버에서 넘어온 관심2 이평선 리스트 정보
       , getAvgList: []
       // 이평선 골든크로스 데드크로스
@@ -288,8 +288,8 @@ export default new Vuex.Store({
     mutations: {
         validationCheckAvgLineList: (state, {payload, callback})=> {
             let payload2 = payload;
-            console.log('payload2;;;;;', payload2);
-            console.log('typeof payload2;;;;;', typeof payload2);
+            // console.log('payload2;;;;;', payload2);
+            // console.log('typeof payload2;;;;;', typeof payload2);
             if (Array.isArray(payload2)){
                 callback(true);
                 return;
@@ -478,6 +478,10 @@ export default new Vuex.Store({
              */
             
             if(state.interestValue === 'interestTwo'){
+                if(state.getAvgList.length > 0){
+                    state.quickInterestStockRightStockInfoChart.series.splice(state.stockClosePriceAxisLength, state.getAvgList.length);
+                }
+
                 if(payload.addAvgList.length > 0){
                     state.getAvgList = payload.addAvgList;
                     let startIndex = 7;
@@ -489,6 +493,7 @@ export default new Vuex.Store({
                         startIndex++;
                     }
                 }
+
                 if(payload.avgLineList.length > 0){
                     for(let i = 0; i < payload.avgLineList.length; i++){
                         if(payload.avgLineList[i] == 5){
@@ -529,7 +534,6 @@ export default new Vuex.Store({
             }
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
-            state.quickInterestStockRightStockInfoChart.rangeSelector.selected = 5;
             
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
@@ -857,23 +861,117 @@ export default new Vuex.Store({
             }
         }
         , callKospiIndustryFlowStockRightShortSelling: (state, payload)=>{
-            state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
-            state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
-            state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
-            state.kospiIndustryFlowStockRightShortSellingChart.series[1].visible = false;
-            state.kospiIndustryFlowStockRightShortSellingChart.series[2].visible = false;
+            // console.log('payload;;;;', payload);
+            if(Object.keys(payload).length === 0){
+                return;
+            }
+            if(Object.prototype.hasOwnProperty.call(payload, 'shortSellingQuantity')){
+                state.kospiIndustryFlowStockRightShortSellingChart.series[0].visible = false;
+                if(payload.shortSellingQuantity.length > 0){
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+                } else {
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'shortSellingPercentage')){
+                if(payload.shortSellingPercentage.length > 0){
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+                } else {
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'shortSellingTransactionAmount')){
+                state.kospiIndustryFlowStockRightShortSellingChart.series[2].visible = false;
+                if(payload.shortSellingTransactionAmount.length > 0){
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+                } else {
+                    state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = [];
+            }
+            
+            // state.kospiIndustryFlowStockRightShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+            // state.kospiIndustryFlowStockRightShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+            // state.kospiIndustryFlowStockRightShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+            // state.kospiIndustryFlowStockRightShortSellingChart.series[1].visible = false;
+            // state.kospiIndustryFlowStockRightShortSellingChart.series[2].visible = false;
             state.kospiIndustryFlowStockRightShortSellingChart.rangeSelector.selected = 5;
         }
         , callKospiIndustryFlowStockRightLoanTransaction: (state, payload)=>{
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].visible = false;
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].visible = false;
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].visible = false;
-            state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].visible = false;
+            console.log('payload;;;;;', payload);
+            if(Object.keys(payload).length === 0){
+                return;
+            }
+            if(Object.prototype.hasOwnProperty.call(payload, 'loanStockQuantity')){
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].visible = false;
+                if(payload.loanStockQuantity.length > 0){
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+                } else {
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'loanPayBack')){
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].visible = false;
+                if(payload.loanPayBack.length > 0){
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+                } else {
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'loanBalanceFluctuation')){
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].visible = false;
+                if(payload.loanBalanceFluctuation.length > 0){
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+                } else {
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'loanBalanceStockQuantity')){
+                if(payload.loanBalanceStockQuantity.length > 0){
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+                } else {
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = [];
+            }
+
+            if(Object.prototype.hasOwnProperty.call(payload, 'loanBalanceAmount')){
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].visible = false;
+                if(payload.loanBalanceAmount.length > 0){
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+                } else {
+                    state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = [];
+                }
+            } else {
+                state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = [];
+            }
+
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[0].visible = false;
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[1].visible = false;
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[2].visible = false;
+            // state.kospiIndustryFlowStockRightLoanTransactionChart.series[4].visible = false;
             state.kospiIndustryFlowStockRightLoanTransactionChart.rangeSelector.selected = 5;
         }
 

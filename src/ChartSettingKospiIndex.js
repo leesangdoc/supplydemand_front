@@ -19,7 +19,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 205,
+          y: 785,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -90,6 +90,7 @@ export default {
           renderTo: 'container',
           type: 'line',
           zoomType: 'x',
+          height: 1000,
           //marginBottom: 80
         },
         title: {
@@ -476,7 +477,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 205,
+          y: 785,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -546,6 +547,7 @@ export default {
           renderTo: 'container',
           type: 'line',
           zoomType: 'x',
+          height: 1000,
           //marginBottom: 80
         },
         title: {
@@ -929,7 +931,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 205,
+          y: 785,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -1003,6 +1005,7 @@ export default {
           renderTo: 'container',
           type: 'line',
           zoomType: 'x',
+          height: 1000,
           //marginBottom: 80
         },
         title: {

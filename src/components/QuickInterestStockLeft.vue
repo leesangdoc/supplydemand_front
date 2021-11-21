@@ -296,7 +296,7 @@ export default {
             , avgCross: this.$store.state.sendAvgCross
             , buySubject: this.$store.state.sendBuySubject
           };
-          console.log('postData;;;;;', postData);
+          // console.log('postData;;;;;', postData);
           await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
         } catch(error){
           console.log(error);
@@ -348,11 +348,12 @@ export default {
     , async interest2() {
       this.inter1 = false;
       this.inter2 = true;
-      console.log("interest2()...");
+      this.$store.dispatch('emptyRowData', []);
     }
     , async interest1() {
       this.inter1 = true;
       this.inter2 = false;
+      this.$store.dispatch('emptyRowData', []);
     }
     , async getInterest1(){
       if(this.fromdate === undefined){
@@ -431,16 +432,15 @@ export default {
       const selectedData = selectedNodes.map(node => node.data);
       const csvFileName = selectedData[0].fileTitle;
       const stockName = selectedData[0].stockName;
-      console.log('selectedData;;;;;', selectedData);
+      // console.log('selectedData;;;;;', selectedData);
       try {
         if (this.$store.state.interestValue === 'interestTwo'){
-          let resultBool = this.validationCheckAvgLineList();
-          if (!resultBool){
+          if(JSON.stringify(this.$store.state.avgLineList) != JSON.stringify(selectedData[0].avgList)){
+            alert('변경된 이평선을 조회하기 위해 그리드를 재조회 후 사용해주세요!\n변경전: '+ selectedData[0].avgList + '\n변경후: '+ this.$store.state.avgLineList);
             return;
           }
-
-          if(JSON.stringify(this.$store.state.avgLineList) != JSON.stringify(selectedData[0].avgList)){
-            alert('변경된 이평선을 조회하기 위해 그리드를 재조회 후 사용해주세요!');
+          let resultBool = this.validationCheckAvgLineList();
+          if (!resultBool){
             return;
           }
         }
