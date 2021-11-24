@@ -84,11 +84,31 @@
       설명: 특정날짜 특정 이평선 상향돌파와 하향돌파
       <table width="100%">
         <tr>
-          <th>조회일자:</th>
+          <th>FROM(달력):</th>
           <td>
             <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
               format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
           </td>
+          <th>TO(달력):</th>
+          <td>
+            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
+              format="YYYY-MM-DD" @change="changeSearchDate3" :value="searchDate3" />
+          </td>
+          <td>
+            <v-btn
+              icon
+              color="primary"
+              dark
+              @click="searchData">
+              <v-icon>mdi-magnify</v-icon>
+            </v-btn>
+          </td>
+        </tr>
+        <tr>
+          
+          
+        </tr>
+        <tr>
           <th>업종:</th>
           <td :style= "{width: '250px'}">
             <v-select
@@ -104,17 +124,6 @@
               single-line
             ></v-select>
           </td>
-          <td>
-            <v-btn
-              icon
-              color="primary"
-              dark
-              @click="searchData">
-              <v-icon>mdi-magnify</v-icon>
-            </v-btn>
-          </td>
-        </tr>
-        <tr>
           <th>이평선:</th>
           <td :style= "{width: '200px'}">
             <v-text-field
@@ -123,6 +132,8 @@
               :value="this.$store.state.avgLineList"
             ></v-text-field>
           </td>
+        </tr>
+        <tr>
           <th>이평선 돌파:</th>
           <td :style= "{width: '250px'}">
             <v-select
@@ -138,8 +149,6 @@
               single-line
             ></v-select>
           </td>
-        </tr>
-        <tr>
           <th>매수주체:</th>
           <td :style= "{width: '250px'}">
             <v-select
@@ -194,7 +203,7 @@ export default {
     console.log('beforeMount');
     this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
-    this.searchDate2 = this.$moment(new Date()).format('YYYY-MM-DD');
+    this.searchDate2 = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
     this.searchDate3 = this.$moment(new Date()).format('YYYY-MM-DD');
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
@@ -264,9 +273,19 @@ export default {
           if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
               || !Number(this.searchDate2.replace(/-/gi, ""))
               || num.length != 8) {
-            alert('관심2 조회일자를 정확하게 입력하세요!');
+            alert('관심2 조회 FROM 일자를 정확하게 입력하세요!');
             return;
           }
+
+          let num3 = this.searchDate3.replace(/-/gi, "").toString();
+          if( isNaN(parseInt(this.searchDate3.replace(/-/gi, ""))) 
+              || !Number(this.searchDate3.replace(/-/gi, ""))
+              || num3.length != 8) {
+            alert('관심2 조회 TO 일자를 정확하게 입력하세요!');
+            return;
+          }
+
+
           // console.log("2");
           if( this.$store.state.sendIndustry === null ||
               this.$store.state.sendIndustry === undefined || 
@@ -290,6 +309,7 @@ export default {
 
           let postData = { 
             searchDate2: this.searchDate2
+            , searchDate3: this.searchDate3
             , category: 'interestTwo'
             , industry: this.$store.state.sendIndustry
             , avgLineList: this.$store.state.avgLineList
@@ -344,6 +364,9 @@ export default {
     }
     , changeSearchDate2(e){
       this.searchDate2 = e;
+    }
+    , changeSearchDate3(e){
+      this.searchDate3 = e;
     }
     , async interest2() {
       this.inter1 = false;
