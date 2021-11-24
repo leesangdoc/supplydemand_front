@@ -195,7 +195,9 @@
               <div v-else-if="index === 8"> 
                 <KosdaqMarketIndexFlow/>
               </div>
-              <div v-else-if="index === 9"> <MarketSupplyDemand/></div>
+              <div v-else-if="index === 9"> 
+                <MarketSupplyDemand/>
+              </div>
               <div v-else-if="index === 10"> <SearchSupplyDemand/></div>
               <div v-else-if="index === 11"> <SearchSupplyDemand/></div>
             </v-card-text>
