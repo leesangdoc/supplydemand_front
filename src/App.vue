@@ -196,7 +196,7 @@
                 <KosdaqMarketIndexFlow/>
               </div>
               <div v-else-if="index === 9"> 
-                <MarketSupplyDemand/>
+                <SupplyDemandAnalysisGraph/>
               </div>
               <div v-else-if="index === 10"> <SearchSupplyDemand/></div>
               <div v-else-if="index === 11"> <SearchSupplyDemand/></div>
@@ -215,7 +215,7 @@
 import QuickInterestStockLeft from './components/QuickInterestStockLeft';
 import QuickInterestStockRight from './components/QuickInterestStockRight';
 import SearchSupplyDemand from './components/SearchSupplyDemand';
-import MarketSupplyDemand from './components/MarketSupplyDemand';
+import SupplyDemandAnalysisGraph from './components/SupplyDemandAnalysisGraph';
 import SupplyDemandGraph from './components/SupplyDemandGraph';
 import AveragePriceGraph from './components/AveragePriceGraph';
 import KospiIndustryRanking from './components/KospiIndustryRanking';
@@ -286,7 +286,7 @@ export default {
     QuickInterestStockLeft
     , QuickInterestStockRight
     , SearchSupplyDemand
-     ,MarketSupplyDemand
+     ,SupplyDemandAnalysisGraph
      ,SupplyDemandGraph
      ,AveragePriceGraph
     , KospiIndustryRanking

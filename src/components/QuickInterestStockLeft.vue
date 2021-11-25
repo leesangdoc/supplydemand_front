@@ -285,6 +285,11 @@ export default {
             return;
           }
 
+          if(parseInt(this.searchDate2.replace(/-/gi, "")) > parseInt(this.searchDate3.replace(/-/gi, ""))){
+            alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
+            return;
+          }
+
 
           // console.log("2");
           if( this.$store.state.sendIndustry === null ||
@@ -379,57 +384,57 @@ export default {
       this.$store.dispatch('emptyRowData', []);
     }
     , async getInterest1(){
-      if(this.fromdate === undefined){
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = ("0" + (1 + date.getMonth())).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        this.fromdate = year + '-'+month + '-'+day;
-        // console.log('interest1 undefined this.fromdate', this.fromdate);
-      }
-      if(this.todate === undefined){
-        let date = new Date();
-        let year = date.getFullYear();
-        let month = ("0" + (1 + date.getMonth())).slice(-2);
-        let day = ("0" + date.getDate()).slice(-2);
-        this.todate = year + '-'+ month +'-'+ day;
-        // console.log('interest1 undefined this.todate', this.todate);
-      } 
-      if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
-        alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
-        return;
-      }
-      let postData = {
-        fromdate: this.fromdate, 
-        todate: this.todate,
-        checkbx: {
-          individual: this.individual,
-          grossSum: this.grossSum,
-          foreigner: this.foreigner,
-          finance: this.finance,
-          insurance: this.insurance,
-          investment: this.investment,
-          bank: this.bank,
-          etcFinance: this.etcFinance,
-          pensionFund: this.pensionFund,
-          government: this.government,
-          etcCorp: this.etcCorp,
-          etcForeigner: this.etcForeigner,
-          privateEquity: this.privateEquity,
-        },
-        category: 'interestOne',
-      };
-      await this.$store.commit('callInOnLftRowData', []);
-      // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
-      // this.emptyRowData([]);
-      // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
-      // 액션함수를 불러올 때, dispatch 함수를 사용한다.
-      await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
-      try {
-        await this.$store.dispatch('callQuickInterestStockLeft', postData);
-      } catch(error){
-        console.log(error);
-      }
+        if(this.fromdate === undefined){
+          let date = new Date();
+          let year = date.getFullYear();
+          let month = ("0" + (1 + date.getMonth())).slice(-2);
+          let day = ("0" + date.getDate()).slice(-2);
+          this.fromdate = year + '-'+month + '-'+day;
+          // console.log('interest1 undefined this.fromdate', this.fromdate);
+        }
+        if(this.todate === undefined){
+          let date = new Date();
+          let year = date.getFullYear();
+          let month = ("0" + (1 + date.getMonth())).slice(-2);
+          let day = ("0" + date.getDate()).slice(-2);
+          this.todate = year + '-'+ month +'-'+ day;
+          // console.log('interest1 undefined this.todate', this.todate);
+        } 
+        if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
+          alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
+          return;
+        }
+        let postData = {
+          fromdate: this.fromdate, 
+          todate: this.todate,
+          checkbx: {
+            individual: this.individual,
+            grossSum: this.grossSum,
+            foreigner: this.foreigner,
+            finance: this.finance,
+            insurance: this.insurance,
+            investment: this.investment,
+            bank: this.bank,
+            etcFinance: this.etcFinance,
+            pensionFund: this.pensionFund,
+            government: this.government,
+            etcCorp: this.etcCorp,
+            etcForeigner: this.etcForeigner,
+            privateEquity: this.privateEquity,
+          },
+          category: 'interestOne',
+        };
+        await this.$store.commit('callInOnLftRowData', []);
+        // this.$store.state.rowData = []; // mapState 선언 되있으면, this.rowData;
+        // this.emptyRowData([]);
+        // this.$store.commit('emptyRowData', []); // mapMutations 선언 되있으면, this.emptyRowData([]);
+        // 액션함수를 불러올 때, dispatch 함수를 사용한다.
+        await this.$store.dispatch('emptyRowData', []); // mapActions 선언 되있으면, this.emptyRowData([]);
+        try {
+          await this.$store.dispatch('callQuickInterestStockLeft', postData);
+        } catch(error){
+          console.log(error);
+        }
     },
 
     async interest1Change(){

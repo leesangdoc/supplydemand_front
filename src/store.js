@@ -17,9 +17,12 @@ export default new Vuex.Store({
     // data
     state: {
       spinnerLoading: false
+      , supplyDemandAnalysisGraphRowData: []
       , interestValue: 'interestOne'
       , industries: []
+      , supplyDemandAnalysisGraphAutoCompleteSelectBox: []
       , sendIndustry: ''
+      , sendStockObject: ''
       , sendAvgCross: {text: '골든크로스', value: 'avgUp'}
       , sendBuySubject: {text: '세력합', value: 'grossSum'}
 
@@ -140,7 +143,7 @@ export default new Vuex.Store({
       , industryRankingColumns: gridSetting.industryRankingColumns
       , industryCashFlowColumns: gridSetting.industryCashFlowColumns
       , quickInterestStockLeftGridColumns: gridSetting.quickInterestStockLeftGridColumns
-
+      , supplyDemandAnalysisGridColumns: gridSetting.supplyDemandAnalysisGridColumns
       , kospiIndustryFlowStockLeftGridColumns: gridSetting.kospiIndustryFlowStockLeftGridColumns
       , kospiIndustryFlowStockLeftRowData: []
       , kosdaqIndustryFlowStockLeftGridColumns: gridSetting.kosdaqIndustryFlowStockLeftGridColumns
@@ -286,7 +289,10 @@ export default new Vuex.Store({
     },
     // state 값을 변화 시키는 부분(통일시켜서 사용하기 위해 여기에 만듬).
     mutations: {
-        validationCheckAvgLineList: (state, {payload, callback})=> {
+        setSDAGAutoComplete: (state, payload)=> {
+            state.sendStockObject = payload;
+        }
+        , validationCheckAvgLineList: (state, {payload, callback})=> {
             let payload2 = payload;
             // console.log('payload2;;;;;', payload2);
             // console.log('typeof payload2;;;;;', typeof payload2);
@@ -1062,6 +1068,13 @@ export default new Vuex.Store({
             state.sendIndustry = payload.interestTwoIndustrySelectBox[0];
         }
 
+        , callSupplyDemandGraphSelectBox: (state, payload)=>{
+            state.supplyDemandAnalysisGraphAutoCompleteSelectBox = payload.supplyDemandAnalysisGraphAutoCompleteSelectBox;
+            state.sendStockCode = payload.supplyDemandAnalysisGraphAutoCompleteSelectBox[0];
+        }
+
+        
+
     },
 
     actions: {
@@ -1544,7 +1557,10 @@ export default new Vuex.Store({
                     }
                 , payload})
             .then(function(response) {
+                console.log('selectBox: ', response);
                 commit('callQuickInterestTwoIndustrySelectBox', response.data);
+                commit('callSupplyDemandGraphSelectBox', response.data);
+
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
@@ -1560,6 +1576,31 @@ export default new Vuex.Store({
             return new Promise((resolve) => {
                 commit('validationCheckAvgLineList', {payload, callback: resolve});
               });
+        }
+
+        , callSupplyDemandAnalysisGraph:({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'callSupplyDemandAnalysisGraph/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                console.log('callSupplyDemandAnalysisGraph: ', response);
+                // commit('callQuickInterestTwoIndustrySelectBox', response.data);
+                // commit('callSupplyDemandGraphSelectBox', response.data);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
         }
 
     }
