@@ -40,16 +40,105 @@
           </td>
         </tr>
     </table>
-    <ag-grid-vue 
-        style="width: 100%; height: 80%;"
+    
+    <br /><br />
+    <v-container class="grey lighten-5" fluid>
+      <v-row mb-12 no-gutters dense>
+        <v-col auto>
+          <v-card class="pa-2" outlined tile height="200px">
+            <ag-grid-vue 
+              style="width: 100%; height: 100%;"
+              class="ag-theme-alpine"
+              :columnDefs="this.$store.state.quickInterestStockLeftGridColumns"
+              :rowData="this.$store.state.supplyDemandAnalysisGraphRowData"
+              rowSelection="single"
+              @grid-ready="onGridReady"
+              :defaultColDef="this.$store.state.defaultColDef"
+            >
+            </ag-grid-vue>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+      <div>
+      <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphStockInfoChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.supplyDemandAnalysisGraphStockInfoHcInstance">
+        {{this.$store.state.stla}}
+      </highcharts>
+      </div>
+      <div>
+      <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphAcuChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.supplyDemandAnalysisGraphAcuHcInstance">
+        {{this.$store.state.stla}}
+      </highcharts>
+       </div>
+      <div>
+      <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphDispersionChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.supplyDemandAnalysisGraphDispersionHcInstance">
+        {{this.$store.state.stla}}
+      </highcharts>
+       </div>
+      <div>
+      <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphShortSellingChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.supplyDemandAnalysisGraphShortSellingHcInstance">
+        {{this.$store.state.stla}}
+      </highcharts>
+       </div>
+      <div>
+      <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphLoanTransactionChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.supplyDemandAnalysisGraphLoanTransactionHcInstance">
+        {{this.$store.state.stla}}
+      </highcharts>
+       </div>
+ <v-container class="grey lighten-5" fluid>
+      <v-row mb-12 no-gutters dense>
+        <v-col auto>
+          <v-card class="pa-2" outlined tile height="200px">
+      <ag-grid-vue 
+        style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
-        :columnDefs="this.$store.state.quickInterestStockLeftGridColumns"
-        :rowData="this.$store.state.supplyDemandAnalysisGraphRowData"
+        :columnDefs="this.$store.state.averagePriceGraphColumns"
+        :rowData="this.$store.state.supplyDemandAnalysisGraphAveragePriceRowData"
         rowSelection="single"
         @grid-ready="onGridReady"
-        :defaultColDef="this.$store.state.defaultColDef"
-        >
+        :defaultColDef="this.$store.state.defaultColDef">
     </ag-grid-vue>
+</v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+ <v-container class="grey lighten-5" fluid>
+      <v-row mb-12 no-gutters dense>
+        <v-col auto>
+          <v-card class="pa-2" outlined tile height="1400px">
+    <ag-grid-vue 
+        style="width: 100%; height: 100%;"
+        class="ag-theme-alpine"
+        :columnDefs="this.$store.state.supplyDemandGraphColumns"
+        :rowData="this.$store.state.supplyDemandAnalysisGraphResultRowData"
+        rowSelection="single"
+        @grid-ready="onGridReady"
+        :defaultColDef="this.$store.state.defaultColDef">
+    </ag-grid-vue>
+</v-card>
+        </v-col>
+      </v-row>
+    </v-container>
     
   </v-app>
 </template>
@@ -57,12 +146,17 @@
 <script>
 import VueEnglishdatepicker from 'vue-englishdatepicker';
 import { AgGridVue } from "ag-grid-vue";
-
+import {Chart} from 'highcharts-vue';
 export default {
-  name: 'SupplyDemandAnalysisGraph',
-  components: {
+  name: 'SupplyDemandAnalysisGraph'
+  , beforeMount(){
+    this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
+    this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
+  }
+  , components: {
     AgGridVue
     , VueEnglishdatepicker
+    , highcharts: Chart
   },
   // 이게 액션기능인듯...
   // this.$store.state.selectCompanyAutoComplete
@@ -85,6 +179,10 @@ export default {
       this.columnApi = params.columnApi;
       // this.gridApi.sizeColumnsToFit();
     }
+    // 차트 로드된 다음에 뿌림.
+    , someFunction(){
+      console.log("someFunction()...");
+    }
     , async searchData(){
         try{
           if( this.fromdate === null || this.fromdate === undefined || this.fromdate === ''){
@@ -105,6 +203,7 @@ export default {
             this.fromdate = year + '-'+month + '-'+day;
             // console.log('interest1 undefined this.fromdate', this.fromdate);
           }
+
           if(this.todate === undefined){
             let date = new Date();
             let year = date.getFullYear();
@@ -113,6 +212,7 @@ export default {
             this.todate = year + '-'+ month +'-'+ day;
             // console.log('interest1 undefined this.todate', this.todate);
           } 
+
           if(parseInt(this.fromdate.replace(/-/gi, "")) > parseInt(this.todate.replace(/-/gi, ""))){
             alert('TO(달력)이 FROM(달력)보다 작을 수 없습니다. \n다시 선택하세요!');
             return;
@@ -122,12 +222,19 @@ export default {
             alert('검색할 종목을 선택해주세요!');
             return;
           }
+
           let postData = {
-            fromdate: this.fromdate, 
-            todate: this.todate,
-            sendStockObject: this.$store.state.sendStockObject,
+            fromdate: this.fromdate
+            , todate: this.todate
+            , sendStockObject: this.$store.state.sendStockObject
+            , category: 'supplyDemandAnalysisGraph'
+            , csvFileName: this.$store.state.sendStockObject.text+'_'+this.$store.state.sendStockObject.value+'.csv'
           };
           await this.$store.dispatch('callSupplyDemandAnalysisGraph', postData);
+          await this.$store.dispatch('callStockRight', postData);
+          await this.$store.dispatch('callShortSelling', postData);
+          await this.$store.dispatch('callLoanTransaction', postData);
+
         } catch(error){
           console.log(error);
         }

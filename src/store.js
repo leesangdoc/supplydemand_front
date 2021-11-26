@@ -6,6 +6,7 @@ import constants from "./Constants";
 import chartSettingInOne from "./ChartSettingInOne"
 import chartSettingKospiIndex from "./ChartSettingKospiIndex"
 import chartSettingKosdaqIndex from "./ChartSettingKosdaqIndex"
+import chartSettingSupplyDemandAnalysisGraph from "./ChartSettingSupplyDemandAnalysisGraph"
 import gridSetting from "./GridSetting"
 
 Vue.use(Vuex);
@@ -23,6 +24,7 @@ export default new Vuex.Store({
       , supplyDemandAnalysisGraphAutoCompleteSelectBox: []
       , sendIndustry: ''
       , sendStockObject: ''
+      , supplyDemandAnalysisGraphStockName: ''
       , sendAvgCross: {text: '골든크로스', value: 'avgUp'}
       , sendBuySubject: {text: '세력합', value: 'grossSum'}
 
@@ -35,7 +37,26 @@ export default new Vuex.Store({
       , quickInterestStockRightDispersionChart: chartSettingInOne.dsprChartOptions
       , quickInterestStockRightDispersionHcInstance: chartSettingInOne.hcInstance
 
-      
+      , shortSellingChart: chartSettingInOne.shortSellingOptions
+      , shortSellingHcInstance: chartSettingInOne.hcInstance
+
+      , loanTransactionChart: chartSettingInOne.loanTransactionChartOptions
+      , loanTransactionHcInstance: chartSettingInOne.hcInstance
+
+      , supplyDemandAnalysisGraphStockInfoChart: chartSettingSupplyDemandAnalysisGraph.closePriceChartOptions
+      , supplyDemandAnalysisGraphStockInfoHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
+
+      , supplyDemandAnalysisGraphAcuChart: chartSettingSupplyDemandAnalysisGraph.acuChartOptions
+      , supplyDemandAnalysisGraphAcuHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
+
+      , supplyDemandAnalysisGraphDispersionChart: chartSettingSupplyDemandAnalysisGraph.dsprChartOptions
+      , supplyDemandAnalysisGraphDispersionHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
+
+      , supplyDemandAnalysisGraphShortSellingChart: chartSettingSupplyDemandAnalysisGraph.shortSellingOptions
+      , supplyDemandAnalysisGraphShortSellingHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
+
+      , supplyDemandAnalysisGraphLoanTransactionChart: chartSettingSupplyDemandAnalysisGraph.loanTransactionChartOptions
+      , supplyDemandAnalysisGraphLoanTransactionHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
       
 
       // [시작] 지수흐름
@@ -123,14 +144,6 @@ export default new Vuex.Store({
       , kosdaqMarketIndexHcInstance: chartSettingKosdaqIndex.hcInstance
       , kospiIndexData: []
       , kosdaqIndexData: []
-
-      // 공매도 차트
-      , shortSellingChart: chartSettingInOne.shortSellingOptions
-      , shortSellingHcInstance: chartSettingInOne.hcInstance
-
-      // 대차잔고 차트
-      , loanTransactionChart: chartSettingInOne.loanTransactionChartOptions
-      , loanTransactionHcInstance: chartSettingInOne.hcInstance
 
       // [종료] 지수흐름
       , averagePriceGraphColumns: gridSetting.averagePriceGraphColumns
@@ -255,6 +268,10 @@ export default new Vuex.Store({
       , kosdaqIndustryFlowStockRightDispersionChartHcInstance: chartSettingInOne.hcInstance
       , kosdaqIndustryFlowStockRightResultRowData: []
       , kosdaqIndustryFlowStockRightAveragePriceRowData: []
+
+      , supplyDemandAnalysisGraphResultRowData: []
+      , supplyDemandAnalysisGraphAveragePriceRowData: []
+
       // 공매도 차트
       , kosdaqIndustryFlowStockRightShortSellingChart: chartSettingInOne.kosdaqIndustryFlowStockRightShortSellingChartOptions
       , kosdaqIndustryFlowStockRightShortSellingHcInstance: chartSettingInOne.hcInstance
@@ -1008,9 +1025,11 @@ export default new Vuex.Store({
             state.kosdaqIndustryFlowStockRightInfoChart.series[6].visible = false;
             
         } 
+
         , setKosdaqIndustryFlowStockName: (state, payload)=>{
             state.kosdaqIndustryFlowStockName = payload;
         }
+
         , callKosdaqIndustryAcuDispersionChartData: (state, payload)=>{
             let response = payload;
             let acuChartInfo = [response.acuIndividualStkInfo, response.acuForeignerStkInfo, response.acuFinanceStkInfo
@@ -1050,6 +1069,7 @@ export default new Vuex.Store({
             state.kosdaqIndustryFlowStockRightShortSellingChart.series[2].visible = false;
             state.kosdaqIndustryFlowStockRightShortSellingChart.rangeSelector.selected = 5;
         }
+
         , callKosdaqIndustryFlowStockRightLoanTransaction: (state, payload)=>{
             state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
             state.kosdaqIndustryFlowStockRightLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
@@ -1063,6 +1083,82 @@ export default new Vuex.Store({
             state.kosdaqIndustryFlowStockRightLoanTransactionChart.rangeSelector.selected = 5;
         }
 
+        , callSupplyDemandAnalysisGraphStock: (state, payload)=>{
+            state.supplyDemandAnalysisGraphStockInfoChart.series[0].data = commonUtil.changeDate(payload.resultStockInfo);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[1].data = commonUtil.changeDate(payload.ma005);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[2].data = commonUtil.changeDate(payload.ma010);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[3].data = commonUtil.changeDate(payload.ma020);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.supplyDemandAnalysisGraphStockInfoChart.title.text = payload.stockName;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[0].name = payload.stockName;
+            state.supplyDemandAnalysisGraphStockInfoChart.rangeSelector.selected = 5;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[1].visible = false;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[2].visible = false;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[3].visible = false;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[4].visible = false;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[5].visible = false;
+            state.supplyDemandAnalysisGraphStockInfoChart.series[6].visible = false;
+        }
+
+        , setSupplyDemandAnalysisGraphStockName: (state, payload)=>{
+            state.supplyDemandAnalysisGraphStockName = payload;
+        }
+
+        , callSupplyDemandAnalysisGraphChartData: (state, payload)=>{
+            let response = payload;
+            let acuChartInfo = [response.acuIndividualStkInfo, response.acuForeignerStkInfo, response.acuFinanceStkInfo
+                , response.acuInsuranceStkInfo, response.acuInvestmentStkInfo, response.acuBankStkInfo
+                , response.acuEtcFinanceStkInfo, response.acuPensionFundStkInfo, response.acuGovernmentStkInfo
+                , response.acuEtcCorpStkInfo, response.acuEtcForeignerStkInfo, response.acuPrivateEquityStkInfo
+                , response.acuGrossSumStkInfo];
+            let dispersionInfo = [  response.indiDispersionArr, response.foreignerDispersionArr, response.financeInvestDispersionArr
+                    , response.insuranceDispersionArr, response.assetManageDispersionArr, response.bankDispersionArr
+                    , response.etcFinanceDispersionArr, response.pensionFundDispersionArr, response.governmentDispersionArr
+                    , response.etcCoporDispersionArr, response.etcForeignerDispersionArr, response.privateEquityDispersionArr
+                    , response.grossSumDispersionArr];
+            state.supplyDemandAnalysisGraphAcuChart.yAxis.title.text = "매집량";
+            for(let i=0; i < acuChartInfo.length; i++){
+                state.supplyDemandAnalysisGraphAcuChart.series[i].data = commonUtil.changeDate(acuChartInfo[i]);
+                state.supplyDemandAnalysisGraphDispersionChart.series[i].data = commonUtil.changeDate(dispersionInfo[i]);
+                state.supplyDemandAnalysisGraphAcuChart.series[i].tooltip.valueSuffix = "주";
+            }
+            state.supplyDemandAnalysisGraphResultRowData = response.resultRowData;
+            state.supplyDemandAnalysisGraphAveragePriceRowData = response.averagePriceRowData;
+
+            
+            state.supplyDemandAnalysisGraphAcuChart.rangeSelector.selected = 5;
+            state.supplyDemandAnalysisGraphDispersionChart.rangeSelector.selected = 5;
+
+            for(let i = 0; i < unvisibleArr.length; i++){
+              state.supplyDemandAnalysisGraphAcuChart.series[unvisibleArr[i]].visible = false;
+              state.supplyDemandAnalysisGraphDispersionChart.series[unvisibleArr[i]].visible = false;
+            }
+        }
+
+        , callSupplyDemandAnalysisGraphShortSelling: (state, payload)=>{
+            state.supplyDemandAnalysisGraphShortSellingChart.series[0].data = commonUtil.changeDate(payload.shortSellingQuantity);
+            state.supplyDemandAnalysisGraphShortSellingChart.series[1].data = commonUtil.changeDate(payload.shortSellingPercentage);
+            state.supplyDemandAnalysisGraphShortSellingChart.series[2].data = commonUtil.changeDate(payload.shortSellingTransactionAmount);
+            state.supplyDemandAnalysisGraphShortSellingChart.series[1].visible = false;
+            state.supplyDemandAnalysisGraphShortSellingChart.series[2].visible = false;
+            state.supplyDemandAnalysisGraphShortSellingChart.rangeSelector.selected = 5;
+        }
+        
+        , callSupplyDemandAnalysisGraphLoanTransaction: (state, payload)=>{
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[0].data = commonUtil.changeDate(payload.loanStockQuantity);
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[1].data = commonUtil.changeDate(payload.loanPayBack);
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[2].data = commonUtil.changeDate(payload.loanBalanceFluctuation);
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[3].data = commonUtil.changeDate(payload.loanBalanceStockQuantity);
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[4].data = commonUtil.changeDate(payload.loanBalanceAmount);
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[0].visible = false;
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[1].visible = false;
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[2].visible = false;
+            state.supplyDemandAnalysisGraphLoanTransactionChart.series[4].visible = false;
+            state.supplyDemandAnalysisGraphLoanTransactionChart.rangeSelector.selected = 5;
+        }
+
         , callQuickInterestTwoIndustrySelectBox: (state, payload)=>{
             state.industries = payload.interestTwoIndustrySelectBox;
             state.sendIndustry = payload.interestTwoIndustrySelectBox[0];
@@ -1071,6 +1167,10 @@ export default new Vuex.Store({
         , callSupplyDemandGraphSelectBox: (state, payload)=>{
             state.supplyDemandAnalysisGraphAutoCompleteSelectBox = payload.supplyDemandAnalysisGraphAutoCompleteSelectBox;
             state.sendStockCode = payload.supplyDemandAnalysisGraphAutoCompleteSelectBox[0];
+        }
+
+        , callSupplyDemandAnalysisGraphRowData: (state, payload)=>{
+            state.supplyDemandAnalysisGraphRowData = payload;
         }
 
         
@@ -1299,7 +1399,8 @@ export default new Vuex.Store({
                     }
                 }
                 resData = {
-                    resultStockInfo: response.data.resultStockInfo,
+                    // resultStockInfo: response.data.resultStockInfo,
+                    resultStockInfo: response.data.candleChart,
                     ma005: response.data.ma005,
                     ma010: response.data.ma010,
                     ma020: response.data.ma020,
@@ -1329,6 +1430,10 @@ export default new Vuex.Store({
                     commit('callKosdaqIndustryFlowStockRight', resData);
                     commit('setKosdaqIndustryFlowStockName', payload.stockName);
                     commit('callKosdaqIndustryAcuDispersionChartData', response.data);
+                } else if(payload.category == 'supplyDemandAnalysisGraph'){
+                    commit('callSupplyDemandAnalysisGraphStock', resData);
+                    commit('setSupplyDemandAnalysisGraphStockName', payload.stockName);
+                    commit('callSupplyDemandAnalysisGraphChartData', response.data);
                 }
 
                 
@@ -1407,6 +1512,8 @@ export default new Vuex.Store({
                     commit('callKospiIndustryFlowStockRightShortSelling', response.data);
                 } else if (payload.category === 'kosdaqIndustry'){
                     commit('callKosdaqIndustryFlowStockRightShortSelling', response.data);
+                } else if (payload.category === 'supplyDemandAnalysisGraph'){
+                    commit('callSupplyDemandAnalysisGraphShortSelling', response.data);
                 }
                 
             })
@@ -1436,6 +1543,8 @@ export default new Vuex.Store({
                     commit('callKospiIndustryFlowStockRightLoanTransaction', response.data);
                 } else if (payload.category === 'kosdaqIndustry'){
                     commit('callKosdaqIndustryFlowStockRightLoanTransaction', response.data);
+                } else if (payload.category === 'supplyDemandAnalysisGraph'){
+                    commit('callSupplyDemandAnalysisGraphLoanTransaction', response.data);
                 }
             })
             .catch(function(error) {
@@ -1590,8 +1699,7 @@ export default new Vuex.Store({
                 , payload})
             .then(function(response) {
                 console.log('callSupplyDemandAnalysisGraph: ', response);
-                // commit('callQuickInterestTwoIndustrySelectBox', response.data);
-                // commit('callSupplyDemandGraphSelectBox', response.data);
+                commit('callSupplyDemandAnalysisGraphRowData', response.data.supplyDemandAnalysisGraphRowData);
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {

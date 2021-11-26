@@ -1470,7 +1470,7 @@ export default {
             console.log(this);
             if(typeof(e.rangeSelectorButton)!== 'undefined') {
               // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
-              console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+              // console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
             }
           },
           

@@ -9,6 +9,7 @@ export default {
     , components: {
         highcharts: Chart,
     }
+    
     , methods: {
       testFunc() {}
     }
@@ -999,7 +1000,7 @@ export default {
             events: {
                 legendItemClick: function () {}
             }
-        }
+          }
         },
         chart: { 
           renderTo: 'container',
@@ -1080,7 +1081,7 @@ export default {
               valueSuffix: '원',
           },
           dataGrouping:{
-
+            
           }
         },
         {
@@ -2681,10 +2682,6 @@ export default {
           
         },
         plotOptions: {
-          candlestick: {
-            color: 'blue',
-            upColor: 'red'
-          },
           series: {
             events: {
                 legendItemClick: function () {}
@@ -2753,7 +2750,6 @@ export default {
           }]
         },
         series: [{
-          type: 'candlestick',
           name: '종목',
           // pointStart: Date.UTC(2018, 1, 1),
           // pointInterval: 1000 * 3600 * 24,
@@ -2770,7 +2766,11 @@ export default {
               valueSuffix: '원',
           },
           dataGrouping:{
-
+            approximation: 'average',
+            enabled:true,
+            forced:true,
+            groupAll:true,
+            groupPixelWidth:15,
           }
         },
         {
@@ -4385,10 +4385,6 @@ export default {
         
       },
       plotOptions: {
-        candlestick: {
-          color: 'blue',
-          upColor: 'red'
-        },
         series: {
           events: {
               legendItemClick: function () {}
@@ -4457,7 +4453,6 @@ export default {
         }]
       },
       series: [{
-        type: 'candlestick',
         name: '종목',
         // pointStart: Date.UTC(2018, 1, 1),
         // pointInterval: 1000 * 3600 * 24,
@@ -4474,7 +4469,11 @@ export default {
             valueSuffix: '원',
         },
         dataGrouping:{
-          
+          approximation: 'average',
+          enabled:true,
+          forced:true,
+          groupAll:true,
+          groupPixelWidth:15,
         }
       },
       {
