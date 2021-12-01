@@ -7,6 +7,9 @@
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
+      <v-overlay
+        :value="this.$store.state.spinnerLoading"
+      ></v-overlay>
     </div>
     <ag-grid-vue 
       style="width: 100%; height: 30%;"

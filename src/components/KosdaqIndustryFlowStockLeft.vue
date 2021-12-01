@@ -7,6 +7,9 @@
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
+      <v-overlay
+        :value="this.$store.state.spinnerLoading"
+      ></v-overlay>
     </div>
     업종명: {{this.$store.state.kosdaqIndustryName}} / 
     종목수: {{this.$store.state.kosdaqIndustryStockLength}} / 

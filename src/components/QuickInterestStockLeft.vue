@@ -1,12 +1,28 @@
 <template>
   <v-app>
-    <div class="text-center">
+    <!-- <v-layout row justify-center align-center>
     <v-progress-circular
         :size="this.$store.state.spinnerLoading ? 70 : 0"
         :width="10"
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
+      </v-layout> -->
+    <div class="text-center">
+      <v-layout align-center justify-center column fill-height>
+            <v-flex row align-center>
+                <v-progress-circular
+        :size="this.$store.state.spinnerLoading ? 70 : 0"
+        :width="10"
+        color="purple"
+        :indeterminate="this.$store.state.spinnerLoading"
+      ></v-progress-circular>
+            </v-flex>
+        </v-layout>
+      <v-overlay
+        :value="this.$store.state.spinnerLoading"
+      ></v-overlay>
+      
     </div>
     <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
     <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
@@ -168,7 +184,7 @@
       </table>
     </div>
     <ag-grid-vue 
-        style="width: 100%; height: 80%;"
+        style="width: 100%; height: 100%;"
         class="ag-theme-alpine"
         :columnDefs="this.$store.state.quickInterestStockLeftGridColumns"
         :rowData="this.$store.state.rowData"
@@ -178,6 +194,7 @@
         :defaultColDef="this.$store.state.defaultColDef"
         >
     </ag-grid-vue>
+    
   </v-app>
 </template>
 <script>

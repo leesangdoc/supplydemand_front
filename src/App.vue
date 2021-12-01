@@ -3,30 +3,48 @@
   @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 </style>
 <template>
-
+  
   <v-app>
-     
+    <!-- <v-overlay
+        :value="this.$store.state.spinnerLoading"
+      ></v-overlay> -->
+      <template>
     <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-app-bar-title>수급분석</v-app-bar-title>
     <v-spacer></v-spacer>
-    <template v-slot:extension> 
+    <template v-slot:extension>
+      
         <v-tabs align-with-title dark slider color="yellow" v-model="currentItem">
             <v-tab v-for="(item, index) in items" :key="item" :href="'#tab-' + index">{{ item }}</v-tab>
         </v-tabs>
       </template>
+      
+      <!-- <template>
+        <v-layout align-center justify-center column fill-height>
+            <v-flex row align-center>
+                <v-progress-circular 
+                  :indeterminate ="this.$store.state.spinnerLoading"
+                  :size="this.$store.state.spinnerLoading ? 70 : 0"
+                  color="purple" 
+                  :width="10"
+                ></v-progress-circular>
+            </v-flex>
+        </v-layout>
+      </template> -->
       <v-spacer></v-spacer>
     </v-app-bar>
     <v-main>
+     
         <v-tabs-items v-model="currentItem">
         <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + index">
           <v-card flat>
             <v-card-text>
               <div v-if="index === 0">
-                 
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
                       <v-col md="4"> <!-- auto md="4" -->
+                      
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
                         </v-card>  
@@ -62,6 +80,7 @@
                          </v-card>
                         </v-col>
                     </v-row>
+                    
                   </v-container>
               </div>
 
@@ -208,7 +227,7 @@
     <v-footer app color="primary" dark>
       Authored by sdlee. All rights reserved. Deep Learning Stock under Big data
     </v-footer>
-    
+     </template>
   </v-app>
 </template>
 <script>
