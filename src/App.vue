@@ -9,6 +9,7 @@
         :value="this.$store.state.spinnerLoading"
       ></v-overlay> -->
       <template>
+        
     <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
     <v-app-bar-nav-icon></v-app-bar-nav-icon>
     <v-app-bar-title>수급분석</v-app-bar-title>
@@ -42,6 +43,7 @@
             <v-card-text>
               <div v-if="index === 0">
                   <v-container class="grey lighten-5" fluid>
+                    <loader object="#ff9633" color1="#ffffff" color2="#17fd3d" size="5" speed="2" bg="#343a40" objectbg="#999793" opacity="80" disableScrolling="false" name="loading"></loader>
                     <v-row mb-6 no-gutters dense>
                       <v-col md="4"> <!-- auto md="4" -->
                       
@@ -253,6 +255,7 @@ import KosdaqIndustryFlowStockLeft from './components/KosdaqIndustryFlowStockLef
 import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRight';
 import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
 import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
+
 
 export default {
   setup() {

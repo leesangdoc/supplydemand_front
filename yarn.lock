@@ -12555,6 +12555,11 @@ vue-types@^3.0.2:
   dependencies:
     is-plain-object "3.0.1"
 
+vue-ui-preloader@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/vue-ui-preloader/-/vue-ui-preloader-1.2.1.tgz#3d32ba1c6b1d6c7a37e0a9bd684e8c011829bbd5"
+  integrity sha512-zxERqfGU/KW4LvIhPkwVZhRwioGXXOF5e+YXSZq27vpSrc8+w9bbWJercbIIIUXTl7Z5sUbINlm9X5iN0pESxw==
+
 vue3-datepicker-lite@^1.8.3:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue3-datepicker-lite/-/vue3-datepicker-lite-1.9.1.tgz#311684b905731536c55f67707cd18c8363ae5258"
