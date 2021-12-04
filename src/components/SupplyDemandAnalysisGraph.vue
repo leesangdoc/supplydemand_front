@@ -1,6 +1,14 @@
 <template>
   <v-app>
-    <h1>수급분석표입니다.</h1>
+    <div class="text-center" id="progressCircular" v-bind:style="{top: bgHeight, left: bgWidth, zIndex: bgZindex, position: bgPosition}">
+      <v-progress-circular
+        :size="this.$store.state.spinnerLoading ? 70 : 0"
+        :width="10"
+        color="purple"
+        :indeterminate="this.$store.state.spinnerLoading"
+      ></v-progress-circular>
+    </div>
+    <v-overlay :value="this.$store.state.spinnerLoading"></v-overlay>
     <table width="100%">
         <tr>
           <th>FROM(달력):</th>
@@ -149,6 +157,12 @@ import { AgGridVue } from "ag-grid-vue";
 import {Chart} from 'highcharts-vue';
 export default {
   name: 'SupplyDemandAnalysisGraph'
+  , mounted(){
+    window.addEventListener('resize', this.handleResize);
+  }
+  , beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  }
   , beforeMount(){
     this.todate = this.$moment(new Date()).format('YYYY-MM-DD');
     this.fromdate = this.$moment(new Date()).add(-7, 'days').format('YYYY-MM-DD');
@@ -161,7 +175,12 @@ export default {
   // 이게 액션기능인듯...
   // this.$store.state.selectCompanyAutoComplete
   methods: {
-    selectCompanyAutoCompleteChange(e){
+    handleResize(event) {
+      this.bgWidth = ((window.innerWidth / 2)-40)+'px';
+      this.bgHeight = ((window.innerHeight / 2)-200)+'px';
+      console.log(event);
+    }
+    , selectCompanyAutoCompleteChange(e){
       console.log('selectCompanyAutoCompleteChange;;;', e);
       this.$store.commit('setSDAGAutoComplete', e);
     }
@@ -241,7 +260,10 @@ export default {
     }
   },
   data: () => ({
-    
+    bgWidth: ((window.innerWidth / 2)-40)+'px',
+    bgHeight: ((window.innerHeight / 2)-200)+'px',
+    bgPosition: 'absolute',
+    bgZindex: 2,
   }),
 }
 </script>

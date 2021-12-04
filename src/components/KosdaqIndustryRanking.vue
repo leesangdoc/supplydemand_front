@@ -1,16 +1,14 @@
 <template>
   <v-app>
-    <div class="text-center">
-    <v-progress-circular
+    <div class="text-center" id="progressCircular" v-bind:style="{top: bgHeight, left: bgWidth, zIndex: bgZindex, position: bgPosition}">
+      <v-progress-circular
         :size="this.$store.state.spinnerLoading ? 70 : 0"
         :width="10"
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
-      <v-overlay
-        :value="this.$store.state.spinnerLoading"
-      ></v-overlay>
     </div>
+    <v-overlay :value="this.$store.state.spinnerLoading"></v-overlay>
     <ag-grid-vue 
       style="width: 100%; height: 30%;"
       class="ag-theme-alpine"
@@ -47,13 +45,22 @@ export default {
     this.kosdaqIndustryRanking();
   },
   beforeMount() {},
-  mounted(){},
+  mounted(){
+    window.addEventListener('resize', this.handleResize);
+  },
   beforeUpdate(){},
   updated(){},
-
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   name: 'QuickInterestStock',
   methods: {
-     ...mapMutations([])
+    handleResize(event) {
+      this.bgWidth = ((window.innerWidth / 2)-40)+'px';
+      this.bgHeight = ((window.innerHeight / 2)-200)+'px';
+      console.log(event);
+    }
+    , ...mapMutations([])
     , ...mapActions(['changeKosdaqIndustryRankingData', 'changeKosdaqIndustryHeroRankingData', 'callKosdaqIndustryRanking'])
     , async onCellDoubleClicked1(params){
         let temp = params.value.split('(');
@@ -121,7 +128,11 @@ export default {
     // ag grid 관련
     return {
       columnDefs: null,
-      hero: this.sources
+      hero: this.sources,
+      bgWidth: ((window.innerWidth / 2)-40)+'px',
+      bgHeight: ((window.innerHeight / 2)-200)+'px',
+      bgPosition: 'absolute',
+      bgZindex: 2,
     }
   },
 }

@@ -1,16 +1,14 @@
 <template>
   <v-app>
-    <div class="text-center">
-    <v-progress-circular
+    <div class="text-center" id="progressCircular" v-bind:style="{top: bgHeight, left: bgWidth, zIndex: bgZindex, position: bgPosition}">
+      <v-progress-circular
         :size="this.$store.state.spinnerLoading ? 70 : 0"
         :width="10"
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
-      <v-overlay
-        :value="this.$store.state.spinnerLoading"
-      ></v-overlay>
     </div>
+    <v-overlay :value="this.$store.state.spinnerLoading"></v-overlay>
     <div>
       <highcharts 
         :options="this.$store.state.kospiMarketIndexChart"
@@ -53,9 +51,19 @@ export default {
   created() {
     this.callKospiMarketIndexFlow();
   },
-  
+  mounted(){
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   methods: {
-     async callKospiMarketIndexFlow() {
+     handleResize(event) {
+      this.bgWidth = ((window.innerWidth / 2)-40)+'px';
+      this.bgHeight = ((window.innerHeight / 2)-200)+'px';
+      console.log(event);
+    }
+    , async callKospiMarketIndexFlow() {
        try{
           let postData = {};
           await this.$store.dispatch('callKospiMarketIndexFlow', postData);
@@ -73,7 +81,10 @@ export default {
     }
   },
   data: () => ({
-    
+    bgWidth: ((window.innerWidth / 2)-40)+'px',
+    bgHeight: ((window.innerHeight / 2)-200)+'px',
+    bgPosition: 'absolute',
+    bgZindex: 2,
   }),
 }
 </script>

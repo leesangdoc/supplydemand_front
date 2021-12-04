@@ -1,27 +1,15 @@
 <template>
   <v-app>
-    <!-- <v-layout row justify-center align-center>
-    <v-progress-circular
-        :size="this.$store.state.spinnerLoading ? 70 : 0"
-        :width="10"
-        color="purple"
-        :indeterminate="this.$store.state.spinnerLoading"
-      ></v-progress-circular>
-      </v-layout> -->
     <div class="text-center" id="progressCircular" v-bind:style="{top: bgHeight, left: bgWidth, zIndex: bgZindex, position: bgPosition}">
-
-                <v-progress-circular
+      <v-progress-circular
         :size="this.$store.state.spinnerLoading ? 70 : 0"
         :width="10"
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
-      <v-overlay
-        :value="this.$store.state.spinnerLoading"
-      ></v-overlay>
-      
     </div>
-    <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div>
+    <v-overlay :value="this.$store.state.spinnerLoading"></v-overlay>
+    <!-- <div class="loader" v-if="this.$store.state.spinnerLoading">데이터를 불러오고 있습니다. 잠시만 기다려주세요.....</div> -->
     <v-radio-group v-model="row" row column :disabled=this.$store.state.spinnerLoading>
       <v-radio label="관심1" value="radio-1" @click="interest1" @change="interest1Change"></v-radio>
       <v-radio label="관심2" value="radio-2" @click="interest2" @change="interest2Change"></v-radio>
@@ -246,10 +234,10 @@ export default {
      * // 보내는 부분
      * EventBus.$emit('signUp', userObj);
      */
-    
+    window.addEventListener('resize', this.handleResize);
   },
   beforeDestroy() {
-    // window.removeEventListener("scroll", this.onScroll)
+    window.removeEventListener('resize', this.handleResize);
   },
   name: 'QuickInterestStock',
   
@@ -258,7 +246,12 @@ export default {
     //   this.windowTop = e.target.documentElement.scrollTop; /* or: e.target.documentElement.scrollTop window.top.scrollY */
     //   console.log('this.windowTop;;;', this.windowTop);
     // },
-    changeAvgLine(e){
+    handleResize(event) {
+      this.bgWidth = ((window.innerWidth / 2)-40)+'px';
+      this.bgHeight = ((window.innerHeight / 2)-200)+'px';
+      console.log(event);
+    }
+    , changeAvgLine(e){
       // console.log('changeAvgLine;;;', e);
       this.$store.commit('setAvgLineList', e);
     }
@@ -537,10 +530,11 @@ export default {
     VueEnglishdatepicker,
   },
   data: () => ({
-    bgWidth: (window.innerWidth / 2)+'px',
+    bgWidth: ((window.innerWidth / 2)-40)+'px',
     bgHeight: ((window.innerHeight / 2)-200)+'px',
     bgPosition: 'absolute',
     bgZindex: 2,
+    
     interestTwoTextField: '',
     defaultSelected: {text: '전체', value: '000'},
     defaultAvgCrossSelected: {text: '골든크로스', value: 'avgUp'},
@@ -584,12 +578,3 @@ export default {
   }),
 }
 </script>
-<style scoped>
-/* .text-center{
-  background:skyblue;
-  position:absolute;
-  left:1024px;
-  top:269px;
-  z-index:2;
-} */
-</style>

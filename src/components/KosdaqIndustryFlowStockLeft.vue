@@ -1,16 +1,14 @@
 <template>
   <v-app>
-    <div class="text-center">
-    <v-progress-circular
+    <div class="text-center" id="progressCircular" v-bind:style="{top: bgHeight, left: bgWidth, zIndex: bgZindex, position: bgPosition}">
+      <v-progress-circular
         :size="this.$store.state.spinnerLoading ? 70 : 0"
         :width="10"
         color="purple"
         :indeterminate="this.$store.state.spinnerLoading"
       ></v-progress-circular>
-      <v-overlay
-        :value="this.$store.state.spinnerLoading"
-      ></v-overlay>
     </div>
+    <v-overlay :value="this.$store.state.spinnerLoading"></v-overlay>
     업종명: {{this.$store.state.kosdaqIndustryName}} / 
     종목수: {{this.$store.state.kosdaqIndustryStockLength}} / 
     기간: {{this.$store.state.kosdaqStockIndustryPeriod}}
@@ -53,11 +51,19 @@ export default {
     // this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
   },
   mounted(){
-   
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   name: 'KosdaqIndustryFlowStockLeft',
   methods: {
-    onGridReady(params) {
+    handleResize(event) {
+      this.bgWidth = ((window.innerWidth / 2)-40)+'px';
+      this.bgHeight = ((window.innerHeight / 2)-200)+'px';
+      console.log(event);
+    }
+    , onGridReady(params) {
       this.gridApi = params.api;
       this.columnApi = params.columnApi;
       // this.gridApi.sizeColumnsToFit();
@@ -100,6 +106,11 @@ export default {
     AgGridVue,
   },
 
-  data: () => ({}),
+  data: () => ({
+    bgWidth: ((window.innerWidth / 2)-40)+'px',
+    bgHeight: ((window.innerHeight / 2)-200)+'px',
+    bgPosition: 'absolute',
+    bgZindex: 2,
+  }),
 }
 </script>
