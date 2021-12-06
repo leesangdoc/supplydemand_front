@@ -19,13 +19,55 @@
       <table width="100%">
         <tr><td>FROM(달력):</td>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeFromDate" :value="fromdate"/>
+            <v-menu
+          v-model="menu1"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="fromdate"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="fromdate"
+            @input="menu1 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
           <td>TO(달력):</td>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeToDate" :value="todate" />
+            <v-menu
+          v-model="menu2"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="todate"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="todate"
+            @input="menu2 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
         </tr>
         </table>
@@ -87,13 +129,55 @@
         <tr>
           <th>FROM(달력):</th>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeSearchDate2" :value="searchDate2"/>
+            <v-menu
+          v-model="menu3"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="searchDate2"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="searchDate2"
+            @input="menu3 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
           <th>TO(달력):</th>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeSearchDate3" :value="searchDate3" />
+            <v-menu
+          v-model="menu4"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="searchDate3"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="searchDate3"
+            @input="menu4 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
           <td>
             <v-btn
@@ -184,7 +268,6 @@
 </template>
 <script>
 import { AgGridVue } from "ag-grid-vue";
-import VueEnglishdatepicker from 'vue-englishdatepicker';
 import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
 
 export default {
@@ -216,10 +299,6 @@ export default {
     this.$store.state.inOnLftRowData = [];
     this.$store.dispatch('emptyRowData', []); // dispatch 액션(비동기 처리를 위해 사용함.)
     this.$store.dispatch('callQuickInterestTwoIndustrySelectBox', []);
-    
-    // - height) / 2 + $(window).scrollTop();
-    // var left   = ($(window).width() - width)   / 2 + $(window).scrollLeft();
-
   },
   mounted(){
     // 이벤트버스 활용 예
@@ -242,23 +321,14 @@ export default {
   name: 'QuickInterestStock',
   
   methods: {
-    // onScroll(e) {
-    //   this.windowTop = e.target.documentElement.scrollTop; /* or: e.target.documentElement.scrollTop window.top.scrollY */
-    //   console.log('this.windowTop;;;', this.windowTop);
-    // },
     handleResize(event) {
       this.bgWidth = ((window.innerWidth / 2)-40)+'px';
       this.bgHeight = ((window.innerHeight / 2)-200)+'px';
       console.log(event);
     }
     , changeAvgLine(e){
-      // console.log('changeAvgLine;;;', e);
       this.$store.commit('setAvgLineList', e);
     }
-    //, async changeAvgLineList(e){
-      // console.log(e);
-      // this.$store.commit('setAvgLineList', e); 
-    //}
     , async selectIndustries(e){
       this.$store.commit('setSendIndustry', e);
     }
@@ -270,7 +340,6 @@ export default {
     }
     , async validationCheckAvgLineList() {
         let resultBool = this.$store.dispatch('validationCheckAvgLineList', this.$store.state.avgLineList);
-        // console.log("resultBool;;;;;", resultBool);
         resultBool.then((result)=>{
           resultBool = result;
         }).catch(function(error) {
@@ -292,8 +361,6 @@ export default {
             alert('아직 조회중입니다. 조회가 끝나고 버튼을 클릭해주세요.');
             return;
           }
-
-          // console.log("1");
           let num = this.searchDate2.replace(/-/gi, "").toString();
           if( isNaN(parseInt(this.searchDate2.replace(/-/gi, ""))) 
               || !Number(this.searchDate2.replace(/-/gi, ""))
@@ -301,7 +368,6 @@ export default {
             alert('관심2 조회 FROM 일자를 정확하게 입력하세요!');
             return;
           }
-
           let num3 = this.searchDate3.replace(/-/gi, "").toString();
           if( isNaN(parseInt(this.searchDate3.replace(/-/gi, ""))) 
               || !Number(this.searchDate3.replace(/-/gi, ""))
@@ -309,34 +375,26 @@ export default {
             alert('관심2 조회 TO 일자를 정확하게 입력하세요!');
             return;
           }
-
           if(parseInt(this.searchDate2.replace(/-/gi, "")) > parseInt(this.searchDate3.replace(/-/gi, ""))){
             alert('toDate가 fromDate보다 작을 수 없습니다. \n다시 선택하세요!');
             return;
           }
-
-
-          // console.log("2");
           if( this.$store.state.sendIndustry === null ||
               this.$store.state.sendIndustry === undefined || 
               this.$store.state.sendIndustry === ''){
             alert('업종을 선택해주세요!');
             return;
           }
-          // console.log("3");
-
           if( typeof this.$store.state.avgLineList === 'string' 
               || this.$store.state.avgLineList === '' 
               || this.$store.state.avgLineList.length === 0){
             alert('검색을 원하는 이평선 일수를 1개 이상 입력 해주세요(4개 이하).\n5, 10, 20, 60, 100, 200일선 제외.\n예) 100,200,300,400');
             return;
           }
-
           if(this.$store.state.avgLineList.length > 4){
             alert('이평선은 최대 4개까지 입력 가능합니다.\n예) 100,200,300,400');
             return;
           }
-
           let postData = { 
             searchDate2: this.searchDate2
             , searchDate3: this.searchDate3
@@ -346,7 +404,6 @@ export default {
             , avgCross: this.$store.state.sendAvgCross
             , buySubject: this.$store.state.sendBuySubject
           };
-          // console.log('postData;;;;;', postData);
           await this.$store.dispatch('callQuickInterestTwoStockLeft', postData);
         } catch(error){
           console.log(error);
@@ -361,7 +418,6 @@ export default {
       console.log('keyUpFromDate e;;;'+e);
     },
     changeNotGrossSum(e){
-      // console.log('changeNotGrossSum e;;;'+e);
       if(this.finance && this.foreigner && this.finance && this.insurance
       && this.investment && this.bank && this.etcFinance && this.pensionFund
       && this.government && this.etcCorp && this.etcForeigner && this.privateEquity){
@@ -385,18 +441,6 @@ export default {
       this.etcCorp = this.grossSum;
       this.etcForeigner = this.grossSum;
       this.privateEquity = this.grossSum;
-    },
-    changeFromDate(e){
-      this.fromdate = e;
-    },
-    changeToDate(e){
-      this.todate = e;
-    }
-    , changeSearchDate2(e){
-      this.searchDate2 = e;
-    }
-    , changeSearchDate3(e){
-      this.searchDate3 = e;
     }
     , async interest2() {
       this.inter1 = false;
@@ -527,9 +571,12 @@ export default {
   },
   components: {
     AgGridVue,
-    VueEnglishdatepicker,
   },
   data: () => ({
+    menu1: false,
+    menu2: false,
+    menu3: false,
+    menu4: false,
     bgWidth: ((window.innerWidth / 2)-40)+'px',
     bgHeight: ((window.innerHeight / 2)-200)+'px',
     bgPosition: 'absolute',

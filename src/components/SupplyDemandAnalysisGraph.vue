@@ -13,13 +13,55 @@
         <tr>
           <th>FROM(달력):</th>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeFromDate" :value="fromdate"/>
+            <v-menu
+          v-model="menu1"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="fromdate"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="fromdate"
+            @input="menu1 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
           <th>TO(달력):</th>
           <td>
-            <vue-englishdatepicker classValue="datepicker" placeholder="YYYY-MM-DD"
-              format="YYYY-MM-DD" @change="changeToDate" :value="todate" />
+            <v-menu
+          v-model="menu2"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <!-- label="Picker without buttons" -->
+            <v-text-field
+              v-model="todate"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="todate"
+            @input="menu2 = false"
+          ></v-date-picker>
+        </v-menu>
           </td>
           <th>종목</th>
           <td> 
@@ -152,7 +194,6 @@
 </template>
 
 <script>
-import VueEnglishdatepicker from 'vue-englishdatepicker';
 import { AgGridVue } from "ag-grid-vue";
 import {Chart} from 'highcharts-vue';
 export default {
@@ -169,11 +210,8 @@ export default {
   }
   , components: {
     AgGridVue
-    , VueEnglishdatepicker
     , highcharts: Chart
   },
-  // 이게 액션기능인듯...
-  // this.$store.state.selectCompanyAutoComplete
   methods: {
     handleResize(event) {
       this.bgWidth = ((window.innerWidth / 2)-40)+'px';
@@ -181,17 +219,10 @@ export default {
       console.log(event);
     }
     , selectCompanyAutoCompleteChange(e){
-      console.log('selectCompanyAutoCompleteChange;;;', e);
       this.$store.commit('setSDAGAutoComplete', e);
     }
     , selectCompanyAutoCompleteKeydown(e){
       console.log('selectCompanyAutoCompleteKeydown;;;', e);
-    }
-    , changeFromDate(e){
-      this.fromdate = e;
-    },
-    changeToDate(e){
-      this.todate = e;
     }
     , onGridReady(params) {
       this.gridApi = params.api;
@@ -260,6 +291,8 @@ export default {
     }
   },
   data: () => ({
+    menu1: false,
+    menu2: false,
     bgWidth: ((window.innerWidth / 2)-40)+'px',
     bgHeight: ((window.innerHeight / 2)-200)+'px',
     bgPosition: 'absolute',
