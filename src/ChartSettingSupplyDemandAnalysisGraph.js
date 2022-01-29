@@ -2,6 +2,12 @@ import {Chart} from 'highcharts-vue'
 import stockInit from 'highcharts/modules/stock'
 import Highcharts from 'highcharts'
 
+Highcharts.setOptions({
+  global:{
+      useUTC: false,
+  }
+});
+
 stockInit(Highcharts);
 
 export default {
@@ -20,7 +26,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 785,
+          y: 805,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -478,7 +484,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 785,
+          y: 805,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -933,7 +939,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 785,
+          y: 805,
           x: 0,
           buttons: [{
                 type: 'month',
@@ -1249,7 +1255,7 @@ export default {
         allButtonsEnabled: true,
         verticalAlign: "top",
         floating: true,
-        y: 785,
+        y: 805,
         x: 0,
         buttons: [{
               type: 'month',
@@ -1466,7 +1472,7 @@ export default {
         allButtonsEnabled: true,
         verticalAlign: "top",
         floating: true,
-        y: 785,
+        y: 805,
         x: 0,
         buttons: [{
               type: 'month',
@@ -2622,7 +2628,7 @@ export default {
           allButtonsEnabled: true,
           verticalAlign: "top",
           floating: true,
-          y: 785,
+          y: 805,
           x: 0,
           buttons: [{
                 type: 'month',

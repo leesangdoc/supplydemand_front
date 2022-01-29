@@ -33,7 +33,7 @@
                         </v-card>  
                       </v-col>
                       
-                      <v-col>
+                      <v-col md="8">
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
