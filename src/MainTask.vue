@@ -8,8 +8,9 @@
       <template>
         <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
         <v-app-bar-title>수급분석</v-app-bar-title>
-        <v-btn @click="logout">로그아웃</v-btn>
+        <v-btn @click="logout" right style="marginLeft: 90%;">로그아웃</v-btn>
 
         <v-spacer></v-spacer>
         <template v-slot:extension>
