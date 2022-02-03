@@ -64,7 +64,10 @@ export default {
     
   },
   mounted(){
-    if (this.$store.state.isLogin == true  && localStorage.getItem('jwt') != null){
+    if (this.$store.state.isLogin == true  
+        && localStorage.getItem('jwt') != ''
+        && localStorage.getItem('jwt') != null
+        && localStorage.getItem('jwt') != undefined){
       this.$router.push({name : 'MainTask'})
     }
   }
