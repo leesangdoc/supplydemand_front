@@ -1,23 +1,23 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App.vue'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import App from './App.vue';
 import vuetify from './plugins/vuetify';
 import store from './store';
-import vueMoment from 'vue-moment'
+import vueMoment from 'vue-moment';
 import moment from "moment";
-import VueRouter from "vue-router"
+import router from './router'
 
-Vue.config.productionTip = false
-Vue.use(vueMoment, moment, VueRouter, store, Vuex)
+Vue.config.productionTip = false;
+Vue.use(vueMoment, moment, store, Vuex);
  
-const router = new VueRouter({
-  mode: 'history'
-});
+// const router = new VueRouter({
+//   mode: 'history'
+
+// });
 
 new Vue({
   vuetify
   , router
   , store
-
   , render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');

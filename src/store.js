@@ -8,6 +8,7 @@ import chartSettingKospiIndex from "./ChartSettingKospiIndex"
 import chartSettingKosdaqIndex from "./ChartSettingKosdaqIndex"
 import chartSettingSupplyDemandAnalysisGraph from "./ChartSettingSupplyDemandAnalysisGraph"
 import gridSetting from "./GridSetting"
+import router from '@/router';
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     // data
     state: {
       spinnerLoading: false
+      , isLogin: false
       , supplyDemandAnalysisGraphRowData: []
       , interestValue: 'interestOne'
       , industries: []
@@ -162,8 +164,6 @@ export default new Vuex.Store({
       , kosdaqIndustryFlowStockLeftGridColumns: gridSetting.kosdaqIndustryFlowStockLeftGridColumns
       , kosdaqIndustryFlowStockLeftRowData: []
 
-      
-
       // 업종흐름순위(코스피)
       , kospiIndustryRankingArr: []
       , kospiIndustryRankingRowData: []
@@ -285,6 +285,9 @@ export default new Vuex.Store({
       // 이평선 골든크로스 데드크로스
       , avgCross: [{text: '골든크로스', value: 'avgUp'}, {text: '데드크로스', value: 'avgDown'}]
       , buySubject: [{text: '세력합', value: 'grossSum'}, {text: '개인', value: 'individual'}]
+
+      , id: ''
+      , password: ''
     },
     // computed 같은??
     getters:{
@@ -367,6 +370,10 @@ export default new Vuex.Store({
         }
         , callInOnLftRowData: (state, payload)=> {
             state.inOnLftRowData  = payload;
+        } 
+        , setIsLogin: (state, payload)=> {
+            console.log('setIsLogin;;;', payload);
+            state.isLogin  = payload.val;
         }, 
         callRowData: (state, payload)=> {
             state.rowData = payload;
@@ -475,8 +482,8 @@ export default new Vuex.Store({
         setStockClosePriceAxisLength: (state, payload)=>{
             state.stockClosePriceAxisLength = payload;
             // console.log('state.stockClosePriceAxisLength;;;', state.stockClosePriceAxisLength);
-        }, 
-        setAvgLineList: (state, payload)=>{
+        } 
+        , setAvgLineList: (state, payload)=>{
             state.avgLineList = payload;
             // console.log('state.avgLineList;;;', state.avgLineList);
         }
@@ -1173,7 +1180,15 @@ export default new Vuex.Store({
             state.supplyDemandAnalysisGraphRowData = payload;
         }
 
+        , setId: (state, payload)=>{
+            state.id = payload;
+            // console.log('state.avgLineList;;;', state.avgLineList);
+        }
         
+        , setPassword: (state, payload)=>{
+            state.password = payload;
+            // console.log('state.avgLineList;;;', state.avgLineList);
+        }
 
     },
 
@@ -1701,6 +1716,36 @@ export default new Vuex.Store({
                 console.log('callSupplyDemandAnalysisGraph: ', response);
                 commit('callSupplyDemandAnalysisGraphRowData', response.data.supplyDemandAnalysisGraphRowData);
                 commit('callSpinnerLoading', {val: false});
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+        , callAuthIdPw:({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.AUTHURL}${'user/'}`
+                , {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                console.log(response)
+                commit('callSpinnerLoading', {val: false});
+                if (response.data.success == true) {
+                    localStorage.setItem('jwt', response.data.token);
+                    commit('setIsLogin', {val: true});
+                    router.push({ name : 'MainTask' })
+                } else {
+                    alert('관리자 아이디와 비번을 확인해주세요.');
+                }
             })
             .catch(function(error) {
                 console.log(error);

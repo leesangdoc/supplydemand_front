@@ -3,239 +3,33 @@
   @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
 </style>
 <template>
-  
-  <v-app>
-      <template>
-        <v-app-bar app color="primary" dark fade-img-on-scroll scroll-target="#scrolling-techniques-3">
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        <v-app-bar-title>수급분석</v-app-bar-title>
-        <v-spacer></v-spacer>
-        <template v-slot:extension>
-          <v-tabs align-with-title dark slider color="yellow" v-model="currentItem">
-              <v-tab v-for="(item, index) in items" :key="item" :href="'#tab-' + index">{{ item }}</v-tab>
-          </v-tabs>
-        </template>
-      <v-spacer></v-spacer>
-    </v-app-bar>
-    <v-main>
-     
-        <v-tabs-items v-model="currentItem">
-        <v-tab-item v-for="(item, index) in items" :key="item" :value="'tab-' + index">
-          <v-card flat>
-            <v-card-text>
-              <div v-if="index === 0">
-                  <v-container class="grey lighten-5" fluid>
-                    <v-row mb-6 no-gutters dense>
-                      <v-col md="4"> <!-- auto md="4" -->
-                      
-                        <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockLeft v-on:showchart="showChart"/>
-                        </v-card>  
-                      </v-col>
-                      
-                      <v-col md="8">
-                        <v-card class="pa-2" outlined tile>
-                        <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-
-                    </v-row>
-
-                    <!-- <v-row mb-6 no-gutters dense>
-                      <v-col auto>
-                        <v-card class="pa-2" outlined tile>
-                          <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row> -->
-
-                    <v-row mb-6 no-gutters dense>
-                       <v-col auto>
-                         <v-card class="pa-2" outlined tile height="200px">
-                           <AveragePriceGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                       <v-col>
-                         <v-card>
-                           <SupplyDemandGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                    
-                  </v-container>
-              </div>
-
-              <div v-else-if="index === 1">
-                <v-container class="grey lighten-5" fluid>
-                <v-tabs>
-                  <v-tab
-                    v-for="source in sourceGroup" 
-                    :key="source"
-                     @change="handleTabChange(source)"
-                    >
-                      {{source}}
-                  </v-tab>
-                  <v-tab-item v-for="source in sourceGroup" :key="source">
-                    <v-row mb-20 no-gutters dense>
-
-                        <v-col md="4">
-                          <v-card class="pa-2" outlined tile>
-                            <KospiIndustryRanking :sources="source"/>
-                          </v-card>
-                        </v-col>
-
-                        <v-col md="8">
-                          <v-card class="pa-2" outlined tile>
-                            <KospiIndustryCashFlow :sources="source"/>
-                          </v-card>
-                        </v-col>
-                </v-row>
-                 </v-tab-item>
-                </v-tabs>
-                </v-container>
-              </div>
-              <div v-if="index === 2">
-                  <v-container class="grey lighten-5" fluid>
-                    <v-row mb-6 no-gutters dense>
-                      <v-col md="4"> <!-- auto md="4" -->
-                        <v-card class="pa-2" outlined tile>
-                        <KospiIndustryFlowStockLeft v-on:showchart="showChart"/>
-                        </v-card>  
-                      </v-col>
-                      <v-col>
-                        <v-card class="pa-2" outlined tile>
-                        <KospiIndustryFlowStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                    <v-row mb-6 no-gutters dense>
-                       <v-col auto>
-                         <v-card class="pa-2" outlined tile height="200px">
-                           <KospiIndustryFlowAveragePriceGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                       <v-col>
-                         <v-card>
-                           <KospiIndustryFlowSupplyDemandGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                  </v-container>
-              </div>
-              <div v-else-if="index === 3">
-              <v-container class="grey lighten-5" fluid>
-                <v-tabs>
-                  <v-tab
-                    v-for="source in sourceGroup" 
-                    :key="source"
-                     @change="handleTabChange(source)"
-                    >
-                      {{source}}
-                  </v-tab>
-                  <v-tab-item v-for="source in sourceGroup" :key="source">
-                    <v-row mb-20 no-gutters dense>
-
-                        <v-col md="4">
-                          <v-card class="pa-2" outlined tile>
-                            <KosdaqIndustryRanking :sources="source"/>
-                          </v-card>
-                        </v-col>
-
-                        <v-col md="8">
-                          <v-card class="pa-2" outlined tile>
-                            <KosdaqIndustryCashFlow :sources="source"/>
-                          </v-card>
-                        </v-col>
-                </v-row>
-                 </v-tab-item>
-                </v-tabs>
-                </v-container>
-              </div>
-              <div v-if="index === 4">
-                  <v-container class="grey lighten-5" fluid>
-                    <v-row mb-6 no-gutters dense>
-                      <v-col md="4"> <!-- auto md="4" -->
-                        <v-card class="pa-2" outlined tile>
-                        <KosdaqIndustryFlowStockLeft v-on:showchart="showChart"/>
-                        </v-card>  
-                      </v-col>
-                      <v-col>
-                        <v-card class="pa-2" outlined tile>
-                        <KosdaqIndustryFlowStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                    <v-row mb-6 no-gutters dense>
-                       <v-col auto>
-                         <v-card class="pa-2" outlined tile height="200px">
-                           <KosdaqIndustryFlowAveragePriceGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                    <v-row>
-                       <v-col>
-                         <v-card>
-                           <KosdaqIndustryFlowSupplyDemandGraph />
-                         </v-card>
-                        </v-col>
-                    </v-row>
-                  </v-container>
-              </div>
-              <div v-else-if="index === 5"> 
-                <KospiMarketIndustryIndexFlow/>
-              </div>
-              <div v-else-if="index === 6"> 
-                <KosdaqMarketIndustryIndexFlow/>
-              </div>
-              <div v-else-if="index === 7"> 
-                <KospiMarketIndexFlow/>
-              </div>
-              <div v-else-if="index === 8"> 
-                <KosdaqMarketIndexFlow/>
-              </div>
-              <div v-else-if="index === 9"> 
-                <SupplyDemandAnalysisGraph/>
-              </div>
-              <div v-else-if="index === 10"> <SearchSupplyDemand/></div>
-              <div v-else-if="index === 11"> <SearchSupplyDemand/></div>
-            </v-card-text>
-          </v-card>
-        </v-tab-item>
-      </v-tabs-items>
-    </v-main>
-    <v-footer app color="primary" dark>
-      Authored by sdlee. All rights reserved. Deep Learning Stock under Big data
-    </v-footer>
-     </template>
-  </v-app>
+<div id="app">
+    <router-view/>
+  </div>
 </template>
 <script>
-import QuickInterestStockLeft from './components/QuickInterestStockLeft';
-import QuickInterestStockRight from './components/QuickInterestStockRight';
-import SearchSupplyDemand from './components/SearchSupplyDemand';
-import SupplyDemandAnalysisGraph from './components/SupplyDemandAnalysisGraph';
-import SupplyDemandGraph from './components/SupplyDemandGraph';
-import AveragePriceGraph from './components/AveragePriceGraph';
-import KospiIndustryRanking from './components/KospiIndustryRanking';
-import KospiIndustryCashFlow from './components/KospiIndustryCashFlow';
-import KosdaqIndustryRanking from './components/KosdaqIndustryRanking';
-import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
-import KospiMarketIndexFlow from './components/KospiMarketIndexFlow';
-import KosdaqMarketIndexFlow from './components/KosdaqMarketIndexFlow';
-import KospiMarketIndustryIndexFlow from './components/KospiMarketIndustryIndexFlow';
-import KosdaqMarketIndustryIndexFlow from './components/KosdaqMarketIndustryIndexFlow';
-import KospiIndustryFlowStockLeft from './components/KospiIndustryFlowStockLeft';
-import KospiIndustryFlowStockRight from './components/KospiIndustryFlowStockRight';
-import KospiIndustryFlowAveragePriceGraph from './components/KospiIndustryFlowAveragePriceGraph';
-import KospiIndustryFlowSupplyDemandGraph from './components/KospiIndustryFlowSupplyDemandGraph';
-import KosdaqIndustryFlowStockLeft from './components/KosdaqIndustryFlowStockLeft';
-import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRight';
-import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
-import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
+// import QuickInterestStockLeft from './components/QuickInterestStockLeft';
+// import QuickInterestStockRight from './components/QuickInterestStockRight';
+// import SearchSupplyDemand from './components/SearchSupplyDemand';
+// import SupplyDemandAnalysisGraph from './components/SupplyDemandAnalysisGraph';
+// import SupplyDemandGraph from './components/SupplyDemandGraph';
+// import AveragePriceGraph from './components/AveragePriceGraph';
+// import KospiIndustryRanking from './components/KospiIndustryRanking';
+// import KospiIndustryCashFlow from './components/KospiIndustryCashFlow';
+// import KosdaqIndustryRanking from './components/KosdaqIndustryRanking';
+// import KosdaqIndustryCashFlow from './components/KosdaqIndustryCashFlow';
+// import KospiMarketIndexFlow from './components/KospiMarketIndexFlow';
+// import KosdaqMarketIndexFlow from './components/KosdaqMarketIndexFlow';
+// import KospiMarketIndustryIndexFlow from './components/KospiMarketIndustryIndexFlow';
+// import KosdaqMarketIndustryIndexFlow from './components/KosdaqMarketIndustryIndexFlow';
+// import KospiIndustryFlowStockLeft from './components/KospiIndustryFlowStockLeft';
+// import KospiIndustryFlowStockRight from './components/KospiIndustryFlowStockRight';
+// import KospiIndustryFlowAveragePriceGraph from './components/KospiIndustryFlowAveragePriceGraph';
+// import KospiIndustryFlowSupplyDemandGraph from './components/KospiIndustryFlowSupplyDemandGraph';
+// import KosdaqIndustryFlowStockLeft from './components/KosdaqIndustryFlowStockLeft';
+// import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRight';
+// import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
+// import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
 
 
 export default {
@@ -286,28 +80,28 @@ export default {
     },
   },
   components: {
-    QuickInterestStockLeft
-    , QuickInterestStockRight
-    , SearchSupplyDemand
-     ,SupplyDemandAnalysisGraph
-     ,SupplyDemandGraph
-     ,AveragePriceGraph
-    , KospiIndustryRanking
-    , KospiIndustryCashFlow
-    , KosdaqIndustryRanking
-    , KosdaqIndustryCashFlow
-    , KospiMarketIndexFlow
-    , KosdaqMarketIndexFlow
-    , KospiMarketIndustryIndexFlow
-    , KosdaqMarketIndustryIndexFlow
-    , KospiIndustryFlowStockLeft
-    , KospiIndustryFlowStockRight
-    , KospiIndustryFlowAveragePriceGraph
-    , KospiIndustryFlowSupplyDemandGraph
-    , KosdaqIndustryFlowStockLeft
-    , KosdaqIndustryFlowStockRight
-    , KosdaqIndustryFlowAveragePriceGraph
-    , KosdaqIndustryFlowSupplyDemandGraph
+    // QuickInterestStockLeft
+    // , QuickInterestStockRight
+    // , SearchSupplyDemand
+    //  ,SupplyDemandAnalysisGraph
+    //  ,SupplyDemandGraph
+    //  ,AveragePriceGraph
+    // , KospiIndustryRanking
+    // , KospiIndustryCashFlow
+    // , KosdaqIndustryRanking
+    // , KosdaqIndustryCashFlow
+    // , KospiMarketIndexFlow
+    // , KosdaqMarketIndexFlow
+    // , KospiMarketIndustryIndexFlow
+    // , KosdaqMarketIndustryIndexFlow
+    // , KospiIndustryFlowStockLeft
+    // , KospiIndustryFlowStockRight
+    // , KospiIndustryFlowAveragePriceGraph
+    // , KospiIndustryFlowSupplyDemandGraph
+    // , KosdaqIndustryFlowStockLeft
+    // , KosdaqIndustryFlowStockRight
+    // , KosdaqIndustryFlowAveragePriceGraph
+    // , KosdaqIndustryFlowSupplyDemandGraph
   },
   data: () => ({
     currentItem: 'tabWeb'
