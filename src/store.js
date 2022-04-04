@@ -30,6 +30,7 @@ export default new Vuex.Store({
       , sendAvgCross: {text: '골든크로스', value: 'avgUp'}
       , sendBuySubject: {text: '세력합', value: 'grossSum'}
 
+
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
       , quickInterestStockRightStockInfoHcInstance: chartSettingInOne.hcInstance
 
@@ -288,6 +289,8 @@ export default new Vuex.Store({
 
       , id: ''
       , password: ''
+
+      , volumeLst: []
     },
     // computed 같은??
     getters:{
@@ -311,6 +314,9 @@ export default new Vuex.Store({
     mutations: {
         setSDAGAutoComplete: (state, payload)=> {
             state.sendStockObject = payload;
+        }
+        , setVolumeLst: (state, payload)=> {
+            state.volumeLst = payload;
         }
         , validationCheckAvgLineList: (state, {payload, callback})=> {
             let payload2 = payload;
@@ -372,7 +378,7 @@ export default new Vuex.Store({
             state.inOnLftRowData  = payload;
         } 
         , setIsLogin: (state, payload)=> {
-            console.log('setIsLogin;;;', payload);
+           // console.log('setIsLogin;;;', payload);
             state.isLogin  = payload.val;
         }, 
         callRowData: (state, payload)=> {
@@ -476,7 +482,7 @@ export default new Vuex.Store({
             state.kospiIndustryCashFlowArr = payload;
         }, 
         callSpinnerLoading: (state, payload)=>{
-          state.spinnerLoading = payload.val;
+            state.spinnerLoading = payload.val;
         }, 
 
         setStockClosePriceAxisLength: (state, payload)=>{
@@ -495,6 +501,7 @@ export default new Vuex.Store({
             state.quickInterestStockRightStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.quickInterestStockRightStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.quickInterestStockRightStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.quickInterestStockRightStockInfoChart.series[7].data = commonUtil.changeDate(payload.volumeLst);
             
             state.quickInterestStockRightStockInfoChart.series[1].visible = false;
             state.quickInterestStockRightStockInfoChart.series[2].visible = false;
@@ -564,6 +571,9 @@ export default new Vuex.Store({
             }
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
+            // , setVolumeLst: (state, payload)=> {
+            //     state.volumeLst = payload;
+            // }
             
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
@@ -1425,6 +1435,7 @@ export default new Vuex.Store({
                     stockName: payload.stockName,
                     avgLineList: response.data.avgLineList,
                     addAvgList: addAvgList,
+                    volumeLst: response.data.volumeLst,
                 };
 
                 if(Object.keys(addAvgObject).length > 0){
@@ -1746,6 +1757,30 @@ export default new Vuex.Store({
                 } else {
                     alert('관리자 아이디와 비번을 확인해주세요.');
                 }
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(()=>{
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
+
+        , callInitializeStockData:({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            axios.post(
+                `${constants.URL}${'callInitializeStockData/'}`
+                , {
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': 'JWT fefege...'
+                    }
+                , payload})
+            .then(function(response) {
+                console.log('callInitializeStockData: ', response);
+                // commit('callSupplyDemandAnalysisGraphRowData', response.data.supplyDemandAnalysisGraphRowData);
+                commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
                 console.log(error);

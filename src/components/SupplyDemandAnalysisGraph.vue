@@ -104,6 +104,7 @@
               rowSelection="single"
               @grid-ready="onGridReady"
               :defaultColDef="this.$store.state.defaultColDef"
+              @cell-double-clicked="onCellDoubleClicked"
             >
             </ag-grid-vue>
           </v-card>
@@ -288,6 +289,30 @@ export default {
         } catch(error){
           console.log(error);
         }
+    }
+    , async onCellDoubleClicked(params){
+      // const selectedNodes = this.gridApi.getSelectedNodes();
+      // console.log('params;;;;;', params);
+      // console.log('selectedNodes;;;;;', selectedNodes);
+      try {
+        console.log('더블클릭;;;', params);
+        if (window.confirm("데이터를 다시 받겠습니까?")) {
+          console.log('컨펌Yes;;;'); // AK홀딩스_A006840.csv
+          let fullTitle = params.data.fileTitle.split('_');
+          let codeTitle = fullTitle[1].replace(".csv", "");
+          console.log('codeTitle;;;', codeTitle);
+          let postData = { 
+            codeTitle,
+          };
+          await this.$store.dispatch('callInitializeStockData', postData);
+        } 
+        // else {
+        //   console.log('컨펌No;;;');
+        // }
+      } catch(error){
+        console.log(error);
+      }
+      
     }
   },
   data: () => ({
