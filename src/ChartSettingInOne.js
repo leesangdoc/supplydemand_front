@@ -151,20 +151,6 @@ export default {
         offset: 0,
         lineWidth: 2
     }],
-      // yAxis: {
-      //   title: {
-      //       text: '주가(종가)'
-      //   },
-      //   alignTicks:'left', 
-      //   textAlign:'left',
-      //   align:'middle',
-      //   opposite:false,
-      //   labels: {
-      //     formatter: function () {
-      //         return this.value;
-      //     }
-      //   }
-      // },
       responsive: {
         rules: [{
           condition: {
@@ -193,6 +179,7 @@ export default {
       },
       series: [{
         type: 'candlestick',
+        id: 'aapl',
         name: '종목',
         // pointStart: Date.UTC(2018, 1, 1),
         // pointInterval: 1000 * 3600 * 24,
@@ -373,7 +360,7 @@ export default {
       }
       , {
         type: 'column',
-        name: 'Volume',
+        name: '거래량',
         data: [],
         yAxis: 1,
         dataGrouping: {
@@ -2785,7 +2772,7 @@ export default {
         credits: {
           enabled: true
         },
-        yAxis: {
+        yAxis: [{
           title: {
               text: '주가(종가)'
           },
@@ -2797,8 +2784,28 @@ export default {
             formatter: function () {
                 return this.value;
             }
+            , align: 'right'
+            , x: -3
           }
-        },
+          , height: '70%'
+          , lineWidth: 2
+          , resize: {
+              enabled: true
+          }
+        }
+        , {
+          labels: {
+              align: 'right',
+              x: -3
+          },
+          title: {
+              text: '거래량'
+          },
+          top: '75%',
+          height: '25%',
+          offset: 0,
+          lineWidth: 2
+        }],
         responsive: {
           rules: [{
             condition: {
@@ -2989,6 +2996,12 @@ export default {
             groupAll:true,
             groupPixelWidth:15,
           }
+        }, {
+          type: 'column',
+          name: '거래량',
+          data: [],
+          yAxis: 1,
+          dataGrouping: {}
         }]
       }
 
@@ -4489,7 +4502,7 @@ export default {
       credits: {
         enabled: true
       },
-      yAxis: {
+      yAxis: [{
         title: {
             text: '주가(종가)'
         },
@@ -4501,8 +4514,28 @@ export default {
           formatter: function () {
               return this.value;
           }
+          , align: 'right'
+          , x: -3
         }
-      },
+        , height: '70%'
+        , lineWidth: 2
+        , resize: {
+            enabled: true
+        }
+      }
+      , {
+        labels: {
+            align: 'right',
+            x: -3
+        },
+        title: {
+            text: '거래량'
+        },
+        top: '75%',
+        height: '25%',
+        offset: 0,
+        lineWidth: 2
+      }],
       responsive: {
         rules: [{
           condition: {
@@ -4693,6 +4726,13 @@ export default {
           groupAll:true,
           groupPixelWidth:15,
         }
+      }
+      , {
+        type: 'column',
+        name: '거래량',
+        data: [],
+        yAxis: 1,
+        dataGrouping: {}
       }]
     }
 

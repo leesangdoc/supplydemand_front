@@ -289,8 +289,6 @@ export default new Vuex.Store({
 
       , id: ''
       , password: ''
-
-      , volumeLst: []
     },
     // computed 같은??
     getters:{
@@ -314,9 +312,6 @@ export default new Vuex.Store({
     mutations: {
         setSDAGAutoComplete: (state, payload)=> {
             state.sendStockObject = payload;
-        }
-        , setVolumeLst: (state, payload)=> {
-            state.volumeLst = payload;
         }
         , validationCheckAvgLineList: (state, {payload, callback})=> {
             let payload2 = payload;
@@ -571,9 +566,6 @@ export default new Vuex.Store({
             }
             state.quickInterestStockRightStockInfoChart.title.text = payload.stockName;
             state.quickInterestStockRightStockInfoChart.series[0].name = payload.stockName;
-            // , setVolumeLst: (state, payload)=> {
-            //     state.volumeLst = payload;
-            // }
             
         }, 
         setInOnLftClkStkNm: (state, payload)=>{
@@ -857,6 +849,8 @@ export default new Vuex.Store({
             state.kospiIndustryFlowStockRightInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.kospiIndustryFlowStockRightInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.kospiIndustryFlowStockRightInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.kospiIndustryFlowStockRightInfoChart.series[7].data = commonUtil.changeDate(payload.volumeLst);
+
             state.kospiIndustryFlowStockRightInfoChart.title.text = payload.stockName;
             state.kospiIndustryFlowStockRightInfoChart.series[0].name = payload.stockName;
             state.kospiIndustryFlowStockRightInfoChart.rangeSelector.selected = 5;
@@ -1031,6 +1025,7 @@ export default new Vuex.Store({
             state.kosdaqIndustryFlowStockRightInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.kosdaqIndustryFlowStockRightInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.kosdaqIndustryFlowStockRightInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.kosdaqIndustryFlowStockRightInfoChart.series[7].data = commonUtil.changeDate(payload.volumeLst);
             state.kosdaqIndustryFlowStockRightInfoChart.title.text = payload.stockName;
             state.kosdaqIndustryFlowStockRightInfoChart.series[0].name = payload.stockName;
             state.kosdaqIndustryFlowStockRightInfoChart.rangeSelector.selected = 5;
@@ -1108,6 +1103,7 @@ export default new Vuex.Store({
             state.supplyDemandAnalysisGraphStockInfoChart.series[4].data = commonUtil.changeDate(payload.ma060);
             state.supplyDemandAnalysisGraphStockInfoChart.series[5].data = commonUtil.changeDate(payload.ma100);
             state.supplyDemandAnalysisGraphStockInfoChart.series[6].data = commonUtil.changeDate(payload.ma200);
+            state.supplyDemandAnalysisGraphStockInfoChart.series[7].data = commonUtil.changeDate(payload.volumeLst);
             state.supplyDemandAnalysisGraphStockInfoChart.title.text = payload.stockName;
             state.supplyDemandAnalysisGraphStockInfoChart.series[0].name = payload.stockName;
             state.supplyDemandAnalysisGraphStockInfoChart.rangeSelector.selected = 5;
@@ -1437,13 +1433,10 @@ export default new Vuex.Store({
                     addAvgList: addAvgList,
                     volumeLst: response.data.volumeLst,
                 };
-
                 if(Object.keys(addAvgObject).length > 0){
                     Object.assign(resData, addAvgObject);
                 }
-
                 console.log('resData;;;', resData);
-
                 if(payload.category == 'quickOne'){
                     commit('callStockRight', resData);
                     commit('setInOnLftClkStkNm', payload.stockName);
@@ -1461,10 +1454,7 @@ export default new Vuex.Store({
                     commit('setSupplyDemandAnalysisGraphStockName', payload.stockName);
                     commit('callSupplyDemandAnalysisGraphChartData', response.data);
                 }
-
-                
                 commit('callSpinnerLoading', {val: false});
-
             })
             .catch(function(error) {
                 console.log(error);

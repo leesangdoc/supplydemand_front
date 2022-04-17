@@ -5,21 +5,24 @@
         :options="this.$store.state.kospiIndustryFlowStockRightInfoChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightInfoChartHcInstance">
+        :highcharts="this.$store.state.kospiIndustryFlowStockRightInfoChartHcInstance"
+      >
       {{stla}}
       </highcharts>
       <highcharts 
         :options="this.$store.state.kospiIndustryFlowStockRightAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightAcuChartHcInstance">
+        :highcharts="this.$store.state.kospiIndustryFlowStockRightAcuChartHcInstance"
+      >
       {{stla}}
       </highcharts>
       <highcharts 
         :options="this.$store.state.kospiIndustryFlowStockRightDispersionChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
-        :highcharts="this.$store.state.kospiIndustryFlowStockRightDispersionChartHcInstance">
+        :highcharts="this.$store.state.kospiIndustryFlowStockRightDispersionChartHcInstance"
+      >
       {{stla}}
       </highcharts>
       <highcharts 
