@@ -34,6 +34,9 @@ export default new Vuex.Store({
       , quickInterestStockRightStockInfoChart: chartSettingInOne.closePriceChartOptions
       , quickInterestStockRightStockInfoHcInstance: chartSettingInOne.hcInstance
 
+      , quickInterestStockRightVolumeChart: chartSettingInOne.volumeChartOptions
+      , quickInterestStockRightVolumeHcInstance: chartSettingInOne.hcInstance
+
       , quickInterestStockRightAcuChart: chartSettingInOne.acuChartOptions
       , quickInterestStockRightAcuHcInstance: chartSettingInOne.hcInstance
 
@@ -61,6 +64,8 @@ export default new Vuex.Store({
       , supplyDemandAnalysisGraphLoanTransactionChart: chartSettingSupplyDemandAnalysisGraph.loanTransactionChartOptions
       , supplyDemandAnalysisGraphLoanTransactionHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
       
+      , supplyDemandAnalysisGraphVolumeChart: chartSettingSupplyDemandAnalysisGraph.volumeChartOptions
+      , supplyDemandAnalysisGraphVolumeHcInstance: chartSettingSupplyDemandAnalysisGraph.hcInstance
 
       // [시작] 지수흐름
       , kospiMarketIndexAcuChart: chartSettingKospiIndex.acuChartOptions
@@ -249,10 +254,12 @@ export default new Vuex.Store({
       // 공매도 차트
       , kospiIndustryFlowStockRightShortSellingChart: chartSettingInOne.kospiIndustryFlowStockRightShortSellingChartOptions
       , kospiIndustryFlowStockRightShortSellingHcInstance: chartSettingInOne.hcInstance
+      // 코스피 거래량 차트
+      , kospiIndustryFlowStockRightVolumeChart: chartSettingInOne.kospiIndustryFlowStockRightVolumeChartOptions
+      , kospiIndustryFlowStockRightVolumeHcInstance: chartSettingInOne.hcInstance
       // 대차잔고 차트
       , kospiIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kospiIndustryFlowStockRightLoanTransactionChartOptions
       , kospiIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
-
 
       // 코스닥 종목 더블클릭하고 넘어오는 곳
       // 그리드
@@ -276,6 +283,9 @@ export default new Vuex.Store({
       // 공매도 차트
       , kosdaqIndustryFlowStockRightShortSellingChart: chartSettingInOne.kosdaqIndustryFlowStockRightShortSellingChartOptions
       , kosdaqIndustryFlowStockRightShortSellingHcInstance: chartSettingInOne.hcInstance
+      // 코스닥 거래량 차트
+      , kosdaqIndustryFlowStockRightVolumeChart: chartSettingInOne.kosdaqIndustryFlowStockRightVolumeChartOptions
+      , kosdaqIndustryFlowStockRightVolumeHcInstance: chartSettingInOne.hcInstance
       // 대차잔고 차트
       , kosdaqIndustryFlowStockRightLoanTransactionChart: chartSettingInOne.kosdaqIndustryFlowStockRightLoanTransactionChartOptions
       , kosdaqIndustryFlowStockRightLoanTransactionHcInstance: chartSettingInOne.hcInstance
@@ -938,6 +948,28 @@ export default new Vuex.Store({
             // state.kospiIndustryFlowStockRightShortSellingChart.series[2].visible = false;
             state.kospiIndustryFlowStockRightShortSellingChart.rangeSelector.selected = 5;
         }
+
+        , callKospiIndustryFlowStockRightVolume: (state, payload)=>{
+            state.kospiIndustryFlowStockRightVolumeChart.series[0].data = commonUtil.changeDate(payload.volumeLst);
+            state.kospiIndustryFlowStockRightVolumeChart.series[1].data = commonUtil.changeDate(payload.volumeMa5);
+            state.kospiIndustryFlowStockRightVolumeChart.series[2].data = commonUtil.changeDate(payload.volumeMa20);
+            state.kospiIndustryFlowStockRightVolumeChart.rangeSelector.selected = 5;
+        }
+
+        , callKosdaqIndustryFlowStockRightVolume: (state, payload)=>{
+            state.kosdaqIndustryFlowStockRightVolumeChart.series[0].data = commonUtil.changeDate(payload.volumeLst);
+            state.kosdaqIndustryFlowStockRightVolumeChart.series[1].data = commonUtil.changeDate(payload.volumeMa5);
+            state.kosdaqIndustryFlowStockRightVolumeChart.series[2].data = commonUtil.changeDate(payload.volumeMa20);
+            state.kosdaqIndustryFlowStockRightVolumeChart.rangeSelector.selected = 5;
+        }
+
+        , callSupplyDemandAnalysisGraphVolume: (state, payload)=>{
+            state.supplyDemandAnalysisGraphVolumeChart.series[0].data = commonUtil.changeDate(payload.volumeLst);
+            state.supplyDemandAnalysisGraphVolumeChart.series[1].data = commonUtil.changeDate(payload.volumeMa5);
+            state.supplyDemandAnalysisGraphVolumeChart.series[2].data = commonUtil.changeDate(payload.volumeMa20);
+            state.supplyDemandAnalysisGraphVolumeChart.rangeSelector.selected = 5;
+        }
+
         , callKospiIndustryFlowStockRightLoanTransaction: (state, payload)=>{
             console.log('payload;;;;;', payload);
             if(Object.keys(payload).length === 0){
@@ -1195,6 +1227,15 @@ export default new Vuex.Store({
             state.password = payload;
             // console.log('state.avgLineList;;;', state.avgLineList);
         }
+
+        , callVolume: (state, payload)=>{
+            state.quickInterestStockRightVolumeChart.series[0].data = commonUtil.changeDate(payload.volumeLst);
+            state.quickInterestStockRightVolumeChart.series[1].data = commonUtil.changeDate(payload.volumeMa5);
+            state.quickInterestStockRightVolumeChart.series[2].data = commonUtil.changeDate(payload.volumeMa20);
+            //state.shortSellingChart.series[1].visible = false;
+            //state.shortSellingChart.series[2].visible = false;
+            state.quickInterestStockRightVolumeChart.rangeSelector.selected = 5;
+        },
 
     },
 
@@ -1769,7 +1810,6 @@ export default new Vuex.Store({
                 , payload})
             .then(function(response) {
                 console.log('callInitializeStockData: ', response);
-                // commit('callSupplyDemandAnalysisGraphRowData', response.data.supplyDemandAnalysisGraphRowData);
                 commit('callSpinnerLoading', {val: false});
             })
             .catch(function(error) {
@@ -1781,6 +1821,37 @@ export default new Vuex.Store({
             });
         }
 
+        , callVolume: ({commit}, payload) => {
+            commit('callSpinnerLoading', {val: true});
+            let postData = {
+                csvFileName: payload.csvFileName,
+            };
+            axios.post(`${constants.URL}${'volumeChartAnalysis/'}`
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT fefege...'
+            }, postData})
+            .then(function(response) {
+                console.log('volume response', response);
+                if(payload.category === 'quickOne'){
+                    commit('callVolume', response.data);
+                } else if (payload.category === 'kospiIndustry'){
+                    commit('callKospiIndustryFlowStockRightVolume', response.data);
+                } else if (payload.category === 'kosdaqIndustry'){
+                    commit('callKosdaqIndustryFlowStockRightVolume', response.data);
+                } else if (payload.category === 'supplyDemandAnalysisGraph'){
+                    commit('callSupplyDemandAnalysisGraphVolume', response.data);
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+                commit('callSpinnerLoading', {val: false});
+            })
+            .finally(function(){
+                commit('callSpinnerLoading', {val: false});
+            });
+        }
     }
     
 

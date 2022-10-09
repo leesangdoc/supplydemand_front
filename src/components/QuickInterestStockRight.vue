@@ -9,6 +9,13 @@
       {{stla}}
       </highcharts>
       <highcharts 
+        :options="this.$store.state.quickInterestStockRightVolumeChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.quickInterestStockRightVolumeHcInstance">
+      {{stla}}
+      </highcharts>
+      <highcharts 
         :options="this.$store.state.quickInterestStockRightAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"

@@ -122,6 +122,15 @@
       </div>
       <div>
       <highcharts 
+        :options="this.$store.state.supplyDemandAnalysisGraphVolumeChart"
+        :constructor-type="'stockChart'"
+        :callback="someFunction"
+        :highcharts="this.$store.state.kosdaqIndustryFlowStockRightVolumeHcInstance">
+      {{stla}}
+      </highcharts>
+      </div>
+      <div>
+      <highcharts 
         :options="this.$store.state.supplyDemandAnalysisGraphAcuChart"
         :constructor-type="'stockChart'"
         :callback="someFunction"
@@ -285,7 +294,7 @@ export default {
           await this.$store.dispatch('callStockRight', postData);
           await this.$store.dispatch('callShortSelling', postData);
           await this.$store.dispatch('callLoanTransaction', postData);
-
+          await this.$store.dispatch('callVolume', postData);
         } catch(error){
           console.log(error);
         }

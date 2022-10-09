@@ -564,6 +564,13 @@ export default {
           , todate: this.todate
           , category: 'quickOne'
         });
+        await this.$store.dispatch('callVolume', { 
+          csvFileName
+          , stockName
+          , fromdate: this.fromdate
+          , todate: this.todate
+          , category: 'quickOne'
+        });
       } catch(error){
         console.log(error);
       }

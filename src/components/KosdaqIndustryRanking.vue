@@ -70,7 +70,6 @@ export default {
             , period: params.data.period
             , category: 'kosdaq'
           });
-          
         } catch(error){
           console.log(error);
         }
@@ -104,21 +103,18 @@ export default {
         if(index == 0){
           colDef.headerName = ' ';
         }
-        
       });
       this.gridApi1.setColumnDefs(columnDefs);
     }
     , setHeaderNames2(){
       let columnDefs = this.$store.state.industryHeroRankingColumns;
       columnDefs.forEach(function (colDef, index) {
-        if(index == 0){
+        if (index == 0) {
           colDef.headerName = ' '; 
         } 
       });
       this.gridApi2.setColumnDefs(columnDefs);
     }
-
-
   },
   components: {
     AgGridVue,

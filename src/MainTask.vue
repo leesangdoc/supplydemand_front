@@ -30,28 +30,16 @@
                   <v-container class="grey lighten-5" fluid>
                     <v-row mb-6 no-gutters dense>
                       <v-col md="4"> <!-- auto md="4" -->
-                      
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockLeft v-on:showchart="showChart"/>
                         </v-card>  
                       </v-col>
-                      
                       <v-col md="8">
                         <v-card class="pa-2" outlined tile>
                         <QuickInterestStockRight :stla="stockinfo"/>
                         </v-card>
                       </v-col>
-
                     </v-row>
-
-                    <!-- <v-row mb-6 no-gutters dense>
-                      <v-col auto>
-                        <v-card class="pa-2" outlined tile>
-                          <QuickInterestStockRight :stla="stockinfo"/>
-                        </v-card>
-                      </v-col>
-                    </v-row> -->
-
                     <v-row mb-6 no-gutters dense>
                        <v-col auto>
                          <v-card class="pa-2" outlined tile height="200px">
@@ -66,7 +54,6 @@
                          </v-card>
                         </v-col>
                     </v-row>
-                    
                   </v-container>
               </div>
 
@@ -203,8 +190,29 @@
               <div v-else-if="index === 9"> 
                 <SupplyDemandAnalysisGraph/>
               </div>
-              <div v-else-if="index === 10"> <SearchSupplyDemand/></div>
-              <div v-else-if="index === 11"> <SearchSupplyDemand/></div>
+              <div v-else-if="index === 10"> 
+                <v-container class="grey lighten-5" fluid>
+                  <v-tabs>
+                    <v-tab
+                        v-for="global in globalArray" 
+                        :key="global"
+                        @change="handleTabChangeMacro(global)"
+                    >
+                      {{global}}
+                    </v-tab>
+                    <v-tab-item v-for="global in globalArray" :key="global">
+                      <v-row>
+                       <v-col>
+                         <v-card>
+                          <MacroEconomyAnalysis :globalCode = "global"/>
+                         </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    
+                  </v-tabs>
+                </v-container>
+              </div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -219,7 +227,6 @@
 <script>
 import QuickInterestStockLeft from './components/QuickInterestStockLeft';
 import QuickInterestStockRight from './components/QuickInterestStockRight';
-import SearchSupplyDemand from './components/SearchSupplyDemand';
 import SupplyDemandAnalysisGraph from './components/SupplyDemandAnalysisGraph';
 import SupplyDemandGraph from './components/SupplyDemandGraph';
 import AveragePriceGraph from './components/AveragePriceGraph';
@@ -239,6 +246,7 @@ import KosdaqIndustryFlowStockLeft from './components/KosdaqIndustryFlowStockLef
 import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRight';
 import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
 import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
+import MacroEconomyAnalysis from './components/MacroEconomyAnalysis';
 
 
 export default {
@@ -291,22 +299,23 @@ export default {
     }
     , cancel() {
       // console.log("cancel()...");
-    },
-    handleTabChange(sourceName){
-      // console.log('sourceName;;;;;', sourceName);
+    }
+    , handleTabChange(sourceName){
       this.$store.dispatch('changeKospiIndustryRankingData', sourceName);
       this.$store.dispatch('changeKospiIndustryCashFlowData', sourceName);
       this.$store.dispatch('changeKosdaqIndustryRankingData', sourceName);
       this.$store.dispatch('changeKosdaqIndustryCashFlowData', sourceName);
-    },
+    }
+    , async handleTabChangeMacro(sourceName){
+      console.log('Macro_sourceName;;;', sourceName);
+    }
   },
   components: {
     QuickInterestStockLeft
     , QuickInterestStockRight
-    , SearchSupplyDemand
-     ,SupplyDemandAnalysisGraph
-     ,SupplyDemandGraph
-     ,AveragePriceGraph
+    , SupplyDemandAnalysisGraph
+    , SupplyDemandGraph
+    , AveragePriceGraph
     , KospiIndustryRanking
     , KospiIndustryCashFlow
     , KosdaqIndustryRanking
@@ -323,6 +332,7 @@ export default {
     , KosdaqIndustryFlowStockRight
     , KosdaqIndustryFlowAveragePriceGraph
     , KosdaqIndustryFlowSupplyDemandGraph
+    , MacroEconomyAnalysis
   },
   data: () => ({
     currentItem: 'tabWeb'
@@ -337,8 +347,8 @@ export default {
       , '지수흐름(코스피)'
       , '지수흐름(코스닥)'
       , '수급분석표'
-      , '시장수급'
-      , '수급분석표 검색',
+      , '거시경제분석'
+      // , '시장수급'
     ]
     , stockinfo: {
       resultStockInfo: [],
@@ -346,6 +356,7 @@ export default {
     , sourceGroup: ["외국인", "세력합", "보험", "연기금", "금융투자"
                     , "개인", "투신", "은행", "기타금융", "사모펀드"
                     , "국가,지자체", "기타법인", "기타외인"]
+    , globalArray: ["KR", "US", "CH", "EU", "ReferenceSite"]
   }),
 };
 </script>

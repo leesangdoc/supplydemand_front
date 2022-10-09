@@ -195,27 +195,11 @@ export default {
             valueDecimals: 0,
             valueSuffix: '원',
         },
-        dataGrouping:{
-
-        }
+        dataGrouping:{}
       }
-      // , {
-      //   type: 'column',
-      //   name: 'Volume',
-      //   data: [],
-      //   yAxis: 1,
-      //   dataGrouping: {
-      //     units:  [[
-      //       'week',             // unit name
-      //       [1]               // allowed multiples
-      //     ], [
-      //       'month',
-      //       [1, 2, 3, 4, 6]
-      //     ]]
-      //   }
-      // }
       , {
         name: '5일선',
+        // type: 'column',
         // pointStart: Date.UTC(2018, 1, 1),
         // pointInterval: 1000 * 3600 * 24,
         data: [],
@@ -5221,7 +5205,641 @@ export default {
     },
     ]
   }
-  ,
+
+
+
+
+
+
+
+
+
+
+
+  // 거래량 차트 추가 기능...
+  // 2022 04 21
+  , volumeChartOptions: {
+      rangeSelector: {
+        allButtonsEnabled: true,
+        verticalAlign: "top",
+        floating: true,
+        y: 785,
+        x: 0,
+        buttons: [{
+              type: 'month',
+              count: 1,
+              text: '1m',
+              title: 'View 1 month'
+          }, {
+              type: 'month',
+              count: 3,
+              text: '3m',
+              title: 'View 3 months'
+          }, {
+              type: 'month',
+              count: 6,
+              text: '6m',
+              title: 'View 6 months'
+          }, {
+              type: 'ytd',
+              text: 'YTD',
+              title: 'View year to date'
+          }, {
+              type: 'year',
+              count: 1,
+              text: '1y',
+              title: 'View 1 year'
+          }, {
+              type: 'all',
+              text: 'All',
+              title: 'View all'
+          }],
+          buttonTheme: {
+              width: 30
+          },
+          selected: 1
+      },
+      legend: {
+        enabled: true,
+      },
+      xAxis: {
+        type: "datetime",
+        title: {
+          text: '날짜(기간)'
+        },
+        labels: {
+          // autoRotationLimit: 40
+          formatter: function() {
+            return Highcharts.dateFormat('%b/%e/%Y', this.value);
+          }
+        },
+        setExtremes: function(e) {
+          console.log(this);
+          if(typeof(e.rangeSelectorButton)!== 'undefined') {
+            // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+            // console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+          }
+        },
+      },
+      plotOptions: {
+        series: {
+          events: {
+              legendItemClick: function () {
+
+              },
+          }
+        }
+      },
+      chart: { 
+        renderTo: 'container',
+        type: 'line',
+        zoomType: 'x',
+        height: 1000,
+        //marginBottom: 80
+      },
+      title: {
+        text: '거래량분석'
+      },
+      tooltip: {
+        crosshairs: true,
+        shared: true
+      },
+      credits: {
+        enabled: true
+      },
+      yAxis: {
+        title: {
+            text: '일일거래량'
+        },
+        alignTicks:'left', 
+        textAlign:'left',
+        align:'middle',
+        opposite:false,
+        labels: {
+          formatter: function () {
+              return this.value;
+          }
+        }
+      },
+      responsive: {
+        rules: [{
+          condition: {
+              maxWidth: 200,
+          },
+          chartOptions: {
+              chart: {
+                  height: 200,
+              },
+              subtitle: {
+                  text: null,
+              },
+              navigator: {
+                  enabled: true,
+              },
+              yAxis: {
+                title: {
+                  enabled: false,
+                }
+              }
+          }
+        }]
+      },
+      series: [{
+        type: 'column',
+        name: '일일거래량',
+        // pointStart: Date.UTC(2018, 1, 1),
+        // pointInterval: 1000 * 3600 * 24,
+        data: [],
+        marker: {
+          enabled: null, // auto
+          radius: 3,
+          lineWidth: 1,
+          lineColor: '#FFFFFF',
+        },
+        tooltip: {
+            split: true,
+            valueDecimals: 0,
+            valueSuffix: '주',
+        },
+        dataGrouping:{
+          approximation: 'average',
+          enabled:true,
+          forced:true,
+          groupAll:true,
+          groupPixelWidth:15,
+        }
+      },
+      {
+        name: '5일_이평선',
+        // pointStart: Date.UTC(2018, 1, 1),
+        // pointInterval: 1000 * 3600 * 24,
+        data: [],
+        marker: {
+          enabled: null, // auto
+          radius: 3,
+          lineWidth: 1,
+          lineColor: '#FF0000',
+        },
+        tooltip: {
+            split: true,
+            valueDecimals: 0,
+            valueSuffix: '주',
+        },
+        dataGrouping:{
+          approximation: 'average',
+          enabled:true,
+          forced:true,
+          groupAll:true,
+          groupPixelWidth:15,
+        }
+      },
+      {
+        name: '20일_이평선',
+        // pointStart: Date.UTC(2018, 1, 1),
+        // pointInterval: 1000 * 3600 * 24,
+        data: [],
+        marker: {
+          enabled: null, // auto
+          radius: 3,
+          lineWidth: 1,
+          lineColor: '#FFFB33',
+        },
+        tooltip: {
+            split: true,
+            valueDecimals: 0,
+            valueSuffix: '주',
+        },
+        dataGrouping:{
+          approximation: 'average',
+          enabled:true,
+          forced:true,
+          groupAll:true,
+          groupPixelWidth:15,
+        }
+      }]
+    }
+
+
+
+
+
+
+
+
+
+  // 거래량 차트 추가 기능...
+  // 2022 04 21
+  , kospiIndustryFlowStockRightVolumeChartOptions: {
+    rangeSelector: {
+      allButtonsEnabled: true,
+      verticalAlign: "top",
+      floating: true,
+      y: 785,
+      x: 0,
+      buttons: [{
+            type: 'month',
+            count: 1,
+            text: '1m',
+            title: 'View 1 month'
+        }, {
+            type: 'month',
+            count: 3,
+            text: '3m',
+            title: 'View 3 months'
+        }, {
+            type: 'month',
+            count: 6,
+            text: '6m',
+            title: 'View 6 months'
+        }, {
+            type: 'ytd',
+            text: 'YTD',
+            title: 'View year to date'
+        }, {
+            type: 'year',
+            count: 1,
+            text: '1y',
+            title: 'View 1 year'
+        }, {
+            type: 'all',
+            text: 'All',
+            title: 'View all'
+        }],
+        buttonTheme: {
+            width: 30
+        },
+        selected: 1
+    },
+    legend: {
+      enabled: true,
+    },
+    xAxis: {
+      type: "datetime",
+      title: {
+        text: '날짜(기간)'
+      },
+      labels: {
+        // autoRotationLimit: 40
+        formatter: function() {
+          return Highcharts.dateFormat('%b/%e/%Y', this.value);
+        }
+      },
+      setExtremes: function(e) {
+        console.log(this);
+        if(typeof(e.rangeSelectorButton)!== 'undefined') {
+          // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+          // console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+        }
+      },
+    },
+    plotOptions: {
+      series: {
+        events: {
+            legendItemClick: function () {
+
+            },
+        }
+      }
+    },
+    chart: { 
+      renderTo: 'container',
+      type: 'line',
+      zoomType: 'x',
+      height: 1000,
+      //marginBottom: 80
+    },
+    title: {
+      text: '거래량분석'
+    },
+    tooltip: {
+      crosshairs: true,
+      shared: true
+    },
+    credits: {
+      enabled: true
+    },
+    yAxis: {
+      title: {
+          text: '일일거래량'
+      },
+      alignTicks:'left', 
+      textAlign:'left',
+      align:'middle',
+      opposite:false,
+      labels: {
+        formatter: function () {
+            return this.value;
+        }
+      }
+    },
+    responsive: {
+      rules: [{
+        condition: {
+            maxWidth: 200,
+        },
+        chartOptions: {
+            chart: {
+                height: 200,
+            },
+            subtitle: {
+                text: null,
+            },
+            navigator: {
+                enabled: true,
+            },
+            yAxis: {
+              title: {
+                enabled: false,
+              }
+            }
+        }
+      }]
+    },
+    series: [{
+      type: 'column',
+      name: '일일거래량',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FFFFFF',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    },
+    {
+      name: '5일_이평선',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FF0000',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    },
+    {
+      name: '20일_이평선',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FFFB33',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    }]
+  }
+
+
+
+
+
+
+
+
+
+  // 거래량 차트 추가 기능...
+  // 2022 04 21
+  , kosdaqIndustryFlowStockRightVolumeChartOptions: {
+    rangeSelector: {
+      allButtonsEnabled: true,
+      verticalAlign: "top",
+      floating: true,
+      y: 785,
+      x: 0,
+      buttons: [{
+            type: 'month',
+            count: 1,
+            text: '1m',
+            title: 'View 1 month'
+        }, {
+            type: 'month',
+            count: 3,
+            text: '3m',
+            title: 'View 3 months'
+        }, {
+            type: 'month',
+            count: 6,
+            text: '6m',
+            title: 'View 6 months'
+        }, {
+            type: 'ytd',
+            text: 'YTD',
+            title: 'View year to date'
+        }, {
+            type: 'year',
+            count: 1,
+            text: '1y',
+            title: 'View 1 year'
+        }, {
+            type: 'all',
+            text: 'All',
+            title: 'View all'
+        }],
+        buttonTheme: {
+            width: 30
+        },
+        selected: 1
+    },
+    legend: {
+      enabled: true,
+    },
+    xAxis: {
+      type: "datetime",
+      title: {
+        text: '날짜(기간)'
+      },
+      labels: {
+        // autoRotationLimit: 40
+        formatter: function() {
+          return Highcharts.dateFormat('%b/%e/%Y', this.value);
+        }
+      },
+      setExtremes: function(e) {
+        console.log(this);
+        if(typeof(e.rangeSelectorButton)!== 'undefined') {
+          // alert('count: '+e.rangeSelectorButton.count + 'text: ' +e.rangeSelectorButton.text + ' type:' + e.rangeSelectorButton.type);
+          // console.log('e.rangeSelectorButton;;;;;', e.rangeSelectorButton);
+        }
+      },
+    },
+    plotOptions: {
+      series: {
+        events: {
+            legendItemClick: function () {
+
+            },
+        }
+      }
+    },
+    chart: { 
+      renderTo: 'container',
+      type: 'line',
+      zoomType: 'x',
+      height: 1000,
+      //marginBottom: 80
+    },
+    title: {
+      text: '거래량분석'
+    },
+    tooltip: {
+      crosshairs: true,
+      shared: true
+    },
+    credits: {
+      enabled: true
+    },
+    yAxis: {
+      title: {
+          text: '일일거래량'
+      },
+      alignTicks:'left', 
+      textAlign:'left',
+      align:'middle',
+      opposite:false,
+      labels: {
+        formatter: function () {
+            return this.value;
+        }
+      }
+    },
+    responsive: {
+      rules: [{
+        condition: {
+            maxWidth: 200,
+        },
+        chartOptions: {
+            chart: {
+                height: 200,
+            },
+            subtitle: {
+                text: null,
+            },
+            navigator: {
+                enabled: true,
+            },
+            yAxis: {
+              title: {
+                enabled: false,
+              }
+            }
+        }
+      }]
+    },
+    series: [{
+      type: 'column',
+      name: '일일거래량',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FFFFFF',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    },
+    {
+      name: '5일_이평선',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FF0000',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    },
+    {
+      name: '20일_이평선',
+      // pointStart: Date.UTC(2018, 1, 1),
+      // pointInterval: 1000 * 3600 * 24,
+      data: [],
+      marker: {
+        enabled: null, // auto
+        radius: 3,
+        lineWidth: 1,
+        lineColor: '#FFFB33',
+      },
+      tooltip: {
+          split: true,
+          valueDecimals: 0,
+          valueSuffix: '주',
+      },
+      dataGrouping:{
+        approximation: 'average',
+        enabled:true,
+        forced:true,
+        groupAll:true,
+        groupPixelWidth:15,
+      }
+    }]
+  }
 
   
 }

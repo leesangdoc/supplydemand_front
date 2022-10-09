@@ -96,6 +96,13 @@ export default {
           , todate: this.todate
           , category: 'kosdaqIndustry'
         });
+        await this.$store.dispatch('callVolume', { 
+          csvFileName
+          , stockName
+          , fromdate: this.fromdate
+          , todate: this.todate
+          , category: 'kosdaqIndustry'
+        });
       } catch(error){
         console.log(error);
       }
