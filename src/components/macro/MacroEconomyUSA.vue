@@ -3,6 +3,14 @@
     <v-card-text>
       <h1>미국 거시경제 분석입니다...{{globalCode}}</h1>
       <br/>
+      <h3>
+        <strong>내구재주문</strong>은 경기선행지표라고 할 수 있다. 주문량이 계속해서 증가하는 추세를 보이고 있다면 앞으로 경기가<br/>
+         좋아질 것이므로 주식과 같은 위험자산에 적극 투자를 고려해보는 것이 좋다. <br/>
+         전반적으로 낙관적인 분위기이므로 주가지수에 투자하는 것도 괜찮은 방법이겠고, <br/>
+         종목 선정에 관한 안목이 있다면 직접적으로 연관이 큰 '내구재'사업을 하고 있는 산업을 선별해 골라내면 <br/>
+         더 좋을 것이다. <br/>
+         반대로 계속해서 주문량이 줄어드는 추세에 접어드는 것이 확인되면 빨리 위험자산을 정리해야 한다.<br/>
+      </h3>
       <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -57,12 +65,12 @@ export default {
           contents: '<a target="_blank" href="https://ko.tradingeconomics.com/united-states/indicators">경제지표(상단탭-분야별 개작살남)</a>',
         },
         {
-          title: '',
-          contents: '',
+          title: '미국 내구재 주문(kr-investing)',
+          contents: '<a target="_blank" href="https://kr.investing.com/economic-calendar/durable-goods-orders-86">미국 내구재 주문(kr-investing)</a>',
         },
         {
-          title: '',
-          contents: '',
+          title: '미국 내구재 주문(macrotrends)',
+          contents: '<a target="_blank" href="https://www.macrotrends.net/2582/durable-goods-orders-historical-chart">미국 내구재 주문(macrotrends)</a>',
         },
         {
           title: '',

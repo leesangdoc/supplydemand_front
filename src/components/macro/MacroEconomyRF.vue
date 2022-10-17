@@ -132,11 +132,11 @@ export default {
         },
         {
           title: 'WHO COVID-19 INFO',
-          contents:  '<a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=Cj0KCQjw166aBhDEARIsAMEyZh5ue1UsDtyB83Qnvz3z1Q_oD958fwJN5h-hrjAvVoA35vAGoxi8g50aAlymEALw_wcB">WHO COVID-19 INFO</a>',
+          contents: '<a target="_blank" href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019?adgroupsurvey={adgroupsurvey}&gclid=Cj0KCQjw166aBhDEARIsAMEyZh5ue1UsDtyB83Qnvz3z1Q_oD958fwJN5h-hrjAvVoA35vAGoxi8g50aAlymEALw_wcB">WHO COVID-19 INFO</a>',
         },
         {
-          title: '',
-          contents: '',
+          title: '통계용어해설',
+          contents: '<a target="_blank" href="http://kostat.go.kr/understand/info/info_lge/1/index.action?bmode=languge&keyWord=0">통계용어해설</a>',
         },
         {
           title: '',

@@ -13,6 +13,9 @@
       <div v-if="globalCode === 'ReferenceSite'">
         <MacroEconomyRF :globalCode ="globalCode"/>
       </div>
+      <div v-if="globalCode === 'CH'">
+        <MacroEconomyCH :globalCode ="globalCode"/>
+      </div>
       
   </v-card>
 </template>
@@ -22,6 +25,7 @@ import MacroEconomyKorea from './macro/MacroEconomyKorea';
 import MacroEconomyUSA from './macro/MacroEconomyUSA.vue';
 import MacroEconomyRF from './macro/MacroEconomyRF.vue';
 import MacroEconomyEU from './macro/MacroEconomyEU.vue';
+import MacroEconomyCH from './macro/MacroEconomyCH.vue';
 export default {
   name: 'HelloWorld'
   // 이게 액션기능인듯...
@@ -39,7 +43,8 @@ export default {
     MacroEconomyKorea,
     MacroEconomyUSA,
     MacroEconomyRF,
-    MacroEconomyEU
+    MacroEconomyEU,
+    MacroEconomyCH
 }
 }
 </script>
