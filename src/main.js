@@ -8,6 +8,7 @@ import moment from "moment";
 import router from './router'
 
 Vue.config.productionTip = false;
+Vue.config.silent = false;
 Vue.use(vueMoment, moment, store, Vuex);
  
 // const router = new VueRouter({
@@ -20,4 +21,5 @@ new Vue({
   , router
   , store
   , render: h => h(App)
+  , theme: { dark: true } // light { dark: true }
 }).$mount('#app');
