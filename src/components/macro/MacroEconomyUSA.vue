@@ -51,14 +51,30 @@ export default {
     console.log('macroKorea this.globalCode;;;', this.globalCode);
     return {
       hero: this.globalCode
-      /*
-      미국 버핏지수 
-      https://www.currentmarketvaluation.com/models/buffett-indicator.php
-      */
-      ,  resultList: [
+      , resultList: [
+        {
+          title: '미국_다우존스지수',
+          contents: '<a target="_blank" href="https://kr.investing.com/indices/us-30">다우존스지수</a>',
+        },
+        {
+          title: '미국_나스닥지수',
+          contents: '<a target="_blank" href="https://kr.investing.com/indices/nasdaq-composite">나스닥지수</a>',
+        },
+        {
+          title: '미국 금리',
+          contents: '<a target="_blank" href="https://ko.tradingeconomics.com/united-states/interest-rate">금리</a>',
+        },
+        {
+          title: '버핏지수(미국)',
+          contents: '<a target="_blank" href="https://www.gurufocus.com/stock-market-valuations.php">미국 버핏지수</a>',
+        },
         {
           title: '미국 경제성장률',
           contents: '<a target="_blank" href="https://ko.tradingeconomics.com/united-states/gdp-growth">GDP 성장률</a>',
+        },
+        {
+          title: '미국 주요경제지표',
+          contents: '<a target="_blank" href="https://ko.tradingeconomics.com/united-states/indicators">경제지표(상단탭-분야별 개작살남)</a>',
         },
         {
           title: '미국 주요경제지표',
@@ -73,6 +89,46 @@ export default {
           contents: '<a target="_blank" href="https://www.macrotrends.net/2582/durable-goods-orders-historical-chart">미국 내구재 주문(macrotrends)</a>',
         },
         {
+          title: '미국 부동산거래량',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EB%B6%80%EB%8F%99%EC%82%B0%EA%B1%B0%EB%9E%98%EB%9F%89+%EB%AF%B8%EA%B5%AD&oq=%EB%B6%80%EB%8F%99%EC%82%B0%EA%B1%B0%EB%9E%98%EB%9F%89+%EB%AF%B8%EA%B5%AD&aqs=chrome..69i57j33i160.3960j0j4&sourceid=chrome&ie=UTF-8">부동산거래량_미국</a>',
+        },
+        {
+          title: '미국 월별 취업자수',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EB%AF%B8%EA%B5%AD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&newwindow=1&biw=1396&bih=656&tbs=qdr%3Am&sxsrf=ALiCzsbsqBi5VQ-NTL2Fi_k_wF1CofOhew%3A1666110915113&ei=w9VOY7i-BsyOoATls7noDw&ved=0ahUKEwj4q4Hqmur6AhVMB4gKHeVZDv0Q4dUDCA8&uact=5&oq=%EB%AF%B8%EA%B5%AD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIFCAAQogQyBwgAEB4QogQyBQgAEKIEOgoIABBHENYEELADOggIIRDDBBCgAUoECEEYAEoECEYYAFD6mAFYqpwBYI-fAWgDcAF4AYABgwGIAdMEkgEDMC41mAEAoAEByAEBwAEB&sclient=gws-wiz">미국 월별취업자수</a>',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
           title: '',
           contents: '',
         },
@@ -80,4 +136,7 @@ export default {
     }
   }
 }
+
 </script>
+
+

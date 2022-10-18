@@ -47,6 +47,27 @@ export default {
       hero: this.globalCode
       ,  resultList: [
         {
+          title: '유럽주요지수',
+          contents: '<a target="_blank" href="https://kr.investing.com/indices/european-indices?&majorIndices=on&additionalIndices=on">유럽주요지수</a>',
+        },
+        
+        {
+          title: '유로존 금리',
+          contents: '<a target="_blank" href="https://kr.investing.com/economic-calendar/interest-rate-decision-164">유럽금리</a>',
+        },
+        {
+          title: '유로달러_환율',
+          contents: '<a target="_blank" href="https://kr.investing.com/currencies/eur-usd">유로달러</a>',
+        },
+        {
+          title: '버핏지수_독일',
+          contents: '<a target="_blank" href="https://www.gurufocus.com/global-market-valuation.php?country=DEU">버핏지수_독일</a>',
+        },
+        {
+          title: '버핏지수_프랑스',
+          contents: '<a target="_blank" href="https://www.gurufocus.com/global-market-valuation.php?country=FRA">버핏지수_프랑스</a>',
+        },
+        {
           title: '유럽 주요경제지표',
           contents: '<a target="_blank" href="https://ko.tradingeconomics.com/european-union/indicators">유럽_경제지표(상단탭-분야별 개작살남)</a>',
         },
@@ -63,8 +84,12 @@ export default {
           contents: '<a target="_blank" href="https://www.cpb.nl/en">유럽경제정책분석</a>',
         },
         {
-          title: '',
-          contents: '',
+          title: '유럽 부동산거래량',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EC%9C%A0%EB%9F%BD+%EB%B6%80%EB%8F%99%EC%82%B0%EA%B1%B0%EB%9E%98%EB%9F%89&newwindow=1&sxsrf=ALiCzsYawVUId-jMEYZOJF9ddiektRsH4w:1666109757706&source=lnt&tbs=qdr:m&sa=X&ved=2ahUKEwi-647Clur6AhWJRN4KHTAIBcMQpwV6BAgCEBw&biw=1396&bih=656&dpr=1.38">유럽부동산거래량</a>',
+        },
+        {
+          title: '유럽 물가지수',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EC%9C%A0%EB%9F%BD+%EB%AC%BC%EA%B0%80%EC%A7%80%EC%88%98&newwindow=1&biw=1396&bih=656&tbs=qdr%3Am&sxsrf=ALiCzsboAwFAn1jdMaBlsvTR6MSKaz4IpQ%3A1666110331053&ei=e9NOY93FAtD7-QastZOgDw&ved=0ahUKEwid78DTmOr6AhXQfd4KHazaBPQQ4dUDCA8&uact=5&oq=%EC%9C%A0%EB%9F%BD+%EB%AC%BC%EA%B0%80%EC%A7%80%EC%88%98&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEIAEMgYIABAHEB4yCAgAEAcQHhAPOggIABCABBCwAzoJCAAQCBAeELADOgkIABAHEB4QsAM6BggAEB4QDToECAAQQzoKCAAQgAQQhwIQFDoKCAAQCBAHEB4QD0oECEEYAUoECEYYAFCKDFivFWCjF2gEcAB4AYAByAGIAfoHkgEFMC42LjGYAQCgAQHIAQPAAQE&sclient=gws-wiz">유럽 물가지수</a>',
         },
         {
           title: '',

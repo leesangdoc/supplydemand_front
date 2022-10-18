@@ -55,11 +55,7 @@ export default {
     console.log('macroKorea this.globalCode;;;', this.globalCode);
     return {
       hero: this.globalCode
-      /*
-      미국 버핏지수 
-      https://www.currentmarketvaluation.com/models/buffett-indicator.php
-      */
-      ,  resultList: [
+      , resultList: [
         {
           title: '금리',
           contents: '<a target="_blank" href="https://www.bok.or.kr/portal/singl/baseRate/list.do?dataSeCd=01&menuNo=200643">금리</a>',
@@ -87,6 +83,10 @@ export default {
         {
           title: '통화량추이',
           contents: '<a target="_blank" href="https://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1072">통화량</a>',
+        },
+        {
+          title: '한국 부동산 거래량',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%ED%95%9C%EA%B5%AD+%EB%B6%80%EB%8F%99%EC%82%B0%EA%B1%B0%EB%9E%98%EB%9F%89&newwindow=1&biw=1396&bih=656&tbs=qdr%3Am&sxsrf=ALiCzsaonJsHuh95ZLdU66qkn9epqY1fkQ%3A1666110115459&ei=o9JOY6zCG4r8wQPo-6bYBA&ved=0ahUKEwjsn9rsl-r6AhUKfnAKHei9CUsQ4dUDCA8&uact=5&oq=%ED%95%9C%EA%B5%AD+%EB%B6%80%EB%8F%99%EC%82%B0%EA%B1%B0%EB%9E%98%EB%9F%89&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEKIEMgUIABCiBDIFCAAQogQyBQgAEKIEOgoIABBHENYEELADOgcIABAeEKIESgQIQRgASgQIRhgAUJrnAli46wJg3e8CaAJwAXgAgAGPAYgB7wOSAQMwLjSYAQCgAQHIAQXAAQE&sclient=gws-wiz">한국 부동산거래량</a>',
         },
         {
           title: '금융투자협회<br/>(투자자예탁금, 신용거래융자, 예탁증권담보융자)',
@@ -219,6 +219,46 @@ export default {
         {
           title: '취업자 수/실업률 추이',
           contents: '<a target="_blank" href="https://www.index.go.kr/potal/main/EachDtlPageDetail.do?idx_cd=1063">취업자 수/실업률 추이</a>',
+        },
+        {
+          title: '취업자수',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EC%9C%A0%EB%9F%BD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&newwindow=1&biw=1396&bih=656&tbs=qdr%3Am&sxsrf=ALiCzsZW6L2lHGzVnhE85OsP19miSkNwyg%3A1666110722328&ei=AtVOY_rOE7SD1e8PocCH8A8&ved=0ahUKEwj614qOmur6AhW0QfUHHSHgAf4Q4dUDCA8&uact=5&oq=%EC%9C%A0%EB%9F%BD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&gs_lcp=Cgdnd3Mtd2l6EAMyCAghEMMEEKABOgoIABBHENYEELADOgYIABAHEB46CAgAEIAEEMQCOgUIABCABDoECAAQQzoKCCEQwwQQChCgAToICAAQCBAHEB46BwgAEB4QogQ6BQgAEKIESgQIQRgASgQIRhgAUOAHWJZCYIFHaAxwAXgEgAGPAYgB-hiSAQQwLjI2mAEAoAEByAEKwAEB&sclient=gws-wiz">취업자수(유럽 검색했는데 한국꺼 더 잘나오냐? ㅡ.ㅡ;;)</a>',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
+        },
+        {
+          title: '',
+          contents: '',
         },
         {
           title: '',
