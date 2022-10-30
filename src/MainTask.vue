@@ -213,6 +213,35 @@
                   </v-tabs>
                 </v-container>
               </div>
+              <div v-else-if="index === 11">
+                <v-container class="grey lighten-5" fluid>
+                  <v-tabs>
+                    <v-tab
+                        v-for="global in industrySectorArray" 
+                        :key="global"
+                        @change="handleTabChangeMacro(global)"
+                    >
+                      {{global}}
+                    </v-tab>
+                    <v-tab-item v-for="industryType in industrySectorArray" :key="industryType">
+                      <v-row>
+                       <v-col>
+                         <v-card>
+                          <IndustrySectorInfo :industryCode = "industryType"/>
+                         </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    
+                  </v-tabs>
+                </v-container>
+              </div>
+
+              <div v-else-if="index === 12">
+                <v-container class="grey lighten-5" fluid>
+                  <TradingPrinciple />
+                </v-container>
+              </div>
             </v-card-text>
           </v-card>
         </v-tab-item>
@@ -247,6 +276,9 @@ import KosdaqIndustryFlowStockRight from './components/KosdaqIndustryFlowStockRi
 import KosdaqIndustryFlowAveragePriceGraph from './components/KosdaqIndustryFlowAveragePriceGraph';
 import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlowSupplyDemandGraph';
 import MacroEconomyAnalysis from './components/MacroEconomyAnalysis';
+import IndustrySectorInfo from './components/IndustrySectorInfo';
+import TradingPrinciple from './components/TradingPrinciple';
+
 
 
 export default {
@@ -333,6 +365,8 @@ export default {
     , KosdaqIndustryFlowAveragePriceGraph
     , KosdaqIndustryFlowSupplyDemandGraph
     , MacroEconomyAnalysis
+    , IndustrySectorInfo
+    , TradingPrinciple
   },
   data: () => ({
     currentItem: 'tabWeb'
@@ -348,6 +382,8 @@ export default {
       , '지수흐름(코스닥)'
       , '수급분석표'
       , '거시경제분석'
+      , '산업별분석'
+      , '매매전략'
       // , '시장수급'
     ]
     , stockinfo: {
@@ -357,6 +393,7 @@ export default {
                     , "개인", "투신", "은행", "기타금융", "사모펀드"
                     , "국가,지자체", "기타법인", "기타외인"]
     , globalArray: ["KR", "US", "CH", "EU", "ReferenceSite"]
+    , industrySectorArray: ["businessCycle", "semiconductor", "steel", "petro"]
   }),
 };
 </script>

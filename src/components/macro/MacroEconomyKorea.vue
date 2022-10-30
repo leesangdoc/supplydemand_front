@@ -225,48 +225,53 @@ export default {
           contents: '<a target="_blank" href="https://www.google.com/search?q=%EC%9C%A0%EB%9F%BD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&newwindow=1&biw=1396&bih=656&tbs=qdr%3Am&sxsrf=ALiCzsZW6L2lHGzVnhE85OsP19miSkNwyg%3A1666110722328&ei=AtVOY_rOE7SD1e8PocCH8A8&ved=0ahUKEwj614qOmur6AhW0QfUHHSHgAf4Q4dUDCA8&uact=5&oq=%EC%9C%A0%EB%9F%BD+%EC%9B%94%EB%B3%84+%EC%B7%A8%EC%97%85%EC%9E%90%EC%88%98&gs_lcp=Cgdnd3Mtd2l6EAMyCAghEMMEEKABOgoIABBHENYEELADOgYIABAHEB46CAgAEIAEEMQCOgUIABCABDoECAAQQzoKCCEQwwQQChCgAToICAAQCBAHEB46BwgAEB4QogQ6BQgAEKIESgQIQRgASgQIRhgAUOAHWJZCYIFHaAxwAXgEgAGPAYgB-hiSAQQwLjI2mAEAoAEByAEKwAEB&sclient=gws-wiz">취업자수(유럽 검색했는데 한국꺼 더 잘나오냐? ㅡ.ㅡ;;)</a>',
         },
         {
-          title: '',
-          contents: '',
+          title: '공장가동률',
+          contents: '<a target="_blank" href="https://www.google.com/search?q=%EC%A0%9C%EC%A1%B0%EC%97%85+%EA%B3%B5%EC%9E%A5%EA%B0%80%EB%8F%99%EB%A5%A0&newwindow=1&rlz=1C1NHXL_koKR821KR821&tbs=qdr:m&sxsrf=ALiCzsYOupeFTnRMCdHWD5XHClXts0qZmg:1667096304513&ei=8N5dY62CH8qC1e8PpYKz2Aw&start=10&sa=N&ved=2ahUKEwituqXY8Yb7AhVKQfUHHSXBDMsQ8tMDegQIARAE&biw=1229&bih=577&dpr=1.56">공장가동률</a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
         {
           title: '',
-          contents: '',
+          contents: '<a target="_blank" href=""></a>',
         },
-
-
-        
+        {
+          title: '',
+          contents: '<a target="_blank" href=""></a>',
+        },
+        {
+          title: '',
+          contents: '<a target="_blank" href=""></a>',
+        },
       ],
     }
   }
