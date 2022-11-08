@@ -236,10 +236,14 @@
                   </v-tabs>
                 </v-container>
               </div>
-
               <div v-else-if="index === 12">
                 <v-container class="grey lighten-5" fluid>
                   <TradingPrinciple />
+                </v-container>
+              </div>
+              <div v-else-if="index === 13">
+                <v-container class="grey lighten-5" fluid>
+                  <IntrinsicValueCalculation />
                 </v-container>
               </div>
             </v-card-text>
@@ -278,6 +282,7 @@ import KosdaqIndustryFlowSupplyDemandGraph from './components/KosdaqIndustryFlow
 import MacroEconomyAnalysis from './components/MacroEconomyAnalysis';
 import IndustrySectorInfo from './components/IndustrySectorInfo';
 import TradingPrinciple from './components/TradingPrinciple';
+import IntrinsicValueCalculation from './components/IntrinsicValueCalculation';
 
 
 
@@ -367,6 +372,7 @@ export default {
     , MacroEconomyAnalysis
     , IndustrySectorInfo
     , TradingPrinciple
+    , IntrinsicValueCalculation
   },
   data: () => ({
     currentItem: 'tabWeb'
@@ -384,6 +390,7 @@ export default {
       , '거시경제분석'
       , '산업별분석'
       , '매매전략'
+      , '적정주가_산출공식'
       // , '시장수급'
     ]
     , stockinfo: {
