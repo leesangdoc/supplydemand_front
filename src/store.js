@@ -1232,6 +1232,14 @@ export default new Vuex.Store({
             state.quickInterestStockRightVolumeChart.series[0].data = commonUtil.changeDate(payload.volumeLst);
             state.quickInterestStockRightVolumeChart.series[1].data = commonUtil.changeDate(payload.volumeMa5);
             state.quickInterestStockRightVolumeChart.series[2].data = commonUtil.changeDate(payload.volumeMa20);
+            state.quickInterestStockRightVolumeChart.series[3].data = commonUtil.changeDate(payload.volumeMa50);
+            state.quickInterestStockRightVolumeChart.series[4].data = commonUtil.changeDate(payload.volumeMa200);
+
+            state.quickInterestStockRightVolumeChart.series[5].data = commonUtil.changeDate(payload.volumeNv5);
+            state.quickInterestStockRightVolumeChart.series[6].data = commonUtil.changeDate(payload.volumeNv20);
+            state.quickInterestStockRightVolumeChart.series[7].data = commonUtil.changeDate(payload.volumeNv50);
+            state.quickInterestStockRightVolumeChart.series[8].data = commonUtil.changeDate(payload.volumeNv200);
+
             //state.shortSellingChart.series[1].visible = false;
             //state.shortSellingChart.series[2].visible = false;
             state.quickInterestStockRightVolumeChart.rangeSelector.selected = 5;
